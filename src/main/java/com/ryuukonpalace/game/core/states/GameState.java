@@ -12,8 +12,9 @@ public interface GameState {
     
     /**
      * Update the state logic
+     * @param dt Delta time in seconds
      */
-    void update();
+    void update(float dt);
     
     /**
      * Render the state

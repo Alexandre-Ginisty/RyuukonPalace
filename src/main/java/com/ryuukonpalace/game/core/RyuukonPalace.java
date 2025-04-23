@@ -1,7 +1,16 @@
 package com.ryuukonpalace.game.core;
 
+import com.ryuukonpalace.game.combat.CombatSystem;
 import com.ryuukonpalace.game.core.physics.CollisionManager;
+import com.ryuukonpalace.game.core.states.GameState;
+import com.ryuukonpalace.game.core.states.GameStateManager;
+import com.ryuukonpalace.game.core.states.MainMenuState;
+import com.ryuukonpalace.game.player.Player;
+import com.ryuukonpalace.game.qte.QTESystem;
 import com.ryuukonpalace.game.utils.ResourceManager;
+import com.ryuukonpalace.game.world.GameObject;
+import com.ryuukonpalace.game.world.SpawnZone;
+import com.ryuukonpalace.game.world.WorldManager;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -19,9 +28,8 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
- * Main class for Ryuukon Palace game.
- * This game is a Pokémon-like RPG where players can capture creatures using QTE (Quick Time Events).
- * The game features creature evolution, battles, and exploration.
+ * Main game class for Ryuukon Palace.
+ * Handles window creation, game loop, and state management.
  */
 public class RyuukonPalace {
 
@@ -29,11 +37,11 @@ public class RyuukonPalace {
     private long window;
     
     // Window dimensions
-    private final int WIDTH = 800;
-    private final int HEIGHT = 600;
+    private int width = 1280;
+    private int height = 720;
     
     // Game title
-    private final String TITLE = "Ryuukon Palace";
+    private String title = "Ryuukon Palace";
     
     // Game state manager
     private GameStateManager gameStateManager;
@@ -50,17 +58,37 @@ public class RyuukonPalace {
     // Collision manager
     private CollisionManager collisionManager;
     
-    // Caméra
+    // Camera
     private Camera camera;
     
-    // Liste des objets du jeu
+    // World manager
+    private WorldManager worldManager;
+    
+    // Player
+    private Player player;
+    
+    // QTE system
+    private QTESystem qteSystem;
+    
+    // Combat system
+    private CombatSystem combatSystem;
+    
+    // Game objects
     private List<GameObject> gameObjects;
     
-    // Temps de la dernière frame
-    private double lastFrameTime;
+    // World dimensions
+    private float worldWidth = 2000.0f;
+    private float worldHeight = 2000.0f;
+    
+    // Delta time
+    private float deltaTime = 0.0f;
+    private long lastFrameTime = 0;
 
+    /**
+     * Run the game
+     */
     public void run() {
-        System.out.println("Starting " + TITLE + " using LWJGL " + Version.getVersion());
+        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
 
         init();
         loop();
@@ -74,14 +102,16 @@ public class RyuukonPalace {
         glfwSetErrorCallback(null).free();
     }
 
+    /**
+     * Initialize the game
+     */
     private void init() {
         // Setup an error callback
         GLFWErrorCallback.createPrint(System.err).set();
 
         // Initialize GLFW
-        if (!glfwInit()) {
+        if (!glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
-        }
 
         // Configure GLFW
         glfwDefaultWindowHints();
@@ -89,16 +119,14 @@ public class RyuukonPalace {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
         // Create the window
-        window = glfwCreateWindow(WIDTH, HEIGHT, TITLE, NULL, NULL);
-        if (window == NULL) {
+        window = glfwCreateWindow(width, height, title, NULL, NULL);
+        if (window == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
-        }
 
         // Setup key callback
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-            if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
+            if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
                 glfwSetWindowShouldClose(window, true);
-            }
         });
 
         // Get the thread stack and push a new frame
@@ -114,15 +142,14 @@ public class RyuukonPalace {
 
             // Center the window
             glfwSetWindowPos(
-                    window,
-                    (vidmode.width() - pWidth.get(0)) / 2,
-                    (vidmode.height() - pHeight.get(0)) / 2
+                window,
+                (vidmode.width() - pWidth.get(0)) / 2,
+                (vidmode.height() - pHeight.get(0)) / 2
             );
         } // the stack frame is popped automatically
 
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
-        
         // Enable v-sync
         glfwSwapInterval(1);
 
@@ -132,189 +159,276 @@ public class RyuukonPalace {
         // Initialize OpenGL
         GL.createCapabilities();
         
-        // Initialize managers
+        // Initialize game systems
+        initGameSystems();
+        
+        // Initialize game states
+        initGameStates();
+        
+        // Initialize game objects
+        initGameObjects();
+    }
+
+    /**
+     * Initialize game systems
+     */
+    private void initGameSystems() {
+        // Initialize resource manager
         resourceManager = ResourceManager.getInstance();
-        renderer = Renderer.getInstance();
+        resourceManager.init();
+        
+        // Initialize input manager
         inputManager = InputManager.getInstance();
         inputManager.setWindow(window);
-        collisionManager = CollisionManager.getInstance();
-        camera = Camera.getInstance();
-        
-        // Initialiser la caméra
-        camera.init(WIDTH, HEIGHT, 2000, 2000); // Dimensions du monde: 2000x2000
-        
-        // Initialiser la liste des objets du jeu
-        gameObjects = new ArrayList<>();
-        
-        // Configurer les groupes de collision
-        setupCollisionGroups();
         
         // Initialize game state manager
-        gameStateManager = new GameStateManager();
+        gameStateManager = GameStateManager.getInstance();
         
-        // Initialiser le temps de la dernière frame
-        lastFrameTime = glfwGetTime();
+        // Initialize renderer
+        renderer = Renderer.getInstance();
+        renderer.init(width, height);
+        
+        // Initialize QTE system
+        qteSystem = QTESystem.getInstance();
+        qteSystem.init();
+        
+        // Initialize combat system
+        combatSystem = CombatSystem.getInstance();
+        combatSystem.init();
+        
+        // Initialize collision manager
+        collisionManager = CollisionManager.getInstance();
+        
+        // Configurer les groupes de collision
+        collisionManager.setCollision("player", "spawnZone");
+        collisionManager.setCollision("player", "obstacle");
+        
+        // Initialize camera
+        camera = Camera.getInstance();
+        camera.init(width, height, worldWidth, worldHeight);
+        
+        // Initialize world manager
+        worldManager = WorldManager.getInstance();
+        
+        // Initialize game objects list
+        gameObjects = new ArrayList<>();
+    }
+
+    /**
+     * Initialize game states
+     */
+    private void initGameStates() {
+        // Create main menu state
+        GameState mainMenuState = new MainMenuState(gameStateManager);
+        mainMenuState.init();
+        
+        // Add states to manager
+        gameStateManager.addState(mainMenuState);
+        
+        // Set initial state
+        gameStateManager.setState(mainMenuState);
     }
     
     /**
-     * Configurer les groupes de collision
+     * Initialize game objects
      */
-    private void setupCollisionGroups() {
-        // Définir les relations de collision entre les différents groupes
-        collisionManager.setCollision("player", "obstacles");
-        collisionManager.setCollision("player", "npcs");
-        collisionManager.setCollision("player", "creatures");
-        collisionManager.setCollision("player", "items");
-        collisionManager.setCollision("creatures", "obstacles");
+    private void initGameObjects() {
+        // Create player at the center of the world
+        player = new Player(worldWidth / 2, worldHeight / 2);
+        gameObjects.add(player);
+        
+        // Set camera to follow player
+        camera.follow(player);
     }
 
+    /**
+     * Main game loop
+     */
     private void loop() {
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        
+        // Set initial time
+        lastFrameTime = System.nanoTime();
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
         while (!glfwWindowShouldClose(window)) {
-            // Calculer le deltaTime
-            double currentTime = glfwGetTime();
-            float deltaTime = (float) (currentTime - lastFrameTime);
+            // Calculate delta time
+            long currentTime = System.nanoTime();
+            deltaTime = (currentTime - lastFrameTime) / 1_000_000_000.0f;
             lastFrameTime = currentTime;
             
-            // Clear the framebuffer
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+            // Cap delta time to prevent physics issues after pausing
+            if (deltaTime > 0.1f) {
+                deltaTime = 0.1f;
+            }
+            
             // Update input
             inputManager.update();
             
-            // Update game objects
-            updateGameObjects(deltaTime);
+            // Check if in combat
+            if (combatSystem.isActive()) {
+                // Update combat
+                updateCombat();
+            } else {
+                // Update game
+                updateGame();
+            }
             
-            // Update camera
-            camera.update();
+            // Render
+            render();
             
-            // Update collisions
-            updateCollisions();
-            
-            // Update game state
-            gameStateManager.update();
-            
-            // Render game objects
-            renderGameObjects();
-            
-            // Render game state
-            gameStateManager.render();
-
             // Swap the color buffers
             glfwSwapBuffers(window);
 
             // Poll for window events
             glfwPollEvents();
         }
-        
-        // Dispose resources
-        disposeGameObjects();
-        resourceManager.dispose();
-        renderer.dispose();
-        inputManager.dispose();
     }
     
     /**
-     * Mettre à jour tous les objets du jeu
-     * @param deltaTime Temps écoulé depuis la dernière frame en secondes
+     * Update the game
      */
-    private void updateGameObjects(float deltaTime) {
-        for (int i = gameObjects.size() - 1; i >= 0; i--) {
-            GameObject obj = gameObjects.get(i);
-            if (obj.isActive()) {
-                obj.update(deltaTime);
+    private void updateGame() {
+        // Update game state
+        gameStateManager.update(deltaTime);
+        
+        // Update world
+        worldManager.update(deltaTime);
+        
+        // Update game objects
+        for (GameObject obj : gameObjects) {
+            obj.update(deltaTime);
+        }
+        
+        // Check collisions
+        checkCollisions();
+        
+        // Update camera
+        camera.update();
+    }
+    
+    /**
+     * Update the combat
+     */
+    private void updateCombat() {
+        // Update QTE system
+        qteSystem.update(deltaTime);
+        
+        // Update combat system
+        combatSystem.update(deltaTime);
+        
+        // Check if combat is completed
+        if (combatSystem.isCompleted()) {
+            // End combat
+            CombatSystem.CombatState state = combatSystem.getState();
+            
+            if (state == CombatSystem.CombatState.CAPTURE) {
+                // Creature captured
+                player.endBattle(true);
+            } else {
+                // Creature not captured
+                player.endBattle(false);
             }
+            
+            // End combat
+            combatSystem.endCombat();
         }
     }
     
     /**
-     * Mettre à jour les collisions entre objets
+     * Check collisions between game objects
      */
-    private void updateCollisions() {
-        // Mettre à jour toutes les collisions
-        var collisions = collisionManager.updateCollisions();
+    private void checkCollisions() {
+        // Ajouter le joueur au groupe "player" pour la détection de collision
+        if (player.getCollider() != null) {
+            collisionManager.addCollider(player.getCollider(), "player");
+        }
         
-        // Traiter les collisions
-        for (var entry : collisions.entrySet()) {
-            for (var pair : entry.getValue()) {
-                // Trouver les GameObjects associés aux colliders
-                GameObject obj1 = findGameObjectByCollider(pair.getCollider1());
-                GameObject obj2 = findGameObjectByCollider(pair.getCollider2());
+        // Check collisions between player and spawn zones
+        for (GameObject obj : gameObjects) {
+            if (obj != player && obj.getCollider() != null) {
+                // Ajouter l'objet au groupe approprié pour la détection de collision
+                if (obj instanceof SpawnZone) {
+                    collisionManager.addCollider(obj.getCollider(), "spawnZone");
+                } else {
+                    collisionManager.addCollider(obj.getCollider(), "obstacle");
+                }
                 
-                if (obj1 != null && obj2 != null) {
-                    // Notifier les objets de la collision
-                    obj1.onCollision(obj2);
-                    obj2.onCollision(obj1);
+                // Vérifier la collision manuellement (pour compatibilité avec le code existant)
+                if (player.getCollider() != null && player.getCollider().collidesWith(obj.getCollider())) {
+                    player.onCollision(obj);
+                    obj.onCollision(player);
                 }
             }
         }
-    }
-    
-    /**
-     * Trouver un GameObject par son collider
-     * @param collider Le collider à rechercher
-     * @return Le GameObject associé, ou null si non trouvé
-     */
-    private GameObject findGameObjectByCollider(com.ryuukonpalace.game.core.physics.Collider collider) {
-        for (GameObject obj : gameObjects) {
-            if (obj.getCollider() == collider) {
-                return obj;
+        
+        // Mettre à jour toutes les collisions via le gestionnaire de collisions
+        collisionManager.updateCollisions();
+        
+        // Add world spawn zones to game objects
+        List<SpawnZone> spawnZones = worldManager.getSpawnZones();
+        for (SpawnZone spawnZone : spawnZones) {
+            if (!gameObjects.contains(spawnZone)) {
+                gameObjects.add((GameObject) spawnZone);
             }
         }
-        return null;
     }
     
     /**
-     * Dessiner tous les objets du jeu
+     * Render the game
      */
-    private void renderGameObjects() {
+    private void render() {
+        // Clear the framebuffer
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        // Check if in combat
+        if (combatSystem.isActive()) {
+            // Render combat
+            renderCombat();
+        } else {
+            // Render game
+            renderGame();
+        }
+    }
+    
+    /**
+     * Render the game
+     */
+    private void renderGame() {
+        // Render world
+        worldManager.render();
+        
+        // Render game objects
         for (GameObject obj : gameObjects) {
-            if (obj.isActive()) {
+            // Only render objects that are visible on screen
+            if (camera.isVisible(obj)) {
                 obj.render();
             }
         }
+        
+        // Render game state
+        gameStateManager.render();
     }
     
     /**
-     * Libérer les ressources des objets du jeu
+     * Render the combat
      */
-    private void disposeGameObjects() {
-        for (GameObject obj : gameObjects) {
-            obj.dispose();
+    private void renderCombat() {
+        // Render combat system
+        combatSystem.render();
+        
+        // Render QTE system if active
+        if (qteSystem.isActive()) {
+            qteSystem.render();
         }
-        gameObjects.clear();
-    }
-    
-    /**
-     * Ajouter un objet au jeu
-     * @param obj L'objet à ajouter
-     */
-    public void addGameObject(GameObject obj) {
-        gameObjects.add(obj);
-    }
-    
-    /**
-     * Supprimer un objet du jeu
-     * @param obj L'objet à supprimer
-     * @return true si l'objet a été supprimé, false sinon
-     */
-    public boolean removeGameObject(GameObject obj) {
-        obj.dispose();
-        return gameObjects.remove(obj);
-    }
-    
-    /**
-     * Obtenir la caméra du jeu
-     * @return La caméra
-     */
-    public Camera getCamera() {
-        return camera;
     }
 
+    /**
+     * Main method
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         new RyuukonPalace().run();
     }

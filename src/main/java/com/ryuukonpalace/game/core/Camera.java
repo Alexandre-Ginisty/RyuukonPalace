@@ -1,5 +1,7 @@
 package com.ryuukonpalace.game.core;
 
+import com.ryuukonpalace.game.world.GameObject;
+
 /**
  * Gère la caméra du jeu, qui suit le joueur et définit ce qui est visible à l'écran.
  * Permet de transformer les coordonnées du monde en coordonnées d'écran et vice versa.

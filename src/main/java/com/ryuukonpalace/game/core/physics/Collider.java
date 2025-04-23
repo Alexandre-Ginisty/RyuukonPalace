@@ -27,6 +27,13 @@ public interface Collider {
     void setPosition(float x, float y);
     
     /**
+     * Mettre à jour les dimensions du collider
+     * @param width Nouvelle largeur
+     * @param height Nouvelle hauteur
+     */
+    void setSize(float width, float height);
+    
+    /**
      * Obtenir la position X du collider
      * @return Position X
      */

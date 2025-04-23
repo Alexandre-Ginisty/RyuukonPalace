@@ -1,0 +1,73 @@
+Catégorie,Description
+Monde,Ryuukon Palace: Un univers médiéval où les humains maîtrisent des signes mystiques pour capturer des créatures redoutables appelées Ryuujin.
+Royaume,"Kurokawa: Une terre ancienne divisée en plusieurs régions, chacune avec ses coutumes et dangers uniques."
+Villes et Lieux,
+,"- Hoshikage: Capitale de Kurokawa, centre de la connaissance et du pouvoir, abritant le Conseil des Sages."
+,"- Kumori: Ville portuaire dynamique, plaque tournante du commerce et des intrigues."
+,"- Yamato: Village montagnard isolé, réputé pour ses guerriers et ses traditions ancestrales."
+,"- Forêt de Jade: Une forêt enchantée et dangereuse, abritant des créatures mystérieuses."
+,"- Montagnes de Glace: Un territoire glacial et inhospitalier, où se cachent des secrets anciens."
+,"- Ruines de Kuroiwa: Vestiges d'une civilisation oubliée, renfermant des artefacts puissants."
+,- Temple de l'Aube: Un sanctuaire sacré où les maîtres enseignent les Signes de Pouvoir.
+,- Cavernes de l'Ombre: Réseau souterrain abritant des créatures dangereuses et des trésors cachés.
+Personnages Clés,
+,"- Maître Kaito: Sage respecté, mentor des héros, maîtrisant les Signes de Pouvoir."
+,"- Lady Akari: Noble influente de Kumori, experte en politique et en commerce."
+,"- Ryuu: Jeune guerrier de Yamato, talentueux et déterminé à protéger son peuple."
+,"- Kuro: Chasseur de primes mystérieux, aux motivations ambiguës."
+,"- Sakura: Guérisseuse de Hoshikage, dévouée à aider les autres."
+,"- Général Hiroshi: Commandant des forces armées de Kurokawa, connu pour sa bravoure."
+,"- Elder Miko: Prêtresse du Temple de l'Aube, gardienne des traditions sacrées."
+Légende,"Ryuukon: Entité suprême, créateur des Ryuujin, dont l'existence est entourée de mystères."
+Signes de Pouvoir,Gestes complexes et précis permettant de capturer et contrôler les Ryuujin.
+Pierres de Capture,"Objets mystiques utilisés pour stocker les Ryuujin capturés, permettant aux humains de les invoquer et de les contrôler."
+Héros,"Le joueur incarne un jeune héros personnalisable, élevé dans l'ombre des légendes de Kurokawa."
+Quête,"Voyage à travers Kurokawa pour maîtriser les Signes de Pouvoir, découvrir les secrets de Ryuukon et protéger le royaume."
+Ambiance,"Sombre, violente, parfois gore, destinée à un public averti (PEGI 16/18)."
+Conflits,Luttes internes entre factions humaines et menaces constantes des Ryuujin.
+Mystères,"Secrets anciens, artefacts puissants et intrigues politiques à découvrir."
+Artefacts,
+,- Sceau de Ryuukon: Objet légendaire lié à la création des Ryuujin.
+,- Parchemin des Signes: Texte ancien révélant des Signes de Pouvoir oubliés.
+,- Amulette de Protection: Talisman offrant une défense contre les attaques des Ryuujin.
+
+Ryuujin,"Créatures mi-animaux mi-démons, possédant des pouvoirs destructeurs et une intelligence redoutable."
+
+Types de Créatures
+
+Stratégique : Créatures qui utilisent des tactiques et des plans complexes.
+Colérique : Créatures impulsives et agressives.
+Mystique : Créatures liées à l'occulte et au surnaturel.
+Ingénieux : Créatures qui utilisent la technologie et l'innovation.
+Serein : Créatures calmes et apaisantes.
+Chaotique : Créatures imprévisibles et désordonnées.
+Visionnaire : Créatures qui peuvent voir l'avenir ou manipuler le temps.
+Ténébreux : Créatures liées à l'obscurité et aux secrets.
+Lumineux : Créatures liées à la lumière et à la vérité.
+Naturel : Créatures en harmonie avec la nature et les éléments.
+
+
+Interactions entre les Types
+#### Résistances
+Stratégique : Résiste à Colérique, Chaotique.
+Colérique : Résiste à Serein, Lumineux.
+Mystique : Résiste à Ingénieux, Naturel.
+Ingénieux : Résiste à Visionnaire, Ténébreux.
+Serein : Résiste à Colérique, Chaotique.
+Chaotique : Résiste à Stratégique, Visionnaire.
+Visionnaire : Résiste à Serein, Lumineux.
+Ténébreux : Résiste à Mystique, Naturel.
+Lumineux : Résiste à Ténébreux, Colérique.
+Naturel : Résiste à Ingénieux, Chaotique.
+
+#### Faiblesses
+Stratégique : Faible contre Mystique, Visionnaire.
+Colérique : Faible contre Stratégique, Ténébreux.
+Mystique : Faible contre Lumineux, Serein.
+Ingénieux : Faible contre Naturel, Colérique.
+Serein : Faible contre Mystique, Ingénieux.
+Chaotique : Faible contre Lumineux, Stratégique.
+Visionnaire : Faible contre Ténébreux, Chaotique.
+Ténébreux : Faible contre Lumineux, Serein.
+Lumineux : Faible contre Mystique, Visionnaire.
+Naturel : Faible contre Colérique, Chaotique.

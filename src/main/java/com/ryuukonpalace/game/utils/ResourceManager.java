@@ -54,6 +54,32 @@ public class ResourceManager {
     }
     
     /**
+     * Initialiser le gestionnaire de ressources
+     */
+    public void init() {
+        // Charger les textures de base
+        loadTexture("assets/textures/ground.png", "ground");
+        loadTexture("assets/textures/tall_grass.png", "tall_grass");
+        loadTexture("assets/textures/player.png", "player");
+        
+        // Charger les textures pour le QTE
+        loadTexture("assets/textures/ui/qte_frame.png", "qte_frame");
+        loadTexture("assets/textures/ui/qte_time_bar.png", "qte_time_bar");
+        loadTexture("assets/textures/ui/key_up.png", "key_up");
+        loadTexture("assets/textures/ui/key_down.png", "key_down");
+        loadTexture("assets/textures/ui/key_left.png", "key_left");
+        loadTexture("assets/textures/ui/key_right.png", "key_right");
+        loadTexture("assets/textures/ui/key_w.png", "key_w");
+        loadTexture("assets/textures/ui/key_a.png", "key_a");
+        loadTexture("assets/textures/ui/key_s.png", "key_s");
+        loadTexture("assets/textures/ui/key_d.png", "key_d");
+        
+        // Charger les textures pour le combat
+        loadTexture("assets/textures/ui/combat_bg.png", "combat_bg");
+        loadTexture("assets/textures/ui/combat_frame.png", "combat_frame");
+    }
+    
+    /**
      * Charger une texture depuis un fichier
      * @param path Chemin du fichier image
      * @param name Nom de référence pour la texture
@@ -120,6 +146,15 @@ public class ResourceManager {
      * @return L'ID OpenGL de la texture, ou 0 si non trouvée
      */
     public int getTexture(String name) {
+        return textures.getOrDefault(name, 0);
+    }
+    
+    /**
+     * Obtenir l'ID d'une texture par son nom
+     * @param name Nom de la texture
+     * @return ID de la texture, ou 0 si non trouvée
+     */
+    public int getTextureId(String name) {
         return textures.getOrDefault(name, 0);
     }
     

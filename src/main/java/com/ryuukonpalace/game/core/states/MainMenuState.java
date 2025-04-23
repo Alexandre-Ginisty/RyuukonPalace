@@ -1,6 +1,5 @@
 package com.ryuukonpalace.game.core.states;
 
-import com.ryuukonpalace.game.core.GameStateManager;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -32,7 +31,7 @@ public class MainMenuState implements GameState {
     }
     
     @Override
-    public void update() {
+    public void update(float dt) {
         // Menu navigation logic would go here
         // For now, just a placeholder
     }
@@ -75,16 +74,23 @@ public class MainMenuState implements GameState {
             case 0: // New Game
                 // Start a new game
                 System.out.println("Starting new game...");
-                // gsm.setState(new GamePlayState(gsm));
+                GameState gamePlayState = new GamePlayState(gsm);
+                gamePlayState.init();
+                gsm.setState(gamePlayState);
                 break;
             case 1: // Load Game
                 System.out.println("Loading game...");
+                // TODO: Implémenter le chargement de partie
                 break;
             case 2: // Settings
                 System.out.println("Opening settings...");
+                // TODO: Créer et ajouter l'état des paramètres quand il sera implémenté
+                // GameState settingsState = new SettingsState(gsm);
+                // gsm.pushState(settingsState);
                 break;
             case 3: // Exit
                 System.out.println("Exiting game...");
+                // Fermer la fenêtre
                 GLFW.glfwSetWindowShouldClose(GLFW.glfwGetCurrentContext(), true);
                 break;
         }

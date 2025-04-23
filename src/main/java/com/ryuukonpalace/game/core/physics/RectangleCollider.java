@@ -124,4 +124,9 @@ public class RectangleCollider implements Collider {
         this.width = width;
         this.height = height;
     }
+    
+    @Override
+    public void setSize(float width, float height) {
+        setDimensions(width, height);
+    }
 }

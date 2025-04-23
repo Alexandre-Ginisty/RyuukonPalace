@@ -84,4 +84,11 @@ public class CircleCollider implements Collider {
     public void setRadius(float radius) {
         this.radius = radius;
     }
+    
+    @Override
+    public void setSize(float width, float height) {
+        // Pour un cercle, on utilise la largeur comme diamètre
+        // et on calcule le rayon en conséquence
+        setRadius(width / 2.0f);
+    }
 }

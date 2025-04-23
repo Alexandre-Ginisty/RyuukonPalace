@@ -1,5 +1,9 @@
 package com.ryuukonpalace.game.creatures;
 
+import com.ryuukonpalace.game.core.GameObject;
+import com.ryuukonpalace.game.core.Renderer;
+import com.ryuukonpalace.game.utils.ResourceManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +11,7 @@ import java.util.List;
  * Base class for all creatures in the game.
  * Similar to Pokémon, creatures can be captured, trained, and evolved.
  */
-public class Creature {
+public class Creature extends GameObject {
     
     private int id;
     private String name;
@@ -21,6 +25,10 @@ public class Creature {
     private int speed;
     private List<Ability> abilities;
     private Evolution evolution;
+    private int textureId;
+    private Renderer renderer;
+    private boolean active;
+    private int friendship; // Niveau d'amitié avec le joueur (0-255)
     
     /**
      * Constructor for creating a new creature
@@ -35,6 +43,7 @@ public class Creature {
      * @param speed Speed stat of the creature
      */
     public Creature(int id, String name, CreatureType type, int level, int health, int attack, int defense, int speed) {
+        super(0, 0, 32, 48, "creature_" + id);
         this.id = id;
         this.name = name;
         this.type = type;
@@ -46,6 +55,39 @@ public class Creature {
         this.defense = defense;
         this.speed = speed;
         this.abilities = new ArrayList<>();
+        this.active = false;
+        this.friendship = 70; // Valeur d'amitié par défaut
+        
+        // Obtenir l'instance du renderer
+        this.renderer = Renderer.getInstance();
+        
+        // Charger la texture de la créature
+        ResourceManager resourceManager = ResourceManager.getInstance();
+        CreatureFactory.CreatureDefinition definition = CreatureFactory.getInstance().getCreatureDefinition(id);
+        if (definition != null) {
+            this.textureId = resourceManager.loadTexture("src/main/resources/" + definition.spritePath, "creature_" + id);
+        } else {
+            // Texture par défaut si la définition n'est pas trouvée
+            this.textureId = resourceManager.loadTexture("src/main/resources/images/unknown_creature.png", "unknown_creature");
+        }
+    }
+    
+    @Override
+    public void update(float deltaTime) {
+        // Animation ou comportement de la créature
+        // Pour l'instant, rien à faire ici
+    }
+    
+    @Override
+    public void render() {
+        // Dessiner la créature avec sa texture
+        renderer.drawSprite(textureId, x, y, width, height);
+    }
+    
+    @Override
+    public void onCollision(GameObject other) {
+        // Gérer les collisions
+        // Pour l'instant, rien à faire ici
     }
     
     /**
@@ -176,6 +218,107 @@ public class Creature {
         return abilities.get(index);
     }
     
+    /**
+     * Définir si la créature est active ou non
+     * 
+     * @param active true si la créature est active, false sinon
+     */
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
+    /**
+     * Vérifier si la créature est active
+     * 
+     * @return true si la créature est active, false sinon
+     */
+    public boolean isActive() {
+        return active;
+    }
+    
+    /**
+     * Obtenir l'ID de la texture de la créature
+     * @return ID de la texture
+     */
+    public int getTextureId() {
+        return textureId;
+    }
+    
+    /**
+     * Définir la santé actuelle de la créature
+     * @param health Nouvelle valeur de santé
+     */
+    public void setHealth(int health) {
+        this.health = Math.min(health, maxHealth);
+        if (this.health <= 0) {
+            this.health = 0;
+            // La créature est vaincue, on pourrait déclencher un événement ici
+        }
+    }
+    
+    /**
+     * Définir le niveau de la créature
+     * 
+     * @param level Nouveau niveau
+     */
+    public void setLevel(int level) {
+        this.level = Math.max(1, level);
+        
+        // Recalculer les statistiques en fonction du nouveau niveau
+        recalculateStats();
+    }
+    
+    /**
+     * Définir l'expérience de la créature
+     * 
+     * @param experience Nouvelle expérience
+     */
+    public void setExperience(int experience) {
+        this.experience = Math.max(0, experience);
+    }
+    
+    /**
+     * Obtenir le niveau d'amitié de la créature
+     * 
+     * @return Niveau d'amitié (0-255)
+     */
+    public int getFriendship() {
+        return friendship;
+    }
+    
+    /**
+     * Définir le niveau d'amitié de la créature
+     * 
+     * @param friendship Nouveau niveau d'amitié (0-255)
+     */
+    public void setFriendship(int friendship) {
+        this.friendship = Math.max(0, Math.min(255, friendship));
+    }
+    
+    /**
+     * Augmenter le niveau d'amitié de la créature
+     * 
+     * @param amount Montant à ajouter
+     */
+    public void increaseFriendship(int amount) {
+        this.friendship = Math.min(255, this.friendship + amount);
+    }
+    
+    /**
+     * Recalculer les statistiques en fonction du niveau
+     */
+    private void recalculateStats() {
+        // Formule simple pour recalculer les statistiques
+        // Ces formules peuvent être ajustées selon les besoins du jeu
+        maxHealth = (int)(health * (1 + level * 0.1));
+        attack = (int)(attack * (1 + level * 0.05));
+        defense = (int)(defense * (1 + level * 0.05));
+        speed = (int)(speed * (1 + level * 0.05));
+        
+        // S'assurer que la santé actuelle ne dépasse pas le nouveau maximum
+        health = Math.min(health, maxHealth);
+    }
+    
     // Getters and setters
     
     public int getId() {
@@ -220,5 +363,9 @@ public class Creature {
     
     public List<Ability> getAbilities() {
         return abilities;
+    }
+    
+    public Evolution getEvolution() {
+        return evolution;
     }
 }

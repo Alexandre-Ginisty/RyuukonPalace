@@ -1,22 +1,23 @@
 package com.ryuukonpalace.game.core;
 
 import com.ryuukonpalace.game.core.states.GameState;
-import com.ryuukonpalace.game.core.states.MainMenuState;
 
 import java.util.Stack;
 
 /**
  * Manages the different states of the game (menu, battle, exploration, etc.)
  * Uses a stack to handle state transitions.
+ * 
+ * @deprecated Use com.ryuukonpalace.game.core.states.GameStateManager instead
  */
+@Deprecated
 public class GameStateManager {
     
     private Stack<GameState> states;
     
     public GameStateManager() {
         states = new Stack<>();
-        // Initialize with the main menu state
-        pushState(new MainMenuState(this));
+        // No longer auto-initialize with MainMenuState
     }
     
     /**
@@ -49,10 +50,11 @@ public class GameStateManager {
     
     /**
      * Updates the current state
+     * @param dt Delta time in seconds
      */
-    public void update() {
+    public void update(float dt) {
         if (!states.isEmpty()) {
-            states.peek().update();
+            states.peek().update(dt);
         }
     }
     
