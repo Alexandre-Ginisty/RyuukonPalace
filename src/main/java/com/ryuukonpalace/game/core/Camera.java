@@ -104,6 +104,26 @@ public class Camera {
     }
     
     /**
+     * Mettre à jour la position de la caméra avec des coordonnées spécifiques
+     * 
+     * @param targetX Position X cible
+     * @param targetY Position Y cible
+     * @param deltaTime Temps écoulé depuis la dernière mise à jour
+     */
+    public void update(float targetX, float targetY, float deltaTime) {
+        // Calculer la position cible de la caméra (centrée sur les coordonnées fournies)
+        float camTargetX = targetX - (viewWidth / (2 * zoom));
+        float camTargetY = targetY - (viewHeight / (2 * zoom));
+        
+        // Interpolation linéaire pour un mouvement fluide
+        x += (camTargetX - x) * followSpeed * deltaTime * 60.0f; // Normalisation pour 60 FPS
+        y += (camTargetY - y) * followSpeed * deltaTime * 60.0f;
+        
+        // Limiter la caméra aux bords du monde
+        clampToWorld();
+    }
+    
+    /**
      * Limiter la position de la caméra aux bords du monde
      */
     private void clampToWorld() {

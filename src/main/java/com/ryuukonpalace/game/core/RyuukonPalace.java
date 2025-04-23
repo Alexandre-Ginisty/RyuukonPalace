@@ -5,13 +5,16 @@ import com.ryuukonpalace.game.core.physics.CollisionManager;
 import com.ryuukonpalace.game.core.states.GameState;
 import com.ryuukonpalace.game.core.states.GameStateManager;
 import com.ryuukonpalace.game.core.states.MainMenuState;
+import com.ryuukonpalace.game.creatures.Creature;
+import com.ryuukonpalace.game.creatures.ai.CreatureAIManager;
 import com.ryuukonpalace.game.player.Player;
 import com.ryuukonpalace.game.qte.QTESystem;
 import com.ryuukonpalace.game.utils.ResourceManager;
 import com.ryuukonpalace.game.world.GameObject;
 import com.ryuukonpalace.game.world.SpawnZone;
 import com.ryuukonpalace.game.world.WorldManager;
-import org.lwjgl.Version;
+
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -88,7 +91,7 @@ public class RyuukonPalace {
      * Run the game
      */
     public void run() {
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
+        System.out.println("Hello LWJGL " + GLFW.glfwGetVersionString() + "!");
 
         init();
         loop();
@@ -202,6 +205,7 @@ public class RyuukonPalace {
         // Configurer les groupes de collision
         collisionManager.setCollision("player", "spawnZone");
         collisionManager.setCollision("player", "obstacle");
+        collisionManager.setCollision("player", "creature");
         
         // Initialize camera
         camera = Camera.getInstance();
@@ -212,6 +216,9 @@ public class RyuukonPalace {
         
         // Initialize game objects list
         gameObjects = new ArrayList<>();
+        
+        // Initialize creature AI manager (singleton, no init method needed)
+        CreatureAIManager.getInstance();
     }
 
     /**
@@ -273,7 +280,7 @@ public class RyuukonPalace {
                 updateCombat();
             } else {
                 // Update game
-                updateGame();
+                updateGame(deltaTime);
             }
             
             // Render
@@ -289,24 +296,48 @@ public class RyuukonPalace {
     
     /**
      * Update the game
+     * @param deltaTime Time elapsed since last update
      */
-    private void updateGame() {
+    private void updateGame(float deltaTime) {
         // Update game state
         gameStateManager.update(deltaTime);
         
-        // Update world
-        worldManager.update(deltaTime);
+        // Update player
+        if (player != null) {
+            player.update(deltaTime);
+        }
+        
+        // Update camera
+        if (camera != null && player != null) {
+            camera.update(player.getX(), player.getY(), deltaTime);
+        }
         
         // Update game objects
-        for (GameObject obj : gameObjects) {
+        for (int i = 0; i < gameObjects.size(); i++) {
+            GameObject obj = gameObjects.get(i);
             obj.update(deltaTime);
+            
+            // Si l'objet est une zone d'apparition, mettre à jour les créatures visibles
+            if (obj instanceof SpawnZone) {
+                SpawnZone spawnZone = (SpawnZone) obj;
+                
+                // Mettre à jour les créatures visibles avec l'IA
+                if (player != null) {
+                    spawnZone.updateVisibleCreature(deltaTime, player);
+                }
+            }
+        }
+        
+        // Update wild creatures using the CreatureAIManager
+        if (player != null) {
+            CreatureAIManager.getInstance().updateWildCreatures(deltaTime, player);
         }
         
         // Check collisions
         checkCollisions();
         
-        // Update camera
-        camera.update();
+        // Update QTE system
+        qteSystem.update(deltaTime);
     }
     
     /**
@@ -352,6 +383,8 @@ public class RyuukonPalace {
                 // Ajouter l'objet au groupe approprié pour la détection de collision
                 if (obj instanceof SpawnZone) {
                     collisionManager.addCollider(obj.getCollider(), "spawnZone");
+                } else if (obj instanceof Creature) {
+                    collisionManager.addCollider(obj.getCollider(), "creature");
                 } else {
                     collisionManager.addCollider(obj.getCollider(), "obstacle");
                 }
@@ -422,6 +455,21 @@ public class RyuukonPalace {
         // Render QTE system if active
         if (qteSystem.isActive()) {
             qteSystem.render();
+        }
+    }
+
+    /**
+     * Handle creature spawn from spawn zones
+     * @param creature The spawned creature
+     * @param spawnZone The spawn zone where the creature appeared
+     */
+    public void handleCreatureSpawn(Creature creature, SpawnZone spawnZone) {
+        if (creature != null) {
+            // Utiliser le gestionnaire d'IA pour gérer l'apparition de la créature
+            CreatureAIManager.getInstance().handleCreatureSpawn(creature, spawnZone);
+            
+            // Ajouter la créature à la liste des objets du jeu
+            gameObjects.add(creature);
         }
     }
 

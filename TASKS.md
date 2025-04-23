@@ -9,23 +9,22 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **CORE-3**: Développer le système de gestion des entrées (clavier, souris)
 - [x] **CORE-4**: Créer le système de collision
 - [x] **CORE-5**: Implémenter le système de caméra et de suivi du joueur
-- [x] **CORE-6**: Résoudre les problèmes de GameStateManager et MainMenuState
 
 ## Créatures (Priorité Haute)
 
 - [x] **CREA-1**: Concevoir 10 créatures de base avec leurs caractéristiques
 - [x] **CREA-2**: Implémenter le système d'évolution des créatures
 - [x] **CREA-3**: Créer le système de stockage/inventaire des créatures
-- [ ] **CREA-4**: Développer l'IA des créatures sauvages
+- [x] **CREA-4**: Développer l'IA des créatures sauvages
 - [ ] **CREA-5**: Concevoir les animations des créatures
 
 ## Système de combat (Priorité Moyenne)
 
 - [x] **COMB-1**: Développer le système de tour par tour
-- [ ] **COMB-2**: Implémenter les effets de statut (poison, paralysie, etc.)
+- [x] **COMB-2**: Implémenter les effets de statut 
 - [ ] **COMB-3**: Créer l'interface de combat
-- [ ] **COMB-4**: Développer le système d'expérience et de niveau
-- [ ] **COMB-5**: Implémenter les récompenses de combat
+- [x] **COMB-4**: Développer le système d'expérience et de niveau
+- [x] **COMB-5**: Implémenter les récompenses de combat
 
 ## Système de capture (Priorité Haute)
 
@@ -83,10 +82,9 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 
 ## Prochaines tâches prioritaires
 
-1. **OPTIM-1**: Corriger les avertissements de compilation (variables non utilisées)
+1. **UI-2**: Créer l'interface d'inventaire
 2. **COMB-3**: Améliorer l'interface de combat
-3. **COMB-4**: Développer le système d'expérience et de niveau
-4. **UI-2**: Créer l'interface d'inventaire
-5. **CREA-4**: Développer l'IA des créatures sauvages
-6. **CREA-5**: Concevoir les animations des créatures
-7. **WORLD-3**: Créer les PNJ (Personnages Non Joueurs)
+3. **CREA-5**: Concevoir les animations des créatures
+4. **WORLD-3**: Créer les PNJ (Personnages Non Joueurs)
+5. **SAVE-1**: Développer le système de sauvegarde/chargement
+6. **TEST-1**: Mettre en place les tests unitaires

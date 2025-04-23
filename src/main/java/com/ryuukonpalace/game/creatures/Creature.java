@@ -1,15 +1,17 @@
 package com.ryuukonpalace.game.creatures;
 
-import com.ryuukonpalace.game.core.GameObject;
+import com.ryuukonpalace.game.combat.CombatStats;
+import com.ryuukonpalace.game.world.GameObject;
 import com.ryuukonpalace.game.core.Renderer;
+import com.ryuukonpalace.game.creatures.ai.CreatureAI;
+import com.ryuukonpalace.game.player.Player;
 import com.ryuukonpalace.game.utils.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Base class for all creatures in the game.
- * Similar to Pokémon, creatures can be captured, trained, and evolved.
+ * Classe représentant une créature dans le jeu
  */
 public class Creature extends GameObject {
     
@@ -29,6 +31,9 @@ public class Creature extends GameObject {
     private Renderer renderer;
     private boolean active;
     private int friendship; // Niveau d'amitié avec le joueur (0-255)
+    private CreatureAI ai; // IA de la créature (pour les créatures sauvages)
+    private boolean isWild; // Indique si la créature est sauvage
+    private CombatStats combatStats; // Statistiques avancées pour le combat
     
     /**
      * Constructor for creating a new creature
@@ -57,6 +62,11 @@ public class Creature extends GameObject {
         this.abilities = new ArrayList<>();
         this.active = false;
         this.friendship = 70; // Valeur d'amitié par défaut
+        this.ai = null;
+        this.isWild = false;
+        
+        // Initialiser les statistiques de combat avancées
+        this.combatStats = new CombatStats(health, attack, attack/2, defense, defense/2, speed);
         
         // Obtenir l'instance du renderer
         this.renderer = Renderer.getInstance();
@@ -75,7 +85,22 @@ public class Creature extends GameObject {
     @Override
     public void update(float deltaTime) {
         // Animation ou comportement de la créature
-        // Pour l'instant, rien à faire ici
+        // Si la créature a une IA et est active, mettre à jour son comportement
+        if (ai != null && active) {
+            // L'IA sera mise à jour par le système de jeu qui fournira le joueur
+        }
+    }
+    
+    /**
+     * Mettre à jour l'IA de la créature avec la référence au joueur
+     * 
+     * @param deltaTime Temps écoulé depuis la dernière mise à jour
+     * @param player Le joueur (pour la détection)
+     */
+    public void updateAI(float deltaTime, Player player) {
+        if (ai != null && active) {
+            ai.update(deltaTime, player);
+        }
     }
     
     @Override
@@ -136,12 +161,19 @@ public class Creature extends GameObject {
      * @return True if the creature leveled up, false otherwise
      */
     public boolean addExperience(int exp) {
+        int oldLevel = this.level;
         this.experience += exp;
         
-        // Check if the creature should level up
-        int expNeeded = level * 100; // Simple formula for experience needed to level up
-        if (experience >= expNeeded) {
-            levelUp();
+        // Utiliser le LevelSystem pour déterminer le niveau actuel
+        LevelSystem levelSystem = LevelSystem.getInstance();
+        int newLevel = levelSystem.getLevelFromExperience(this.experience);
+        
+        // Si le niveau a changé, appliquer les changements
+        if (newLevel > oldLevel) {
+            int levelsGained = newLevel - oldLevel;
+            for (int i = 0; i < levelsGained; i++) {
+                levelUp();
+            }
             return true;
         }
         
@@ -153,27 +185,39 @@ public class Creature extends GameObject {
      */
     private void levelUp() {
         level++;
-        maxHealth += 5;
-        health = maxHealth;
-        attack += 2;
-        defense += 2;
-        speed += 2;
         
-        // Reset experience for next level
-        experience = 0;
+        // Utiliser le LevelSystem pour obtenir les bonus de statistiques
+        LevelSystem levelSystem = LevelSystem.getInstance();
+        int[] statBonuses = levelSystem.getStatBonusesForLevel(id, level);
         
-        System.out.println(name + " leveled up to level " + level + "!");
+        // Appliquer les bonus
+        maxHealth += statBonuses[0];
+        health = maxHealth; // Restaurer la santé complète lors d'un niveau supérieur
+        attack += statBonuses[1];
+        defense += statBonuses[2];
+        speed += statBonuses[3];
         
-        // Check if the creature can learn new abilities at this level
+        System.out.println(name + " est passé au niveau " + level + " !");
+        
+        // Vérifier si la créature peut apprendre de nouvelles capacités à ce niveau
         checkNewAbilities();
+        
+        // Mettre à jour les statistiques de combat avancées
+        updateCombatStatsFromBasicStats();
     }
     
     /**
      * Check if the creature can learn new abilities at its current level
      */
     private void checkNewAbilities() {
-        // This would be implemented based on a database of abilities
-        // For now, just a placeholder
+        LevelSystem levelSystem = LevelSystem.getInstance();
+        Ability newAbility = levelSystem.getAbilityForLevel(id, level);
+        
+        if (newAbility != null) {
+            // Ajouter la nouvelle capacité
+            abilities.add(newAbility);
+            System.out.println(name + " a appris " + newAbility.getName() + " !");
+        }
     }
     
     /**
@@ -183,16 +227,13 @@ public class Creature extends GameObject {
      * @return True if the creature fainted, false otherwise
      */
     public boolean takeDamage(int damage) {
-        // Apply defense to reduce damage
-        int actualDamage = Math.max(1, damage - (defense / 5));
-        health -= actualDamage;
+        // Utiliser les statistiques de combat avancées
+        combatStats.takeDamage(damage);
         
-        if (health <= 0) {
-            health = 0;
-            return true; // Creature fainted
-        }
+        // Mettre à jour les statistiques de base pour la compatibilité
+        this.health = combatStats.getCurrentHealth();
         
-        return false;
+        return health <= 0;
     }
     
     /**
@@ -201,7 +242,11 @@ public class Creature extends GameObject {
      * @param amount The amount to heal
      */
     public void heal(int amount) {
-        health = Math.min(maxHealth, health + amount);
+        // Utiliser les statistiques de combat avancées
+        combatStats.heal(amount);
+        
+        // Mettre à jour les statistiques de base pour la compatibilité
+        this.health = combatStats.getCurrentHealth();
     }
     
     /**
@@ -254,6 +299,9 @@ public class Creature extends GameObject {
             this.health = 0;
             // La créature est vaincue, on pourrait déclencher un événement ici
         }
+        
+        // Mettre à jour les statistiques de combat avancées
+        combatStats.setCurrentHealth(this.health);
     }
     
     /**
@@ -264,8 +312,19 @@ public class Creature extends GameObject {
     public void setLevel(int level) {
         this.level = Math.max(1, level);
         
-        // Recalculer les statistiques en fonction du nouveau niveau
-        recalculateStats();
+        // Utiliser le LevelSystem pour obtenir les statistiques pour le niveau
+        LevelSystem levelSystem = LevelSystem.getInstance();
+        int[] statBonuses = levelSystem.getStatBonusesForLevel(id, level);
+        
+        // Appliquer les bonus
+        maxHealth += statBonuses[0];
+        health = maxHealth; // Restaurer la santé complète lors d'un niveau supérieur
+        attack += statBonuses[1];
+        defense += statBonuses[2];
+        speed += statBonuses[3];
+        
+        // Mettre à jour les statistiques de combat avancées
+        updateCombatStatsFromBasicStats();
     }
     
     /**
@@ -305,18 +364,84 @@ public class Creature extends GameObject {
     }
     
     /**
-     * Recalculer les statistiques en fonction du niveau
+     * Définir l'IA de la créature
+     * 
+     * @param ai L'IA à utiliser pour cette créature
      */
-    private void recalculateStats() {
-        // Formule simple pour recalculer les statistiques
-        // Ces formules peuvent être ajustées selon les besoins du jeu
-        maxHealth = (int)(health * (1 + level * 0.1));
-        attack = (int)(attack * (1 + level * 0.05));
-        defense = (int)(defense * (1 + level * 0.05));
-        speed = (int)(speed * (1 + level * 0.05));
-        
-        // S'assurer que la santé actuelle ne dépasse pas le nouveau maximum
-        health = Math.min(health, maxHealth);
+    public void setAI(CreatureAI ai) {
+        this.ai = ai;
+    }
+    
+    /**
+     * Obtenir l'IA de la créature
+     * 
+     * @return L'IA de la créature, ou null si elle n'en a pas
+     */
+    public CreatureAI getAI() {
+        return ai;
+    }
+    
+    /**
+     * Définir si la créature est sauvage ou non
+     * 
+     * @param isWild true si la créature est sauvage, false sinon
+     */
+    public void setWild(boolean isWild) {
+        this.isWild = isWild;
+    }
+    
+    /**
+     * Vérifier si la créature est sauvage
+     * 
+     * @return true si la créature est sauvage, false sinon
+     */
+    public boolean isWild() {
+        return isWild;
+    }
+    
+    /**
+     * Obtenir les statistiques de combat avancées
+     * 
+     * @return Les statistiques de combat
+     */
+    public CombatStats getCombatStats() {
+        return combatStats;
+    }
+    
+    /**
+     * Définir les statistiques de combat avancées
+     * 
+     * @param combatStats Les nouvelles statistiques de combat
+     */
+    public void setCombatStats(CombatStats combatStats) {
+        this.combatStats = combatStats;
+    }
+    
+    /**
+     * Mettre à jour les statistiques de combat de base à partir des statistiques avancées
+     * Cette méthode est utile pour maintenir la compatibilité avec le code existant
+     */
+    public void updateBasicStatsFromCombatStats() {
+        this.health = combatStats.getCurrentHealth();
+        this.maxHealth = combatStats.getMaxHealth();
+        this.attack = combatStats.getPhysicalAttack();
+        this.defense = combatStats.getPhysicalDefense();
+        this.speed = combatStats.getSpeed();
+    }
+    
+    /**
+     * Mettre à jour les statistiques de combat avancées à partir des statistiques de base
+     * Cette méthode est utile pour maintenir la compatibilité avec le code existant
+     */
+    public void updateCombatStatsFromBasicStats() {
+        combatStats.setMaxHealth(this.maxHealth);
+        combatStats.setCurrentHealth(this.health);
+        combatStats.setPhysicalAttack(this.attack);
+        combatStats.setPhysicalDefense(this.defense);
+        combatStats.setSpeed(this.speed);
+        // Pour les statistiques magiques, on utilise une valeur par défaut basée sur les stats physiques
+        combatStats.setMagicalAttack(this.attack / 2);
+        combatStats.setMagicalDefense(this.defense / 2);
     }
     
     // Getters and setters

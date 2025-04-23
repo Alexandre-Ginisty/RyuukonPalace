@@ -59,6 +59,9 @@ public class Player extends GameObject {
     // Callback pour le démarrage d'un combat
     private CombatStartCallback combatStartCallback;
     
+    // Monnaie du joueur (crystaux)
+    private int crystals;
+    
     /**
      * Constructeur pour le joueur
      * 
@@ -75,6 +78,7 @@ public class Player extends GameObject {
         this.inventory = new Inventory();
         this.currentBattleCreature = null;
         this.currentSpawnZone = null;
+        this.crystals = 100; // Le joueur commence avec 100 crystaux
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(x, y, 32, 48);
@@ -299,6 +303,47 @@ public class Player extends GameObject {
         List<Creature> allCreatures = new ArrayList<>(capturedCreatures);
         allCreatures.addAll(inventory.getCapturedCreatures());
         return allCreatures;
+    }
+    
+    /**
+     * Obtenir le nombre de crystaux du joueur
+     * 
+     * @return Nombre de crystaux
+     */
+    public int getCrystals() {
+        return crystals;
+    }
+    
+    /**
+     * Définir le nombre de crystaux du joueur
+     * 
+     * @param crystals Nouveau nombre de crystaux
+     */
+    public void setCrystals(int crystals) {
+        this.crystals = Math.max(0, crystals); // Empêcher les valeurs négatives
+    }
+    
+    /**
+     * Ajouter des crystaux au joueur
+     * 
+     * @param amount Montant à ajouter
+     */
+    public void addCrystals(int amount) {
+        this.crystals += amount;
+    }
+    
+    /**
+     * Retirer des crystaux au joueur
+     * 
+     * @param amount Montant à retirer
+     * @return true si le joueur avait assez de crystaux, false sinon
+     */
+    public boolean removeCrystals(int amount) {
+        if (crystals >= amount) {
+            crystals -= amount;
+            return true;
+        }
+        return false;
     }
     
     /**

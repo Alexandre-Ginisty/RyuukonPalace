@@ -2,6 +2,9 @@ package com.ryuukonpalace.game.world;
 
 import com.ryuukonpalace.game.creatures.Creature;
 import com.ryuukonpalace.game.creatures.CreatureFactory;
+import com.ryuukonpalace.game.creatures.ai.CreatureAI;
+import com.ryuukonpalace.game.creatures.ai.CreatureAIManager;
+import com.ryuukonpalace.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,9 @@ public class SpawnZone extends GameObject {
     // Générateur de nombres aléatoires
     private Random random;
     
+    // Indique si le joueur est actuellement dans la zone
+    private boolean isPlayerInZone;
+    
     /**
      * Constructeur pour une zone d'apparition aléatoire (comme les hautes herbes)
      * 
@@ -53,6 +59,7 @@ public class SpawnZone extends GameObject {
         this.stepsInZone = 0;
         this.stepsToReset = stepsToReset;
         this.random = new Random();
+        this.isPlayerInZone = false;
     }
     
     /**
@@ -80,6 +87,7 @@ public class SpawnZone extends GameObject {
         }
         
         this.random = new Random();
+        this.isPlayerInZone = false;
     }
     
     @Override
@@ -105,10 +113,20 @@ public class SpawnZone extends GameObject {
     public void onCollision(GameObject other) {
         // Réagir aux collisions avec le joueur
         if (other.getCollisionGroup().equals("player")) {
-            // Si c'est une zone avec créature visible, déclencher une interaction
-            if (type == SpawnZoneType.VISIBLE_CREATURE && visibleCreature != null) {
-                // L'interaction sera gérée par le système de jeu
+            // Marquer que le joueur est dans la zone
+            isPlayerInZone = true;
+            
+            // Si c'est une zone d'apparition aléatoire, incrémenter le compteur de pas
+            if (type == SpawnZoneType.RANDOM_SPAWN) {
+                Creature creature = incrementSteps();
+                if (creature != null) {
+                    // Notifier le jeu qu'une créature est apparue
+                    // Note: Ceci sera géré par un callback ou un événement
+                }
             }
+        } else {
+            // Si la collision n'est pas avec le joueur, marquer que le joueur n'est pas dans la zone
+            isPlayerInZone = false;
         }
     }
     
@@ -153,12 +171,57 @@ public class SpawnZone extends GameObject {
                 if (randomWeight < currentWeight) {
                     // Créer la créature avec un niveau aléatoire entre min et max
                     int level = entry.minLevel + random.nextInt(entry.maxLevel - entry.minLevel + 1);
-                    return CreatureFactory.createCreature(entry.creatureId, level);
+                    Creature creature = CreatureFactory.createCreature(entry.creatureId, level);
+                    
+                    if (creature != null) {
+                        // Marquer la créature comme sauvage
+                        creature.setWild(true);
+                        
+                        // Déterminer le comportement de la créature (70% fuite, 30% agressive)
+                        CreatureAI.BehaviorType behaviorType = random.nextFloat() < 0.7f ? 
+                            CreatureAI.BehaviorType.FLEE : CreatureAI.BehaviorType.AGGRESSIVE;
+                        
+                        // Créer et attacher l'IA à la créature
+                        float moveSpeed = 50.0f + random.nextFloat() * 30.0f; // Vitesse entre 50 et 80
+                        float detectionRange = 150.0f + random.nextFloat() * 50.0f; // Portée entre 150 et 200
+                        CreatureAI ai = new CreatureAI(creature, behaviorType, moveSpeed, detectionRange);
+                        creature.setAI(ai);
+                        
+                        // Activer la créature
+                        creature.setActive(true);
+                    }
+                    
+                    return creature;
                 }
             }
         }
         
         return null;
+    }
+    
+    /**
+     * Mettre à jour la créature visible dans la zone d'apparition
+     * @param deltaTime Temps écoulé depuis la dernière mise à jour
+     * @param player Joueur (pour la détection de proximité)
+     */
+    public void updateVisibleCreature(float deltaTime, Player player) {
+        // Si le joueur est dans la zone et qu'une créature est visible
+        if (isPlayerInZone && visibleCreature != null) {
+            // Si la créature n'a pas d'IA, lui en ajouter une
+            if (visibleCreature.getAI() == null) {
+                // Utiliser le gestionnaire d'IA pour ajouter une IA à la créature
+                CreatureAIManager.getInstance().addWildCreatureWithRandomBehavior(visibleCreature);
+            }
+            
+            // La créature est déjà mise à jour par le CreatureAIManager
+        }
+        
+        // Si le joueur n'est plus dans la zone et qu'une créature est visible
+        if (!isPlayerInZone && visibleCreature != null) {
+            // Désactiver la créature visible
+            visibleCreature.setActive(false);
+            visibleCreature = null;
+        }
     }
     
     /**

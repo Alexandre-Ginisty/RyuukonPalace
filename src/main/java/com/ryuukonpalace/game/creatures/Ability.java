@@ -14,6 +14,7 @@ public class Ability {
     private int currentUses;
     private EffectType effectType;
     private int effectChance;
+    private DamageType damageType;
     
     /**
      * Constructor for creating a new ability
@@ -26,9 +27,10 @@ public class Ability {
      * @param maxUses Maximum number of times the ability can be used
      * @param effectType Type of additional effect, if any
      * @param effectChance Chance for the additional effect to occur (0-100)
+     * @param damageType Type of damage (physical or magical)
      */
     public Ability(String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
-                  EffectType effectType, int effectChance) {
+                  EffectType effectType, int effectChance, DamageType damageType) {
         this.name = name;
         this.description = description;
         this.type = type;
@@ -38,6 +40,15 @@ public class Ability {
         this.currentUses = maxUses;
         this.effectType = effectType;
         this.effectChance = effectChance;
+        this.damageType = damageType;
+    }
+    
+    /**
+     * Simplified constructor with default DamageType (PHYSICAL)
+     */
+    public Ability(String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
+                  EffectType effectType, int effectChance) {
+        this(name, description, type, power, accuracy, maxUses, effectType, effectChance, DamageType.PHYSICAL);
     }
     
     /**
@@ -141,6 +152,10 @@ public class Ability {
         return effectChance;
     }
     
+    public DamageType getDamageType() {
+        return damageType;
+    }
+    
     /**
      * Enum representing the different types of additional effects an ability can have
      */
@@ -157,5 +172,14 @@ public class Ability {
         STAT_REDUCE,
         HEAL,
         DRAIN
+    }
+    
+    /**
+     * Enum representing the different types of damage an ability can deal
+     */
+    public enum DamageType {
+        PHYSICAL,   // Physical damage (based on physical attack and physical defense)
+        MAGICAL,    // Magical damage (based on magical attack and magical defense)
+        TRUE        // True damage (ignores defenses)
     }
 }
