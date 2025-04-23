@@ -1,20 +1,23 @@
 package com.ryuukonpalace.game.combat;
 
-import com.ryuukonpalace.game.core.Renderer;
-import com.ryuukonpalace.game.core.InputManager;
-import com.ryuukonpalace.game.creatures.Ability;
-import com.ryuukonpalace.game.creatures.Creature;
-import com.ryuukonpalace.game.creatures.LevelSystem;
-import com.ryuukonpalace.game.player.Player;
+import static org.lwjgl.glfw.GLFW.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import com.ryuukonpalace.game.capture.CaptureSystem;
 import com.ryuukonpalace.game.capture.CaptureSystem.CaptureCallback;
+import com.ryuukonpalace.game.core.InputManager;
+import com.ryuukonpalace.game.core.Renderer;
+import com.ryuukonpalace.game.creatures.Ability;
+import com.ryuukonpalace.game.creatures.Creature;
+import com.ryuukonpalace.game.items.CaptureStone;
+import com.ryuukonpalace.game.items.CaptureStoneMaterial;
+import com.ryuukonpalace.game.items.CaptureStoneType;
 import com.ryuukonpalace.game.items.Item;
+import com.ryuukonpalace.game.player.Player;
 import com.ryuukonpalace.game.utils.ResourceManager;
-
-import java.util.Random;
-import java.util.List;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * Système de combat pour les affrontements entre le joueur et les créatures.
@@ -55,7 +58,10 @@ public class CombatSystem implements CaptureCallback {
     // Capacité sélectionnée
     private int selectedAbility;
     
-    // Tentative de capture en cours
+    // Index de la pierre de capture sélectionnée
+    private int selectedCaptureStone;
+    
+    // Indique si une tentative de capture est en cours
     private boolean capturingAttempt;
     
     // Système de capture
@@ -84,6 +90,7 @@ public class CombatSystem implements CaptureCallback {
         this.messageTime = 0.0f;
         this.selectedOption = 0;
         this.selectedAbility = 0;
+        this.selectedCaptureStone = 0;
         this.capturingAttempt = false;
         
         // Obtenir les instances des gestionnaires
@@ -128,6 +135,7 @@ public class CombatSystem implements CaptureCallback {
         messageTime = 0.0f;
         selectedOption = 0;
         selectedAbility = 0;
+        selectedCaptureStone = 0;
         capturingAttempt = false;
         
         // Initialiser le système de capture
@@ -166,6 +174,7 @@ public class CombatSystem implements CaptureCallback {
         this.messageTime = 2.0f;
         this.selectedOption = 0;
         this.selectedAbility = 0;
+        this.selectedCaptureStone = 0;
         this.capturingAttempt = false;
         this.state = CombatState.MESSAGE;
         
@@ -189,41 +198,50 @@ public class CombatSystem implements CaptureCallback {
             return;
         }
         
-        // Gérer les délais entre les actions
+        // Mettre à jour le temps d'affichage du message
+        if (messageTime > 0) {
+            messageTime -= deltaTime;
+        }
+        
+        // Mettre à jour le délai d'action
         if (actionDelay > 0) {
             actionDelay -= deltaTime;
+            
+            // Passer à l'étape suivante lorsque le délai est écoulé
             if (actionDelay <= 0) {
-                // Passer à l'état suivant après le délai
                 switch (state) {
                     case MESSAGE:
-                        if (playerTurn) {
-                            state = CombatState.PLAYER_TURN;
-                        } else {
-                            executeEnemyTurn();
-                        }
+                        // Passer au tour du joueur après l'affichage du message
+                        state = CombatState.PLAYER_TURN;
                         break;
-                    case PLAYER_ACTION:
-                        executePlayerAction();
+                    case ENEMY_TURN:
+                        // Exécuter l'action de l'ennemi
+                        executeEnemyAction();
                         break;
-                    case ENEMY_ACTION:
-                        checkBattleEnd();
+                    case CAPTURE:
+                        // Terminer le combat après une capture réussie
+                        endCombat();
+                        break;
+                    case VICTORY:
+                        // Terminer le combat après une victoire
+                        endCombat();
+                        break;
+                    case DEFEAT:
+                        // Terminer le combat après une défaite
+                        endCombat();
+                        break;
+                    case FLEE:
+                        // Terminer le combat après une fuite
+                        endCombat();
                         break;
                     default:
                         break;
                 }
             }
-            return;
         }
         
-        // Gérer le temps d'affichage du message
-        if (messageTime > 0) {
-            messageTime -= deltaTime;
-        }
-        
-        // Gérer les entrées du joueur si c'est son tour
-        if (state == CombatState.PLAYER_TURN || state == CombatState.ABILITY_SELECTION) {
-            handleInput();
-        }
+        // Gérer les entrées utilisateur
+        handleInput();
     }
     
     /**
@@ -321,6 +339,9 @@ public class CombatSystem implements CaptureCallback {
                 break;
             case ABILITY_SELECTION:
                 drawAbilityMenu();
+                break;
+            case CAPTURE_SELECTION:
+                drawCaptureMenu();
                 break;
             default:
                 break;
@@ -447,7 +468,7 @@ public class CombatSystem implements CaptureCallback {
             
             // Afficher le temps de récupération si nécessaire
             if (onCooldown) {
-                int cooldown = playerCreature.getCombatStats().getCooldown(i);
+                int cooldown = 3; // Temps de récupération par défaut (3 tours)
                 renderer.drawText("Récup: " + cooldown + " tour(s)", menuX + 30.0f, 
                                  abilityY + i * (abilityHeight + abilitySpacing) + 20.0f, 14, 0xFFFF0000);
             }
@@ -476,6 +497,67 @@ public class CombatSystem implements CaptureCallback {
             renderer.drawText("Description: " + description, 
                              menuX + 20.0f, menuY + menuHeight - 40.0f, 14, 0xFFCCCCCC);
         }
+    }
+    
+    /**
+     * Dessiner le menu de sélection de pierre de capture
+     */
+    private void drawCaptureMenu() {
+        float screenWidth = renderer.getScreenWidth();
+        float screenHeight = renderer.getScreenHeight();
+        
+        // Dessiner le cadre du menu
+        float menuWidth = 400.0f;
+        float menuHeight = 250.0f;
+        float menuX = screenWidth - menuWidth - 20.0f;
+        float menuY = screenHeight - menuHeight - 20.0f;
+        
+        // Dessiner un fond semi-transparent
+        renderer.drawRect(menuX, menuY, menuWidth, menuHeight, 0xCC000000);
+        
+        // Dessiner le cadre du menu avec un contour plus épais
+        renderer.drawRectOutline(menuX, menuY, menuWidth, menuHeight, 3.0f, 0xFFFFFFFF);
+        
+        // Dessiner le titre
+        renderer.drawText("PIERRES DE CAPTURE", menuX + 20.0f, menuY + 15.0f, 24, 0xFFFFFF00);
+        
+        // Dessiner les options
+        float optionHeight = 40.0f;
+        float optionSpacing = 10.0f;
+        float optionY = menuY + 60.0f;
+        
+        for (int i = 0; i < player.getInventory().getCaptureStones().size(); i++) {
+            // Couleur de l'option (blanc, ou jaune si sélectionnée)
+            int color = (i == selectedCaptureStone) ? 0xFFFFFF00 : 0xFFFFFFFF;
+            
+            // Dessiner un fond pour l'option sélectionnée
+            if (i == selectedCaptureStone) {
+                renderer.drawRect(menuX + 10.0f, optionY + i * (optionHeight + optionSpacing) - 5.0f, 
+                                 menuWidth - 20.0f, optionHeight, 0x44FFFFFF);
+            }
+            
+            // Dessiner l'option
+            renderer.drawText(player.getInventory().getCaptureStones().get(i).getName(), menuX + 30.0f, optionY + i * (optionHeight + optionSpacing), 18, color);
+            
+            // Dessiner le taux de capture estimé
+            CaptureStone stone = player.getInventory().getCaptureStones().get(i);
+            float estimatedCaptureRate = calculateEstimatedCaptureRate(stone);
+            int rateColor = getColorForRate(estimatedCaptureRate);
+            renderer.drawText("Taux de capture: " + (int)(estimatedCaptureRate * 100) + "%", menuX + 200.0f, optionY + i * (optionHeight + optionSpacing), 16, rateColor);
+        }
+        
+        // Dessiner l'option "Retour"
+        int color = (selectedCaptureStone == player.getInventory().getCaptureStones().size()) ? 0xFFFFFF00 : 0xFFFFFFFF;
+        
+        // Dessiner un fond pour l'option "Retour" si sélectionnée
+        if (selectedCaptureStone == player.getInventory().getCaptureStones().size()) {
+            renderer.drawRect(menuX + 10.0f, 
+                             optionY + player.getInventory().getCaptureStones().size() * (optionHeight + optionSpacing) - 5.0f, 
+                             menuWidth - 20.0f, optionHeight, 0x44FFFFFF);
+        }
+        
+        renderer.drawText("Retour", menuX + 30.0f, 
+                         optionY + player.getInventory().getCaptureStones().size() * (optionHeight + optionSpacing), 18, color);
     }
     
     /**
@@ -532,6 +614,9 @@ public class CombatSystem implements CaptureCallback {
             case ABILITY_SELECTION:
                 handleAbilityMenuInput();
                 break;
+            case CAPTURE_SELECTION:
+                handleCaptureMenuInput();
+                break;
             default:
                 break;
         }
@@ -556,7 +641,8 @@ public class CombatSystem implements CaptureCallback {
                     selectedAbility = 0;
                     break;
                 case 1: // Capturer
-                    startCapture();
+                    state = CombatState.CAPTURE_SELECTION;
+                    selectedCaptureStone = 0;
                     break;
                 case 2: // Changer
                     // TODO: Implémenter le changement de créature
@@ -599,97 +685,72 @@ public class CombatSystem implements CaptureCallback {
     }
     
     /**
+     * Gérer les entrées dans le menu de sélection de pierre de capture
+     */
+    private void handleCaptureMenuInput() {
+        int maxOptions = player.getInventory().getCaptureStones().size() + 1; // +1 pour l'option "Retour"
+        
+        // Navigation dans le menu
+        if (inputManager.isKeyJustPressed(GLFW_KEY_UP) || inputManager.isKeyJustPressed(GLFW_KEY_W)) {
+            selectedCaptureStone = (selectedCaptureStone - 1 + maxOptions) % maxOptions;
+        } else if (inputManager.isKeyJustPressed(GLFW_KEY_DOWN) || inputManager.isKeyJustPressed(GLFW_KEY_S)) {
+            selectedCaptureStone = (selectedCaptureStone + 1) % maxOptions;
+        }
+        
+        // Sélection d'une option
+        if (inputManager.isKeyJustPressed(GLFW_KEY_ENTER) || inputManager.isKeyJustPressed(GLFW_KEY_SPACE)) {
+            if (selectedCaptureStone < player.getInventory().getCaptureStones().size()) {
+                // Utiliser la pierre de capture sélectionnée
+                startCaptureWithSelectedStone(player.getInventory().getCaptureStones().get(selectedCaptureStone));
+            } else {
+                // Retour au menu principal
+                state = CombatState.PLAYER_TURN;
+            }
+        }
+        
+        // Retour au menu principal avec Echap
+        if (inputManager.isKeyJustPressed(GLFW_KEY_ESCAPE)) {
+            state = CombatState.PLAYER_TURN;
+        }
+    }
+    
+    /**
      * Utiliser une capacité
      * 
      * @param abilityIndex Index de la capacité à utiliser
      */
     private void useAbility(int abilityIndex) {
+        // Vérifier si l'index est valide
+        if (abilityIndex < 0 || abilityIndex >= playerCreature.getAbilities().size()) {
+            return;
+        }
+        
+        // Récupérer la capacité
         Ability ability = playerCreature.getAbilities().get(abilityIndex);
         
-        // Message d'utilisation de la capacité
-        currentMessage = playerCreature.getName() + " utilise " + ability.getName() + " !";
-        messageTime = 2.0f;
+        // Vérifier si la capacité est prête
+        if (!playerCreature.getCombatStats().isSkillReady(abilityIndex)) {
+            currentMessage = ability.getName() + " n'est pas encore prête !";
+            messageTime = 1.5f;
+            return;
+        }
+        
+        // Appliquer le temps de récupération (utiliser une valeur fixe de 3 tours par défaut)
+        playerCreature.getCombatStats().setCooldown(abilityIndex, 3);
         
         // Calculer les dégâts
         int damage = calculateDamage(playerCreature, enemyCreature, ability);
+        
+        // Afficher un message
+        currentMessage = playerCreature.getName() + " utilise " + ability.getName() + " !";
+        messageTime = 1.5f;
         
         // Appliquer les dégâts
         enemyCreature.setHealth(enemyCreature.getHealth() - damage);
         
         // Passer à l'état d'action du joueur
-        state = CombatState.PLAYER_ACTION;
+        state = CombatState.ENEMY_TURN;
         actionDelay = 2.0f;
-    }
-    
-    /**
-     * Calculer les dégâts d'une attaque
-     * 
-     * @param attacker Créature attaquante
-     * @param defender Créature défenseur
-     * @param ability Capacité utilisée
-     * @return Dégâts infligés
-     */
-    private int calculateDamage(Creature attacker, Creature defender, Ability ability) {
-        // Obtenir les statistiques de combat
-        CombatStats attackerStats = attacker.getCombatStats();
-        CombatStats defenderStats = defender.getCombatStats();
-        
-        // Déterminer si l'attaque est physique ou magique
-        boolean isPhysical = ability.getDamageType() == Ability.DamageType.PHYSICAL;
-        
-        // Valeurs de base pour l'attaque et la défense
-        int attackValue = isPhysical ? attackerStats.getPhysicalAttack() : attackerStats.getMagicalAttack();
-        int defenseValue = isPhysical ? defenderStats.getPhysicalDefense() : defenderStats.getMagicalDefense();
-        
-        // Appliquer la pénétration d'armure/magie
-        float penetration = isPhysical ? attackerStats.getArmorPenetration() : attackerStats.getMagicPenetration();
-        defenseValue = (int)(defenseValue * (1.0f - penetration / 100.0f));
-        
-        // Formule de base: (niveau * 2 / 5 + 2) * puissance * attaque / défense / 50 + 2
-        float baseDamage = (attacker.getLevel() * 2.0f / 5.0f + 2.0f) * 
-                          ability.getPower() * attackValue / Math.max(1, defenseValue) / 50.0f + 2.0f;
-        
-        // Modificateur de type (à implémenter plus tard)
-        float typeModifier = 1.0f;
-        
-        // Coup critique (basé sur la chance de critique du combattant)
-        boolean isCritical = random.nextFloat() * 100 < attackerStats.getCriticalChance();
-        float critModifier = isCritical ? attackerStats.getCriticalDamage() : 1.0f;
-        
-        // Modificateur aléatoire (0.85 - 1.0)
-        float randomModifier = 0.85f + random.nextFloat() * 0.15f;
-        
-        // Calculer les dégâts finaux
-        int finalDamage = Math.max(1, (int)(baseDamage * typeModifier * critModifier * randomModifier));
-        
-        // Appliquer les effets de vol de vie et vampirisme
-        if (finalDamage > 0) {
-            int lifeStealAmount = 0;
-            
-            // Appliquer l'omnivampirisme (tous types de dégâts)
-            if (attackerStats.getOmnivamp() > 0) {
-                lifeStealAmount += (int)(finalDamage * attackerStats.getOmnivamp() / 100.0f);
-            }
-            // Sinon, appliquer le vol de vie ou vampirisme selon le type
-            else if (isPhysical && attackerStats.getLifeSteal() > 0) {
-                lifeStealAmount += (int)(finalDamage * attackerStats.getLifeSteal() / 100.0f);
-            } else if (!isPhysical && attackerStats.getSpellVamp() > 0) {
-                lifeStealAmount += (int)(finalDamage * attackerStats.getSpellVamp() / 100.0f);
-            }
-            
-            // Appliquer le vol de vie
-            if (lifeStealAmount > 0) {
-                attackerStats.heal(lifeStealAmount);
-                System.out.println(attacker.getName() + " récupère " + lifeStealAmount + " PV grâce au vol de vie!");
-            }
-        }
-        
-        // Afficher un message pour les coups critiques
-        if (isCritical) {
-            System.out.println("Coup critique !");
-        }
-        
-        return finalDamage;
     }
     
     /**
@@ -699,14 +760,6 @@ public class CombatSystem implements CaptureCallback {
         if (selectedOption == 0) { // Attaque
             // Utiliser la capacité sélectionnée
             Ability ability = playerCreature.getAbilities().get(selectedAbility);
-            
-            // Vérifier si la capacité est prête (cooldown)
-            if (!playerCreature.getCombatStats().isSkillReady(selectedAbility)) {
-                currentMessage = ability.getName() + " est en temps de récupération!";
-                messageTime = 2.0f;
-                state = CombatState.MESSAGE;
-                return;
-            }
             
             // Vérifier si la capacité touche
             if (ability.checkHit()) {
@@ -753,7 +806,7 @@ public class CombatSystem implements CaptureCallback {
     /**
      * Exécuter le tour de l'ennemi
      */
-    private void executeEnemyTurn() {
+    private void executeEnemyAction() {
         // Mettre à jour les temps de récupération des capacités
         playerCreature.getCombatStats().updateCooldowns();
         enemyCreature.getCombatStats().updateCooldowns();
@@ -991,6 +1044,7 @@ public class CombatSystem implements CaptureCallback {
         messageTime = 0.0f;
         selectedOption = 0;
         selectedAbility = 0;
+        selectedCaptureStone = 0;
         capturingAttempt = false;
     }
     
@@ -1028,14 +1082,13 @@ public class CombatSystem implements CaptureCallback {
     public enum CombatState {
         INACTIVE,           // Combat inactif
         MESSAGE,            // Affichage d'un message
-        PLAYER_TURN,        // Tour du joueur (menu principal)
+        PLAYER_TURN,        // Tour du joueur
         ABILITY_SELECTION,  // Sélection d'une capacité
-        PLAYER_ACTION,      // Action du joueur en cours
-        ENEMY_ACTION,       // Action de l'ennemi en cours
-        VICTORY,            // Combat gagné
-        DEFEAT,             // Combat perdu
-        CAPTURE,            // Créature capturée
-        FLEE                // Fuite réussie
+        CAPTURE_SELECTION,  // Sélection d'une pierre de capture
+        CAPTURE,            // Capture réussie
+        VICTORY,            // Victoire du joueur
+        DEFEAT,             // Défaite du joueur
+        FLEE                // Fuite du joueur
     }
     
     /**
@@ -1300,6 +1353,147 @@ public class CombatSystem implements CaptureCallback {
                 // Passer à la position suivante
                 currentX += iconSize + spacing;
             }
+        }
+    }
+    
+    /**
+     * Calculer le taux de capture estimé pour une pierre de capture
+     * 
+     * @param stone Pierre de capture
+     * @return Taux de capture estimé (entre 0.0 et 1.0)
+     */
+    private float calculateEstimatedCaptureRate(CaptureStone stone) {
+        // Obtenir les propriétés de la pierre
+        CaptureStoneMaterial material = stone.getMaterial();
+        CaptureStoneType type = stone.getType();
+        
+        // Calculer le taux de base en fonction de la santé de la créature
+        float healthPercentage = (float) enemyCreature.getHealth() / enemyCreature.getMaxHealth();
+        float baseRate = 1.0f - healthPercentage * 0.8f; // Taux de base entre 0.2 et 1.0
+        
+        // Appliquer le multiplicateur du matériau
+        float materialMultiplier = material.getCaptureRateMultiplier();
+        
+        // Appliquer le multiplicateur du type
+        float typeMultiplier = type.getTypeEffectiveness(enemyCreature.getType());
+        
+        // Calculer le taux final
+        float finalRate = baseRate * materialMultiplier * typeMultiplier;
+        
+        // Limiter le taux entre 0.01 (1%) et 0.95 (95%)
+        return Math.max(0.01f, Math.min(0.95f, finalRate));
+    }
+    
+    /**
+     * Obtenir une couleur en fonction du taux de capture
+     * 
+     * @param rate Taux de capture (entre 0.0 et 1.0)
+     * @return Couleur au format ARGB
+     */
+    private int getColorForRate(float rate) {
+        if (rate < 0.2f) {
+            return 0xFFFF0000; // Rouge pour un taux faible
+        } else if (rate < 0.5f) {
+            return 0xFFFF8800; // Orange pour un taux moyen
+        } else if (rate < 0.8f) {
+            return 0xFFFFFF00; // Jaune pour un bon taux
+        } else {
+            return 0xFF00FF00; // Vert pour un excellent taux
+        }
+    }
+    
+    /**
+     * Calculer les dégâts d'une attaque
+     * 
+     * @param attacker Créature attaquante
+     * @param defender Créature défenseur
+     * @param ability Capacité utilisée
+     * @return Dégâts infligés
+     */
+    private int calculateDamage(Creature attacker, Creature defender, Ability ability) {
+        // Obtenir les statistiques de combat
+        CombatStats attackerStats = attacker.getCombatStats();
+        CombatStats defenderStats = defender.getCombatStats();
+        
+        // Déterminer si l'attaque est physique ou magique
+        boolean isPhysical = ability.getDamageType() == Ability.DamageType.PHYSICAL;
+        
+        // Valeurs de base pour l'attaque et la défense
+        int attackValue = isPhysical ? attackerStats.getPhysicalAttack() : attackerStats.getMagicalAttack();
+        int defenseValue = isPhysical ? defenderStats.getPhysicalDefense() : defenderStats.getMagicalDefense();
+        
+        // Appliquer la pénétration d'armure/magie
+        float penetration = isPhysical ? attackerStats.getArmorPenetration() : attackerStats.getMagicPenetration();
+        defenseValue = (int)(defenseValue * (1.0f - penetration / 100.0f));
+        
+        // Formule de base: (niveau * 2 / 5 + 2) * puissance * attaque / défense / 50 + 2
+        float baseDamage = (attacker.getLevel() * 2.0f / 5.0f + 2.0f) * 
+                          ability.getPower() * attackValue / Math.max(1, defenseValue) / 50.0f + 2.0f;
+        
+        // Modificateur de type (à implémenter plus tard)
+        float typeModifier = 1.0f;
+        
+        // Coup critique (basé sur la chance de critique du combattant)
+        boolean isCritical = random.nextFloat() * 100 < attackerStats.getCriticalChance();
+        float critModifier = isCritical ? attackerStats.getCriticalDamage() : 1.0f;
+        
+        // Modificateur aléatoire (0.85 - 1.0)
+        float randomModifier = 0.85f + random.nextFloat() * 0.15f;
+        
+        // Calculer les dégâts finaux
+        int finalDamage = Math.max(1, (int)(baseDamage * typeModifier * critModifier * randomModifier));
+        
+        // Appliquer les effets de vol de vie et vampirisme
+        if (finalDamage > 0) {
+            int lifeStealAmount = 0;
+            
+            // Appliquer l'omnivampirisme (tous types de dégâts)
+            if (attackerStats.getOmnivamp() > 0) {
+                lifeStealAmount += (int)(finalDamage * attackerStats.getOmnivamp() / 100.0f);
+            }
+            // Sinon, appliquer le vol de vie ou vampirisme selon le type
+            else if (isPhysical && attackerStats.getLifeSteal() > 0) {
+                lifeStealAmount += (int)(finalDamage * attackerStats.getLifeSteal() / 100.0f);
+            } else if (!isPhysical && attackerStats.getSpellVamp() > 0) {
+                lifeStealAmount += (int)(finalDamage * attackerStats.getSpellVamp() / 100.0f);
+            }
+            
+            // Appliquer le vol de vie
+            if (lifeStealAmount > 0) {
+                attackerStats.heal(lifeStealAmount);
+                System.out.println(attacker.getName() + " récupère " + lifeStealAmount + " PV grâce au vol de vie!");
+            }
+        }
+        
+        // Afficher un message pour les coups critiques
+        if (isCritical) {
+            System.out.println("Coup critique !");
+        }
+        
+        return finalDamage;
+    }
+    
+    /**
+     * Démarrer une tentative de capture avec la pierre sélectionnée
+     * 
+     * @param stone Pierre de capture à utiliser
+     */
+    private void startCaptureWithSelectedStone(CaptureStone stone) {
+        // Démarrer la capture avec la pierre sélectionnée
+        if (captureSystem.startCapture(player, enemyCreature, this, stone)) {
+            capturingAttempt = true;
+            currentMessage = "Tentative de capture avec " + stone.getMaterial().getName() + " " + stone.getType().getName() + "...";
+            messageTime = 2.0f;
+            
+            // Consommer la pierre de capture (la retirer de l'inventaire)
+            player.getInventory().removeItem(stone);
+            
+            // Revenir à l'état normal du combat
+            state = CombatState.MESSAGE;
+        } else {
+            currentMessage = "Impossible de démarrer la capture !";
+            messageTime = 2.0f;
+            state = CombatState.MESSAGE;
         }
     }
 }
