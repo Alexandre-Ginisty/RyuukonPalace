@@ -74,12 +74,21 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 ## Histoire et quêtes (Priorité Basse)
 
 - [x] **QUEST-0**: Définir le lore complet du monde et des factions
-- [ ] **QUEST-1**: Développer le système de quêtes
-- [ ] **QUEST-2**: Écrire l'histoire principale
-- [ ] **QUEST-3**: Créer les quêtes secondaires
-- [ ] **QUEST-4**: Implémenter le système de progression de l'histoire
-- [ ] **QUEST-5**: Développer le système de choix et conséquences
-- [ ] **QUEST-6**: Créer des quêtes spécifiques aux factions (Tacticiens/Guerriers)
+- [x] **QUEST-1**: Développer le système de quêtes
+- [x] **QUEST-1.1**: Intégrer le système de quêtes avec le système de dialogue
+- [x] **QUEST-1.2**: Implémenter les conditions environnementales pour les quêtes (jour/nuit, météo)
+- [x] **QUEST-1.3**: Implémenter le chargement des quêtes depuis les fichiers JSON
+- [x] **QUEST-1.4**: Implémenter la sauvegarde des quêtes dans les fichiers JSON
+- [x] **QUEST-1.5**: Corriger les erreurs dans le système de quêtes (QuestStatus, isActive, etc.)
+- [x] **QUEST-6**: Créer des quêtes spécifiques aux factions (Tacticiens/Guerriers)
+- [x] **QUEST-2**: Écrire l'histoire principale
+- [x] **QUEST-3**: Créer les quêtes secondaires
+- [x] **QUEST-4**: Implémenter le système de progression de l'histoire
+- [x] **QUEST-5**: Développer le système de choix et conséquences
+- [x] **QUEST-7**: Enrichir le lore avec des clans et factions secrètes
+- [x] **QUEST-8**: Développer des quêtes matures avec des thèmes adultes
+- [x] **QUEST-9**: Créer un système de signes mystiques avec différentes catégories
+- [x] **QUEST-10**: Implémenter des quêtes avec des choix moraux et des conséquences importantes
 
 ## Tests et équilibrage (Priorité Moyenne)
 
@@ -87,7 +96,8 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [ ] **TEST-2**: Effectuer des tests d'équilibrage du gameplay
 - [ ] **TEST-3**: Optimiser les performances
 - [x] **TEST-4**: Corriger les bugs identifiés
-- [ ] **TEST-5**: Réaliser des tests utilisateurs
+- [x] **TEST-5**: Corriger les erreurs de typage et les avertissements dans le code
+- [ ] **TEST-6**: Réaliser des tests utilisateurs
 
 ## Design et assets graphiques (Priorité Moyenne)
 
@@ -100,8 +110,8 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 
 ## Prochaines tâches prioritaires
 
-1. **QUEST-1**: Développer le système de quêtes
-2. **QUEST-6**: Créer des quêtes spécifiques aux factions (Tacticiens/Guerriers)
-3. **AUDIO-1**: Implémenter le système de gestion audio
-4. **QUEST-2**: Écrire l'histoire principale
-5. **QUEST-3**: Créer les quêtes secondaires
+1. **UI-7**: Améliorer l'interface utilisateur du système de quêtes (journal de quêtes, notifications)
+2. **DESIGN-2**: Concevoir les assets d'environnement pour les nouveaux lieux (Shadow Caverns, Laboratoire Secret)
+3. **DESIGN-3**: Développer l'interface utilisateur pour le système de signes mystiques
+4. **AUDIO-1**: Implémenter le système de gestion audio
+5. **TEST-2**: Effectuer des tests d'équilibrage du gameplay pour les nouvelles quêtes et factions

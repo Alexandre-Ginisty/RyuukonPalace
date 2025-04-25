@@ -314,3 +314,121 @@ L'univers est rempli de secrets anciens, d'artefacts puissants et d'intrigues po
 ---
 
 *Ce document sert de référence canonique pour le lore de Ryuukon Palace. Toute création de contenu, développement de personnages, ou conception de quêtes doit respecter les informations établies ici.*
+
+## CLANS ET FACTIONS SECRÈTES
+
+Au-delà des factions officielles, le monde d'Elderglen abrite des organisations clandestines, des clans rebelles et des cultes mystérieux qui opèrent dans l'ombre. Ces groupes poursuivent leurs propres objectifs, souvent en opposition avec les pouvoirs établis.
+
+### Clan Blackthorn
+
+**Type** : Clan rebelle  
+**Leader** : Soren Blackthorn  
+**Quartier général** : Darkhaven
+
+Un clan de rebelles et de parias fondé par un ancien Tacticien d'élite. Le Clan Blackthorn opère dans les zones grises de la société, offrant protection à ceux qui sont persécutés par les puissants. Ils utilisent des méthodes parfois brutales mais sont guidés par un fort sens de la justice.
+
+Le clan recrute principalement des individus rejetés par la société ou persécutés par les factions dominantes. Les membres du clan forment des liens profonds avec leurs variants, basés sur le respect mutuel plutôt que sur la domination. Ils utilisent des techniques de capture et d'entraînement moins contraignantes.
+
+**Symbole** : Un arbre noir aux branches épineuses sur fond rouge sang
+
+### Adorateurs de l'Essence
+
+**Type** : Culte mystique  
+**Leader** : Lyra Nightshade  
+**Quartier général** : Shadow Caverns
+
+Un culte secret fondé par Lyra Nightshade après son bannissement de l'Académie des Signes. Les Adorateurs de l'Essence vénèrent les variants comme des manifestations divines et étudient les Signes Interdits, considérés comme dangereux par l'establishment.
+
+Les Adorateurs croient que les variants sont des manifestations d'énergies spirituelles anciennes et que les Signes sont un langage sacré permettant de communiquer avec ces énergies plutôt que de les asservir. Le culte attire principalement des érudits désillusionnés, des praticiens de Signes rejetés par l'Académie et des individus ayant vécu des expériences spirituelles avec les variants.
+
+**Symbole** : Un œil violet entouré de signes mystiques changeants
+
+### Réseau du Dernier Refuge
+
+**Type** : Réseau criminel  
+**Leader** : Vex Ironheart  
+**Quartier général** : Navire "Le Dernier Refuge" (mobile)
+
+Un réseau de contrebandiers, de marchands et d'anciens Guerriers dirigé par Vex Ironheart. Le réseau facilite le commerce de marchandises interdites entre les territoires et aide secrètement certains variants persécutés à s'échapper.
+
+Le réseau est principalement motivé par le profit, mais sous la direction de Vex, il suit un code d'honneur rudimentaire et s'oppose à l'oppression excessive des variants. La relation avec les variants est complexe : certains membres du réseau trafiquent des variants rares, tandis que d'autres les aident à échapper à des maîtres cruels.
+
+**Symbole** : Une ancre brisée sur fond de brume
+
+### Gardiens du Flux
+
+**Type** : Tribu spirituelle  
+**Leader** : Aria Moonshadow  
+**Quartier général** : Whisperwood Forest
+
+Une tribu ancienne de chamanes et de gardiens spirituels qui protègent l'équilibre entre le monde des vivants et celui des esprits. Ils sont particulièrement attentifs au bien-être des variants, qu'ils considèrent comme des manifestations d'esprits anciens.
+
+Les Gardiens croient que les variants sont des ponts entre le monde matériel et spirituel, et que leur exploitation perturbe l'équilibre cosmique. Ils cherchent à maintenir l'harmonie entre toutes les formes de vie. La tribu accueille principalement ceux qui montrent une sensibilité naturelle aux énergies spirituelles.
+
+**Symbole** : Un arbre luminescent dont les racines et les branches forment un cercle parfait
+
+### Illuminés Biologiques
+
+**Type** : Société secrète  
+**Leader** : Professeur Thaddeus Grimm  
+**Quartier général** : Laboratoire Secret (près de Lumina)
+
+Une société secrète de scientifiques, médecins et chercheurs bannis de l'Académie pour leurs méthodes controversées. Ils étudient l'anatomie et la biologie des variants pour percer leurs secrets et développer de nouvelles technologies.
+
+Les Illuminés croient que la compréhension scientifique des variants est la clé du progrès humain, et que les considérations éthiques ne devraient pas entraver la recherche. Ils cherchent à transcender les limites entre humains et variants, parfois au prix de pratiques considérées comme cruelles ou non éthiques.
+
+**Symbole** : Un scalpel croisant une plume sur fond de schéma anatomique de variant
+
+## SIGNES MYSTIQUES
+
+Les Signes sont des gestes et symboles mystiques qui permettent aux humains d'interagir avec les variants et de manipuler les énergies du monde. Bien que les Signes de base soient enseignés officiellement à l'Académie, il existe des Signes plus rares, plus puissants ou interdits qui sont gardés secrets ou transmis uniquement aux initiés.
+
+### Catégories de Signes
+
+#### Signes Traditionnels
+Enseignés officiellement par l'Académie des Signes, ces Signes sont considérés comme sûrs et éthiques. Ils forment la base de l'éducation de tout Tacticien et sont légaux dans tout Elderglen.
+
+#### Signes Interdits
+Bannis par l'Académie en raison de leur nature dangereuse, de leur coût élevé ou de leur potentiel de corruption. Leur pratique est illégale et peut être punie sévèrement, mais certains groupes comme les Adorateurs de l'Essence les préservent et les enseignent en secret.
+
+#### Signes Spirituels
+Liés à la communication avec les esprits et le monde immatériel, ces Signes sont pratiqués principalement par les chamanes des Gardiens du Flux. Ils sont tolérés dans certaines régions mais regardés avec méfiance par l'Académie.
+
+#### Signes de Combat
+Développés spécifiquement pour améliorer les capacités de combat des variants ou du Tacticien, ces Signes sont utilisés par les guildes de Guerriers et le Clan Blackthorn. Ils sont légaux avec certaines restrictions.
+
+#### Signes Expérimentaux
+Nouvellement développés par des chercheurs comme les Illuminés Biologiques, ces Signes combinent science et mystique. Leur statut légal est ambigu et leur maîtrise très difficile.
+
+### Signes Notables
+
+#### Signe de l'Ombre
+Un signe qui permet au Tacticien et à son variant de se fondre dans les ombres, devenant presque invisibles. Développé à l'origine par des Tacticiens espions pendant les anciennes guerres, ce signe a été perfectionné par le Clan Blackthorn pour leurs opérations clandestines.
+
+#### Signe du Sang
+Un signe puissant et dangereux qui crée un lien vital entre le Tacticien et son variant, leur permettant de partager force et faiblesse. Interdit par l'Académie après plusieurs incidents où des Tacticiens ont perdu le contrôle ou ont été consumés par le lien. Les Adorateurs de l'Essence le considèrent comme le signe le plus sacré.
+
+#### Signe de Communion
+Un signe qui permet de communiquer brièvement avec l'esprit d'un variant décédé. Pratiqué depuis des millénaires par les chamanes des Gardiens du Flux, ce signe est considéré comme sacré et n'est enseigné qu'à ceux qui respectent profondément les variants.
+
+#### Signe d'Analyse
+Un signe qui permet d'analyser en profondeur les faiblesses d'un variant ennemi. Développé par les Illuminés Biologiques en combinant des connaissances scientifiques sur l'anatomie des variants avec des principes mystiques.
+
+#### Signe de Symbiose
+Un signe qui permet au Tacticien de partager temporairement des capacités avec son variant. Le résultat de décennies de recherche des Illuminés Biologiques sur la fusion des essences humaines et variants.
+
+## VÉRITÉS CACHÉES
+
+Au cœur du monde de Ryuukon Palace se cachent des vérités que peu osent affronter :
+
+### L'Origine des Variants
+Contrairement à la croyance populaire, les variants ne sont pas simplement des créatures sauvages à capturer et à utiliser. Ils sont les manifestations d'esprits anciens, liés à notre monde par des forces mystérieuses. Leur capture et leur utilisation comme outils de combat est une perversion de leur véritable nature, ce qui explique les phénomènes de rébellion et de corruption observés chez certains variants puissants.
+
+### Le Véritable Pouvoir des Signes
+Les Signes ne sont pas de simples outils de contrôle, mais un langage ancien permettant de communiquer avec les énergies fondamentales du monde. Les premiers chamanes utilisaient les Signes pour communiquer avec les esprits des variants, pas pour les asservir. L'Académie des Signes a délibérément occulté cette vérité pour maintenir son pouvoir.
+
+### Les Expériences Interdites
+Dans les laboratoires secrets des Illuminés Biologiques, des expériences controversées tentent de fusionner l'essence des variants avec celle des humains, créant des hybrides aux capacités inimaginables. Ces recherches pourraient soit mener à une nouvelle ère de compréhension mutuelle, soit déclencher une catastrophe sans précédent.
+
+### La Prophétie du Flux
+Une ancienne prophétie des Gardiens du Flux parle d'un Tacticien qui, au lieu de capturer les variants, formera avec eux une alliance volontaire basée sur le respect mutuel. Ce Tacticien, appelé "l'Harmonisateur", est destiné à rétablir l'équilibre entre les mondes matériel et spirituel, mais sera confronté à de puissantes forces qui cherchent à maintenir le statu quo.

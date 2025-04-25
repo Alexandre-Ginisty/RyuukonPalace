@@ -413,40 +413,49 @@ public class SaveLoadInterface extends UIComponent {
      * @param mouseX Position X de la souris
      * @param mouseY Position Y de la souris
      * @param mousePressed true si le bouton de la souris est appuyé, false sinon
+     * @return true si l'entrée a été traitée, false sinon
      */
-    public void handleInput(float mouseX, float mouseY, boolean mousePressed) {
+    public boolean handleInput(float mouseX, float mouseY, boolean mousePressed) {
         // Gérer les entrées clavier standard
         handleInput();
+        
+        boolean handled = false;
         
         // Gérer les entrées de la souris
         if (mousePressed) {
             // Vérifier si un bouton a été cliqué
             if (saveButton != null && saveButton.isVisible() && saveButton.contains(mouseX, mouseY)) {
                 saveButton.handleClick();
+                handled = true;
             }
             
             if (loadButton != null && loadButton.isVisible() && loadButton.contains(mouseX, mouseY)) {
                 loadButton.handleClick();
+                handled = true;
             }
             
             if (settingsButton != null && settingsButton.isVisible() && settingsButton.contains(mouseX, mouseY)) {
                 settingsButton.handleClick();
+                handled = true;
             }
             
             if (backButton != null && backButton.isVisible() && backButton.contains(mouseX, mouseY)) {
                 backButton.handleClick();
+                handled = true;
             }
             
             if (autoSaveToggleButton != null && autoSaveToggleButton.isVisible() && autoSaveToggleButton.contains(mouseX, mouseY)) {
                 autoSaveToggleButton.handleClick();
+                handled = true;
             }
             
             // Vérifier si un slot a été cliqué
-            if ((state == State.SAVE || state == State.LOAD) && panelX <= mouseX && mouseX <= panelX + panelWidth) {
+            if (!handled && (state == State.SAVE || state == State.LOAD) && panelX <= mouseX && mouseX <= panelX + panelWidth) {
                 for (int slot = 1; slot < SaveManager.MAX_SAVE_SLOTS; slot++) {
                     float slotY = panelY + 80 + (slot - 1) * 70;
                     if (slotY <= mouseY && mouseY <= slotY + 60) {
                         selectedSlot = slot;
+                        handled = true;
                         
                         // Double-clic pour action rapide
                         if (System.currentTimeMillis() - lastClickTime < 500 && lastClickSlot == selectedSlot) {
@@ -473,6 +482,8 @@ public class SaveLoadInterface extends UIComponent {
                 }
             }
         }
+        
+        return handled;
     }
     
     @Override

@@ -173,25 +173,31 @@ public class Panel extends UIComponent {
      * @param mouseX Position X de la souris
      * @param mouseY Position Y de la souris
      * @param pressed true si le bouton est appuyé, false s'il est relâché
+     * @return true si l'appui a été géré, false sinon
      */
     @Override
-    public void onPress(float mouseX, float mouseY, boolean pressed) {
+    public boolean onPress(float mouseX, float mouseY, boolean pressed) {
         if (!visible || !enabled) {
             this.pressed = false;
-            return;
+            return false;
         }
         
         // Vérifier si la souris est à l'intérieur du panneau
+        boolean handled = false;
         if (contains(mouseX, mouseY)) {
             this.pressed = pressed;
+            handled = true;
         } else {
             this.pressed = false;
         }
         
         // Propager l'appui aux enfants
         for (UIComponent child : children) {
-            child.onPress(mouseX, mouseY, pressed);
+            boolean childHandled = child.onPress(mouseX, mouseY, pressed);
+            handled = handled || childHandled;
         }
+        
+        return handled;
     }
     
     /**

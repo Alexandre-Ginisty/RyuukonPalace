@@ -108,17 +108,20 @@ public abstract class UIComponent {
      * @param mouseX Position X de la souris
      * @param mouseY Position Y de la souris
      * @param pressed true si le bouton est appuyé, false s'il est relâché
+     * @return true si l'appui a été géré, false sinon
      */
-    public void onPress(float mouseX, float mouseY, boolean pressed) {
+    public boolean onPress(float mouseX, float mouseY, boolean pressed) {
         if (!visible || !enabled) {
             this.pressed = false;
-            return;
+            return false;
         }
         
         if (contains(mouseX, mouseY)) {
             this.pressed = pressed;
+            return true;
         } else {
             this.pressed = false;
+            return false;
         }
     }
     

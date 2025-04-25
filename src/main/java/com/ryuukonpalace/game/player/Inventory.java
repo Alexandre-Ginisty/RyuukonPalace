@@ -79,6 +79,60 @@ public class Inventory {
     }
     
     /**
+     * Retirer un objet de l'inventaire par son ID
+     * 
+     * @param itemId ID de l'objet à retirer
+     * @param quantity Quantité à retirer
+     * @return true si l'objet a été retiré, false sinon
+     */
+    public boolean removeItem(int itemId, int quantity) {
+        int removed = 0;
+        List<Item> itemsToRemove = new ArrayList<>();
+        
+        // Trouver tous les objets correspondant à l'ID
+        for (Item item : items) {
+            if (item.getId() == itemId) {
+                itemsToRemove.add(item);
+                removed++;
+                
+                if (removed >= quantity) {
+                    break;
+                }
+            }
+        }
+        
+        // Si on n'a pas trouvé assez d'objets, retourner false
+        if (removed < quantity) {
+            return false;
+        }
+        
+        // Retirer les objets
+        for (Item item : itemsToRemove) {
+            removeItem(item);
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Obtenir la quantité d'un objet dans l'inventaire
+     * 
+     * @param itemId ID de l'objet
+     * @return Quantité de l'objet
+     */
+    public int getItemQuantity(int itemId) {
+        int count = 0;
+        
+        for (Item item : items) {
+            if (item.getId() == itemId) {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
      * Obtenir la liste des objets dans l'inventaire
      * 
      * @return Liste des objets

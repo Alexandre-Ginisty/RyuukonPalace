@@ -1,0 +1,284 @@
+{
+  "faction_quests": {
+    "TACTICIEN": [
+      {
+        "id": "tacticien_quest_1",
+        "title": "L'Art de la Capture",
+        "description": "Maîtrisez l'art de la capture en obtenant des variants de différents types.",
+        "minLevel": 5,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "TACTICIEN",
+        "objectives": [
+          {
+            "type": "CAPTURE_VARIANTS",
+            "id": "capture_fire_variant",
+            "count": 1,
+            "variantType": "FEU"
+          },
+          {
+            "type": "CAPTURE_VARIANTS",
+            "id": "capture_water_variant",
+            "count": 1,
+            "variantType": "EAU"
+          },
+          {
+            "type": "CAPTURE_VARIANTS",
+            "id": "capture_earth_variant",
+            "count": 1,
+            "variantType": "TERRE"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 300
+          },
+          {
+            "type": "ITEM",
+            "itemId": 10,
+            "itemName": "Pierre de capture avancée",
+            "quantity": 3
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "TACTICIEN",
+            "amount": 100
+          }
+        ],
+        "unlocksQuests": ["tacticien_quest_2"]
+      },
+      {
+        "id": "tacticien_quest_2",
+        "title": "Stratégie de Combat",
+        "description": "Prouvez votre maîtrise de la stratégie en remportant des combats contre d'autres Tacticiens.",
+        "minLevel": 10,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "TACTICIEN",
+        "objectives": [
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_tacticien_variants",
+            "count": 5,
+            "creatureType": "VARIANT"
+          },
+          {
+            "type": "TALK_TO_NPC",
+            "id": "report_to_master",
+            "npcId": 15,
+            "npcName": "Maître des Tacticiens",
+            "npcType": "TACTICIEN"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 500
+          },
+          {
+            "type": "ITEM",
+            "itemId": 25,
+            "itemName": "Tenue de Tacticien Élite",
+            "quantity": 1
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "TACTICIEN",
+            "amount": 200
+          }
+        ],
+        "unlocksQuests": ["tacticien_quest_3"]
+      },
+      {
+        "id": "tacticien_quest_3",
+        "title": "Le Tournoi des Tacticiens",
+        "description": "Participez au grand tournoi des Tacticiens et tentez de remporter le titre de Champion.",
+        "minLevel": 15,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "TACTICIEN",
+        "objectives": [
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_tournament_round1",
+            "count": 3,
+            "creatureType": "VARIANT"
+          },
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_tournament_round2",
+            "count": 3,
+            "creatureType": "VARIANT"
+          },
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_tournament_final",
+            "count": 1,
+            "creatureType": "VARIANT"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 30,
+            "itemName": "Médaille du Champion",
+            "quantity": 1
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "TACTICIEN",
+            "amount": 500
+          }
+        ],
+        "unlocksQuests": []
+      }
+    ],
+    "GUERRIER": [
+      {
+        "id": "guerrier_quest_1",
+        "title": "La Forge du Guerrier",
+        "description": "Collectez les matériaux nécessaires pour forger votre première arme de Guerrier.",
+        "minLevel": 5,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "GUERRIER",
+        "objectives": [
+          {
+            "type": "COLLECT_ITEMS",
+            "id": "collect_iron_ore",
+            "itemId": 50,
+            "itemName": "Minerai de fer",
+            "quantity": 5,
+            "consumeItems": true
+          },
+          {
+            "type": "COLLECT_ITEMS",
+            "id": "collect_wood",
+            "itemId": 51,
+            "itemName": "Bois solide",
+            "quantity": 3,
+            "consumeItems": true
+          },
+          {
+            "type": "TALK_TO_NPC",
+            "id": "talk_to_blacksmith",
+            "npcId": 20,
+            "npcName": "Forgeron",
+            "npcType": "NEUTRE"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 300
+          },
+          {
+            "type": "ITEM",
+            "itemId": 60,
+            "itemName": "Épée d'apprenti",
+            "quantity": 1
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "GUERRIER",
+            "amount": 100
+          }
+        ],
+        "unlocksQuests": ["guerrier_quest_2"]
+      },
+      {
+        "id": "guerrier_quest_2",
+        "title": "Entraînement au Combat",
+        "description": "Prouvez votre valeur en combattant directement des variants sauvages.",
+        "minLevel": 10,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "GUERRIER",
+        "objectives": [
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_wild_variants",
+            "count": 10,
+            "creatureType": "VARIANT"
+          },
+          {
+            "type": "TALK_TO_NPC",
+            "id": "report_to_commander",
+            "npcId": 21,
+            "npcName": "Commandant des Guerriers",
+            "npcType": "GUERRIER"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 500
+          },
+          {
+            "type": "ITEM",
+            "itemId": 61,
+            "itemName": "Armure de Guerrier",
+            "quantity": 1
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "GUERRIER",
+            "amount": 200
+          }
+        ],
+        "unlocksQuests": ["guerrier_quest_3"]
+      },
+      {
+        "id": "guerrier_quest_3",
+        "title": "La Chasse au Variant Légendaire",
+        "description": "Traquez et affrontez un variant légendaire qui terrorise la région.",
+        "minLevel": 15,
+        "isMainQuest": false,
+        "isFactionSpecific": true,
+        "factionName": "GUERRIER",
+        "objectives": [
+          {
+            "type": "EXPLORE_AREA",
+            "id": "explore_legendary_lair",
+            "areaId": "legendary_lair",
+            "areaName": "Antre du Légendaire",
+            "x": 1200,
+            "y": 800,
+            "width": 300,
+            "height": 300,
+            "requireNighttime": true
+          },
+          {
+            "type": "DEFEAT_CREATURES",
+            "id": "defeat_legendary_variant",
+            "count": 1,
+            "creatureType": "LEGENDAIRE"
+          }
+        ],
+        "rewards": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 62,
+            "itemName": "Trophée de Variant Légendaire",
+            "quantity": 1
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "GUERRIER",
+            "amount": 500
+          }
+        ],
+        "unlocksQuests": []
+      }
+    ]
+  }
+}

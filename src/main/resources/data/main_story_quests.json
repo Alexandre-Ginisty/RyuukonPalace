@@ -1,0 +1,460 @@
+{
+  "main_story_quests": [
+    {
+      "id": "main_quest_1",
+      "title": "L'Éveil du Tacticien",
+      "description": "Vous vous réveillez dans le village de Lumina sans aucun souvenir. Le chef du village vous explique que vous êtes un Tacticien et que vous devez retrouver votre mémoire en explorant le monde.",
+      "minLevel": 1,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_village_chief",
+          "npcId": 1,
+          "npcName": "Chef du village",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_lumina_village",
+          "areaId": "lumina_village",
+          "areaName": "Village de Lumina",
+          "x": 100,
+          "y": 100,
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_elder",
+          "npcId": 2,
+          "npcName": "Ancien du village",
+          "npcType": "NEUTRE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 100
+        },
+        {
+          "type": "ITEM",
+          "itemId": 1,
+          "itemName": "Pierre de capture basique",
+          "quantity": 5
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "forest_path",
+          "areaName": "Chemin de la Forêt"
+        }
+      ],
+      "unlocksQuests": ["main_quest_2"]
+    },
+    {
+      "id": "main_quest_2",
+      "title": "Premier Compagnon",
+      "description": "L'Ancien vous explique que pour survivre dans ce monde, vous devez capturer votre premier variant. Il vous guide vers la Forêt de l'Éveil où vous pourrez trouver des variants débutants.",
+      "minLevel": 2,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_awakening_forest",
+          "areaId": "awakening_forest",
+          "areaName": "Forêt de l'Éveil",
+          "x": 600,
+          "y": 200,
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_first_variant",
+          "count": 1,
+          "variantType": "ANY"
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "report_to_elder",
+          "npcId": 2,
+          "npcName": "Ancien du village",
+          "npcType": "NEUTRE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 200
+        },
+        {
+          "type": "ITEM",
+          "itemId": 2,
+          "itemName": "Potion de soin",
+          "quantity": 3
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "crossroads",
+          "areaName": "Carrefour des Chemins"
+        }
+      ],
+      "unlocksQuests": ["main_quest_3"]
+    },
+    {
+      "id": "main_quest_3",
+      "title": "Le Carrefour des Destins",
+      "description": "Vous arrivez au Carrefour des Chemins, où vous rencontrez à la fois un Maître Tacticien et un Commandant Guerrier. Chacun vous propose de rejoindre sa faction, mais vous ne pouvez en choisir qu'une.",
+      "minLevel": 5,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_crossroads",
+          "areaId": "crossroads",
+          "areaName": "Carrefour des Chemins",
+          "x": 800,
+          "y": 500,
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_tactician_master",
+          "npcId": 3,
+          "npcName": "Maître Tacticien",
+          "npcType": "TACTICIEN"
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_warrior_commander",
+          "npcId": 4,
+          "npcName": "Commandant Guerrier",
+          "npcType": "GUERRIER"
+        },
+        {
+          "type": "CUSTOM",
+          "id": "choose_faction",
+          "description": "Choisir une faction (Tacticien ou Guerrier)",
+          "customData": {
+            "choices": ["TACTICIEN", "GUERRIER"]
+          }
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 500
+        },
+        {
+          "type": "FACTION_MEMBERSHIP",
+          "factionName": "DYNAMIC_CHOICE"
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "first_city",
+          "areaName": "Première Cité"
+        }
+      ],
+      "unlocksQuests": ["main_quest_4_tacticien", "main_quest_4_guerrier"]
+    },
+    {
+      "id": "main_quest_4_tacticien",
+      "title": "L'Académie des Tacticiens",
+      "description": "En tant que Tacticien, vous êtes invité à l'Académie pour apprendre les bases de la capture et de l'entraînement des variants.",
+      "minLevel": 7,
+      "isMainQuest": true,
+      "isFactionSpecific": true,
+      "factionName": "TACTICIEN",
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_academy",
+          "areaId": "tactician_academy",
+          "areaName": "Académie des Tacticiens",
+          "x": 1200,
+          "y": 300,
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_academy_director",
+          "npcId": 5,
+          "npcName": "Directeur de l'Académie",
+          "npcType": "TACTICIEN"
+        },
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_variants_different_types",
+          "count": 3,
+          "variantType": "DIFFERENT"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 800
+        },
+        {
+          "type": "ITEM",
+          "itemId": 10,
+          "itemName": "Pierre de capture avancée",
+          "quantity": 5
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "TACTICIEN",
+          "amount": 200
+        }
+      ],
+      "unlocksQuests": ["main_quest_5"]
+    },
+    {
+      "id": "main_quest_4_guerrier",
+      "title": "La Caserne des Guerriers",
+      "description": "En tant que Guerrier, vous êtes convoqué à la Caserne pour apprendre les techniques de combat contre les variants sauvages.",
+      "minLevel": 7,
+      "isMainQuest": true,
+      "isFactionSpecific": true,
+      "factionName": "GUERRIER",
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_barracks",
+          "areaId": "warrior_barracks",
+          "areaName": "Caserne des Guerriers",
+          "x": 1200,
+          "y": 700,
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_barracks_commander",
+          "npcId": 6,
+          "npcName": "Commandant de la Caserne",
+          "npcType": "GUERRIER"
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_training_variants",
+          "count": 5,
+          "creatureType": "VARIANT"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 800
+        },
+        {
+          "type": "ITEM",
+          "itemId": 20,
+          "itemName": "Épée de qualité",
+          "quantity": 1
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "GUERRIER",
+          "amount": 200
+        }
+      ],
+      "unlocksQuests": ["main_quest_5"]
+    },
+    {
+      "id": "main_quest_5",
+      "title": "Les Ruines Anciennes",
+      "description": "Des fragments de votre mémoire vous guident vers d'anciennes ruines où vous pourriez découvrir des indices sur votre passé.",
+      "minLevel": 10,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_ancient_ruins",
+          "areaId": "ancient_ruins",
+          "areaName": "Ruines Anciennes",
+          "x": 1500,
+          "y": 500,
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_memory_fragments",
+          "itemId": 30,
+          "itemName": "Fragment de mémoire",
+          "quantity": 5,
+          "consumeItems": false
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_guardian",
+          "count": 1,
+          "creatureType": "BOSS"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 1200
+        },
+        {
+          "type": "ITEM",
+          "itemId": 31,
+          "itemName": "Cristal de mémoire",
+          "quantity": 1
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "forgotten_temple",
+          "areaName": "Temple Oublié"
+        }
+      ],
+      "unlocksQuests": ["main_quest_6"]
+    },
+    {
+      "id": "main_quest_6",
+      "title": "Le Temple Oublié",
+      "description": "Le Cristal de mémoire vous guide vers un temple ancien où vous pourriez découvrir la vérité sur votre identité et votre rôle dans ce monde.",
+      "minLevel": 15,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_forgotten_temple",
+          "areaId": "forgotten_temple",
+          "areaName": "Temple Oublié",
+          "x": 2000,
+          "y": 500,
+          "width": 600,
+          "height": 600
+        },
+        {
+          "type": "SOLVE_PUZZLE",
+          "id": "solve_temple_puzzle",
+          "puzzleId": "temple_puzzle",
+          "puzzleName": "Énigme du Temple"
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_temple_guardian",
+          "count": 1,
+          "creatureType": "LEGENDARY"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 2000
+        },
+        {
+          "type": "ITEM",
+          "itemId": 40,
+          "itemName": "Orbe de Vérité",
+          "quantity": 1
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "central_continent",
+          "areaName": "Continent Central"
+        }
+      ],
+      "unlocksQuests": ["main_quest_7"]
+    },
+    {
+      "id": "main_quest_7",
+      "title": "La Vérité Révélée",
+      "description": "Avec l'Orbe de Vérité, vous découvrez que vous êtes l'Élu, destiné à rétablir l'équilibre entre les factions et à combattre une menace ancienne qui s'éveille.",
+      "minLevel": 20,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "USE_ITEM",
+          "id": "use_orb_of_truth",
+          "itemId": 40,
+          "itemName": "Orbe de Vérité",
+          "consumeItem": true
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_oracle",
+          "npcId": 10,
+          "npcName": "Oracle",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "CUSTOM",
+          "id": "accept_destiny",
+          "description": "Accepter votre destin d'Élu",
+          "customData": {
+            "choices": ["ACCEPT", "REJECT"]
+          }
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 3000
+        },
+        {
+          "type": "ITEM",
+          "itemId": 50,
+          "itemName": "Amulette de l'Élu",
+          "quantity": 1
+        },
+        {
+          "type": "ABILITY",
+          "abilityId": 1,
+          "abilityName": "Vision de l'Élu"
+        }
+      ],
+      "unlocksQuests": ["main_quest_8_act2"]
+    },
+    {
+      "id": "main_quest_8_act2",
+      "title": "Le Début de l'Acte II",
+      "description": "Maintenant que vous connaissez votre destin, vous devez unir les factions pour faire face à la menace qui s'éveille dans les profondeurs du monde.",
+      "minLevel": 25,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_faction_leaders",
+          "npcId": 15,
+          "npcName": "Conseil des Factions",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_ancient_seal",
+          "areaId": "ancient_seal",
+          "areaName": "Sceau Ancien",
+          "x": 2500,
+          "y": 1000,
+          "width": 300,
+          "height": 300
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 5000
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "act2_areas",
+          "areaName": "Nouvelles Régions (Acte II)"
+        }
+      ],
+      "unlocksQuests": []
+    }
+  ]
+}

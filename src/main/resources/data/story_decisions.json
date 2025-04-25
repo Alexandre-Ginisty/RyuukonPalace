@@ -1,0 +1,317 @@
+{
+  "decisions": [
+    {
+      "id": "faction_choice",
+      "title": "Choix de Faction",
+      "description": "Vous devez choisir entre rejoindre les Tacticiens, qui capturent et entraînent des variants, ou les Guerriers, qui combattent directement les variants sauvages.",
+      "choices": [
+        {
+          "id": "choose_tacticien",
+          "text": "Rejoindre les Tacticiens",
+          "consequences": {
+            "unlocksQuests": ["main_quest_4_tacticien", "tacticien_quest_1"],
+            "reputationChanges": {
+              "TACTICIEN": 200,
+              "GUERRIER": -50
+            },
+            "items": [
+              {
+                "id": 10,
+                "name": "Pierre de capture avancée",
+                "quantity": 5
+              },
+              {
+                "id": 11,
+                "name": "Tenue de Tacticien",
+                "quantity": 1
+              }
+            ],
+            "experience": 500
+          }
+        },
+        {
+          "id": "choose_guerrier",
+          "text": "Rejoindre les Guerriers",
+          "consequences": {
+            "unlocksQuests": ["main_quest_4_guerrier", "guerrier_quest_1"],
+            "reputationChanges": {
+              "GUERRIER": 200,
+              "TACTICIEN": -50
+            },
+            "items": [
+              {
+                "id": 20,
+                "name": "Épée d'apprenti",
+                "quantity": 1
+              },
+              {
+                "id": 21,
+                "name": "Armure d'apprenti",
+                "quantity": 1
+              }
+            ],
+            "experience": 500
+          }
+        }
+      ]
+    },
+    {
+      "id": "accept_destiny",
+      "title": "Accepter votre Destin",
+      "description": "Vous avez découvert que vous êtes l'Élu, destiné à rétablir l'équilibre entre les factions et à combattre une menace ancienne qui s'éveille. Acceptez-vous ce destin ?",
+      "choices": [
+        {
+          "id": "accept",
+          "text": "Accepter votre destin",
+          "consequences": {
+            "unlocksQuests": ["main_quest_8_act2"],
+            "reputationChanges": {
+              "TACTICIEN": 100,
+              "GUERRIER": 100,
+              "LUMIERE": 100,
+              "TENEBRES": 100,
+              "EQUILIBRE": 200
+            },
+            "items": [
+              {
+                "id": 50,
+                "name": "Amulette de l'Élu",
+                "quantity": 1
+              }
+            ],
+            "experience": 3000
+          }
+        },
+        {
+          "id": "reject",
+          "text": "Rejeter votre destin",
+          "consequences": {
+            "unlocksQuests": ["main_quest_8_alt"],
+            "reputationChanges": {
+              "TACTICIEN": -100,
+              "GUERRIER": -100,
+              "LUMIERE": -100,
+              "TENEBRES": -100,
+              "CHAOS": 200
+            },
+            "items": [
+              {
+                "id": 51,
+                "name": "Masque du Renégat",
+                "quantity": 1
+              }
+            ],
+            "experience": 3000
+          }
+        }
+      ]
+    },
+    {
+      "id": "temple_puzzle",
+      "title": "L'Énigme du Temple",
+      "description": "Vous vous trouvez face à trois portes dans le Temple Oublié. Chacune représente un aspect différent : Lumière, Ténèbres et Équilibre. Laquelle choisissez-vous ?",
+      "choices": [
+        {
+          "id": "choose_light",
+          "text": "Choisir la porte de la Lumière",
+          "consequences": {
+            "reputationChanges": {
+              "LUMIERE": 150,
+              "TENEBRES": -50,
+              "EQUILIBRE": 0
+            },
+            "items": [
+              {
+                "id": 60,
+                "name": "Cristal de Lumière",
+                "quantity": 1
+              }
+            ],
+            "experience": 1000
+          }
+        },
+        {
+          "id": "choose_darkness",
+          "text": "Choisir la porte des Ténèbres",
+          "consequences": {
+            "reputationChanges": {
+              "TENEBRES": 150,
+              "LUMIERE": -50,
+              "EQUILIBRE": 0
+            },
+            "items": [
+              {
+                "id": 61,
+                "name": "Cristal des Ténèbres",
+                "quantity": 1
+              }
+            ],
+            "experience": 1000
+          }
+        },
+        {
+          "id": "choose_balance",
+          "text": "Choisir la porte de l'Équilibre",
+          "consequences": {
+            "reputationChanges": {
+              "EQUILIBRE": 150,
+              "LUMIERE": 50,
+              "TENEBRES": 50
+            },
+            "items": [
+              {
+                "id": 62,
+                "name": "Cristal de l'Équilibre",
+                "quantity": 1
+              }
+            ],
+            "experience": 1500
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_help",
+      "title": "Aider le Village",
+      "description": "Le village de Lumina est attaqué par des variants sauvages. Comment souhaitez-vous intervenir ?",
+      "choices": [
+        {
+          "id": "fight",
+          "text": "Combattre directement les variants",
+          "consequences": {
+            "reputationChanges": {
+              "GUERRIER": 100,
+              "NEUTRE": 50
+            },
+            "items": [
+              {
+                "id": 70,
+                "name": "Médaille de Bravoure",
+                "quantity": 1
+              }
+            ],
+            "experience": 800
+          }
+        },
+        {
+          "id": "capture",
+          "text": "Capturer les variants pour les éloigner",
+          "consequences": {
+            "reputationChanges": {
+              "TACTICIEN": 100,
+              "NEUTRE": 50
+            },
+            "items": [
+              {
+                "id": 71,
+                "name": "Pierre de capture rare",
+                "quantity": 2
+              }
+            ],
+            "experience": 800
+          }
+        },
+        {
+          "id": "evacuate",
+          "text": "Évacuer les villageois",
+          "consequences": {
+            "reputationChanges": {
+              "NEUTRE": 150
+            },
+            "items": [
+              {
+                "id": 72,
+                "name": "Clé du Village",
+                "quantity": 1
+              }
+            ],
+            "experience": 600
+          }
+        }
+      ]
+    },
+    {
+      "id": "ancient_artifact",
+      "title": "L'Artefact Ancien",
+      "description": "Vous avez découvert un artefact ancien aux pouvoirs mystérieux. Que souhaitez-vous en faire ?",
+      "choices": [
+        {
+          "id": "keep",
+          "text": "Garder l'artefact pour vous-même",
+          "consequences": {
+            "reputationChanges": {
+              "TACTICIEN": -50,
+              "GUERRIER": -50,
+              "NEUTRE": -100
+            },
+            "items": [
+              {
+                "id": 80,
+                "name": "Artefact Ancien",
+                "quantity": 1
+              }
+            ],
+            "experience": 1200
+          }
+        },
+        {
+          "id": "give_tacticien",
+          "text": "Donner l'artefact aux Tacticiens",
+          "consequences": {
+            "reputationChanges": {
+              "TACTICIEN": 200,
+              "GUERRIER": -100,
+              "NEUTRE": 0
+            },
+            "items": [
+              {
+                "id": 81,
+                "name": "Insigne de Confiance des Tacticiens",
+                "quantity": 1
+              }
+            ],
+            "experience": 1000
+          }
+        },
+        {
+          "id": "give_guerrier",
+          "text": "Donner l'artefact aux Guerriers",
+          "consequences": {
+            "reputationChanges": {
+              "GUERRIER": 200,
+              "TACTICIEN": -100,
+              "NEUTRE": 0
+            },
+            "items": [
+              {
+                "id": 82,
+                "name": "Insigne de Confiance des Guerriers",
+                "quantity": 1
+              }
+            ],
+            "experience": 1000
+          }
+        },
+        {
+          "id": "destroy",
+          "text": "Détruire l'artefact",
+          "consequences": {
+            "reputationChanges": {
+              "EQUILIBRE": 200,
+              "LUMIERE": 50,
+              "TENEBRES": 50
+            },
+            "items": [
+              {
+                "id": 83,
+                "name": "Éclat d'Artefact",
+                "quantity": 5
+              }
+            ],
+            "experience": 1500
+          }
+        }
+      ]
+    }
+  ]
+}

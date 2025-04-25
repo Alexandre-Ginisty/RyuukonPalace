@@ -17,15 +17,24 @@ import java.util.zip.Checksum;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.ryuukonpalace.game.core.GameState;
 import com.ryuukonpalace.game.creatures.Creature;
+import com.ryuukonpalace.game.creatures.CreatureFactory;
 import com.ryuukonpalace.game.items.Item;
+import com.ryuukonpalace.game.items.ItemFactory;
 import com.ryuukonpalace.game.player.Player;
+import com.ryuukonpalace.game.quest.Quest;
+import com.ryuukonpalace.game.quest.QuestManager;
+import com.ryuukonpalace.game.quest.QuestStatus;
 import com.ryuukonpalace.game.world.WorldManager;
 import com.ryuukonpalace.game.world.WeatherSystem.Weather;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Gestionnaire de sauvegarde pour Ryuukon Palace.
@@ -173,27 +182,33 @@ public class SaveManager {
             return false;
         }
         
-        // Obtenir l'état actuel du jeu
+        // Obtenir l'état du jeu
         GameState gameState = GameState.getInstance();
         Player player = gameState.getPlayer();
-        WorldManager worldManager = WorldManager.getInstance();
+        
+        if (player == null) {
+            System.err.println("Aucun joueur actif");
+            return false;
+        }
         
         // Créer l'objet de sauvegarde
         JsonObject saveData = new JsonObject();
         
         // Ajouter les métadonnées
         JsonObject metadata = new JsonObject();
+        String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String currentLocation = WorldManager.getInstance().getCurrentZoneName();
         metadata.addProperty("slot", slot);
         metadata.addProperty("playerName", player.getName());
-        metadata.addProperty("timestamp", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        metadata.addProperty("location", worldManager.getCurrentZoneName());
+        metadata.addProperty("timestamp", timestamp);
+        metadata.addProperty("location", currentLocation);
         metadata.addProperty("playerLevel", player.getLevel());
         metadata.addProperty("playTime", gameState.getPlayTime());
         metadata.addProperty("capturedVariants", player.getCapturedCreatures().size());
-        
         saveData.add("metadata", metadata);
         
         // Ajouter les données du joueur
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject playerData = new JsonObject();
         playerData.addProperty("name", player.getName());
         playerData.addProperty("level", player.getLevel());
@@ -202,58 +217,82 @@ public class SaveManager {
         playerData.addProperty("x", player.getX());
         playerData.addProperty("y", player.getY());
         playerData.addProperty("direction", player.getDirection().toString());
-        playerData.addProperty("faction", player.getFaction().toString());
-        
-        // Ajouter l'inventaire du joueur
-        JsonObject inventoryData = new JsonObject();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        inventoryData.add("items", gson.toJsonTree(player.getInventory().getItems()));
-        inventoryData.add("equipment", gson.toJsonTree(player.getInventory().getEquipment()));
-        playerData.add("inventory", inventoryData);
         
         // Ajouter les créatures capturées
-        JsonObject creaturesData = new JsonObject();
-        creaturesData.add("captured", gson.toJsonTree(player.getCapturedCreatures()));
-        playerData.add("creatures", creaturesData);
+        JsonArray capturedCreatures = new JsonArray();
+        for (Creature creature : player.getCapturedCreatures()) {
+            JsonObject creatureData = new JsonObject();
+            creatureData.addProperty("id", creature.getId());
+            creatureData.addProperty("name", creature.getName());
+            creatureData.addProperty("level", creature.getLevel());
+            creatureData.addProperty("experience", creature.getExperience());
+            creatureData.addProperty("type", creature.getType().toString());
+            capturedCreatures.add(creatureData);
+        }
+        playerData.add("capturedCreatures", capturedCreatures);
+        
+        // Ajouter l'inventaire
+        JsonArray inventory = new JsonArray();
+        for (Item item : player.getInventory().getItems()) {
+            JsonObject itemData = new JsonObject();
+            itemData.addProperty("id", item.getId());
+            itemData.addProperty("name", item.getName());
+            itemData.addProperty("value", item.getValue());
+            inventory.add(itemData);
+        }
+        playerData.add("inventory", inventory);
         
         saveData.add("player", playerData);
         
         // Ajouter les données du monde
         JsonObject worldData = new JsonObject();
-        worldData.addProperty("currentZone", worldManager.getCurrentZoneName());
-        worldData.addProperty("time", worldManager.getGameTime());
-        worldData.addProperty("weather", worldManager.getCurrentWeather().toString());
-        
-        // Ajouter l'état des PNJ
-        worldData.add("npcs", gson.toJsonTree(worldManager.getNpcsState()));
-        
-        // Ajouter l'état des quêtes
-        worldData.add("quests", gson.toJsonTree(gameState.getQuestsState()));
-        
+        worldData.addProperty("currentZone", WorldManager.getInstance().getCurrentZoneName());
+        worldData.addProperty("weather", WorldManager.getInstance().getCurrentWeather().toString());
+        worldData.addProperty("time", WorldManager.getInstance().getGameTime());
         saveData.add("world", worldData);
         
-        // Calculer le checksum
-        String saveDataString = saveData.toString();
-        Checksum crc32 = new CRC32();
-        crc32.update(saveDataString.getBytes());
-        String checksum = Long.toHexString(crc32.getValue());
+        // Ajouter l'état des quêtes
+        JsonObject questsData = new JsonObject();
+        Type questStateMapType = new TypeToken<Map<Integer, GameState.QuestState>>(){}.getType();
+        questsData.add("questsState", gson.toJsonTree(gameState.getQuestsState(), questStateMapType));
+        saveData.add("quests", questsData);
         
-        // Ajouter le checksum aux métadonnées
+        // Ajouter les zones découvertes
+        JsonObject areasData = new JsonObject();
+        Type areasMapType = new TypeToken<Map<Integer, Boolean>>(){}.getType();
+        areasData.add("discoveredAreas", gson.toJsonTree(gameState.getDiscoveredAreas(), areasMapType));
+        saveData.add("areas", areasData);
+        
+        // Ajouter la progression de l'histoire
+        JsonObject storyProgressionData = new JsonObject();
+        Type storyProgressionMapType = new TypeToken<Map<String, Object>>(){}.getType();
+        storyProgressionData.add("storyProgressionState", gson.toJsonTree(gameState.getStoryProgressionState(), storyProgressionMapType));
+        
+        // Ajouter les choix du joueur
+        Type playerChoicesMapType = new TypeToken<Map<String, String>>(){}.getType();
+        storyProgressionData.add("playerChoices", gson.toJsonTree(gameState.getPlayerChoices(), playerChoicesMapType));
+        
+        saveData.add("storyProgression", storyProgressionData);
+        
+        // Générer le checksum
+        String jsonString = gson.toJson(saveData);
+        Checksum crc32 = new CRC32();
+        crc32.update(jsonString.getBytes());
+        String checksum = Long.toHexString(crc32.getValue());
         metadata.addProperty("checksum", checksum);
         
-        // Écrire le fichier de sauvegarde
+        // Créer le nom du fichier
         String fileName = "save_" + slot + SAVE_EXTENSION;
         String filePath = SAVE_DIRECTORY + File.separator + fileName;
         
+        // Sauvegarder le fichier
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(saveData, writer);
             
             // Mettre à jour les métadonnées
-            updateSaveMetadata(slot, player.getName(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
-                    worldManager.getCurrentZoneName(), player.getLevel(), gameState.getPlayTime(),
-                    player.getCapturedCreatures().size(), checksum, filePath);
+            updateSaveMetadata(slot, player.getName(), timestamp, currentLocation, player.getLevel(), gameState.getPlayTime(), player.getCapturedCreatures().size(), checksum, filePath);
             
-            System.out.println("Jeu sauvegardé avec succès dans le slot " + slot);
+            System.out.println("Sauvegarde réussie dans le slot " + slot);
             return true;
         } catch (IOException e) {
             System.err.println("Erreur lors de la sauvegarde: " + e.getMessage());
@@ -291,148 +330,144 @@ public class SaveManager {
             JsonObject saveData = JsonParser.parseReader(reader).getAsJsonObject();
             
             // Vérifier le checksum
-            String storedChecksum = metadata.getChecksum();
+            String jsonString = saveData.toString();
+            // Retirer le checksum pour le calcul
+            JsonObject metadataObj = saveData.getAsJsonObject("metadata");
+            String savedChecksum = metadataObj.get("checksum").getAsString();
+            metadataObj.remove("checksum");
             
-            // Créer une copie des données sans le checksum pour calculer le nouveau checksum
-            JsonObject saveDataCopy = saveData.deepCopy();
-            if (saveDataCopy.has("metadata")) {
-                JsonObject metadataCopy = saveDataCopy.getAsJsonObject("metadata");
-                if (metadataCopy.has("checksum")) {
-                    metadataCopy.remove("checksum");
-                }
-            }
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            jsonString = gson.toJson(saveData);
             
-            String saveDataString = saveDataCopy.toString();
             Checksum crc32 = new CRC32();
-            crc32.update(saveDataString.getBytes());
+            crc32.update(jsonString.getBytes());
             String calculatedChecksum = Long.toHexString(crc32.getValue());
             
-            if (!calculatedChecksum.equals(storedChecksum)) {
-                System.err.println("Erreur de checksum: la sauvegarde pourrait être corrompue");
+            if (!calculatedChecksum.equals(savedChecksum)) {
+                System.err.println("Erreur de checksum: la sauvegarde est corrompue");
                 return false;
             }
             
-            // Obtenir l'état actuel du jeu
+            // Restaurer le checksum
+            metadataObj.addProperty("checksum", savedChecksum);
+            
+            // Obtenir l'état du jeu
             GameState gameState = GameState.getInstance();
             
             // Charger les données du joueur
-            if (saveData.has("player")) {
-                JsonObject playerData = saveData.getAsJsonObject("player");
-                
-                // Créer un nouveau joueur
-                Player player = new Player();
-                
-                // Charger les attributs de base
-                player.setName(playerData.get("name").getAsString());
-                player.setLevel(playerData.get("level").getAsInt());
-                player.setExperience(playerData.get("experience").getAsInt());
-                player.setMoney(playerData.get("money").getAsInt());
-                player.setX(playerData.get("x").getAsFloat());
-                player.setY(playerData.get("y").getAsFloat());
-                player.setDirection(Player.Direction.valueOf(playerData.get("direction").getAsString()));
-                player.setFaction(Player.Faction.valueOf(playerData.get("faction").getAsString()));
-                
-                // Charger l'inventaire
-                if (playerData.has("inventory")) {
-                    JsonObject inventoryData = playerData.getAsJsonObject("inventory");
+            JsonObject playerData = saveData.getAsJsonObject("player");
+            
+            // Créer un nouveau joueur
+            Player player = new Player();
+            
+            // Charger les attributs de base
+            player.setName(playerData.get("name").getAsString());
+            player.setLevel(playerData.get("level").getAsInt());
+            player.setExperience(playerData.get("experience").getAsInt());
+            player.setMoney(playerData.get("money").getAsInt());
+            player.setX(playerData.get("x").getAsFloat());
+            player.setY(playerData.get("y").getAsFloat());
+            player.setDirection(Player.Direction.valueOf(playerData.get("direction").getAsString()));
+            
+            // Charger les créatures capturées
+            if (playerData.has("capturedCreatures")) {
+                JsonArray capturedCreaturesArray = playerData.getAsJsonArray("capturedCreatures");
+                for (int i = 0; i < capturedCreaturesArray.size(); i++) {
+                    JsonObject creatureObj = capturedCreaturesArray.get(i).getAsJsonObject();
+                    int creatureId = creatureObj.get("id").getAsInt();
+                    String creatureName = creatureObj.get("name").getAsString();
+                    int creatureLevel = creatureObj.get("level").getAsInt();
+                    int creatureExp = creatureObj.get("experience").getAsInt();
+                    String creatureTypeStr = creatureObj.get("type").getAsString();
                     
-                    // Charger les objets
-                    if (inventoryData.has("items")) {
-                        Gson gson = new Gson();
-                        Type itemListType = new TypeToken<List<Item>>(){}.getType();
-                        List<Item> items = gson.fromJson(inventoryData.get("items"), itemListType);
-                        player.getInventory().setItems(items);
-                    }
+                    // Créer la créature en utilisant CreatureFactory pour obtenir une instance correcte
+                    Creature creature = CreatureFactory.getInstance().createCreature(
+                        creatureId, creatureLevel
+                    );
                     
-                    // Charger l'équipement
-                    if (inventoryData.has("equipment")) {
-                        Gson gson = new Gson();
-                        Type equipmentListType = new TypeToken<List<Item>>(){}.getType();
-                        List<Item> equipment = gson.fromJson(inventoryData.get("equipment"), equipmentListType);
-                        player.getInventory().setEquipment(equipment);
-                    }
+                    // Mettre à jour les attributs spécifiques
+                    creature.setExperience(creatureExp);
+                    
+                    player.addCreature(creature);
                 }
-                
-                // Charger les créatures capturées
-                if (playerData.has("creatures") && playerData.getAsJsonObject("creatures").has("captured")) {
-                    Gson gson = new Gson();
-                    Type creatureListType = new TypeToken<List<Creature>>(){}.getType();
-                    List<Creature> capturedCreatures = gson.fromJson(
-                            playerData.getAsJsonObject("creatures").get("captured"),
-                            creatureListType);
-                    player.setCapturedCreatures(capturedCreatures);
-                }
-                
-                // Charger les découvertes
-                if (playerData.has("discoveries")) {
-                    JsonObject discoveriesData = playerData.getAsJsonObject("discoveries");
-                    
-                    // Charger les zones découvertes
-                    if (discoveriesData.has("areas")) {
-                        Gson gson = new Gson();
-                        Type areaMapType = new TypeToken<Map<Integer, Boolean>>(){}.getType();
-                        Map<Integer, Boolean> discoveredAreas = gson.fromJson(
-                                discoveriesData.get("areas"), areaMapType);
-                        gameState.setDiscoveredAreas(discoveredAreas);
-                    }
-                    
-                    // Charger l'état des quêtes
-                    if (discoveriesData.has("quests")) {
-                        Gson gson = new Gson();
-                        Type questMapType = new TypeToken<Map<Integer, GameState.QuestState>>(){}.getType();
-                        Map<Integer, GameState.QuestState> questStates = gson.fromJson(
-                                discoveriesData.get("quests"), questMapType);
-                        gameState.setQuestsState(questStates);
-                    }
-                }
-                
-                // Mettre à jour le joueur dans l'état du jeu
-                gameState.setPlayer(player);
             }
+            
+            // Charger l'inventaire
+            if (playerData.has("inventory")) {
+                JsonArray inventoryArray = playerData.getAsJsonArray("inventory");
+                for (int i = 0; i < inventoryArray.size(); i++) {
+                    JsonObject itemObj = inventoryArray.get(i).getAsJsonObject();
+                    int itemId = itemObj.get("id").getAsInt();
+                    int itemValue = itemObj.get("value").getAsInt();
+                    
+                    // Créer l'objet en utilisant ItemFactory pour obtenir une instance correcte
+                    Item item = ItemFactory.getInstance().createItem(itemId);
+                    
+                    player.getInventory().addItem(item);
+                }
+            }
+            
+            // Définir le joueur
+            gameState.setPlayer(player);
             
             // Charger les données du monde
-            if (saveData.has("world")) {
-                JsonObject worldData = saveData.getAsJsonObject("world");
-                WorldManager worldManager = WorldManager.getInstance();
+            JsonObject worldData = saveData.getAsJsonObject("world");
+            String currentZone = worldData.get("currentZone").getAsString();
+            Weather weather = Weather.valueOf(worldData.get("weather").getAsString());
+            float time = worldData.get("time").getAsFloat();
+            
+            // Initialiser le monde
+            WorldManager worldManager = WorldManager.getInstance();
+            worldManager.setCurrentZoneName(currentZone);
+            worldManager.setCurrentWeather(weather);
+            worldManager.setGameTime(time);
+            
+            // Charger l'état des quêtes
+            if (saveData.has("quests")) {
+                JsonObject questsData = saveData.getAsJsonObject("quests");
+                Type questStateMapType = new TypeToken<Map<Integer, GameState.QuestState>>(){}.getType();
+                Map<Integer, GameState.QuestState> questsState = gson.fromJson(questsData.get("questsState"), questStateMapType);
+                gameState.setQuestsState(questsState);
+            }
+            
+            // Charger les zones découvertes
+            if (saveData.has("areas")) {
+                JsonObject areasData = saveData.getAsJsonObject("areas");
+                Type areasMapType = new TypeToken<Map<Integer, Boolean>>(){}.getType();
+                Map<Integer, Boolean> discoveredAreas = gson.fromJson(areasData.get("discoveredAreas"), areasMapType);
+                gameState.setDiscoveredAreas(discoveredAreas);
+            }
+            
+            // Charger la progression de l'histoire
+            if (saveData.has("storyProgression")) {
+                JsonObject storyProgressionData = saveData.getAsJsonObject("storyProgression");
                 
-                // Charger la zone actuelle
-                if (worldData.has("currentZone")) {
-                    worldManager.loadZone(worldData.get("currentZone").getAsString());
+                // Charger l'état de la progression
+                if (storyProgressionData.has("storyProgressionState")) {
+                    Type storyProgressionMapType = new TypeToken<Map<String, Object>>(){}.getType();
+                    Map<String, Object> storyProgressionState = gson.fromJson(storyProgressionData.get("storyProgressionState"), storyProgressionMapType);
+                    gameState.setStoryProgressionState(storyProgressionState);
                 }
                 
-                // Charger le temps de jeu
-                if (worldData.has("time")) {
-                    worldManager.setGameTime(worldData.get("time").getAsFloat());
-                }
-                
-                // Charger la météo
-                if (worldData.has("weather")) {
-                    worldManager.setCurrentWeather(Weather.valueOf(worldData.get("weather").getAsString()));
-                }
-                
-                // Charger l'état des PNJ
-                if (worldData.has("npcs")) {
-                    Gson gson = new Gson();
-                    Type npcsMapType = new TypeToken<Map<Integer, Boolean>>(){}.getType();
-                    Map<Integer, Boolean> npcsState = gson.fromJson(
-                            worldData.get("npcs"), npcsMapType);
-                    worldManager.setNpcsState(npcsState);
-                }
-                
-                // Charger l'état des quêtes
-                if (worldData.has("quests")) {
-                    Gson gson = new Gson();
-                    Type questMapType = new TypeToken<Map<Integer, GameState.QuestState>>(){}.getType();
-                    Map<Integer, GameState.QuestState> questStates = gson.fromJson(
-                            worldData.get("quests"), questMapType);
-                    gameState.setQuestsState(questStates);
+                // Charger les choix du joueur
+                if (storyProgressionData.has("playerChoices")) {
+                    Type playerChoicesMapType = new TypeToken<Map<String, String>>(){}.getType();
+                    Map<String, String> playerChoices = gson.fromJson(storyProgressionData.get("playerChoices"), playerChoicesMapType);
+                    gameState.setPlayerChoices(playerChoices);
                 }
             }
             
-            System.out.println("Jeu chargé avec succès depuis le slot " + slot);
+            // Définir le temps de jeu
+            gameState.setPlayTime(metadataObj.get("playTime").getAsInt());
+            
+            // Définir l'état du jeu
+            gameState.setCurrentState(GameState.State.PLAYING);
+            
+            System.out.println("Chargement réussi depuis le slot " + slot);
             return true;
         } catch (Exception e) {
             System.err.println("Erreur lors du chargement: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -696,6 +731,107 @@ public class SaveManager {
             } catch (IOException e) {
                 System.err.println("Erreur lors de la suppression de la copie de sauvegarde: " + e.getMessage());
             }
+        }
+    }
+    
+    /**
+     * Sauvegarder les données des quêtes
+     * @param filePath Chemin du fichier de sauvegarde
+     * @return true si la sauvegarde a réussi, false sinon
+     */
+    public boolean saveQuestData(String filePath) {
+        try {
+            QuestManager questManager = QuestManager.getInstance();
+            
+            JSONObject questData = new JSONObject();
+            
+            // Sauvegarder les quêtes disponibles
+            JSONArray availableQuestsArray = new JSONArray();
+            for (Quest quest : questManager.getAvailableQuests()) {
+                JSONObject questJson = quest.toJson();
+                questJson.put("status", QuestStatus.AVAILABLE.toString());
+                availableQuestsArray.put(questJson);
+            }
+            questData.put("availableQuests", availableQuestsArray);
+            
+            // Sauvegarder les quêtes actives
+            JSONArray activeQuestsArray = new JSONArray();
+            for (Quest quest : questManager.getActiveQuests()) {
+                JSONObject questJson = quest.toJson();
+                questJson.put("status", QuestStatus.ACTIVE.toString());
+                activeQuestsArray.put(questJson);
+            }
+            questData.put("activeQuests", activeQuestsArray);
+            
+            // Sauvegarder les quêtes complétées
+            JSONArray completedQuestsArray = new JSONArray();
+            for (Quest quest : questManager.getCompletedQuests()) {
+                JSONObject questJson = quest.toJson();
+                questJson.put("status", QuestStatus.COMPLETED.toString());
+                completedQuestsArray.put(questJson);
+            }
+            questData.put("completedQuests", completedQuestsArray);
+            
+            // Écrire les données dans un fichier
+            File questFile = new File(filePath + ".quests.json");
+            try (FileWriter writer = new FileWriter(questFile)) {
+                writer.write(questData.toString(4)); // Indentation de 4 espaces
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la sauvegarde des quêtes: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    /**
+     * Charger les données des quêtes
+     * @return Le contenu JSON des quêtes chargées, ou null si le chargement a échoué
+     */
+    public String loadQuestData() {
+        try {
+            // Obtenir l'instance du gestionnaire de quêtes (sera utilisé dans une future implémentation)
+            QuestManager.getInstance();
+            
+            // Trouver le slot de sauvegarde actif
+            int activeSlot = -1;
+            for (SaveMetadata metadata : saveMetadataList) {
+                if (metadata.isActive()) {
+                    activeSlot = metadata.getSlot();
+                    break;
+                }
+            }
+            
+            if (activeSlot == -1) {
+                System.err.println("Aucune sauvegarde active trouvée");
+                return null;
+            }
+            
+            // Construire le chemin du fichier de quêtes
+            String questFilePath = SAVE_DIRECTORY + "/save_" + activeSlot + SAVE_EXTENSION + ".quests.json";
+            File questFile = new File(questFilePath);
+            
+            if (!questFile.exists()) {
+                System.err.println("Fichier de quêtes non trouvé: " + questFilePath);
+                return null;
+            }
+            
+            // Lire le fichier
+            StringBuilder content = new StringBuilder();
+            try (FileReader reader = new FileReader(questFile)) {
+                int c;
+                while ((c = reader.read()) != -1) {
+                    content.append((char) c);
+                }
+            }
+            
+            // Retourner le contenu JSON
+            return content.toString();
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement des quêtes: " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
     }
 }

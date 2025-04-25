@@ -33,6 +33,9 @@ public class SaveMetadata {
     // Chemin du fichier de sauvegarde
     private String filePath;
     
+    // Indique si cette sauvegarde est active
+    private boolean active;
+    
     /**
      * Constructeur
      * 
@@ -57,6 +60,7 @@ public class SaveMetadata {
         this.capturedVariants = capturedVariants;
         this.checksum = checksum;
         this.filePath = filePath;
+        this.active = false;
     }
     
     /**
@@ -201,6 +205,22 @@ public class SaveMetadata {
      */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+    
+    /**
+     * Vérifier si cette sauvegarde est active
+     * @return true si la sauvegarde est active, false sinon
+     */
+    public boolean isActive() {
+        return active;
+    }
+    
+    /**
+     * Définir si cette sauvegarde est active
+     * @param active true si la sauvegarde est active, false sinon
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
     /**

@@ -5,18 +5,33 @@ package com.ryuukonpalace.game.creatures;
  * Each type has strengths and weaknesses against other types.
  */
 public enum CreatureType {
-    FIRE,
-    WATER,
-    EARTH,
-    AIR,
-    LIGHT,
-    SHADOW,
-    METAL,
-    NATURE,
-    ELECTRIC,
-    ICE,
-    PSYCHIC,
-    MYTHICAL;
+    FIRE("Feu"),
+    WATER("Eau"),
+    EARTH("Terre"),
+    AIR("Air"),
+    LIGHT("Lumière"),
+    SHADOW("Ombre"),
+    METAL("Métal"),
+    NATURE("Nature"),
+    ELECTRIC("Électrique"),
+    ICE("Glace"),
+    PSYCHIC("Psychique"),
+    MYTHICAL("Mythique");
+    
+    private final String name;
+    
+    CreatureType(String name) {
+        this.name = name;
+    }
+    
+    /**
+     * Get the display name of the creature type
+     * 
+     * @return The display name
+     */
+    public String getName() {
+        return name;
+    }
     
     /**
      * Calculate the type effectiveness multiplier for an attack

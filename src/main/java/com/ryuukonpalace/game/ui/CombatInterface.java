@@ -339,22 +339,25 @@ public class CombatInterface {
      * @param mouseX Position X de la souris
      * @param mouseY Position Y de la souris
      * @param mousePressed true si le bouton de la souris est appuyé, false sinon
+     * @return true si l'entrée a été traitée, false sinon
      */
-    public void handleInput(float mouseX, float mouseY, boolean mousePressed) {
+    public boolean handleInput(float mouseX, float mouseY, boolean mousePressed) {
         if (!initialized || !visible) {
-            return;
+            return false;
         }
         
         // Gérer les événements de survol
         mainPanel.onHover(mouseX, mouseY);
         
         // Gérer les événements d'appui
-        mainPanel.onPress(mouseX, mouseY, mousePressed);
+        boolean handled = mainPanel.onPress(mouseX, mouseY, mousePressed);
         
         // Gérer les événements de clic
         if (!mousePressed) {
-            mainPanel.onClick(mouseX, mouseY);
+            handled = handled || mainPanel.onClick(mouseX, mouseY);
         }
+        
+        return handled;
     }
     
     /**

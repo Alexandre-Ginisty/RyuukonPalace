@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Extension du dictionnaire des PNJ avec des personnages plus complexes et des histoires plus profondes",
+    "lastUpdated": "2025-04-25"
+  },
+  "npcs": [
+    {
+      "id": 101,
+      "name": "Soren Blackthorn",
+      "role": "Chef de Clan / Ancien Tacticien",
+      "location": "Darkhaven",
+      "description": "Un homme d'âge mûr au visage marqué par de nombreuses cicatrices, dont une particulièrement visible qui traverse son œil droit, désormais aveugle. Ses cheveux noirs striés de gris sont rassemblés en une queue de cheval serrée. Il porte une tenue de Tacticien modifiée, plus sombre et ornée de symboles de son clan. Une aura d'autorité et de danger émane de lui.",
+      "background": "Ancien Tacticien d'élite, Soren a fondé le Clan Blackthorn après avoir découvert les sombres secrets des hauts dirigeants de la faction des Tacticiens. Son clan opère dans les zones grises de la société, offrant protection à ceux qui sont persécutés par les puissants. Bien que ses méthodes soient parfois brutales, son sens de la justice est inébranlable. Il a perdu son œil lors d'un affrontement avec un ancien mentor qui l'avait trahi.",
+      "dialogue": {
+        "greeting": [
+          "Je n'ai pas de temps à perdre avec les faibles. Prouve ta valeur ou disparais.",
+          "Le Clan Blackthorn n'accueille pas n'importe qui. Qu'est-ce qui te fait penser que tu mérites mon attention ?",
+          "Ah... je sens un potentiel en toi. Peut-être n'es-tu pas comme les autres pantins des factions."
+        ],
+        "quest_offer": [
+          "Les Tacticiens officiels ont capturé plusieurs de nos alliés. Libère-les sans laisser de traces, et peut-être reconsidérerai-je mon opinion sur toi.",
+          "Un artefact ancien a été découvert dans les ruines au nord. Je le veux avant que les Mystiques ne mettent la main dessus. Sois discret.",
+          "Un traître dans nos rangs vend des informations à nos ennemis. Trouve-le, mais ne le tue pas. Je veux savoir qui tire les ficelles."
+        ],
+        "clan_info": [
+          "Le Clan Blackthorn existe dans l'ombre des grandes factions. Nous ne nous soumettons à aucune autorité corrompue.",
+          "Nous utilisons les variants, oui, mais nous ne les exploitons pas comme le font les Tacticiens. Nous formons des liens véritables avec eux.",
+          "Notre clan accueille les parias, les rejetés, ceux que la société a abandonnés. Ici, seule la loyauté compte."
+        ],
+        "farewell": [
+          "Si tu parles de notre rencontre aux autorités, ce sera la dernière erreur de ta vie.",
+          "Réfléchis à ma proposition. Le clan pourrait utiliser quelqu'un avec tes... compétences particulières.",
+          "Va, et garde les yeux ouverts. Dans ce monde, la vérité se cache souvent derrière les mensonges les plus séduisants."
+        ]
+      },
+      "quests": [201, 202, 203],
+      "creatures": [45, 67, 89],
+      "items_for_sale": ["Dague de Clan", "Tenue d'Infiltration", "Antidote Rare", "Informations Confidentielles"],
+      "teaches_signs": ["Ombre", "Silence", "Perception"],
+      "texture": "npcs/soren_blackthorn.png",
+      "clan": "Blackthorn"
+    },
+    {
+      "id": 102,
+      "name": "Lyra Nightshade",
+      "role": "Prêtresse des Signes Interdits",
+      "location": "Shadow Caverns",
+      "description": "Une femme élancée à la peau pâle et aux longs cheveux d'un blanc argenté. Ses yeux violets semblent luire dans l'obscurité. Elle porte une robe noire ornée de symboles mystiques argentés qui semblent changer de forme lorsqu'on les regarde trop longtemps. Des tatouages représentant des signes anciens couvrent ses bras et son cou.",
+      "background": "Ancienne élève prodige de l'Académie des Signes, Lyra a été bannie après avoir été découverte en train d'étudier les Signes Interdits. Elle s'est réfugiée dans les Shadow Caverns où elle a continué ses recherches, découvrant des pouvoirs que même les Maîtres des Signes craignent. Elle a fondé un culte secret qui vénère les variants comme des manifestations divines plutôt que comme des outils.",
+      "dialogue": {
+        "greeting": [
+          "Les ombres m'ont parlé de ton arrivée. Ton destin est entrelacé avec les Signes, que tu le veuilles ou non.",
+          "Peu osent s'aventurer si profondément dans les cavernes. Tu cherches la connaissance... ou la puissance ?",
+          "Je sens les Signes qui pulsent en toi, attendant d'être libérés. Es-tu prêt à voir au-delà du voile que les 'maîtres' ont placé sur tes yeux ?"
+        ],
+        "quest_offer": [
+          "Les vrais Signes de Pouvoir sont cachés dans des fragments d'artefacts dispersés. Rapporte-moi celui qui est gardé dans le Temple de l'Aube, sous le nez même des Maîtres.",
+          "Un rituel ancien nécessite le sang d'un variant rare. Capture-le vivant, je ne cautionne pas la cruauté inutile.",
+          "Les Gardiens de la Vérité cherchent à me faire taire. Infiltre leur conseil et découvre leurs plans contre moi."
+        ],
+        "forbidden_signs": [
+          "Les Signes que j'enseigne ne sont pas 'interdits' parce qu'ils sont maléfiques, mais parce qu'ils menacent le pouvoir établi.",
+          "Le Signe de l'Âme permet de communiquer directement avec l'essence d'un variant, sans le contraindre. C'est pourquoi ils le craignent.",
+          "Avec le Signe du Sang, tu peux partager ta force vitale avec ton variant, créant un lien que même la mort ne peut briser. Mais le prix est élevé."
+        ],
+        "farewell": [
+          "Les ombres te protégeront sur ton chemin de retour. Ne fais confiance à personne qui porte l'emblème de l'Académie.",
+          "Médite sur les symboles que je t'ai montrés. Leur signification se révélera dans tes rêves.",
+          "Quand tu seras prêt à embrasser la véritable nature des Signes, reviens me voir. Je t'attendrai dans les ténèbres."
+        ]
+      },
+      "quests": [204, 205, 206],
+      "creatures": [56, 78, 90],
+      "items_for_sale": ["Encre de Signes", "Parchemin Ancien", "Amulette d'Ombre", "Essence de Variant"],
+      "teaches_signs": ["Âme", "Sang", "Résonance"],
+      "texture": "npcs/lyra_nightshade.png",
+      "cult": "Adorateurs de l'Essence"
+    },
+    {
+      "id": 103,
+      "name": "Vex Ironheart",
+      "role": "Contrebandier / Ancien Guerrier",
+      "location": "Darkhaven (Port)",
+      "description": "Un homme robuste aux épaules larges et à la barbe rousse fournie. Son visage buriné par le soleil et le sel porte les marques de nombreux combats. Il lui manque deux doigts à la main gauche. Vêtu d'un manteau de cuir usé orné de pièces d'armure récupérées, il porte toujours une hache à sa ceinture et un sac rempli de bouteilles cliquetantes.",
+      "background": "Ancien champion des Guerriers, Vex a été banni après avoir refusé d'exécuter un variant capturé qu'il jugeait innocent. Désormais, il utilise ses compétences et ses contacts pour faire passer des marchandises interdites entre les territoires, tout en aidant secrètement les variants persécutés à s'échapper. Son navire, le 'Dernier Refuge', est connu pour disparaître dans la brume quand les autorités s'approchent trop près.",
+      "dialogue": {
+        "greeting": [
+          "T'as l'air d'avoir soif, étranger. Une gorgée de mon hydromel spécial t'intéresse ? Attention, il a fait pleurer des Guerriers endurcis.",
+          "Si t'es des autorités, je vends que des marchandises légitimes. Si t'es pas... on pourrait avoir des choses plus intéressantes à se dire.",
+          "Ah, un nouveau visage ! T'inquiète pas pour les types louches autour, ils travaillent pour moi. Enfin, la plupart."
+        ],
+        "quest_offer": [
+          "J'ai une cargaison 'spéciale' à livrer de l'autre côté de la frontière des Guerriers. Ils confisquent tout ce qui vient de chez les Tacticiens ces temps-ci. Bonne paie, mais risqué.",
+          "Un de mes contacts a été capturé par la patrouille côtière. Il connaît trop de mes secrets pour que je le laisse parler. Libère-le, discrètement.",
+          "J'ai entendu parler d'une cache d'artefacts anciens dans une épave submergée. J'ai besoin de quelqu'un qui sait nager et se battre sous l'eau."
+        ],
+        "black_market": [
+          "J'ai des marchandises qu'on ne trouve pas dans les boutiques officielles. Des pierres de capture modifiées, des potions aux effets... intéressants.",
+          "Ces armes ? Forgées dans les ateliers secrets des montagnes. Peuvent trancher un variant en deux, ou juste l'étourdir si tu préfères la capture.",
+          "Ce n'est pas de la contrebande, c'est du 'commerce alternatif'. Les taxes sont pour ceux qui n'ont pas d'amis dans les bonnes tavernes."
+        ],
+        "farewell": [
+          "Si quelqu'un demande, on ne s'est jamais rencontrés. Et si on se recroise au marché, fais comme si tu ne me connaissais pas.",
+          "Garde ton or à portée de main et ton couteau encore plus près. Darkhaven n'est pas tendre avec les naïfs.",
+          "Mon navire part à la prochaine marée. Si tu décides de m'aider, sois là à temps ou je partirai sans toi."
+        ]
+      },
+      "quests": [207, 208, 209],
+      "creatures": [34, 52, 76],
+      "items_for_sale": ["Hydromel de Contrebande", "Hache de Guerrier Modifiée", "Pierre de Capture Illégale", "Carte des Passages Secrets"],
+      "teaches_signs": [],
+      "texture": "npcs/vex_ironheart.png",
+      "network": "Réseau du Dernier Refuge"
+    },
+    {
+      "id": 104,
+      "name": "Aria Moonshadow",
+      "role": "Chamane / Gardienne des Esprits",
+      "location": "Whisperwood Forest",
+      "description": "Une femme d'âge indéterminé à la peau brune ornée de tatouages tribaux bleus luminescents. Ses cheveux noirs sont tressés avec des plumes et des perles en os. Elle porte une tenue en cuir et en tissu naturel, décorée d'ossements et de cristaux. Ses yeux, d'un bleu intense, semblent voir au-delà du monde matériel.",
+      "background": "Née avec le don de communiquer avec les esprits des variants décédés, Aria a été rejetée par sa tribu qui craignait ses pouvoirs. Elle s'est réfugiée dans la forêt de Whisperwood où elle a appris à maîtriser ses dons auprès des esprits eux-mêmes. Elle protège désormais la forêt et ses habitants, servant de médiatrice entre le monde des vivants et celui des esprits. Elle est l'une des rares personnes à connaître les véritables origines des variants.",
+      "dialogue": {
+        "greeting": [
+          "Les esprits m'ont prévenue de ton arrivée. Ils sont... curieux à ton sujet.",
+          "Bienvenue dans mon sanctuaire, voyageur. Peu trouvent ce chemin sans être guidés par une intention pure.",
+          "Je sens une présence qui t'accompagne, une ombre qui n'est pas la tienne. Un variant t'a marqué de son essence."
+        ],
+        "quest_offer": [
+          "Un esprit tourmenté hante les ruines à l'est. Il ne peut trouver le repos tant que son corps n'aura pas été correctement enterré. Aide-le à trouver la paix.",
+          "La forêt souffre d'une corruption qui s'étend depuis les terres des Tacticiens. Trouve la source et purifie-la avec cette eau sacrée.",
+          "Les braconniers chassent un variant ancien, gardien de la forêt. Protège-le et guide-le vers mon sanctuaire avant qu'il ne soit trop tard."
+        ],
+        "spirit_lore": [
+          "Les variants ne sont pas de simples créatures. Ils sont les manifestations d'esprits anciens, liés à notre monde par des forces que peu comprennent.",
+          "Quand un variant meurt, son essence retourne au Grand Flux, mais parfois, quand la mort est violente ou injuste, l'esprit reste, prisonnier entre les mondes.",
+          "Les Signes que vous utilisez pour capturer les variants sont des fragments d'un langage bien plus ancien, celui que les premiers chamanes utilisaient pour communiquer avec les esprits, pas pour les asservir."
+        ],
+        "farewell": [
+          "Que les esprits guident tes pas et que la forêt te protège sur ton chemin.",
+          "Emporte cette amulette. Elle te permettra de percevoir les murmures des esprits quand le danger rôde.",
+          "Notre rencontre n'est pas un hasard. Nos chemins se croiseront à nouveau quand l'équilibre sera menacé."
+        ]
+      },
+      "quests": [210, 211, 212],
+      "creatures": [23, 47, 82],
+      "items_for_sale": ["Amulette Spirituelle", "Encens Sacré", "Potion de Vision", "Talisman de Protection"],
+      "teaches_signs": ["Communion", "Apaisement", "Invocation"],
+      "texture": "npcs/aria_moonshadow.png",
+      "tribe": "Gardiens du Flux"
+    },
+    {
+      "id": 105,
+      "name": "Professeur Thaddeus Grimm",
+      "role": "Chercheur Interdit / Anatomiste",
+      "location": "Laboratoire Secret (près de Lumina)",
+      "description": "Un homme grand et maigre aux traits anguleux et au teint pâle. Ses cheveux gris sont toujours en désordre, comme s'il passait constamment ses mains dedans. Il porte des lunettes épaisses qui grossissent ses yeux gris perçants et une blouse de laboratoire tachée d'encre et de substances diverses. Ses mains sont couvertes de petites cicatrices et de taches d'encre.",
+      "background": "Ancien professeur respecté à l'Académie de Lumina, Thaddeus a été banni pour ses recherches controversées sur l'anatomie interne des variants. Convaincu que la compréhension de leur biologie est la clé pour déverrouiller de nouveaux pouvoirs, il poursuit ses expériences dans un laboratoire secret. Bien que ses méthodes soient considérées comme non éthiques par beaucoup, ses découvertes ont sauvé de nombreux variants malades ou blessés.",
+      "dialogue": {
+        "greeting": [
+          "Ah, un visiteur ! Pardonnez le désordre, je suis au milieu d'une découverte fascinante sur la structure cellulaire des variants de type Mystique.",
+          "Qui vous envoie ? Non, peu importe. Vous êtes là, c'est l'essentiel. J'ai justement besoin d'un assistant pour ma prochaine expérience.",
+          "Entrez, entrez ! Mais ne touchez à rien, surtout pas aux fioles bleues. La dernière personne qui l'a fait a développé une affinité inattendue avec les variants de type Eau."
+        ],
+        "quest_offer": [
+          "J'ai besoin d'échantillons frais d'un variant rare. Rien de létal, bien sûr ! Juste quelques écailles, un peu de sang... Le variant n'en souffrira pas, je vous assure.",
+          "Mes anciens collègues de l'Académie ont confisqué mes notes sur la régénération des variants. Infiltrez leur bibliothèque et récupérez-les. Ils sont trop obtus pour comprendre leur importance !",
+          "J'ai développé un sérum qui pourrait guérir la corruption qui affecte les variants dans la région nord. Testez-le sur un spécimen infecté et documentez les résultats."
+        ],
+        "research": [
+          "Mes recherches ? Oh, elles sont révolutionnaires ! J'ai découvert que les variants possèdent des organes que nous n'avons jamais soupçonnés, capables de manipuler l'énergie à un niveau quantique !",
+          "La société me considère comme un paria, mais dans cent ans, je serai reconnu comme un visionnaire. Les variants ne sont pas juste des créatures à capturer, ils sont la clé de notre évolution !",
+          "Saviez-vous que certains variants peuvent partager leur conscience ? J'ai observé des jumeaux séparés qui ressentaient la douleur l'un de l'autre à des kilomètres de distance. Imaginez les applications !"
+        ],
+        "farewell": [
+          "Revenez quand vous voulez ! J'ai toujours besoin d'esprits curieux... et de mains supplémentaires pour mes expériences.",
+          "Si quelqu'un de l'Académie vous interroge, vous ne m'avez jamais rencontré. Ces hypocrites utiliseraient mes découvertes tout en condamnant mes méthodes.",
+          "Emportez ce journal. Il contient certaines de mes observations les plus... controversées. Peut-être y verrez-vous ce que mes pairs ont refusé de voir."
+        ]
+      },
+      "quests": [213, 214, 215],
+      "creatures": [39, 61, 85],
+      "items_for_sale": ["Sérum Expérimental", "Manuel d'Anatomie des Variants", "Outils de Dissection", "Élixir de Clarté Mentale"],
+      "teaches_signs": ["Analyse", "Adaptation", "Symbiose"],
+      "texture": "npcs/thaddeus_grimm.png",
+      "society": "Illuminés Biologiques"
+    }
+  ]
+}

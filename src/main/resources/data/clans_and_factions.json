@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Définition des clans, factions secrètes et organisations du monde de Ryuukon Palace",
+    "lastUpdated": "2025-04-25"
+  },
+  "organizations": [
+    {
+      "id": "blackthorn_clan",
+      "name": "Clan Blackthorn",
+      "type": "CLAN",
+      "leader": "Soren Blackthorn",
+      "headquarters": "Darkhaven",
+      "description": "Un clan de rebelles et de parias fondé par un ancien Tacticien d'élite. Le Clan Blackthorn opère dans les zones grises de la société, offrant protection à ceux qui sont persécutés par les puissants. Ils utilisent des méthodes parfois brutales mais sont guidés par un fort sens de la justice.",
+      "ideology": "Le Clan Blackthorn croit que les grandes factions sont corrompues et exploitent les variants et le peuple. Ils cherchent à créer une société plus équitable où les variants sont traités comme des partenaires plutôt que comme des outils.",
+      "recruitment": "Le clan recrute principalement des individus rejetés par la société ou persécutés par les factions dominantes. Les candidats doivent prouver leur loyauté et leurs compétences à travers diverses épreuves.",
+      "relationship_with_variants": "Les membres du clan forment des liens profonds avec leurs variants, basés sur le respect mutuel plutôt que sur la domination. Ils utilisent des techniques de capture et d'entraînement moins contraignantes.",
+      "notable_members": [
+        {"id": 101, "name": "Soren Blackthorn", "role": "Chef de Clan"},
+        {"id": 110, "name": "Varis Shadowblade", "role": "Maître Espion"},
+        {"id": 111, "name": "Lydia Ironheart", "role": "Maître d'Armes"}
+      ],
+      "territory": "Principalement Darkhaven et ses environs, avec des avant-postes secrets dans plusieurs grandes villes.",
+      "enemies": ["TACTICIEN", "illumines_biologiques"],
+      "allies": ["gardiens_flux", "reseau_dernier_refuge"],
+      "symbol": "Un arbre noir aux branches épineuses sur fond rouge sang",
+      "reputation_levels": [
+        {"level": "Hostile", "threshold": -100, "description": "Considéré comme un ennemi du clan, traqué activement"},
+        {"level": "Méfiant", "threshold": -50, "description": "Regardé avec suspicion, accès limité aux zones du clan"},
+        {"level": "Neutre", "threshold": 0, "description": "Toléré mais pas privilégié"},
+        {"level": "Respecté", "threshold": 50, "description": "Accès à certains services et informations du clan"},
+        {"level": "Allié", "threshold": 100, "description": "Accès à la plupart des ressources et secrets du clan"},
+        {"level": "Frère/Sœur de Clan", "threshold": 200, "description": "Considéré comme un membre à part entière du clan"}
+      ],
+      "quests": [201, 202, 203, 216, 217, 218]
+    },
+    {
+      "id": "adorateurs_essence",
+      "name": "Adorateurs de l'Essence",
+      "type": "CULTE",
+      "leader": "Lyra Nightshade",
+      "headquarters": "Shadow Caverns",
+      "description": "Un culte secret fondé par Lyra Nightshade après son bannissement de l'Académie des Signes. Les Adorateurs de l'Essence vénèrent les variants comme des manifestations divines et étudient les Signes Interdits, considérés comme dangereux par l'establishment.",
+      "ideology": "Les Adorateurs croient que les variants sont des manifestations d'énergies spirituelles anciennes et que les Signes sont un langage sacré permettant de communiquer avec ces énergies plutôt que de les asservir.",
+      "recruitment": "Le culte attire principalement des érudits désillusionnés, des praticiens de Signes rejetés par l'Académie et des individus ayant vécu des expériences spirituelles avec des variants.",
+      "relationship_with_variants": "Les membres du culte traitent les variants comme des égaux spirituels, voire des êtres supérieurs. Ils cherchent à établir des liens profonds et symbiotiques avec eux à travers les Signes Interdits.",
+      "notable_members": [
+        {"id": 102, "name": "Lyra Nightshade", "role": "Grande Prêtresse"},
+        {"id": 112, "name": "Elias Voidwalker", "role": "Gardien des Rituels"},
+        {"id": 113, "name": "Selene Moonwhisper", "role": "Oracle"}
+      ],
+      "territory": "Principalement les Shadow Caverns, avec des sanctuaires cachés dans des lieux de pouvoir naturel.",
+      "enemies": ["academie_signes", "TACTICIEN"],
+      "allies": ["gardiens_flux"],
+      "symbol": "Un œil violet entouré de signes mystiques changeants",
+      "reputation_levels": [
+        {"level": "Hérétique", "threshold": -100, "description": "Considéré comme un ennemi du culte, cible de malédictions"},
+        {"level": "Ignorant", "threshold": -50, "description": "Vu comme un pion des factions dominantes"},
+        {"level": "Chercheur", "threshold": 0, "description": "Reconnu comme quelqu'un qui pose des questions"},
+        {"level": "Initié", "threshold": 50, "description": "Accès aux enseignements de base du culte"},
+        {"level": "Adepte", "threshold": 100, "description": "Accès aux rituels et aux Signes mineurs"},
+        {"level": "Illuminé", "threshold": 200, "description": "Accès aux Signes Interdits et aux secrets du culte"}
+      ],
+      "forbidden_signs": [
+        {"name": "Signe du Sang", "effect": "Crée un lien vital entre le Tacticien et son variant, partageant force et faiblesse"},
+        {"name": "Signe de l'Âme", "effect": "Permet de communiquer directement avec l'essence d'un variant"},
+        {"name": "Signe de la Résonance", "effect": "Amplifie les capacités naturelles d'un variant au prix de l'énergie vitale du lanceur"}
+      ],
+      "quests": [204, 205, 206, 219]
+    },
+    {
+      "id": "reseau_dernier_refuge",
+      "name": "Réseau du Dernier Refuge",
+      "type": "RÉSEAU_CRIMINEL",
+      "leader": "Vex Ironheart",
+      "headquarters": "Navire 'Le Dernier Refuge' (mobile)",
+      "description": "Un réseau de contrebandiers, de marchands et d'anciens Guerriers dirigé par Vex Ironheart. Le réseau facilite le commerce de marchandises interdites entre les territoires et aide secrètement certains variants persécutés à s'échapper.",
+      "ideology": "Le réseau est principalement motivé par le profit, mais sous la direction de Vex, il suit un code d'honneur rudimentaire et s'oppose à l'oppression excessive des variants.",
+      "recruitment": "Le réseau recrute des individus aux compétences diverses : combattants, navigateurs, négociants, espions. La loyauté et la discrétion sont les qualités les plus valorisées.",
+      "relationship_with_variants": "Relation complexe : certains membres du réseau trafiquent des variants rares, tandis que d'autres les aident à échapper à des maîtres cruels. Vex lui-même protège certains variants qu'il juge innocents.",
+      "notable_members": [
+        {"id": 103, "name": "Vex Ironheart", "role": "Capitaine du Dernier Refuge"},
+        {"id": 114, "name": "Scarlet Blackwater", "role": "Maître Contrebandier"},
+        {"id": 115, "name": "Grim Harbormaster", "role": "Contact Portuaire"}
+      ],
+      "territory": "Principalement les zones côtières et les ports, avec le navire 'Le Dernier Refuge' comme base mobile.",
+      "enemies": ["GUERRIER", "garde_cotiere"],
+      "allies": ["blackthorn_clan", "marche_noir"],
+      "symbol": "Une ancre brisée sur fond de brume",
+      "reputation_levels": [
+        {"level": "Ennemi", "threshold": -100, "description": "Cible des assassins du réseau"},
+        {"level": "Suspect", "threshold": -50, "description": "Surveillé avec méfiance dans les territoires du réseau"},
+        {"level": "Client", "threshold": 0, "description": "Accès aux marchandises de base du marché noir"},
+        {"level": "Associé", "threshold": 50, "description": "Accès à des marchandises plus rares et à certaines informations"},
+        {"level": "Partenaire", "threshold": 100, "description": "Accès à des marchandises exclusives et à la protection du réseau"},
+        {"level": "Membre d'Équipage", "threshold": 200, "description": "Considéré comme faisant partie du cercle intérieur du réseau"}
+      ],
+      "black_market_items": [
+        {"name": "Pierre de capture modifiée", "effect": "Augmente le taux de capture des variants rares", "legality": "Illégal"},
+        {"name": "Hydromel de contrebande", "effect": "Augmente temporairement toutes les statistiques", "legality": "Restreint"},
+        {"name": "Armes de Guerrier modifiées", "effect": "Armes plus puissantes que les versions standard", "legality": "Illégal"}
+      ],
+      "quests": [207, 208, 209, 220, 221, 222]
+    },
+    {
+      "id": "gardiens_flux",
+      "name": "Gardiens du Flux",
+      "type": "TRIBU_SPIRITUELLE",
+      "leader": "Aria Moonshadow",
+      "headquarters": "Whisperwood Forest",
+      "description": "Une tribu ancienne de chamanes et de gardiens spirituels qui protègent l'équilibre entre le monde des vivants et celui des esprits. Ils sont particulièrement attentifs au bien-être des variants, qu'ils considèrent comme des manifestations d'esprits anciens.",
+      "ideology": "Les Gardiens croient que les variants sont des ponts entre le monde matériel et spirituel, et que leur exploitation perturbe l'équilibre cosmique. Ils cherchent à maintenir l'harmonie entre toutes les formes de vie.",
+      "recruitment": "La tribu accueille principalement ceux qui montrent une sensibilité naturelle aux énergies spirituelles. Certains sont nés dans la tribu, d'autres sont appelés par des visions ou des rêves.",
+      "relationship_with_variants": "Relation de profond respect et de symbiose. Les Gardiens ne 'capturent' pas les variants mais forment des alliances volontaires avec eux, guidés par les esprits.",
+      "notable_members": [
+        {"id": 104, "name": "Aria Moonshadow", "role": "Chamane Principale"},
+        {"id": 116, "name": "Thorne Wildspirit", "role": "Gardien de la Forêt"},
+        {"id": 117, "name": "Echo Dreamwalker", "role": "Interprète des Visions"}
+      ],
+      "territory": "Principalement la forêt de Whisperwood et d'autres zones naturelles sacrées.",
+      "enemies": ["illumines_biologiques", "braconniers"],
+      "allies": ["adorateurs_essence", "blackthorn_clan"],
+      "symbol": "Un arbre luminescent dont les racines et les branches forment un cercle parfait",
+      "reputation_levels": [
+        {"level": "Profanateur", "threshold": -100, "description": "Banni des terres sacrées, maudit par les esprits"},
+        {"level": "Étranger", "threshold": -50, "description": "Toléré mais surveillé dans les territoires de la tribu"},
+        {"level": "Visiteur", "threshold": 0, "description": "Autorisé à entrer dans certaines zones de la forêt"},
+        {"level": "Ami de la Forêt", "threshold": 50, "description": "Guidé et protégé dans les terres de la tribu"},
+        {"level": "Allié Spirituel", "threshold": 100, "description": "Accès à certains enseignements spirituels"},
+        {"level": "Gardien Honoraire", "threshold": 200, "description": "Considéré comme un membre de la tribu, accès aux rituels sacrés"}
+      ],
+      "spirit_signs": [
+        {"name": "Signe de Communion", "effect": "Permet de communiquer brièvement avec l'esprit d'un variant décédé"},
+        {"name": "Signe d'Apaisement", "effect": "Calme les variants agités et soigne leurs blessures spirituelles"},
+        {"name": "Signe d'Invocation", "effect": "Appelle temporairement l'aide d'un esprit variant"}
+      ],
+      "quests": [210, 211, 212, 223, 224, 225]
+    },
+    {
+      "id": "illumines_biologiques",
+      "name": "Illuminés Biologiques",
+      "type": "SOCIÉTÉ_SECRÈTE",
+      "leader": "Professeur Thaddeus Grimm",
+      "headquarters": "Laboratoire Secret (près de Lumina)",
+      "description": "Une société secrète de scientifiques, médecins et chercheurs bannis de l'Académie pour leurs méthodes controversées. Ils étudient l'anatomie et la biologie des variants pour percer leurs secrets et développer de nouvelles technologies.",
+      "ideology": "Les Illuminés croient que la compréhension scientifique des variants est la clé du progrès humain, et que les considérations éthiques ne devraient pas entraver la recherche. Ils cherchent à transcender les limites entre humains et variants.",
+      "recruitment": "La société recrute des esprits brillants et non conventionnels, souvent rejetés par les institutions officielles pour leurs idées radicales ou leurs méthodes controversées.",
+      "relationship_with_variants": "Relation utilitaire et expérimentale. Les variants sont considérés comme des sujets d'étude fascinants plutôt que comme des êtres sensibles, bien que certains membres plus modérés cherchent des approches moins invasives.",
+      "notable_members": [
+        {"id": 105, "name": "Professeur Thaddeus Grimm", "role": "Directeur de Recherche"},
+        {"id": 118, "name": "Dr. Mira Vivisect", "role": "Chirurgienne Principale"},
+        {"id": 119, "name": "Archimède Brainstone", "role": "Théoricien"}
+      ],
+      "territory": "Laboratoires secrets dispersés, principalement près des grandes villes académiques.",
+      "enemies": ["gardiens_flux", "academie_officielle"],
+      "allies": ["marche_noir"],
+      "symbol": "Un scalpel croisant une plume sur fond de schéma anatomique de variant",
+      "reputation_levels": [
+        {"level": "Sujet Potentiel", "threshold": -100, "description": "Considéré comme un spécimen d'étude intéressant"},
+        {"level": "Obstacle", "threshold": -50, "description": "Vu comme un frein au progrès scientifique"},
+        {"level": "Observateur", "threshold": 0, "description": "Autorisé à observer certaines expériences non sensibles"},
+        {"level": "Assistant", "threshold": 50, "description": "Invité à participer à des recherches mineures"},
+        {"level": "Chercheur Associé", "threshold": 100, "description": "Accès à certaines découvertes et technologies"},
+        {"level": "Illuminé", "threshold": 200, "description": "Membre à part entière, accès à toutes les recherches"}
+      ],
+      "experimental_technologies": [
+        {"name": "Sérum d'Amélioration", "effect": "Augmente temporairement les capacités d'un variant", "risque": "Dépendance, mutations imprévisibles"},
+        {"name": "Implant Symbiotique", "effect": "Permet au porteur de partager certaines capacités avec son variant", "risque": "Fusion mentale partielle"},
+        {"name": "Extracteur d'Essence", "effect": "Capture l'énergie pure d'un variant pour alimenter des dispositifs", "risque": "Douloureux pour le variant, potentiellement fatal"}
+      ],
+      "quests": [213, 214, 215, 226, 227, 228]
+    }
+  ]
+}

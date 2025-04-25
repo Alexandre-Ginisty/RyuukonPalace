@@ -1,0 +1,565 @@
+{
+  "side_quests": [
+    {
+      "id": "side_quest_1",
+      "title": "Le Marchand Perdu",
+      "description": "Un marchand a perdu sa caravane lors d'une attaque de variants sauvages. Aidez-le à récupérer ses marchandises.",
+      "minLevel": 3,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_merchant",
+          "npcId": 100,
+          "npcName": "Marchand Désespéré",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "find_caravan",
+          "areaId": "forest_clearing",
+          "areaName": "Clairière de la Forêt",
+          "x": 400,
+          "y": 350,
+          "width": 200,
+          "height": 200
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_merchant_goods",
+          "itemId": 101,
+          "itemName": "Marchandises du marchand",
+          "quantity": 3,
+          "consumeItems": true
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 150
+        },
+        {
+          "type": "ITEM",
+          "itemId": 102,
+          "itemName": "Potion de vitalité",
+          "quantity": 2
+        },
+        {
+          "type": "CRYSTALS",
+          "amount": 100
+        }
+      ],
+      "unlocksQuests": ["side_quest_2"]
+    },
+    {
+      "id": "side_quest_2",
+      "title": "La Dette du Marchand",
+      "description": "Le marchand que vous avez aidé vous demande un dernier service : livrer un colis à un client important dans la ville voisine.",
+      "minLevel": 5,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_package",
+          "itemId": 103,
+          "itemName": "Colis mystérieux",
+          "quantity": 1,
+          "consumeItems": false
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "reach_nearby_town",
+          "areaId": "nearby_town",
+          "areaName": "Ville Voisine",
+          "x": 700,
+          "y": 400,
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "deliver_to_client",
+          "npcId": 104,
+          "npcName": "Client Mystérieux",
+          "npcType": "NEUTRE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 250
+        },
+        {
+          "type": "ITEM",
+          "itemId": 105,
+          "itemName": "Amulette de chance",
+          "quantity": 1
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "NEUTRE",
+          "amount": 50
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "side_quest_3",
+      "title": "Le Variant Rare",
+      "description": "Des rumeurs parlent d'un variant rare aperçu dans les montagnes. Partez à sa recherche et tentez de le capturer.",
+      "minLevel": 8,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_researcher",
+          "npcId": 110,
+          "npcName": "Chercheur de Variants",
+          "npcType": "TACTICIEN"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_mountains",
+          "areaId": "misty_mountains",
+          "areaName": "Montagnes Brumeuses",
+          "x": 900,
+          "y": 200,
+          "width": 400,
+          "height": 400,
+          "requireWeather": "FOG"
+        },
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_rare_variant",
+          "count": 1,
+          "variantType": "RARE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 500
+        },
+        {
+          "type": "ITEM",
+          "itemId": 111,
+          "itemName": "Pierre de capture rare",
+          "quantity": 2
+        },
+        {
+          "type": "ABILITY",
+          "abilityId": 10,
+          "abilityName": "Détection de rareté"
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "side_quest_4",
+      "title": "Le Village Malade",
+      "description": "Un village entier est touché par une étrange maladie. Trouvez un remède en collectant des ingrédients rares.",
+      "minLevel": 10,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_village_healer",
+          "npcId": 120,
+          "npcName": "Guérisseur du Village",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_healing_herbs",
+          "itemId": 121,
+          "itemName": "Herbes médicinales",
+          "quantity": 5,
+          "consumeItems": true
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_pure_water",
+          "itemId": 122,
+          "itemName": "Eau pure de source",
+          "quantity": 3,
+          "consumeItems": true
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_poison_variant",
+          "count": 1,
+          "creatureType": "POISON"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 700
+        },
+        {
+          "type": "ITEM",
+          "itemId": 123,
+          "itemName": "Élixir de guérison",
+          "quantity": 3
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "NEUTRE",
+          "amount": 100
+        }
+      ],
+      "unlocksQuests": ["side_quest_5"]
+    },
+    {
+      "id": "side_quest_5",
+      "title": "La Source de la Maladie",
+      "description": "Le guérisseur pense avoir identifié la source de la maladie : un ancien temple corrompu par une énergie maléfique.",
+      "minLevel": 12,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "find_corrupted_temple",
+          "areaId": "corrupted_temple",
+          "areaName": "Temple Corrompu",
+          "x": 1100,
+          "y": 600,
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_corrupted_guardians",
+          "count": 3,
+          "creatureType": "CORRUPTED"
+        },
+        {
+          "type": "USE_ITEM",
+          "id": "use_purification_ritual",
+          "itemId": 124,
+          "itemName": "Rituel de purification",
+          "consumeItem": true
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 1000
+        },
+        {
+          "type": "ITEM",
+          "itemId": 125,
+          "itemName": "Amulette de purification",
+          "quantity": 1
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "purified_temple",
+          "areaName": "Temple Purifié"
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "side_quest_6",
+      "title": "Le Tournoi des Variants",
+      "description": "Un grand tournoi de variants est organisé dans la capitale. Participez et tentez de remporter le titre de champion.",
+      "minLevel": 15,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "register_for_tournament",
+          "npcId": 130,
+          "npcName": "Organisateur du Tournoi",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "win_first_round",
+          "count": 3,
+          "creatureType": "TOURNAMENT"
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "win_semifinals",
+          "count": 2,
+          "creatureType": "TOURNAMENT"
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "win_finals",
+          "count": 1,
+          "creatureType": "TOURNAMENT"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 1500
+        },
+        {
+          "type": "ITEM",
+          "itemId": 131,
+          "itemName": "Trophée du Champion",
+          "quantity": 1
+        },
+        {
+          "type": "CRYSTALS",
+          "amount": 1000
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "NEUTRE",
+          "amount": 200
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "side_quest_7",
+      "title": "Les Reliques Perdues",
+      "description": "Un archéologue recherche des reliques anciennes dispersées dans le monde. Aidez-le à les retrouver.",
+      "minLevel": 18,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_archaeologist",
+          "npcId": 140,
+          "npcName": "Archéologue Passionné",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "find_relic_1",
+          "itemId": 141,
+          "itemName": "Relique du Feu",
+          "quantity": 1,
+          "consumeItems": false
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "find_relic_2",
+          "itemId": 142,
+          "itemName": "Relique de l'Eau",
+          "quantity": 1,
+          "consumeItems": false
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "find_relic_3",
+          "itemId": 143,
+          "itemName": "Relique de la Terre",
+          "quantity": 1,
+          "consumeItems": false
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "find_relic_4",
+          "itemId": 144,
+          "itemName": "Relique de l'Air",
+          "quantity": 1,
+          "consumeItems": false
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 2000
+        },
+        {
+          "type": "ITEM",
+          "itemId": 145,
+          "itemName": "Relique Combinée",
+          "quantity": 1
+        },
+        {
+          "type": "ABILITY",
+          "abilityId": 20,
+          "abilityName": "Maîtrise Élémentaire"
+        }
+      ],
+      "unlocksQuests": ["side_quest_8"]
+    },
+    {
+      "id": "side_quest_8",
+      "title": "Le Pouvoir des Reliques",
+      "description": "La Relique Combinée semble posséder un pouvoir mystérieux. Découvrez son secret en la ramenant à un lieu sacré.",
+      "minLevel": 20,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "find_sacred_place",
+          "areaId": "elemental_nexus",
+          "areaName": "Nexus Élémentaire",
+          "x": 1800,
+          "y": 800,
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "USE_ITEM",
+          "id": "use_combined_relic",
+          "itemId": 145,
+          "itemName": "Relique Combinée",
+          "consumeItem": false
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_elemental_guardian",
+          "count": 1,
+          "creatureType": "ELEMENTAL"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 2500
+        },
+        {
+          "type": "ITEM",
+          "itemId": 146,
+          "itemName": "Relique Éveillée",
+          "quantity": 1
+        },
+        {
+          "type": "UNLOCK_AREA",
+          "areaId": "elemental_realm",
+          "areaName": "Royaume Élémentaire"
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "side_quest_9",
+      "title": "Le Mystère des Variants Disparus",
+      "description": "Des variants domestiqués disparaissent mystérieusement dans plusieurs villages. Enquêtez sur ces disparitions.",
+      "minLevel": 22,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_worried_villagers",
+          "npcId": 150,
+          "npcName": "Villageois Inquiets",
+          "npcType": "NEUTRE"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "investigate_disappearances",
+          "areaId": "suspicious_cave",
+          "areaName": "Grotte Suspecte",
+          "x": 1500,
+          "y": 300,
+          "width": 200,
+          "height": 200
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_poachers",
+          "count": 5,
+          "creatureType": "HUMAN"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "free_captured_variants",
+          "itemId": 151,
+          "itemName": "Clé de cage",
+          "quantity": 3,
+          "consumeItems": true
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 2200
+        },
+        {
+          "type": "ITEM",
+          "itemId": 152,
+          "itemName": "Sifflet d'appel",
+          "quantity": 1
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "NEUTRE",
+          "amount": 300
+        }
+      ],
+      "unlocksQuests": ["side_quest_10"]
+    },
+    {
+      "id": "side_quest_10",
+      "title": "Le Réseau de Braconniers",
+      "description": "Les braconniers que vous avez affrontés font partie d'un réseau plus vaste. Infiltrez leur quartier général et mettez fin à leurs activités.",
+      "minLevel": 25,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "find_poacher_hideout",
+          "areaId": "poacher_hideout",
+          "areaName": "Repaire des Braconniers",
+          "x": 1700,
+          "y": 400,
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "STEALTH_SECTION",
+          "id": "infiltrate_hideout",
+          "description": "Infiltrer le repaire sans être détecté"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_evidence",
+          "itemId": 153,
+          "itemName": "Preuves d'activité illégale",
+          "quantity": 5,
+          "consumeItems": false
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_poacher_leader",
+          "count": 1,
+          "creatureType": "BOSS"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 3000
+        },
+        {
+          "type": "ITEM",
+          "itemId": 154,
+          "itemName": "Insigne de Protecteur des Variants",
+          "quantity": 1
+        },
+        {
+          "type": "ABILITY",
+          "abilityId": 30,
+          "abilityName": "Lien avec les Variants"
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "NEUTRE",
+          "amount": 500
+        }
+      ],
+      "unlocksQuests": []
+    }
+  ]
+}

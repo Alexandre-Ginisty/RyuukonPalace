@@ -52,6 +52,12 @@ public class GameState {
     // Quêtes spéciales disponibles (ID de quête -> disponible)
     private Map<String, Boolean> specialQuests;
     
+    // Progression de l'histoire
+    private Map<String, Object> storyProgressionState;
+    
+    // Choix effectués par le joueur dans l'histoire
+    private Map<String, String> playerChoices;
+    
     // Interface de sauvegarde/chargement
     private SaveLoadInterface saveLoadInterface;
     
@@ -67,6 +73,8 @@ public class GameState {
         this.questsState = new HashMap<>();
         this.discoveredAreas = new HashMap<>();
         this.specialQuests = new HashMap<>();
+        this.storyProgressionState = new HashMap<>();
+        this.playerChoices = new HashMap<>();
     }
     
     /**
@@ -141,6 +149,12 @@ public class GameState {
         
         // Réinitialiser les quêtes spéciales
         specialQuests.clear();
+        
+        // Réinitialiser la progression de l'histoire
+        storyProgressionState.clear();
+        
+        // Réinitialiser les choix du joueur
+        playerChoices.clear();
         
         // Définir l'état du jeu
         currentState = State.PLAYING;
@@ -362,6 +376,62 @@ public class GameState {
      */
     public void setSpecialQuests(Map<String, Boolean> specialQuests) {
         this.specialQuests = new HashMap<>(specialQuests);
+    }
+    
+    /**
+     * Obtenir l'état de la progression de l'histoire
+     * 
+     * @return État de la progression de l'histoire
+     */
+    public Map<String, Object> getStoryProgressionState() {
+        return new HashMap<>(storyProgressionState);
+    }
+    
+    /**
+     * Définir l'état de la progression de l'histoire
+     * 
+     * @param storyProgressionState Nouvel état de la progression de l'histoire
+     */
+    public void setStoryProgressionState(Map<String, Object> storyProgressionState) {
+        this.storyProgressionState = new HashMap<>(storyProgressionState);
+    }
+    
+    /**
+     * Obtenir les choix effectués par le joueur dans l'histoire
+     * 
+     * @return Choix effectués par le joueur
+     */
+    public Map<String, String> getPlayerChoices() {
+        return new HashMap<>(playerChoices);
+    }
+    
+    /**
+     * Définir les choix effectués par le joueur dans l'histoire
+     * 
+     * @param playerChoices Nouveaux choix effectués par le joueur
+     */
+    public void setPlayerChoices(Map<String, String> playerChoices) {
+        this.playerChoices = new HashMap<>(playerChoices);
+    }
+    
+    /**
+     * Enregistrer un choix effectué par le joueur
+     * 
+     * @param decisionPointId ID du point de décision
+     * @param choiceId ID du choix
+     */
+    public void recordPlayerChoice(String decisionPointId, String choiceId) {
+        playerChoices.put(decisionPointId, choiceId);
+    }
+    
+    /**
+     * Obtenir un choix effectué par le joueur
+     * 
+     * @param decisionPointId ID du point de décision
+     * @return ID du choix, ou null si le joueur n'a pas encore fait de choix pour ce point de décision
+     */
+    public String getPlayerChoice(String decisionPointId) {
+        return playerChoices.get(decisionPointId);
     }
     
     /**

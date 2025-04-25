@@ -1,0 +1,394 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Suite des quêtes matures avec des thèmes adultes et des choix moraux",
+    "lastUpdated": "2025-04-25"
+  },
+  "mature_quests": [
+    {
+      "id": 204,
+      "title": "Communion Spirituelle",
+      "description": "Aria Moonshadow vous propose d'apprendre à communiquer avec les esprits des variants décédés, révélant des secrets troublants sur leur origine.",
+      "minLevel": 20,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "associatedNPC": 104,
+      "questGiver": "Aria Moonshadow",
+      "location": "Whisperwood Forest",
+      "mature_themes": ["Mort", "Communion spirituelle", "Vérités cachées", "Deuil"],
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "meet_aria",
+          "npcId": 104,
+          "npcName": "Aria Moonshadow",
+          "dialogueId": "aria_spirit_communion"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "gather_ritual_herbs",
+          "description": "Récoltez des herbes sacrées qui ne poussent que sous la pleine lune",
+          "items": [
+            {"itemId": 301, "itemName": "Fleur de Lune", "quantity": 5, "requireNighttime": true},
+            {"itemId": 302, "itemName": "Racine d'Esprit", "quantity": 3, "location": "Ancient Burial Ground"}
+          ],
+          "consumeItems": true
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "find_spirit_nexus",
+          "description": "Localisez le Nexus Spirituel au cœur de la forêt",
+          "areaId": "spirit_nexus",
+          "areaName": "Nexus Spirituel",
+          "x": 1500,
+          "y": 1200,
+          "width": 200,
+          "height": 200,
+          "requireNighttime": true
+        },
+        {
+          "type": "RITUAL",
+          "id": "perform_communion",
+          "description": "Participez au rituel de communion avec les esprits",
+          "location": "Spirit Nexus",
+          "requireItems": [301, 302],
+          "duration": "5 minutes"
+        },
+        {
+          "type": "CHOICE",
+          "id": "spirit_revelation",
+          "description": "Comment réagir aux révélations troublantes sur l'origine des variants ?",
+          "choices": [
+            {
+              "id": "embrace_truth",
+              "text": "Accepter la vérité et vous engager à protéger les variants",
+              "reputationChanges": [
+                {"faction": "Gardiens du Flux", "amount": 200},
+                {"faction": "TACTICIEN", "amount": -100}
+              ],
+              "unlocksQuest": 223
+            },
+            {
+              "id": "reject_truth",
+              "text": "Rejeter ces révélations comme des illusions ou des mensonges",
+              "reputationChanges": [
+                {"faction": "Gardiens du Flux", "amount": -150},
+                {"faction": "TACTICIEN", "amount": 50}
+              ],
+              "unlocksQuest": 224
+            },
+            {
+              "id": "seek_more_evidence",
+              "text": "Rester sceptique mais ouvert, cherchant plus de preuves",
+              "reputationChanges": [
+                {"faction": "Gardiens du Flux", "amount": 50},
+                {"faction": "Illuminés Biologiques", "amount": 50}
+              ],
+              "unlocksQuest": 225
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "embrace_truth": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1200
+          },
+          {
+            "type": "SIGN_TEACHING",
+            "signName": "Communion",
+            "description": "Permet de communiquer brièvement avec l'esprit d'un variant décédé"
+          },
+          {
+            "type": "ITEM",
+            "itemId": 303,
+            "itemName": "Talisman de l'Harmonie",
+            "quantity": 1,
+            "description": "Augmente le lien avec vos variants et leur loyauté"
+          }
+        ],
+        "reject_truth": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 800
+          },
+          {
+            "type": "ITEM",
+            "itemId": 304,
+            "itemName": "Amulette du Déni",
+            "quantity": 1,
+            "description": "Vous protège partiellement des influences spirituelles"
+          }
+        ],
+        "seek_more_evidence": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 305,
+            "itemName": "Journal du Chercheur",
+            "quantity": 1,
+            "description": "Vous permet de documenter vos découvertes sur les variants"
+          },
+          {
+            "type": "SIGN_TEACHING",
+            "signName": "Perception",
+            "description": "Permet de percevoir faiblement les énergies spirituelles"
+          }
+        ]
+      },
+      "consequences": {
+        "embrace_truth": {
+          "worldChanges": [
+            "Vous commencez à voir occasionnellement les auras spirituelles des variants",
+            "Certains variants sauvages vous reconnaissent comme un allié",
+            "Les Tacticiens deviennent méfiants envers vous"
+          ],
+          "npcChanges": [
+            {"npcId": 104, "relationshipChange": 80, "newDialogue": "aria_ally"},
+            {"npcId": 50, "relationshipChange": -60, "newDialogue": "tacticien_suspicious"}
+          ]
+        },
+        "reject_truth": {
+          "worldChanges": [
+            "Vous êtes parfois hanté par des cauchemars de variants souffrants",
+            "Aria devient distante et déçue",
+            "Les esprits des variants peuvent occasionnellement perturber vos captures"
+          ],
+          "npcChanges": [
+            {"npcId": 104, "relationshipChange": -70, "newDialogue": "aria_disappointed"},
+            {"npcId": 50, "relationshipChange": 30, "newDialogue": "tacticien_approving"}
+          ]
+        },
+        "seek_more_evidence": {
+          "worldChanges": [
+            "Vous développez une sensibilité accrue aux énergies spirituelles",
+            "Le Professeur Grimm s'intéresse à vos recherches",
+            "Vous commencez à remarquer des détails subtils dans le comportement des variants"
+          ],
+          "npcChanges": [
+            {"npcId": 104, "relationshipChange": 30, "newDialogue": "aria_interested"},
+            {"npcId": 105, "relationshipChange": 50, "newDialogue": "grimm_curious"}
+          ]
+        }
+      },
+      "dialogue": {
+        "aria_spirit_communion": {
+          "npcId": 104,
+          "lines": [
+            "Je sens que tu es prêt à voir au-delà du voile. Les esprits des variants m'ont parlé de toi.",
+            "Ce que je vais te montrer pourrait changer à jamais ta perception des variants et de ton rôle en tant que Tacticien.",
+            "Es-tu vraiment prêt à connaître la vérité ? Une fois que tu l'auras vue, tu ne pourras plus jamais l'ignorer."
+          ],
+          "playerResponses": [
+            {
+              "text": "Quelle vérité ? De quoi parlez-vous ?",
+              "response": "Les variants ne sont pas de simples créatures à capturer et à utiliser. Ils sont les manifestations d'esprits anciens, liés à notre monde par des forces que les factions cherchent à contrôler et à exploiter. Leur souffrance... tu la sentiras toi-même pendant le rituel."
+            },
+            {
+              "text": "Est-ce dangereux ?",
+              "response": "Pas pour ton corps, mais peut-être pour ton esprit et tes croyances. Certains ont perdu la raison face à la vérité, d'autres ont trouvé un nouveau sens à leur existence. Tout dépend de ta force intérieure."
+            },
+            {
+              "text": "Pourquoi me montrer cela ?",
+              "response": "Parce que tu as un rôle à jouer dans ce qui va venir. Les esprits t'ont choisi, et je ne fais que suivre leur guidance. Tu es à la croisée des chemins, et ton choix pourrait affecter l'équilibre entre les variants et les humains."
+            }
+          ]
+        }
+      },
+      "unlocksQuests": [223, 224, 225]
+    },
+    {
+      "id": 205,
+      "title": "Expériences Interdites",
+      "description": "Le Professeur Grimm vous demande de l'aider dans ses recherches controversées sur l'anatomie des variants, vous confrontant à des dilemmes éthiques.",
+      "minLevel": 22,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "associatedNPC": 105,
+      "questGiver": "Professeur Thaddeus Grimm",
+      "location": "Laboratoire Secret",
+      "mature_themes": ["Expérimentation", "Éthique scientifique", "Cruauté", "Progrès scientifique"],
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "meet_grimm",
+          "npcId": 105,
+          "npcName": "Professeur Thaddeus Grimm",
+          "dialogueId": "grimm_research_proposal"
+        },
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_research_specimens",
+          "description": "Capturez des spécimens spécifiques pour les recherches du professeur",
+          "variants": [
+            {"variantType": "FEU", "rarity": "RARE", "count": 1},
+            {"variantType": "EAU", "rarity": "RARE", "count": 1},
+            {"variantType": "MYSTIQUE", "rarity": "UNCOMMON", "count": 1}
+          ]
+        },
+        {
+          "type": "ASSIST_RESEARCH",
+          "id": "help_with_experiments",
+          "description": "Assistez le professeur dans ses expériences sur les variants capturés",
+          "location": "Secret Laboratory",
+          "duration": "3 hours"
+        },
+        {
+          "type": "CHOICE",
+          "id": "ethical_dilemma",
+          "description": "Comment réagir lorsque vous réalisez que les expériences causent une souffrance significative aux variants ?",
+          "choices": [
+            {
+              "id": "continue_research",
+              "text": "Continuer les expériences, estimant que le progrès scientifique justifie les moyens",
+              "reputationChanges": [
+                {"faction": "Illuminés Biologiques", "amount": 150},
+                {"faction": "Gardiens du Flux", "amount": -200}
+              ],
+              "unlocksQuest": 226
+            },
+            {
+              "id": "stop_research",
+              "text": "Mettre fin aux expériences et libérer les variants",
+              "reputationChanges": [
+                {"faction": "Illuminés Biologiques", "amount": -150},
+                {"faction": "Gardiens du Flux", "amount": 100}
+              ],
+              "unlocksQuest": 227
+            },
+            {
+              "id": "modify_research",
+              "text": "Proposer des méthodes de recherche alternatives moins douloureuses",
+              "reputationChanges": [
+                {"faction": "Illuminés Biologiques", "amount": 50},
+                {"faction": "Gardiens du Flux", "amount": 50}
+              ],
+              "unlocksQuest": 228
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "continue_research": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1500
+          },
+          {
+            "type": "ITEM",
+            "itemId": 350,
+            "itemName": "Sérum d'Amélioration",
+            "quantity": 3,
+            "description": "Augmente temporairement les statistiques d'un variant de 30%"
+          },
+          {
+            "type": "SIGN_TEACHING",
+            "signName": "Analyse",
+            "description": "Permet d'analyser en profondeur les faiblesses d'un variant ennemi"
+          }
+        ],
+        "stop_research": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 351,
+            "itemName": "Amulette de Compassion",
+            "quantity": 1,
+            "description": "Augmente légèrement la loyauté des variants capturés"
+          },
+          {
+            "type": "VARIANT_GIFT",
+            "variantId": 96,
+            "variantName": "Variant Reconnaissant",
+            "level": 25
+          }
+        ],
+        "modify_research": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1200
+          },
+          {
+            "type": "ITEM",
+            "itemId": 352,
+            "itemName": "Notes de Recherche Éthique",
+            "quantity": 1,
+            "description": "Contient des méthodes pour améliorer les capacités des variants sans souffrance"
+          },
+          {
+            "type": "SIGN_TEACHING",
+            "signName": "Symbiose",
+            "description": "Permet de partager temporairement des capacités avec votre variant"
+          }
+        ]
+      },
+      "consequences": {
+        "continue_research": {
+          "worldChanges": [
+            "Vos variants deviennent plus puissants mais moins loyaux",
+            "Des rumeurs sur vos méthodes cruelles se répandent",
+            "Aria Moonshadow devient votre ennemie"
+          ],
+          "npcChanges": [
+            {"npcId": 105, "relationshipChange": 80, "newDialogue": "grimm_impressed"},
+            {"npcId": 104, "relationshipChange": -100, "newDialogue": "aria_enemy"}
+          ]
+        },
+        "stop_research": {
+          "worldChanges": [
+            "Le professeur Grimm devient hostile",
+            "Les variants sauvages sont plus enclins à vous faire confiance",
+            "Vous perdez l'accès à certaines améliorations potentielles"
+          ],
+          "npcChanges": [
+            {"npcId": 105, "relationshipChange": -80, "newDialogue": "grimm_betrayed"},
+            {"npcId": 104, "relationshipChange": 70, "newDialogue": "aria_approving"}
+          ]
+        },
+        "modify_research": {
+          "worldChanges": [
+            "Vous développez une nouvelle approche éthique de la recherche sur les variants",
+            "Certains scientifiques s'intéressent à vos méthodes",
+            "Vos variants développent des capacités uniques grâce à votre approche équilibrée"
+          ],
+          "npcChanges": [
+            {"npcId": 105, "relationshipChange": 30, "newDialogue": "grimm_intrigued"},
+            {"npcId": 104, "relationshipChange": 40, "newDialogue": "aria_impressed"}
+          ]
+        }
+      },
+      "dialogue": {
+        "grimm_research_proposal": {
+          "npcId": 105,
+          "lines": [
+            "Ah, enfin quelqu'un avec un esprit ouvert ! J'ai besoin d'un assistant pour mes recherches les plus... avancées.",
+            "J'étudie la structure interne des variants pour comprendre comment ils canalisent leur énergie. C'est fascinant, vraiment fascinant !",
+            "Bien sûr, certains esprits étroits considèrent mes méthodes comme 'non éthiques', mais peut-on vraiment mettre un prix sur le progrès scientifique ?"
+          ],
+          "playerResponses": [
+            {
+              "text": "En quoi consistent exactement ces recherches ?",
+              "response": "Je dois examiner les organes internes des variants pendant qu'ils sont encore... fonctionnels. Ne vous inquiétez pas, ils sont anesthésiés. La plupart du temps. Et certains survivent même à la procédure ! C'est pour le bien de la science, vous comprenez ?"
+            },
+            {
+              "text": "Est-ce que c'est légal ?",
+              "response": "Légal ? Ha ! Les lois sont écrites par ceux qui craignent le progrès. L'Académie a banni mes recherches parce qu'ils avaient peur de ce que je pourrais découvrir. La véritable question est : est-ce nécessaire ? Et la réponse est oui, absolument."
+            },
+            {
+              "text": "Qu'espérez-vous découvrir ?",
+              "response": "Imaginez pouvoir fusionner temporairement avec votre variant, partager ses capacités ! Ou créer des hybrides avec des pouvoirs inimaginables ! Mes recherches pourraient révolutionner notre compréhension des variants et notre relation avec eux. Nous pourrions transcender les limites entre espèces !"
+            }
+          ]
+        }
+      },
+      "unlocksQuests": [226, 227, 228]
+    }
+  ]
+}

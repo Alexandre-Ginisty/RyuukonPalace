@@ -1,0 +1,546 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Quêtes matures avec des thèmes adultes, des choix moraux et des conséquences importantes",
+    "lastUpdated": "2025-04-25"
+  },
+  "mature_quests": [
+    {
+      "id": 201,
+      "title": "Ombres et Trahisons",
+      "description": "Soren Blackthorn soupçonne qu'un espion s'est infiltré dans son clan. Trouvez le traître et décidez de son sort.",
+      "minLevel": 15,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "associatedNPC": 101,
+      "questGiver": "Soren Blackthorn",
+      "location": "Darkhaven",
+      "mature_themes": ["Trahison", "Espionnage", "Loyauté", "Justice"],
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "meet_soren",
+          "npcId": 101,
+          "npcName": "Soren Blackthorn",
+          "dialogueId": "soren_quest1_start"
+        },
+        {
+          "type": "COLLECT_INFORMATION",
+          "id": "investigate_clan_members",
+          "description": "Interrogez discrètement les membres du clan pour recueillir des indices",
+          "count": 3,
+          "locations": ["Darkhaven Tavern", "Blackthorn Hideout", "Shadow Market"]
+        },
+        {
+          "type": "FOLLOW_TARGET",
+          "id": "follow_suspect",
+          "targetId": "suspect_npc",
+          "targetName": "Membre suspect du clan",
+          "description": "Suivez le suspect sans vous faire repérer",
+          "stealthRequired": true,
+          "failOnDetection": true
+        },
+        {
+          "type": "CHOICE",
+          "id": "traitor_fate",
+          "description": "Décidez du sort du traître",
+          "choices": [
+            {
+              "id": "execute",
+              "text": "Exécuter le traître pour l'exemple",
+              "reputationChanges": [
+                {"faction": "Blackthorn Clan", "amount": 50},
+                {"faction": "TACTICIEN", "amount": -30}
+              ],
+              "unlocksQuest": 216
+            },
+            {
+              "id": "spare",
+              "text": "Épargner le traître et l'utiliser comme agent double",
+              "reputationChanges": [
+                {"faction": "Blackthorn Clan", "amount": -20},
+                {"faction": "TACTICIEN", "amount": 20}
+              ],
+              "unlocksQuest": 217
+            },
+            {
+              "id": "exile",
+              "text": "Bannir le traître du territoire",
+              "reputationChanges": [
+                {"faction": "Blackthorn Clan", "amount": 10},
+                {"faction": "TACTICIEN", "amount": 0}
+              ],
+              "unlocksQuest": 218
+            }
+          ]
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 800
+        },
+        {
+          "type": "ITEM",
+          "itemId": 150,
+          "itemName": "Insigne du Clan Blackthorn",
+          "quantity": 1
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "Blackthorn Clan",
+          "amount": 100
+        },
+        {
+          "type": "SIGN_TEACHING",
+          "signName": "Ombre",
+          "description": "Permet de dissimuler temporairement votre présence"
+        }
+      ],
+      "consequences": {
+        "execute": {
+          "worldChanges": [
+            "Les membres du clan deviennent plus méfiants mais plus loyaux",
+            "La famille du traître jure vengeance",
+            "Les Tacticiens renforcent leur surveillance sur Darkhaven"
+          ],
+          "npcChanges": [
+            {"npcId": 101, "relationshipChange": 20, "newDialogue": "soren_post_execution"},
+            {"npcId": 120, "relationshipChange": -50, "newDialogue": "family_vengeful"}
+          ]
+        },
+        "spare": {
+          "worldChanges": [
+            "Des rumeurs de faiblesse circulent dans le clan",
+            "Vous gagnez accès à des informations sur les Tacticiens",
+            "Certains membres du clan remettent en question l'autorité de Soren"
+          ],
+          "npcChanges": [
+            {"npcId": 101, "relationshipChange": -10, "newDialogue": "soren_post_mercy"},
+            {"npcId": 115, "relationshipChange": 30, "newDialogue": "traitor_grateful"}
+          ]
+        },
+        "exile": {
+          "worldChanges": [
+            "Le traître rejoint un groupe rival",
+            "La tension entre les clans augmente",
+            "Vous gagnez une réputation de justice mesurée"
+          ],
+          "npcChanges": [
+            {"npcId": 101, "relationshipChange": 0, "newDialogue": "soren_post_exile"},
+            {"npcId": 115, "relationshipChange": -20, "newDialogue": "traitor_exiled"}
+          ]
+        }
+      },
+      "dialogue": {
+        "soren_quest1_start": {
+          "npcId": 101,
+          "lines": [
+            "J'ai un problème délicat qui nécessite quelqu'un qui n'est pas directement lié à mon clan.",
+            "Des informations sensibles ont fuité. Quelqu'un nous trahit, et je veux que tu découvres qui.",
+            "Sois discret. Si le traître soupçonne qu'il est surveillé, il se cachera ou pire, accélérera ses plans."
+          ],
+          "playerResponses": [
+            {
+              "text": "Pourquoi me faire confiance avec quelque chose d'aussi sensible ?",
+              "response": "Parce que tu es un étranger. Tu n'as pas d'allégeance évidente, et tu as prouvé tes compétences. Parfois, un regard extérieur voit ce que des yeux familiers manquent."
+            },
+            {
+              "text": "Comment saurai-je qui est le traître ?",
+              "response": "Cherche des comportements inhabituels, des absences inexpliquées, des richesses soudaines. Le traître a probablement accès à nos quartiers intérieurs. Commence par là."
+            },
+            {
+              "text": "Que se passera-t-il quand je l'aurai trouvé ?",
+              "response": "Tu me le ramèneras, et je... Non. Je veux que TU décides de son sort. Ta décision m'en dira long sur toi. Choisis judicieusement."
+            }
+          ]
+        }
+      },
+      "unlocksQuests": [216, 217, 218]
+    },
+    {
+      "id": 202,
+      "title": "Le Prix du Pouvoir",
+      "description": "Lyra Nightshade vous propose d'apprendre le Signe du Sang, un pouvoir interdit qui crée un lien profond avec vos variants, mais à un prix élevé.",
+      "minLevel": 20,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "associatedNPC": 102,
+      "questGiver": "Lyra Nightshade",
+      "location": "Shadow Caverns",
+      "mature_themes": ["Sacrifice", "Pouvoir interdit", "Lien spirituel", "Corruption"],
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "meet_lyra",
+          "npcId": 102,
+          "npcName": "Lyra Nightshade",
+          "dialogueId": "lyra_blood_sign_intro"
+        },
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "gather_ritual_components",
+          "description": "Rassemblez les composants nécessaires pour le rituel du Signe du Sang",
+          "items": [
+            {"itemId": 201, "itemName": "Cristal d'Âme", "quantity": 1, "location": "Ancient Ruins"},
+            {"itemId": 202, "itemName": "Essence de Variant Rare", "quantity": 3, "location": "Forbidden Forest"},
+            {"itemId": 203, "itemName": "Encre de Sang", "quantity": 1, "location": "Shadow Market"}
+          ],
+          "consumeItems": true
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "face_inner_demons",
+          "description": "Affrontez les manifestations de vos propres peurs dans le Rituel de Purification",
+          "count": 3,
+          "creatureType": "MANIFESTATION",
+          "location": "Mind Realm"
+        },
+        {
+          "type": "CHOICE",
+          "id": "blood_sacrifice",
+          "description": "Choisissez le sacrifice à offrir pour compléter le rituel",
+          "choices": [
+            {
+              "id": "self_sacrifice",
+              "text": "Offrir votre propre sang et énergie vitale (réduit définitivement votre santé maximale de 10%)",
+              "healthPenalty": 10,
+              "powerBonus": 20,
+              "unlocksAbility": "blood_bond_major"
+            },
+            {
+              "id": "variant_sacrifice",
+              "text": "Sacrifier l'un de vos variants (perte permanente d'un variant)",
+              "variantLoss": true,
+              "powerBonus": 15,
+              "unlocksAbility": "blood_control"
+            },
+            {
+              "id": "partial_sacrifice",
+              "text": "Offrir une partie de votre énergie et de celle de votre variant (réduit temporairement vos statistiques pendant 3 jours)",
+              "tempStatPenalty": 15,
+              "duration": "3 days",
+              "powerBonus": 10,
+              "unlocksAbility": "blood_bond_minor"
+            }
+          ]
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 1200
+        },
+        {
+          "type": "SIGN_TEACHING",
+          "signName": "Sang",
+          "description": "Permet de créer un lien profond avec vos variants, partageant force et faiblesse"
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "Adorateurs de l'Essence",
+          "amount": 200
+        },
+        {
+          "type": "ITEM",
+          "itemId": 204,
+          "itemName": "Amulette de Sang",
+          "quantity": 1,
+          "description": "Amplifie les effets du Signe du Sang et réduit son coût en énergie"
+        }
+      ],
+      "consequences": {
+        "self_sacrifice": {
+          "worldChanges": [
+            "Vos variants deviennent exceptionnellement loyaux et puissants",
+            "Votre apparence change légèrement, votre peau devient plus pâle",
+            "Les Maîtres des Signes peuvent sentir votre pouvoir interdit et deviennent méfiants"
+          ],
+          "npcChanges": [
+            {"npcId": 102, "relationshipChange": 30, "newDialogue": "lyra_impressed"},
+            {"npcId": 50, "relationshipChange": -40, "newDialogue": "master_suspicious"}
+          ],
+          "playerChanges": {
+            "maxHealthModifier": -10,
+            "variantBondStrength": 50,
+            "newAbility": "blood_bond_major"
+          }
+        },
+        "variant_sacrifice": {
+          "worldChanges": [
+            "L'esprit du variant sacrifié vous hante occasionnellement",
+            "Vos autres variants deviennent plus puissants mais légèrement craintifs",
+            "Des rumeurs sur vos méthodes cruelles commencent à circuler"
+          ],
+          "npcChanges": [
+            {"npcId": 102, "relationshipChange": 20, "newDialogue": "lyra_approving"},
+            {"npcId": 104, "relationshipChange": -50, "newDialogue": "aria_disgusted"}
+          ],
+          "playerChanges": {
+            "loseVariant": true,
+            "controlPower": 40,
+            "newAbility": "blood_control"
+          }
+        },
+        "partial_sacrifice": {
+          "worldChanges": [
+            "Vous établissez un lien équilibré avec vos variants",
+            "Votre aura change subtilement, visible uniquement aux pratiquants des Signes",
+            "Vous êtes plus sensible aux émotions de vos variants"
+          ],
+          "npcChanges": [
+            {"npcId": 102, "relationshipChange": 10, "newDialogue": "lyra_understanding"},
+            {"npcId": 104, "relationshipChange": 10, "newDialogue": "aria_intrigued"}
+          ],
+          "playerChanges": {
+            "tempStatModifier": -15,
+            "duration": "3 days",
+            "empathyBonus": 30,
+            "newAbility": "blood_bond_minor"
+          }
+        }
+      },
+      "dialogue": {
+        "lyra_blood_sign_intro": {
+          "npcId": 102,
+          "lines": [
+            "Tu as prouvé ta valeur et ton ouverture d'esprit. Je vais te proposer quelque chose que j'offre rarement.",
+            "Le Signe du Sang est l'un des plus puissants et des plus dangereux. Il crée un lien profond entre toi et tes variants, mais exige un sacrifice.",
+            "Ce n'est pas de la magie noire comme les ignorants le prétendent. C'est un échange équitable d'énergie vitale, un pacte sacré."
+          ],
+          "playerResponses": [
+            {
+              "text": "En quoi consiste exactement ce sacrifice ?",
+              "response": "Cela dépend de toi. Tu peux offrir ta propre essence vitale, sacrifier l'un de tes variants, ou partager temporairement ton énergie et celle de ton variant. Chaque choix offre des pouvoirs différents, et chacun a son prix."
+            },
+            {
+              "text": "Pourquoi ce Signe est-il interdit ?",
+              "response": "Parce qu'il défie l'ordre établi. Les Maîtres des Signes veulent que les variants restent des outils, des serviteurs. Le Signe du Sang crée une véritable symbiose, une égalité qu'ils trouvent... menaçante pour leur autorité."
+            },
+            {
+              "text": "Est-ce que je risque de perdre le contrôle ?",
+              "response": "Le risque existe, comme avec tout pouvoir véritable. Mais ce n'est pas le Signe qui corrompt, c'est l'intention de celui qui l'utilise. Si ton cœur est pur, le Signe te servira fidèlement. Sinon... il amplifiera tes ténèbres intérieures."
+            }
+          ]
+        }
+      },
+      "unlocksQuests": [219]
+    },
+    {
+      "id": 203,
+      "title": "Contrebande et Conséquences",
+      "description": "Vex Ironheart vous propose de l'aider à faire passer une cargaison mystérieuse à travers le territoire des Guerriers, mais tout n'est pas aussi simple qu'il y paraît.",
+      "minLevel": 18,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "associatedNPC": 103,
+      "questGiver": "Vex Ironheart",
+      "location": "Darkhaven Port",
+      "mature_themes": ["Contrebande", "Corruption", "Choix moraux", "Trafic"],
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "meet_vex",
+          "npcId": 103,
+          "npcName": "Vex Ironheart",
+          "dialogueId": "vex_smuggling_job"
+        },
+        {
+          "type": "ESCORT_NPC",
+          "id": "escort_cargo",
+          "npcId": 130,
+          "npcName": "Chariot de Marchandises",
+          "startLocation": "Darkhaven Port",
+          "endLocation": "Warrior Territory Border",
+          "stealthRecommended": true
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "deal_with_patrol",
+          "description": "Gérez la patrouille de Guerriers qui a repéré votre chariot",
+          "count": 3,
+          "creatureType": "GUERRIER",
+          "location": "Border Checkpoint"
+        },
+        {
+          "type": "INVESTIGATE",
+          "id": "check_cargo",
+          "description": "Examinez la cargaison pour découvrir ce que vous transportez réellement",
+          "location": "Abandoned Outpost"
+        },
+        {
+          "type": "CHOICE",
+          "id": "cargo_decision",
+          "description": "Décidez quoi faire après avoir découvert que la cargaison contient des variants capturés illégalement",
+          "choices": [
+            {
+              "id": "complete_delivery",
+              "text": "Terminer la livraison comme prévu (gain d'or important, perte de réputation auprès des variants)",
+              "goldReward": 2000,
+              "reputationChanges": [
+                {"faction": "Réseau du Dernier Refuge", "amount": 100},
+                {"faction": "Gardiens du Flux", "amount": -200}
+              ],
+              "unlocksQuest": 220
+            },
+            {
+              "id": "free_variants",
+              "text": "Libérer les variants et confronter Vex (gain de réputation auprès des variants, perte d'or et de réputation auprès du réseau)",
+              "goldReward": 0,
+              "reputationChanges": [
+                {"faction": "Réseau du Dernier Refuge", "amount": -150},
+                {"faction": "Gardiens du Flux", "amount": 200}
+              ],
+              "unlocksQuest": 221
+            },
+            {
+              "id": "compromise",
+              "text": "Proposer un compromis à Vex pour libérer certains variants et livrer le reste (récompense modérée, impact de réputation mixte)",
+              "goldReward": 800,
+              "reputationChanges": [
+                {"faction": "Réseau du Dernier Refuge", "amount": -50},
+                {"faction": "Gardiens du Flux", "amount": 50}
+              ],
+              "unlocksQuest": 222
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "complete_delivery": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "GOLD",
+            "amount": 2000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 250,
+            "itemName": "Badge de Contrebandier",
+            "quantity": 1,
+            "description": "Vous donne accès aux marchés noirs dans toutes les grandes villes"
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "Réseau du Dernier Refuge",
+            "amount": 100
+          }
+        ],
+        "free_variants": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "ITEM",
+            "itemId": 251,
+            "itemName": "Amulette de Gratitude",
+            "quantity": 1,
+            "description": "Augmente légèrement le taux de capture des variants sauvages"
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "Gardiens du Flux",
+            "amount": 200
+          },
+          {
+            "type": "VARIANT_GIFT",
+            "variantId": 95,
+            "variantName": "Variant Reconnaissant",
+            "level": 20
+          }
+        ],
+        "compromise": [
+          {
+            "type": "EXPERIENCE",
+            "amount": 1000
+          },
+          {
+            "type": "GOLD",
+            "amount": 800
+          },
+          {
+            "type": "ITEM",
+            "itemId": 252,
+            "itemName": "Médaillon du Juste Milieu",
+            "quantity": 1,
+            "description": "Augmente légèrement votre charisme lors des négociations"
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "Réseau du Dernier Refuge",
+            "amount": -50
+          },
+          {
+            "type": "REPUTATION",
+            "factionName": "Gardiens du Flux",
+            "amount": 50
+          }
+        ]
+      },
+      "consequences": {
+        "complete_delivery": {
+          "worldChanges": [
+            "Le trafic de variants s'intensifie dans la région",
+            "Aria Moonshadow entend parler de votre implication et devient hostile",
+            "Vous gagnez accès à des marchandises rares dans le marché noir"
+          ],
+          "npcChanges": [
+            {"npcId": 103, "relationshipChange": 50, "newDialogue": "vex_pleased"},
+            {"npcId": 104, "relationshipChange": -80, "newDialogue": "aria_hostile"}
+          ]
+        },
+        "free_variants": {
+          "worldChanges": [
+            "Vex met un contrat sur votre tête",
+            "Les variants libérés répandent votre réputation de protecteur",
+            "Les Gardiens du Flux vous offrent leur protection"
+          ],
+          "npcChanges": [
+            {"npcId": 103, "relationshipChange": -80, "newDialogue": "vex_betrayed"},
+            {"npcId": 104, "relationshipChange": 70, "newDialogue": "aria_grateful"}
+          ]
+        },
+        "compromise": {
+          "worldChanges": [
+            "Vex devient plus prudent dans ses affaires avec vous",
+            "Votre réputation de négociateur se répand",
+            "Certains variants libérés vous cherchent pour vous remercier"
+          ],
+          "npcChanges": [
+            {"npcId": 103, "relationshipChange": -20, "newDialogue": "vex_cautious"},
+            {"npcId": 104, "relationshipChange": 30, "newDialogue": "aria_respectful"}
+          ]
+        }
+      },
+      "dialogue": {
+        "vex_smuggling_job": {
+          "npcId": 103,
+          "lines": [
+            "J'ai une cargaison... disons 'spéciale' qui doit traverser la frontière des Guerriers. La paie est bonne, mais le risque l'est aussi.",
+            "Les Guerriers ont renforcé leurs patrouilles récemment. Quelque chose à voir avec des rumeurs de trafic. Ironique, non ?",
+            "Tout ce que tu as à faire, c'est escorter le chariot jusqu'au point de rendez-vous. Si des problèmes surviennent, je te fais confiance pour les... résoudre discrètement."
+          ],
+          "playerResponses": [
+            {
+              "text": "Qu'est-ce que je transporte exactement ?",
+              "response": "Des marchandises de valeur, c'est tout ce que tu as besoin de savoir. Moins tu en sais, mieux c'est pour tout le monde. Disons simplement que certaines personnes paieraient très cher pour mettre la main dessus."
+            },
+            {
+              "text": "Pourquoi moi ?",
+              "response": "Parce que tu as prouvé que tu sais te battre et que tu n'es pas du genre à poser trop de questions. Et aussi parce que mes transporteurs habituels sont soit en prison, soit... indisponibles pour le moment."
+            },
+            {
+              "text": "Combien serai-je payé ?",
+              "response": "2000 pièces d'or à la livraison. C'est trois fois ce que je paie habituellement, ce qui devrait te donner une idée du niveau de risque. Mais hey, pas de risque, pas de profit, n'est-ce pas ?"
+            }
+          ]
+        }
+      },
+      "unlocksQuests": [220, 221, 222]
+    }
+  ]
+}

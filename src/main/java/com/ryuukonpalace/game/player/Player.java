@@ -10,8 +10,10 @@ import com.ryuukonpalace.game.utils.ResourceManager;
 import com.ryuukonpalace.game.world.SpawnZone;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -81,6 +83,12 @@ public class Player extends GameObject {
     // Nombre maximum d'entrées dans le journal
     private static final int MAX_JOURNAL_ENTRIES = 100;
     
+    // Zones découvertes par le joueur
+    private List<String> discoveredAreas;
+    
+    // Réputations auprès des factions
+    private Map<String, Integer> factionReputations;
+    
     /**
      * Constructeur pour le joueur
      * 
@@ -103,6 +111,8 @@ public class Player extends GameObject {
         this.experience = 0; // Expérience initiale
         this.faction = Faction.NEUTRE; // Faction initiale
         this.journal = new LinkedList<>(); // Initialisation du journal
+        this.discoveredAreas = new ArrayList<>(); // Initialisation des zones découvertes
+        this.factionReputations = new HashMap<>(); // Initialisation des réputations
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(x, y, 32, 48);
@@ -135,7 +145,9 @@ public class Player extends GameObject {
         this.level = 1;
         this.experience = 0;
         this.faction = Faction.NEUTRE;
-        this.journal = new LinkedList<>(); // Initialisation du journal
+        this.journal = new LinkedList<>();
+        this.discoveredAreas = new ArrayList<>();
+        this.factionReputations = new HashMap<>();
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(0, 0, 32, 48);
@@ -553,6 +565,140 @@ public class Player extends GameObject {
      */
     public void clearJournal() {
         journal.clear();
+    }
+    
+    /**
+     * Ajouter une zone découverte
+     * 
+     * @param areaId ID de la zone découverte
+     * @return true si la zone n'avait pas encore été découverte, false sinon
+     */
+    public boolean addDiscoveredArea(String areaId) {
+        if (!discoveredAreas.contains(areaId)) {
+            discoveredAreas.add(areaId);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Vérifier si une zone a été découverte
+     * 
+     * @param areaId ID de la zone à vérifier
+     * @return true si la zone a été découverte, false sinon
+     */
+    public boolean hasDiscoveredArea(String areaId) {
+        return discoveredAreas.contains(areaId);
+    }
+    
+    /**
+     * Obtenir la liste des zones découvertes
+     * 
+     * @return Liste des zones découvertes
+     */
+    public List<String> getDiscoveredAreas() {
+        return new ArrayList<>(discoveredAreas);
+    }
+    
+    /**
+     * Ajouter de l'expérience au joueur
+     * 
+     * @param amount Quantité d'expérience à ajouter
+     * @return true si le joueur a gagné un niveau, false sinon
+     */
+    public boolean addExperience(int amount) {
+        int oldLevel = level;
+        experience += amount;
+        
+        // Vérifier si le joueur gagne un niveau
+        updateLevel();
+        
+        return level > oldLevel;
+    }
+    
+    /**
+     * Mettre à jour le niveau du joueur en fonction de son expérience
+     */
+    private void updateLevel() {
+        // Formule simple : 100 * niveau actuel pour passer au niveau suivant
+        while (experience >= 100 * level) {
+            experience -= 100 * level;
+            level++;
+        }
+    }
+    
+    /**
+     * Ajouter de l'argent au joueur
+     * 
+     * @param amount Montant à ajouter
+     */
+    public void addMoney(int amount) {
+        this.crystals += amount;
+    }
+    
+    /**
+     * Ajouter une créature à la liste des créatures capturées
+     * 
+     * @param creature Créature à ajouter
+     * @return true si la créature a été ajoutée, false sinon
+     */
+    public boolean addCreature(Creature creature) {
+        if (creature != null) {
+            capturedCreatures.add(creature);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Vérifier si le joueur est membre d'une faction
+     * 
+     * @param factionName Nom de la faction
+     * @return true si le joueur est membre de la faction, false sinon
+     */
+    public boolean isMemberOfFaction(String factionName) {
+        // Vérifier si le joueur est membre de la faction par son enum
+        if (faction != null && faction.name().equalsIgnoreCase(factionName)) {
+            return true;
+        }
+        
+        // Vérifier si le joueur a une réputation suffisante avec la faction
+        Integer reputation = factionReputations.get(factionName);
+        return reputation != null && reputation >= 50; // Seuil arbitraire de 50 pour être considéré comme membre
+    }
+    
+    /**
+     * Obtenir la réputation du joueur auprès d'une faction
+     * 
+     * @param factionName Nom de la faction
+     * @return Réputation (0 par défaut si non définie)
+     */
+    public int getFactionReputation(String factionName) {
+        return factionReputations.getOrDefault(factionName, 0);
+    }
+    
+    /**
+     * Définir la réputation du joueur auprès d'une faction
+     * 
+     * @param factionName Nom de la faction
+     * @param reputation Nouvelle réputation
+     */
+    public void setFactionReputation(String factionName, int reputation) {
+        factionReputations.put(factionName, Math.max(0, Math.min(100, reputation))); // Limiter entre 0 et 100
+    }
+    
+    /**
+     * Ajouter de la réputation auprès d'une faction
+     * 
+     * @param factionName Nom de la faction
+     * @param amount Montant à ajouter (peut être négatif)
+     * @return Nouvelle réputation
+     */
+    public int addFactionReputation(String factionName, int amount) {
+        int currentReputation = getFactionReputation(factionName);
+        int newReputation = Math.max(0, Math.min(100, currentReputation + amount));
+        setFactionReputation(factionName, newReputation);
+        return newReputation;
     }
     
     /**

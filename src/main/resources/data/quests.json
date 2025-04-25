@@ -1,0 +1,178 @@
+{
+  "quests": [
+    {
+      "id": "main_quest_1",
+      "title": "Bienvenue à Ryuukon Palace",
+      "description": "Découvrez le monde de Ryuukon Palace et apprenez les bases du jeu.",
+      "minLevel": 1,
+      "isMainQuest": true,
+      "isFactionSpecific": false,
+      "factionName": "",
+      "objectives": [
+        {
+          "type": "TALK_TO_NPC",
+          "id": "talk_to_guide",
+          "npcId": 1,
+          "npcName": "Guide du village",
+          "npcType": "TACTICIEN"
+        },
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_village",
+          "areaId": "village_1",
+          "areaName": "Village de départ",
+          "x": 100,
+          "y": 100,
+          "width": 200,
+          "height": 200
+        },
+        {
+          "type": "DEFEAT_CREATURES",
+          "id": "defeat_trainer",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 100
+        },
+        {
+          "type": "MONEY",
+          "amount": 500
+        },
+        {
+          "type": "ITEM",
+          "itemId": 1,
+          "itemName": "Pierre de capture basique",
+          "quantity": 5
+        }
+      ],
+      "unlocksQuests": ["side_quest_1"]
+    },
+    {
+      "id": "side_quest_1",
+      "title": "Collecte de plantes médicinales",
+      "description": "Collectez des plantes médicinales pour l'herboriste du village.",
+      "minLevel": 2,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "factionName": "",
+      "objectives": [
+        {
+          "type": "COLLECT_ITEMS",
+          "id": "collect_herbs",
+          "itemId": 10,
+          "itemName": "Plante médicinale",
+          "quantity": 5,
+          "consumeItems": true
+        },
+        {
+          "type": "TALK_TO_NPC",
+          "id": "return_to_herbalist",
+          "npcId": 2,
+          "npcName": "Herboriste",
+          "npcType": "NEUTRE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 50
+        },
+        {
+          "type": "MONEY",
+          "amount": 200
+        },
+        {
+          "type": "ITEM",
+          "itemId": 2,
+          "itemName": "Potion de soin",
+          "quantity": 3
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "faction_quest_1",
+      "title": "Aide à la guilde des Tacticiens",
+      "description": "Aidez la guilde des Tacticiens à capturer des variants rares.",
+      "minLevel": 5,
+      "isMainQuest": false,
+      "isFactionSpecific": true,
+      "factionName": "Guilde des Tacticiens",
+      "objectives": [
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_variants",
+          "count": 3
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 200
+        },
+        {
+          "type": "REPUTATION",
+          "factionName": "Guilde des Tacticiens",
+          "amount": 50
+        },
+        {
+          "type": "ITEM",
+          "itemId": 3,
+          "itemName": "Pierre de capture avancée",
+          "quantity": 2
+        }
+      ],
+      "unlocksQuests": []
+    },
+    {
+      "id": "environmental_quest_1",
+      "title": "Mystères nocturnes",
+      "description": "Explorez la forêt pendant la nuit pour découvrir des créatures rares.",
+      "minLevel": 7,
+      "isMainQuest": false,
+      "isFactionSpecific": false,
+      "factionName": "",
+      "environmentalConditions": {
+        "requireDaytime": false,
+        "requireNighttime": true,
+        "requireWeather": "CLEAR"
+      },
+      "objectives": [
+        {
+          "type": "EXPLORE_AREA",
+          "id": "explore_forest_night",
+          "areaId": "dark_forest",
+          "areaName": "Forêt obscure",
+          "x": 500,
+          "y": 300,
+          "width": 300,
+          "height": 300,
+          "requireDaytime": false,
+          "requireNighttime": true
+        },
+        {
+          "type": "CAPTURE_VARIANTS",
+          "id": "capture_night_variant",
+          "count": 1,
+          "variantType": "NOCTURNE"
+        }
+      ],
+      "rewards": [
+        {
+          "type": "EXPERIENCE",
+          "amount": 300
+        },
+        {
+          "type": "ITEM",
+          "itemId": 4,
+          "itemName": "Essence nocturne",
+          "quantity": 1
+        }
+      ],
+      "unlocksQuests": []
+    }
+  ]
+}

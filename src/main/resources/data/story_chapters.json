@@ -1,0 +1,110 @@
+{
+  "chapters": [
+    {
+      "id": "chapter_1",
+      "title": "L'Éveil",
+      "description": "Vous vous réveillez dans le village de Lumina sans aucun souvenir. Vous découvrez que vous êtes un Tacticien et que vous devez retrouver votre mémoire en explorant le monde.",
+      "mainQuests": [
+        "main_quest_1",
+        "main_quest_2"
+      ],
+      "sideQuests": [
+        "side_quest_1",
+        "side_quest_2"
+      ],
+      "decisionPoints": []
+    },
+    {
+      "id": "chapter_2",
+      "title": "Le Choix",
+      "description": "Vous arrivez au Carrefour des Chemins, où vous devez choisir entre rejoindre les Tacticiens ou les Guerriers, un choix qui influencera tout votre parcours.",
+      "mainQuests": [
+        "main_quest_3"
+      ],
+      "sideQuests": [
+        "side_quest_3",
+        "side_quest_4",
+        "side_quest_5"
+      ],
+      "decisionPoints": [
+        "faction_choice"
+      ]
+    },
+    {
+      "id": "chapter_3_tacticien",
+      "title": "L'Académie des Tacticiens",
+      "description": "En tant que Tacticien, vous commencez votre formation à l'Académie pour maîtriser l'art de la capture et de l'entraînement des variants.",
+      "mainQuests": [
+        "main_quest_4_tacticien"
+      ],
+      "sideQuests": [
+        "side_quest_6",
+        "tacticien_quest_1",
+        "tacticien_quest_2"
+      ],
+      "decisionPoints": []
+    },
+    {
+      "id": "chapter_3_guerrier",
+      "title": "La Caserne des Guerriers",
+      "description": "En tant que Guerrier, vous commencez votre entraînement à la Caserne pour apprendre à combattre directement les variants sauvages.",
+      "mainQuests": [
+        "main_quest_4_guerrier"
+      ],
+      "sideQuests": [
+        "side_quest_6",
+        "guerrier_quest_1",
+        "guerrier_quest_2"
+      ],
+      "decisionPoints": []
+    },
+    {
+      "id": "chapter_4",
+      "title": "Les Ruines Anciennes",
+      "description": "Des fragments de votre mémoire vous guident vers d'anciennes ruines où vous pourriez découvrir des indices sur votre passé.",
+      "mainQuests": [
+        "main_quest_5"
+      ],
+      "sideQuests": [
+        "side_quest_7",
+        "side_quest_8"
+      ],
+      "decisionPoints": []
+    },
+    {
+      "id": "chapter_5",
+      "title": "Le Temple Oublié",
+      "description": "Le Cristal de mémoire vous guide vers un temple ancien où vous pourriez découvrir la vérité sur votre identité et votre rôle dans ce monde.",
+      "mainQuests": [
+        "main_quest_6"
+      ],
+      "sideQuests": [
+        "side_quest_9",
+        "side_quest_10"
+      ],
+      "decisionPoints": []
+    },
+    {
+      "id": "chapter_6",
+      "title": "La Vérité Révélée",
+      "description": "Vous découvrez que vous êtes l'Élu, destiné à rétablir l'équilibre entre les factions et à combattre une menace ancienne qui s'éveille.",
+      "mainQuests": [
+        "main_quest_7"
+      ],
+      "sideQuests": [],
+      "decisionPoints": [
+        "accept_destiny"
+      ]
+    },
+    {
+      "id": "chapter_7",
+      "title": "Le Début de l'Acte II",
+      "description": "Maintenant que vous connaissez votre destin, vous devez unir les factions pour faire face à la menace qui s'éveille dans les profondeurs du monde.",
+      "mainQuests": [
+        "main_quest_8_act2"
+      ],
+      "sideQuests": [],
+      "decisionPoints": []
+    }
+  ]
+}
