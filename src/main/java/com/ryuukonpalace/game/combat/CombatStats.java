@@ -478,12 +478,68 @@ public class CombatStats {
     }
     
     /**
+     * Utiliser une capacité, applique son cooldown
+     * 
+     * @param abilityIndex Index de la capacité utilisée
+     */
+    public void useSkill(int abilityIndex) {
+        if (abilityIndex >= 0 && abilityIndex < skillCooldowns.length) {
+            // Appliquer un cooldown de 3 tours par défaut
+            skillCooldowns[abilityIndex] = 3;
+        }
+    }
+    
+    /**
+     * Diminuer tous les cooldowns de capacités (appelé à chaque tour)
+     */
+    public void decreaseCooldowns() {
+        for (int i = 0; i < skillCooldowns.length; i++) {
+            if (skillCooldowns[i] > 0) {
+                skillCooldowns[i]--;
+            }
+        }
+    }
+    
+    /**
+     * Réinitialiser tous les cooldowns (remettre à zéro)
+     */
+    public void resetCooldowns() {
+        for (int i = 0; i < skillCooldowns.length; i++) {
+            skillCooldowns[i] = 0;
+        }
+    }
+    
+    /**
      * Vérifier si le combattant est vaincu
      * 
      * @return true si les PV sont à 0, false sinon
      */
     public boolean isDefeated() {
         return currentHealth <= 0;
+    }
+    
+    /**
+     * Augmente les statistiques en fonction du niveau
+     * 
+     * @param level Niveau actuel de la créature
+     */
+    public void increaseWithLevel(int level) {
+        // Formule d'augmentation des statistiques basée sur le niveau
+        // Ces formules peuvent être ajustées selon les besoins du jeu
+        float multiplier = 1.0f + (level * 0.1f); // +10% par niveau
+        
+        // Augmenter les statistiques de base
+        this.maxHealth = (int)(this.maxHealth * multiplier);
+        this.currentHealth = this.maxHealth; // Restaurer la santé au maximum
+        this.physicalAttack = (int)(this.physicalAttack * multiplier);
+        this.magicalAttack = (int)(this.magicalAttack * multiplier);
+        this.physicalDefense = (int)(this.physicalDefense * multiplier);
+        this.magicalDefense = (int)(this.magicalDefense * multiplier);
+        this.speed = (int)(this.speed * multiplier);
+        
+        // Augmenter légèrement les statistiques avancées
+        this.criticalChance = Math.min(30.0f, this.criticalChance + (level * 0.5f)); // Max 30%
+        this.criticalDamage = Math.min(2.5f, this.criticalDamage + (level * 0.02f)); // Max 250%
     }
     
     // Getters et setters

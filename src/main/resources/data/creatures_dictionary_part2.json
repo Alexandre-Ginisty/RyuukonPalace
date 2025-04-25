@@ -1,0 +1,374 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Dictionnaire des créatures (variants) de Ryuukon Palace - Partie 2",
+    "lastUpdated": "2025-04-24"
+  },
+  "creatures": [
+    {
+      "id": 6,
+      "name": "Tsunamifin",
+      "type": "WATER",
+      "category": "Serein",
+      "description": "Forme finale d'Aquapup, ce majestueux canidé aquatique possède une fourrure qui ondule comme l'océan. Sa présence apporte une paix profonde, même dans les situations les plus chaotiques.",
+      "baseStats": {
+        "health": 95,
+        "attack": 80,
+        "defense": 90,
+        "speed": 85,
+        "magicalAttack": 110,
+        "magicalDefense": 115
+      },
+      "abilities": [
+        {
+          "id": 8,
+          "name": "Éclaboussure Apaisante",
+          "description": "Projette de l'eau qui calme l'adversaire et réduit son attaque",
+          "power": 30,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 1
+        },
+        {
+          "id": 9,
+          "name": "Bulle Tranquille",
+          "description": "Crée une bulle protectrice qui augmente la défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 6
+        },
+        {
+          "id": 10,
+          "name": "Vague Sereine",
+          "description": "Invoque une vague douce qui peut endormir l'adversaire",
+          "power": 50,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 12
+        },
+        {
+          "id": 11,
+          "name": "Aura Pacifique",
+          "description": "Émet une aura qui calme tous les combattants et restaure des PV",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 20
+        },
+        {
+          "id": 12,
+          "name": "Torrent Tranquille",
+          "description": "Déferlement d'eau puissant mais apaisant qui peut réduire l'agressivité",
+          "power": 75,
+          "accuracy": 90,
+          "type": "WATER",
+          "levelLearned": 26
+        },
+        {
+          "id": 13,
+          "name": "Déluge de Sérénité",
+          "description": "Invoque un puissant déluge qui apaise toutes les créatures sur le terrain",
+          "power": 95,
+          "accuracy": 80,
+          "type": "WATER",
+          "levelLearned": 40
+        },
+        {
+          "id": 14,
+          "name": "Harmonie Aquatique",
+          "description": "Crée une harmonie parfaite avec l'eau environnante, restaurant une grande quantité de PV et supprimant tous les états altérés",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 48
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Darkhaven (haute mer)",
+        "Ancient Ruins (sanctuaires aquatiques)"
+      ],
+      "spawnRarity": "Très rare",
+      "spawnConditions": "Pleine lune, près des océans",
+      "texture": "creatures/tsunamifin.png"
+    },
+    {
+      "id": 7,
+      "name": "Stoneling",
+      "type": "EARTH",
+      "category": "Furieux",
+      "description": "Petite créature rocheuse à l'apparence d'un golem miniature. Malgré sa petite taille, sa colère est légendaire et sa force impressionnante.",
+      "baseStats": {
+        "health": 60,
+        "attack": 70,
+        "defense": 65,
+        "speed": 30,
+        "magicalAttack": 40,
+        "magicalDefense": 45
+      },
+      "abilities": [
+        {
+          "id": 15,
+          "name": "Jet de Pierre",
+          "description": "Lance une pierre avec force sur l'adversaire",
+          "power": 45,
+          "accuracy": 95,
+          "type": "EARTH",
+          "levelLearned": 1
+        },
+        {
+          "id": 16,
+          "name": "Rage Terrestre",
+          "description": "Entre dans une colère qui augmente son attaque mais réduit sa précision",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 7
+        },
+        {
+          "id": 17,
+          "name": "Frappe Rocheuse",
+          "description": "Frappe puissante qui peut faire reculer l'adversaire",
+          "power": 65,
+          "accuracy": 85,
+          "type": "EARTH",
+          "levelLearned": 13
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 8,
+        "level": 20
+      },
+      "spawnLocations": [
+        "Frostpeak Mountains (zones rocheuses)",
+        "Ancient Ruins (décombres)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Zones rocailleuses, temps sec",
+      "texture": "creatures/stoneling.png"
+    },
+    {
+      "id": 8,
+      "name": "Boulderax",
+      "type": "EARTH",
+      "category": "Furieux",
+      "description": "Évolution de Stoneling, cette créature massive ressemble à un golem de taille moyenne. Sa colère fait trembler la terre sous ses pas.",
+      "baseStats": {
+        "health": 80,
+        "attack": 100,
+        "defense": 95,
+        "speed": 40,
+        "magicalAttack": 50,
+        "magicalDefense": 55
+      },
+      "abilities": [
+        {
+          "id": 15,
+          "name": "Jet de Pierre",
+          "description": "Lance une pierre avec force sur l'adversaire",
+          "power": 45,
+          "accuracy": 95,
+          "type": "EARTH",
+          "levelLearned": 1
+        },
+        {
+          "id": 16,
+          "name": "Rage Terrestre",
+          "description": "Entre dans une colère qui augmente son attaque mais réduit sa précision",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 7
+        },
+        {
+          "id": 17,
+          "name": "Frappe Rocheuse",
+          "description": "Frappe puissante qui peut faire reculer l'adversaire",
+          "power": 65,
+          "accuracy": 85,
+          "type": "EARTH",
+          "levelLearned": 13
+        },
+        {
+          "id": 18,
+          "name": "Séisme de Colère",
+          "description": "Provoque un petit séisme qui inflige des dégâts à tous les adversaires",
+          "power": 70,
+          "accuracy": 90,
+          "type": "EARTH",
+          "levelLearned": 22
+        },
+        {
+          "id": 19,
+          "name": "Armure de Roche",
+          "description": "Renforce son corps avec des roches supplémentaires, augmentant considérablement sa défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 28
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 9,
+        "level": 38
+      },
+      "spawnLocations": [
+        "Frostpeak Mountains (falaises)",
+        "Ancient Ruins (chambres effondrées)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Zones montagneuses, temps orageux",
+      "texture": "creatures/boulderax.png"
+    },
+    {
+      "id": 9,
+      "name": "Terramoth",
+      "type": "EARTH",
+      "category": "Furieux",
+      "description": "Forme finale de Stoneling, ce colossal golem de pierre et de cristaux possède une force titanesque. Sa fureur peut provoquer des avalanches et des tremblements de terre.",
+      "baseStats": {
+        "health": 110,
+        "attack": 130,
+        "defense": 125,
+        "speed": 50,
+        "magicalAttack": 70,
+        "magicalDefense": 75
+      },
+      "abilities": [
+        {
+          "id": 15,
+          "name": "Jet de Pierre",
+          "description": "Lance une pierre avec force sur l'adversaire",
+          "power": 45,
+          "accuracy": 95,
+          "type": "EARTH",
+          "levelLearned": 1
+        },
+        {
+          "id": 16,
+          "name": "Rage Terrestre",
+          "description": "Entre dans une colère qui augmente son attaque mais réduit sa précision",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 7
+        },
+        {
+          "id": 17,
+          "name": "Frappe Rocheuse",
+          "description": "Frappe puissante qui peut faire reculer l'adversaire",
+          "power": 65,
+          "accuracy": 85,
+          "type": "EARTH",
+          "levelLearned": 13
+        },
+        {
+          "id": 18,
+          "name": "Séisme de Colère",
+          "description": "Provoque un petit séisme qui inflige des dégâts à tous les adversaires",
+          "power": 70,
+          "accuracy": 90,
+          "type": "EARTH",
+          "levelLearned": 22
+        },
+        {
+          "id": 19,
+          "name": "Armure de Roche",
+          "description": "Renforce son corps avec des roches supplémentaires, augmentant considérablement sa défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 28
+        },
+        {
+          "id": 20,
+          "name": "Furie Tectonique",
+          "description": "Déchaîne une fureur qui provoque un violent tremblement de terre",
+          "power": 120,
+          "accuracy": 75,
+          "type": "EARTH",
+          "levelLearned": 42
+        },
+        {
+          "id": 21,
+          "name": "Cristallisation Furieuse",
+          "description": "Transforme une partie de son corps en cristaux tranchants, augmentant considérablement son attaque et sa défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "EARTH",
+          "levelLearned": 50
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Frostpeak Mountains (sommets)",
+        "Shadow Caverns (grottes cristallines)"
+      ],
+      "spawnRarity": "Très rare",
+      "spawnConditions": "Zones sismiques actives, pendant les tremblements de terre",
+      "texture": "creatures/terramoth.png"
+    },
+    {
+      "id": 10,
+      "name": "Zephyrling",
+      "type": "AIR",
+      "category": "Chaotique",
+      "description": "Petite créature aviaire au plumage tourbillonnant qui change constamment de couleur. Ses mouvements sont imprévisibles et erratiques.",
+      "baseStats": {
+        "health": 40,
+        "attack": 50,
+        "defense": 35,
+        "speed": 80,
+        "magicalAttack": 65,
+        "magicalDefense": 45
+      },
+      "abilities": [
+        {
+          "id": 22,
+          "name": "Rafale Chaotique",
+          "description": "Crée une rafale de vent imprévisible qui peut frapper plusieurs fois",
+          "power": 20,
+          "accuracy": 90,
+          "type": "AIR",
+          "levelLearned": 1
+        },
+        {
+          "id": 23,
+          "name": "Vol Erratique",
+          "description": "Se déplace de manière chaotique, augmentant son esquive",
+          "power": 0,
+          "accuracy": 100,
+          "type": "AIR",
+          "levelLearned": 8
+        },
+        {
+          "id": 24,
+          "name": "Tourbillon Désordonné",
+          "description": "Crée un tourbillon qui inflige des dégâts aléatoires",
+          "power": 60,
+          "accuracy": 80,
+          "type": "AIR",
+          "levelLearned": 14
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 11,
+        "level": 22
+      },
+      "spawnLocations": [
+        "Whisperwind Valley (zones venteuses)",
+        "Stormpeak (falaises exposées)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Journées venteuses, pendant les tempêtes",
+      "texture": "creatures/zephyrling.png"
+    }
+  ]
+}

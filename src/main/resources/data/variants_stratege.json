@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "description": "Variants de type STRATÈGE pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Variants"
+  },
+  "variants": [
+    {
+      "id": 1,
+      "name": "Emberfox",
+      "type": "STRATÈGE",
+      "lore": "Né des cendres d'un rituel sacrificiel oublié, l'Emberfox est le résultat d'esprits vulpins fusionnés avec une intelligence tactique surnaturelle. Ses yeux reflètent une capacité d'analyse presque humaine, et il est dit que ceux qui croisent son regard sont hantés par des visions de leurs propres défaites.",
+      "description": "Un renard au pelage rougeâtre qui manipule ses adversaires avec une intelligence retorse. Ses yeux luisent d'une lueur calculatrice, et sa posture trahit une analyse constante de son environnement.",
+      "baseStats": {
+        "health": 45,
+        "attack": 60,
+        "defense": 40,
+        "speed": 65,
+        "magicalAttack": 70,
+        "magicalDefense": 50
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Manœuvre Tactique",
+          "description": "Crée un piège pour limiter les mouvements de l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "STRATÈGE",
+          "levelLearned": 1,
+          "animation": "emberfox_tactical_maneuver.fbx",
+          "visualEffect": "Des lignes tactiques apparaissent brièvement sur le sol autour de l'adversaire"
+        },
+        {
+          "id": 2,
+          "name": "Ruse Préventive",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque sournoise",
+          "power": 0,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 5,
+          "animation": "emberfox_preventive_ruse.fbx",
+          "visualEffect": "L'Emberfox semble créer une image miroir de lui-même pendant un bref instant"
+        },
+        {
+          "id": 3,
+          "name": "Morsure Calculée",
+          "description": "Morsure précise qui cible un point faible identifié",
+          "power": 65,
+          "accuracy": 90,
+          "type": "STRATÈGE",
+          "levelLearned": 10,
+          "animation": "emberfox_calculated_bite.fbx",
+          "visualEffect": "Un point lumineux apparaît sur l'adversaire juste avant l'impact"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 2,
+        "level": 16,
+        "conditions": "Niveau 16 atteint après avoir vaincu au moins 5 variants de type CHAOTIQUE",
+        "evolutionSequence": "L'Emberfox se fige dans une posture méditative, son corps s'illumine de l'intérieur comme si son esprit tactique prenait le contrôle total de sa forme physique."
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (zones de bataille abandonnées)",
+        "Temple of Dawn (salles d'étude)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Près des ruines de fortifications militaires ou de lieux d'étude stratégique",
+      "texture": "variants/stratege/emberfox.png",
+      "model": "variants/stratege/emberfox/emberfox_tpose.fbx",
+      "animations": {
+        "idle": "variants/stratege/emberfox/animations/emberfox_idle.fbx",
+        "walk": "variants/stratege/emberfox/animations/emberfox_walk.fbx",
+        "attack": "variants/stratege/emberfox/animations/emberfox_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 12,
+          "name": "Cristal de stratégie",
+          "dropRate": 0.15,
+          "description": "Un cristal qui semble contenir des motifs complexes de plans de bataille"
+        },
+        {
+          "itemId": 13,
+          "name": "Fourrure tacticienne",
+          "dropRate": 0.08,
+          "description": "Fourrure dont les motifs changent subtilement, comme si elle analysait son environnement"
+        }
+      ],
+      "resistances": ["FURIEUX", "CHAOTIQUE"],
+      "weaknesses": ["MYSTIQUE", "VISIONNAIRE"]
+    },
+    {
+      "id": 2,
+      "name": "Vulpyro",
+      "type": "STRATÈGE",
+      "lore": "Évolution d'Emberfox, le Vulpyro est né d'une fusion entre un esprit tacticien et un renard particulièrement intelligent. Sa capacité à anticiper les mouvements adverses est presque prémonitoire, et certains stratèges militaires cherchent à les capturer pour les utiliser comme conseillers de guerre.",
+      "description": "Ce renard majestueux possède un regard perçant qui semble analyser chaque détail. Sa posture est toujours calculée, jamais un mouvement n'est gaspillé sans raison tactique.",
+      "baseStats": {
+        "health": 65,
+        "attack": 80,
+        "defense": 60,
+        "speed": 85,
+        "magicalAttack": 90,
+        "magicalDefense": 70
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Manœuvre Tactique",
+          "description": "Crée un piège pour limiter les mouvements de l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "STRATÈGE",
+          "levelLearned": 1,
+          "animation": "vulpyro_tactical_maneuver.fbx",
+          "visualEffect": "Des lignes tactiques apparaissent brièvement sur le sol autour de l'adversaire"
+        },
+        {
+          "id": 2,
+          "name": "Ruse Préventive",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque",
+          "power": 0,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 5,
+          "animation": "vulpyro_preventive_ruse.fbx",
+          "visualEffect": "Le Vulpyro semble créer une image miroir de lui-même pendant un bref instant"
+        },
+        {
+          "id": 3,
+          "name": "Morsure Calculée",
+          "description": "Morsure précise qui cible un point faible identifié",
+          "power": 65,
+          "accuracy": 90,
+          "type": "STRATÈGE",
+          "levelLearned": 10,
+          "animation": "vulpyro_calculated_bite.fbx",
+          "visualEffect": "Un point lumineux apparaît sur l'adversaire juste avant l'impact"
+        },
+        {
+          "id": 4,
+          "name": "Stratégie Complexe",
+          "description": "Crée un piège mental complexe qui désoriente l'adversaire pendant plusieurs tours",
+          "power": 30,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 18,
+          "animation": "vulpyro_complex_strategy.fbx",
+          "visualEffect": "Des schémas tactiques lumineux entourent l'adversaire"
+        },
+        {
+          "id": 5,
+          "name": "Esprit Tacticien",
+          "description": "Augmente considérablement l'intelligence tactique et la précision des attaques",
+          "power": 0,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 24,
+          "animation": "vulpyro_tactician_spirit.fbx",
+          "visualEffect": "Les yeux du Vulpyro s'illuminent et des symboles tactiques apparaissent autour de lui"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 3,
+        "level": 32,
+        "conditions": "Niveau 32 atteint et avoir vaincu au moins 10 variants de type CHAOTIQUE",
+        "evolutionSequence": "Le Vulpyro entre dans une transe profonde, des symboles tactiques apparaissent autour de lui et son corps se transforme en une entité plus puissante et plus sage."
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (anciennes zones de bataille)",
+        "Temple of Dawn (bibliothèque tactique)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Près des champs de bataille historiques ou des académies militaires",
+      "texture": "variants/stratege/vulpyro.png",
+      "model": "variants/stratege/vulpyro/vulpyro_tpose.fbx",
+      "animations": {
+        "idle": "variants/stratege/vulpyro/animations/vulpyro_idle.fbx",
+        "walk": "variants/stratege/vulpyro/animations/vulpyro_walk.fbx",
+        "attack": "variants/stratege/vulpyro/animations/vulpyro_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 14,
+          "name": "Essence tactique",
+          "dropRate": 0.12,
+          "description": "Concentré d'intelligence stratégique, utilisé dans les rituels d'amélioration mentale"
+        },
+        {
+          "itemId": 15,
+          "name": "Griffe de stratège",
+          "dropRate": 0.08,
+          "description": "Griffe capable de tracer des plans de bataille dans n'importe quelle surface"
+        }
+      ],
+      "resistances": ["FURIEUX", "CHAOTIQUE"],
+      "weaknesses": ["MYSTIQUE", "VISIONNAIRE"]
+    },
+    {
+      "id": 3,
+      "name": "Kitsunova",
+      "type": "STRATÈGE",
+      "lore": "Forme finale de la lignée Emberfox, le Kitsunova est un être dont l'intelligence tactique transcende la compréhension humaine. Ses neuf queues représentent neuf aspects différents de la stratégie militaire. Les grands généraux de l'histoire auraient tous été guidés par un Kitsunova, bien que ces créatures restent dans l'ombre, préférant manipuler plutôt que commander directement.",
+      "description": "Ce majestueux renard à neuf queues possède une intelligence légendaire. Ses yeux semblent contenir la sagesse de mille batailles, et chacun de ses mouvements paraît calculé des heures à l'avance.",
+      "baseStats": {
+        "health": 85,
+        "attack": 100,
+        "defense": 80,
+        "speed": 105,
+        "magicalAttack": 120,
+        "magicalDefense": 90
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Manœuvre Tactique",
+          "description": "Crée un piège pour limiter les mouvements de l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "STRATÈGE",
+          "levelLearned": 1,
+          "animation": "kitsunova_tactical_maneuver.fbx",
+          "visualEffect": "Des lignes tactiques apparaissent brièvement sur le sol autour de l'adversaire"
+        },
+        {
+          "id": 4,
+          "name": "Stratégie Complexe",
+          "description": "Crée un piège mental complexe qui désoriente l'adversaire pendant plusieurs tours",
+          "power": 30,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 18,
+          "animation": "kitsunova_complex_strategy.fbx",
+          "visualEffect": "Des schémas tactiques lumineux entourent l'adversaire"
+        },
+        {
+          "id": 5,
+          "name": "Esprit Tacticien",
+          "description": "Augmente considérablement l'intelligence tactique et la précision des attaques",
+          "power": 0,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 24,
+          "animation": "kitsunova_tactician_spirit.fbx",
+          "visualEffect": "Les yeux du Kitsunova s'illuminent et des symboles tactiques apparaissent autour de lui"
+        },
+        {
+          "id": 6,
+          "name": "Prévision Stratégique",
+          "description": "Anticipe les mouvements de l'adversaire, permettant d'esquiver et de contre-attaquer avec une précision parfaite",
+          "power": 90,
+          "accuracy": 85,
+          "type": "STRATÈGE",
+          "levelLearned": 36,
+          "animation": "kitsunova_strategic_foresight.fbx",
+          "visualEffect": "Des images fantomatiques montrent les mouvements futurs de l'adversaire"
+        },
+        {
+          "id": 7,
+          "name": "Analyse Stratégique",
+          "description": "Analyse l'adversaire et révèle ses faiblesses, augmentant les dégâts infligés",
+          "power": 0,
+          "accuracy": 100,
+          "type": "STRATÈGE",
+          "levelLearned": 42,
+          "animation": "kitsunova_strategic_analysis.fbx",
+          "visualEffect": "Les yeux du Kitsunova brillent d'une lueur analytique, projetant des lignes d'analyse sur l'adversaire"
+        },
+        {
+          "id": 8,
+          "name": "Maîtrise Tactique Absolue",
+          "description": "Attaque ultime où chacune des neuf queues exécute une manœuvre tactique différente, créant une combinaison parfaite impossible à contrer",
+          "power": 120,
+          "accuracy": 80,
+          "type": "STRATÈGE",
+          "levelLearned": 50,
+          "animation": "kitsunova_absolute_mastery.fbx",
+          "visualEffect": "Les neuf queues s'illuminent successivement, chacune projetant un symbole tactique différent"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Ancient Ruins (salle du conseil de guerre)",
+        "Temple of Dawn (sanctuaire de la stratégie)"
+      ],
+      "spawnRarity": "Extrêmement rare",
+      "spawnConditions": "Uniquement dans les lieux ayant connu des batailles historiques majeures, particulièrement lors d'anniversaires de ces batailles",
+      "texture": "variants/stratege/kitsunova.png",
+      "model": "variants/stratege/kitsunova/kitsunova_tpose.fbx",
+      "animations": {
+        "idle": "variants/stratege/kitsunova/animations/kitsunova_idle.fbx",
+        "walk": "variants/stratege/kitsunova/animations/kitsunova_walk.fbx",
+        "attack": "variants/stratege/kitsunova/animations/kitsunova_attack.fbx",
+        "special": "variants/stratege/kitsunova/animations/kitsunova_absolute_mastery.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 16,
+          "name": "Orbe de stratégie",
+          "dropRate": 0.05,
+          "description": "Une sphère cristalline qui révèle des plans de bataille adaptés à chaque situation"
+        },
+        {
+          "itemId": 17,
+          "name": "Queue de Kitsune",
+          "dropRate": 0.02,
+          "description": "Une des neuf queues, contenant une fraction de l'intelligence tactique de la créature"
+        },
+        {
+          "itemId": 18,
+          "name": "Œil stratégique",
+          "dropRate": 0.01,
+          "description": "Un œil qui permet de voir les faiblesses de tout adversaire"
+        }
+      ],
+      "resistances": ["FURIEUX", "CHAOTIQUE"],
+      "weaknesses": ["MYSTIQUE", "VISIONNAIRE"]
+    }
+  ]
+}

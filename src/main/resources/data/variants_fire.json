@@ -1,0 +1,322 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "description": "Variants de type FEU pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Variants"
+  },
+  "variants": [
+    {
+      "id": 1,
+      "name": "Emberfox",
+      "type": "FIRE",
+      "category": "Stratège",
+      "lore": "Né des cendres d'un rituel sacrificiel oublié, l'Emberfox est le résultat d'esprits vulpins fusionnés avec des flammes primordiales. Ses yeux reflètent une intelligence presque humaine, et il est dit que ceux qui croisent son regard sont hantés par des visions prophétiques de destruction par le feu.",
+      "description": "Un renard au pelage flamboyant qui manipule les flammes avec une intelligence retorse. Ses yeux luisent d'une lueur malsaine, et sa fourrure semble consumer l'oxygène environnant.",
+      "baseStats": {
+        "health": 45,
+        "attack": 60,
+        "defense": 40,
+        "speed": 65,
+        "magicalAttack": 70,
+        "magicalDefense": 50
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire dans un cercle ardent",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1,
+          "animation": "emberfox_flame_strategy.fbx",
+          "visualEffect": "Un cercle de flammes bleues qui se referme sur l'adversaire"
+        },
+        {
+          "id": 2,
+          "name": "Ruse Ardente",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque sournoise",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 5,
+          "animation": "emberfox_burning_ruse.fbx",
+          "visualEffect": "Le corps de l'Emberfox devient translucide et laisse une traînée de braises"
+        },
+        {
+          "id": 3,
+          "name": "Morsure Enflammée",
+          "description": "Morsure brûlante qui peut causer des brûlures douloureuses et persistantes",
+          "power": 65,
+          "accuracy": 90,
+          "type": "FIRE",
+          "levelLearned": 10,
+          "animation": "emberfox_flame_bite.fbx",
+          "visualEffect": "Les crocs s'illuminent de flammes rougeoyantes avant l'impact"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 2,
+        "level": 16,
+        "conditions": "Niveau 16 atteint durant la nuit",
+        "evolutionSequence": "Le corps de l'Emberfox s'embrase entièrement, sa silhouette se dissout dans les flammes avant de se reformer sous une forme plus imposante."
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (zones calcinées)",
+        "Temple of Dawn (catacombes)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Journée, temps ensoleillé, près des zones récemment brûlées",
+      "texture": "variants/fire/emberfox.png",
+      "model": "variants/fire/emberfox/emberfox_tpose.fbx",
+      "animations": {
+        "idle": "variants/fire/emberfox/animations/emberfox_idle.fbx",
+        "walk": "variants/fire/emberfox/animations/emberfox_walk.fbx",
+        "attack": "variants/fire/emberfox/animations/emberfox_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 12,
+          "name": "Braise éternelle",
+          "dropRate": 0.15,
+          "description": "Une braise qui ne s'éteint jamais, utilisée dans l'artisanat mystique"
+        },
+        {
+          "itemId": 13,
+          "name": "Fourrure ignifugée",
+          "dropRate": 0.08,
+          "description": "Fourrure résistante au feu, utilisée pour créer des vêtements protecteurs"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Vulpyro",
+      "type": "FIRE",
+      "category": "Stratège",
+      "lore": "Évolution d'Emberfox, le Vulpyro est né d'un pacte avec des entités infernales. Sa fourrure est composée de flammes vivantes qui consument lentement son propre corps, le condamnant à une existence douloureuse mais puissante. Il est dit que les Vulpyro peuvent voir les péchés passés de ceux qu'ils rencontrent.",
+      "description": "Ce renard majestueux possède une fourrure qui semble faite de flammes vivantes. Son intelligence tactique s'est considérablement développée, tout comme sa cruauté calculée.",
+      "baseStats": {
+        "health": 65,
+        "attack": 80,
+        "defense": 60,
+        "speed": 85,
+        "magicalAttack": 90,
+        "magicalDefense": 70
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1,
+          "animation": "vulpyro_flame_strategy.fbx",
+          "visualEffect": "Un cercle de flammes bleues qui se referme sur l'adversaire"
+        },
+        {
+          "id": 2,
+          "name": "Ruse Ardente",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 5,
+          "animation": "vulpyro_burning_ruse.fbx",
+          "visualEffect": "Le corps du Vulpyro devient translucide et laisse une traînée de braises"
+        },
+        {
+          "id": 3,
+          "name": "Morsure Enflammée",
+          "description": "Morsure brûlante qui peut causer des brûlures",
+          "power": 65,
+          "accuracy": 90,
+          "type": "FIRE",
+          "levelLearned": 10,
+          "animation": "vulpyro_flame_bite.fbx",
+          "visualEffect": "Les crocs s'illuminent de flammes rougeoyantes avant l'impact"
+        },
+        {
+          "id": 4,
+          "name": "Tactique Infernale",
+          "description": "Crée un piège de flammes complexe qui inflige des dégâts sur plusieurs tours, brûlant lentement la chair de l'adversaire",
+          "power": 30,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 18,
+          "animation": "vulpyro_infernal_tactic.fbx",
+          "visualEffect": "Des glyphes de feu apparaissent sous l'adversaire, formant un pentagramme"
+        },
+        {
+          "id": 5,
+          "name": "Esprit Flamboyant",
+          "description": "Augmente considérablement l'attaque spéciale et l'intelligence tactique en sacrifiant une partie de sa propre vitalité",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 24,
+          "animation": "vulpyro_flaming_spirit.fbx",
+          "visualEffect": "Les yeux du Vulpyro s'embrasent et son corps émet une aura rougeoyante"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 3,
+        "level": 32,
+        "conditions": "Niveau 32 atteint et avoir vaincu au moins 10 variants de type EAU",
+        "evolutionSequence": "Le corps du Vulpyro se désintègre en flammes qui s'élèvent vers le ciel, avant de se reformer en une créature à plusieurs queues auréolée de feu bleu."
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (zones de sacrifice)",
+        "Temple of Dawn (chambre des flammes éternelles)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Nuit, près des autels abandonnés",
+      "texture": "variants/fire/vulpyro.png",
+      "model": "variants/fire/vulpyro/vulpyro_tpose.fbx",
+      "animations": {
+        "idle": "variants/fire/vulpyro/animations/vulpyro_idle.fbx",
+        "walk": "variants/fire/vulpyro/animations/vulpyro_walk.fbx",
+        "attack": "variants/fire/vulpyro/animations/vulpyro_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 14,
+          "name": "Essence pyrique",
+          "dropRate": 0.12,
+          "description": "Concentré d'énergie ignée, utilisé dans les rituels d'invocation"
+        },
+        {
+          "itemId": 15,
+          "name": "Griffe calcinée",
+          "dropRate": 0.08,
+          "description": "Griffe noircie capable de trancher même la pierre"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Kitsunova",
+      "type": "FIRE",
+      "category": "Stratège",
+      "lore": "Forme finale de la lignée Emberfox, le Kitsunova est un être semi-divin dont l'existence même est une anomalie. Ses neuf queues représentent neuf âmes qu'il a dévorées pour atteindre l'immortalité. Chaque queue peut agir indépendamment et possède sa propre conscience perverse. Les rares témoins qui ont survécu à sa rencontre parlent d'une créature capable de manipuler les souvenirs et de créer des illusions si réalistes qu'elles peuvent tuer.",
+      "description": "Ce majestueux renard à neuf queues de feu possède une intelligence légendaire et terrifiante. Ses yeux semblent contenir la sagesse des âges et la cruauté des flammes primordiales.",
+      "baseStats": {
+        "health": 85,
+        "attack": 100,
+        "defense": 80,
+        "speed": 105,
+        "magicalAttack": 120,
+        "magicalDefense": 90
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1,
+          "animation": "kitsunova_flame_strategy.fbx",
+          "visualEffect": "Un cercle de flammes bleues qui se referme sur l'adversaire"
+        },
+        {
+          "id": 4,
+          "name": "Tactique Infernale",
+          "description": "Crée un piège de flammes complexe qui inflige des dégâts sur plusieurs tours",
+          "power": 30,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 18,
+          "animation": "kitsunova_infernal_tactic.fbx",
+          "visualEffect": "Des glyphes de feu apparaissent sous l'adversaire, formant un pentagramme"
+        },
+        {
+          "id": 5,
+          "name": "Esprit Flamboyant",
+          "description": "Augmente considérablement l'attaque spéciale et l'intelligence tactique",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 24,
+          "animation": "kitsunova_flaming_spirit.fbx",
+          "visualEffect": "Les yeux du Kitsunova s'embrasent et son corps émet une aura rougeoyante"
+        },
+        {
+          "id": 6,
+          "name": "Feu Spirituel",
+          "description": "Invoque des flammes mystiques qui ignorent les résistances et consument l'âme même de l'adversaire",
+          "power": 90,
+          "accuracy": 85,
+          "type": "FIRE",
+          "levelLearned": 36,
+          "animation": "kitsunova_spirit_fire.fbx",
+          "visualEffect": "Des flammes bleu pâle qui traversent les défenses physiques"
+        },
+        {
+          "id": 7,
+          "name": "Analyse Stratégique",
+          "description": "Analyse l'adversaire et révèle ses faiblesses, augmentant les dégâts infligés et exposant ses peurs les plus profondes",
+          "power": 0,
+          "accuracy": 100,
+          "type": "PSYCHIC",
+          "levelLearned": 42,
+          "animation": "kitsunova_strategic_analysis.fbx",
+          "visualEffect": "Les yeux du Kitsunova brillent d'une lueur violette, projetant des lignes d'analyse sur l'adversaire"
+        },
+        {
+          "id": 8,
+          "name": "Neuf Flammes Dévorantes",
+          "description": "Attaque ultime où chacune des neuf queues projette une flamme unique qui consume une partie différente de l'âme de l'adversaire",
+          "power": 120,
+          "accuracy": 80,
+          "type": "FIRE",
+          "levelLearned": 50,
+          "animation": "kitsunova_nine_flames.fbx",
+          "visualEffect": "Neuf flammes de couleurs différentes jaillissent simultanément des queues, formant un tourbillon mortel"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Ancient Ruins (chambre du sacrifice éternel)",
+        "Temple of Dawn (sanctuaire interdit)"
+      ],
+      "spawnRarity": "Extrêmement rare",
+      "spawnConditions": "Éclipse lunaire, près d'un autel de sacrifice",
+      "texture": "variants/fire/kitsunova.png",
+      "model": "variants/fire/kitsunova/kitsunova_tpose.fbx",
+      "animations": {
+        "idle": "variants/fire/kitsunova/animations/kitsunova_idle.fbx",
+        "walk": "variants/fire/kitsunova/animations/kitsunova_walk.fbx",
+        "attack": "variants/fire/kitsunova/animations/kitsunova_attack.fbx",
+        "special": "variants/fire/kitsunova/animations/kitsunova_nine_flames.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 16,
+          "name": "Flamme éternelle",
+          "dropRate": 0.05,
+          "description": "Une flamme qui brûle même sous l'eau, capable de consumer l'âme"
+        },
+        {
+          "itemId": 17,
+          "name": "Queue de Kitsune",
+          "dropRate": 0.02,
+          "description": "Une des neuf queues, contenant une fraction du pouvoir de la créature"
+        },
+        {
+          "itemId": 18,
+          "name": "Œil omniscient",
+          "dropRate": 0.01,
+          "description": "Un œil qui continue de voir même après avoir été prélevé"
+        }
+      ]
+    }
+  ]
+}

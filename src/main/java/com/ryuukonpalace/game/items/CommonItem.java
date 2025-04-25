@@ -11,6 +11,32 @@ public class CommonItem extends Item {
     /**
      * Constructeur
      * 
+     * @param id ID de l'objet
+     * @param name Nom de l'objet
+     * @param description Description de l'objet
+     * @param textureId ID de la texture de l'objet
+     * @param rarity Rareté de l'objet
+     * @param value Valeur de l'objet en crystaux
+     */
+    public CommonItem(int id, String name, String description, int textureId, ItemRarity rarity, int value) {
+        super(id, name, description, value, textureId, rarity);
+    }
+    
+    /**
+     * Constructeur simplifié avec ID de texture par défaut
+     * 
+     * @param id ID de l'objet
+     * @param name Nom de l'objet
+     * @param description Description de l'objet
+     * @param value Valeur de l'objet en crystaux
+     */
+    public CommonItem(int id, String name, String description, int value) {
+        super(id, name, description, value);
+    }
+    
+    /**
+     * Constructeur original (pour compatibilité)
+     * 
      * @param name Nom de l'objet
      * @param description Description de l'objet
      * @param textureId ID de la texture de l'objet
@@ -18,20 +44,18 @@ public class CommonItem extends Item {
      * @param value Valeur de l'objet en crystaux
      */
     public CommonItem(String name, String description, int textureId, ItemRarity rarity, int value) {
-        super(name, description, textureId, rarity);
-        this.value = value;
+        super(0, name, description, value, textureId, rarity);
     }
     
     /**
-     * Constructeur simplifié avec ID de texture par défaut
+     * Constructeur simplifié original (pour compatibilité)
      * 
      * @param name Nom de l'objet
      * @param description Description de l'objet
      * @param value Valeur de l'objet en crystaux
      */
     public CommonItem(String name, String description, int value) {
-        super(name, description, 0, ItemRarity.COMMON);
-        this.value = value;
+        super(0, name, description, value);
     }
     
     /**

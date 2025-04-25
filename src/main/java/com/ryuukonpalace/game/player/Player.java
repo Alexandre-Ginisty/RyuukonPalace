@@ -10,6 +10,7 @@ import com.ryuukonpalace.game.utils.ResourceManager;
 import com.ryuukonpalace.game.world.SpawnZone;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -62,6 +63,24 @@ public class Player extends GameObject {
     // Monnaie du joueur (crystaux)
     private int crystals;
     
+    // Nom du joueur
+    private String name;
+    
+    // Niveau du joueur
+    private int level;
+    
+    // Expérience du joueur
+    private int experience;
+    
+    // Faction du joueur
+    private Faction faction;
+    
+    // Journal du joueur (entrées d'événements importants)
+    private List<String> journal;
+    
+    // Nombre maximum d'entrées dans le journal
+    private static final int MAX_JOURNAL_ENTRIES = 100;
+    
     /**
      * Constructeur pour le joueur
      * 
@@ -79,9 +98,47 @@ public class Player extends GameObject {
         this.currentBattleCreature = null;
         this.currentSpawnZone = null;
         this.crystals = 100; // Le joueur commence avec 100 crystaux
+        this.name = "Tacticien"; // Nom par défaut
+        this.level = 1; // Niveau initial
+        this.experience = 0; // Expérience initiale
+        this.faction = Faction.NEUTRE; // Faction initiale
+        this.journal = new LinkedList<>(); // Initialisation du journal
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(x, y, 32, 48);
+        
+        // Obtenir les instances des gestionnaires
+        this.inputManager = InputManager.getInstance();
+        this.renderer = Renderer.getInstance();
+        
+        // Charger la texture du joueur
+        ResourceManager resourceManager = ResourceManager.getInstance();
+        this.textureId = resourceManager.getTextureId("player");
+    }
+    
+    /**
+     * Constructeur par défaut pour le joueur
+     * Utilisé principalement pour la désérialisation
+     */
+    public Player() {
+        super(0, 0, 32, 48);
+        this.moveSpeed = 150.0f;
+        this.direction = Direction.DOWN;
+        this.isMoving = false;
+        this.stepCounter = 0.0f;
+        this.capturedCreatures = new ArrayList<>();
+        this.inventory = new Inventory();
+        this.currentBattleCreature = null;
+        this.currentSpawnZone = null;
+        this.crystals = 100;
+        this.name = "Tacticien";
+        this.level = 1;
+        this.experience = 0;
+        this.faction = Faction.NEUTRE;
+        this.journal = new LinkedList<>(); // Initialisation du journal
+        
+        // Créer un collider pour le joueur
+        this.collider = new RectangleCollider(0, 0, 32, 48);
         
         // Obtenir les instances des gestionnaires
         this.inputManager = InputManager.getInstance();
@@ -347,6 +404,158 @@ public class Player extends GameObject {
     }
     
     /**
+     * Obtenir le nom du joueur
+     * 
+     * @return Nom du joueur
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Définir le nom du joueur
+     * 
+     * @param name Nouveau nom du joueur
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    /**
+     * Obtenir le niveau du joueur
+     * 
+     * @return Niveau du joueur
+     */
+    public int getLevel() {
+        return level;
+    }
+    
+    /**
+     * Définir le niveau du joueur
+     * 
+     * @param level Nouveau niveau du joueur
+     */
+    public void setLevel(int level) {
+        this.level = Math.max(1, level); // Niveau minimum de 1
+    }
+    
+    /**
+     * Obtenir l'expérience du joueur
+     * 
+     * @return Expérience du joueur
+     */
+    public int getExperience() {
+        return experience;
+    }
+    
+    /**
+     * Définir l'expérience du joueur
+     * 
+     * @param experience Nouvelle expérience du joueur
+     */
+    public void setExperience(int experience) {
+        this.experience = Math.max(0, experience);
+    }
+    
+    /**
+     * Obtenir la faction du joueur
+     * 
+     * @return Faction du joueur
+     */
+    public Faction getFaction() {
+        return faction;
+    }
+    
+    /**
+     * Définir la faction du joueur
+     * 
+     * @param faction Nouvelle faction du joueur
+     */
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
+    
+    /**
+     * Obtenir la direction du joueur
+     * 
+     * @return Direction du joueur
+     */
+    public Direction getDirection() {
+        return direction;
+    }
+    
+    /**
+     * Définir la direction du joueur
+     * 
+     * @param direction Nouvelle direction du joueur
+     */
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+    
+    /**
+     * Obtenir la monnaie du joueur (alias pour getCrystals)
+     * 
+     * @return Montant de monnaie
+     */
+    public int getMoney() {
+        return getCrystals();
+    }
+    
+    /**
+     * Définir la monnaie du joueur (alias pour setCrystals)
+     * 
+     * @param money Nouveau montant de monnaie
+     */
+    public void setMoney(int money) {
+        setCrystals(money);
+    }
+    
+    /**
+     * Définir les créatures capturées
+     * 
+     * @param creatures Liste des créatures capturées
+     */
+    public void setCapturedCreatures(List<Creature> creatures) {
+        this.capturedCreatures = new ArrayList<>(creatures);
+    }
+    
+    /**
+     * Ajouter une entrée au journal du joueur
+     * 
+     * @param entry Texte de l'entrée à ajouter
+     */
+    public void addJournalEntry(String entry) {
+        if (entry == null || entry.trim().isEmpty()) {
+            return; // Ne pas ajouter d'entrées vides
+        }
+        
+        // Ajouter l'entrée au début de la liste (les plus récentes en premier)
+        journal.add(0, entry);
+        
+        // Limiter la taille du journal
+        if (journal.size() > MAX_JOURNAL_ENTRIES) {
+            journal.remove(journal.size() - 1); // Supprimer l'entrée la plus ancienne
+        }
+    }
+    
+    /**
+     * Obtenir le journal du joueur
+     * 
+     * @return Liste des entrées du journal (les plus récentes en premier)
+     */
+    public List<String> getJournal() {
+        return new ArrayList<>(journal); // Retourner une copie pour éviter les modifications externes
+    }
+    
+    /**
+     * Effacer le journal du joueur
+     */
+    public void clearJournal() {
+        journal.clear();
+    }
+    
+    /**
      * Directions possibles pour le joueur
      */
     public enum Direction {
@@ -354,6 +563,18 @@ public class Player extends GameObject {
         DOWN,
         LEFT,
         RIGHT
+    }
+    
+    /**
+     * Factions possibles pour le joueur
+     */
+    public enum Faction {
+        NEUTRE,      // Faction neutre, par défaut
+        LUMIERE,     // Faction de la Lumière
+        TENEBRES,    // Faction des Ténèbres
+        EQUILIBRE,   // Faction de l'Équilibre
+        CHAOS,       // Faction du Chaos
+        HARMONIE     // Faction de l'Harmonie
     }
     
     /**

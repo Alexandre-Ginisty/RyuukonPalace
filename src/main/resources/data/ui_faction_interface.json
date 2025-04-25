@@ -1,0 +1,399 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Configuration de l'interface de faction pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "UserInterface"
+  },
+  "factionInterface": {
+    "layout": "SPLIT_SCREEN",
+    "background": "faction_bg",
+    "factions": [
+      {
+        "id": "TACTICIENS",
+        "name": "Tacticiens",
+        "description": "Les Tacticiens exploitent et éduquent les variants pour combattre d'autres variants et accomplir des tâches quotidiennes. Ils utilisent des Signes de Pouvoir et des Pierres de Capture.",
+        "icon": "tacticien_icon",
+        "banner": "tacticien_banner",
+        "primaryColor": "#4080FF",
+        "secondaryColor": "#80C0FF",
+        "centers": ["Lumina", "Temple of Dawn", "Darkhaven"],
+        "leaders": ["Maître Orion", "Lady Elara"],
+        "reputationLevels": [
+          {
+            "level": "HOSTILE",
+            "threshold": -100,
+            "name": "Ennemi",
+            "description": "Considéré comme un ennemi des Tacticiens",
+            "benefits": [],
+            "restrictions": [
+              "Accès interdit aux villes des Tacticiens",
+              "Attaqué à vue par les Tacticiens",
+              "Aucun commerce possible avec les marchands Tacticiens"
+            ]
+          },
+          {
+            "level": "UNFRIENDLY",
+            "threshold": -50,
+            "name": "Hostile",
+            "description": "Mal vu par les Tacticiens",
+            "benefits": [],
+            "restrictions": [
+              "Prix majorés de 50% chez les marchands Tacticiens",
+              "Accès limité aux zones des Tacticiens",
+              "Refus de certaines quêtes"
+            ]
+          },
+          {
+            "level": "NEUTRAL",
+            "threshold": 0,
+            "name": "Neutre",
+            "description": "Ni ami ni ennemi des Tacticiens",
+            "benefits": [
+              "Accès aux zones publiques des Tacticiens",
+              "Commerce possible avec les marchands Tacticiens"
+            ],
+            "restrictions": [
+              "Pas d'accès aux zones privées",
+              "Pas de réductions chez les marchands"
+            ]
+          },
+          {
+            "level": "FRIENDLY",
+            "threshold": 50,
+            "name": "Amical",
+            "description": "Bien vu par les Tacticiens",
+            "benefits": [
+              "Réduction de 10% chez les marchands Tacticiens",
+              "Accès à certaines zones privées",
+              "Accès à des quêtes spéciales"
+            ],
+            "restrictions": []
+          },
+          {
+            "level": "HONORED",
+            "threshold": 100,
+            "name": "Honoré",
+            "description": "Respecté par les Tacticiens",
+            "benefits": [
+              "Réduction de 20% chez les marchands Tacticiens",
+              "Accès à la plupart des zones privées",
+              "Accès à des quêtes rares",
+              "Possibilité d'acheter des objets rares"
+            ],
+            "restrictions": []
+          },
+          {
+            "level": "EXALTED",
+            "threshold": 200,
+            "name": "Exalté",
+            "description": "Vénéré par les Tacticiens",
+            "benefits": [
+              "Réduction de 30% chez les marchands Tacticiens",
+              "Accès à toutes les zones",
+              "Accès à des quêtes légendaires",
+              "Possibilité d'acheter des objets légendaires",
+              "Accès à des capacités spéciales de Tacticien"
+            ],
+            "restrictions": []
+          }
+        ]
+      },
+      {
+        "id": "GUERRIERS",
+        "name": "Guerriers",
+        "description": "Les Guerriers rejettent l'utilisation de variants comme outils et préfèrent s'engager dans des duels directs avec leurs armes et armures spéciales.",
+        "icon": "guerrier_icon",
+        "banner": "guerrier_banner",
+        "primaryColor": "#FF4040",
+        "secondaryColor": "#FF8080",
+        "centers": ["Stormpeak", "Fort Eisenberg"],
+        "leaders": ["Général Thorne", "Sir Rainer Wolfheart"],
+        "reputationLevels": [
+          {
+            "level": "HOSTILE",
+            "threshold": -100,
+            "name": "Ennemi",
+            "description": "Considéré comme un ennemi des Guerriers",
+            "benefits": [],
+            "restrictions": [
+              "Accès interdit aux villes des Guerriers",
+              "Attaqué à vue par les Guerriers",
+              "Aucun commerce possible avec les marchands Guerriers"
+            ]
+          },
+          {
+            "level": "UNFRIENDLY",
+            "threshold": -50,
+            "name": "Hostile",
+            "description": "Mal vu par les Guerriers",
+            "benefits": [],
+            "restrictions": [
+              "Prix majorés de 50% chez les marchands Guerriers",
+              "Accès limité aux zones des Guerriers",
+              "Refus de certaines quêtes"
+            ]
+          },
+          {
+            "level": "NEUTRAL",
+            "threshold": 0,
+            "name": "Neutre",
+            "description": "Ni ami ni ennemi des Guerriers",
+            "benefits": [
+              "Accès aux zones publiques des Guerriers",
+              "Commerce possible avec les marchands Guerriers"
+            ],
+            "restrictions": [
+              "Pas d'accès aux zones privées",
+              "Pas de réductions chez les marchands"
+            ]
+          },
+          {
+            "level": "FRIENDLY",
+            "threshold": 50,
+            "name": "Amical",
+            "description": "Bien vu par les Guerriers",
+            "benefits": [
+              "Réduction de 10% chez les marchands Guerriers",
+              "Accès à certaines zones privées",
+              "Accès à des quêtes spéciales"
+            ],
+            "restrictions": []
+          },
+          {
+            "level": "HONORED",
+            "threshold": 100,
+            "name": "Honoré",
+            "description": "Respecté par les Guerriers",
+            "benefits": [
+              "Réduction de 20% chez les marchands Guerriers",
+              "Accès à la plupart des zones privées",
+              "Accès à des quêtes rares",
+              "Possibilité d'acheter des objets rares"
+            ],
+            "restrictions": []
+          },
+          {
+            "level": "EXALTED",
+            "threshold": 200,
+            "name": "Exalté",
+            "description": "Vénéré par les Guerriers",
+            "benefits": [
+              "Réduction de 30% chez les marchands Guerriers",
+              "Accès à toutes les zones",
+              "Accès à des quêtes légendaires",
+              "Possibilité d'acheter des objets légendaires",
+              "Accès à des capacités spéciales de Guerrier (non utilisables)"
+            ],
+            "restrictions": []
+          }
+        ]
+      }
+    ],
+    "reputationSystem": {
+      "gainMethods": [
+        {
+          "action": "QUEST_COMPLETION",
+          "description": "Compléter une quête pour la faction",
+          "baseValue": 10,
+          "variableRange": [5, 25]
+        },
+        {
+          "action": "ITEM_DONATION",
+          "description": "Donner des objets à la faction",
+          "baseValue": 5,
+          "variableRange": [1, 20]
+        },
+        {
+          "action": "ENEMY_DEFEAT",
+          "description": "Vaincre un ennemi de la faction",
+          "baseValue": 2,
+          "variableRange": [1, 5]
+        },
+        {
+          "action": "LOCATION_DISCOVERY",
+          "description": "Découvrir un lieu important pour la faction",
+          "baseValue": 15,
+          "variableRange": [10, 20]
+        }
+      ],
+      "lossMethods": [
+        {
+          "action": "FACTION_ATTACK",
+          "description": "Attaquer un membre de la faction",
+          "baseValue": -20,
+          "variableRange": [-30, -10]
+        },
+        {
+          "action": "QUEST_FAILURE",
+          "description": "Échouer une quête pour la faction",
+          "baseValue": -5,
+          "variableRange": [-10, -2]
+        },
+        {
+          "action": "ALLY_ATTACK",
+          "description": "Attaquer un allié de la faction",
+          "baseValue": -10,
+          "variableRange": [-15, -5]
+        },
+        {
+          "action": "THEFT",
+          "description": "Voler des objets appartenant à la faction",
+          "baseValue": -15,
+          "variableRange": [-25, -10]
+        }
+      ],
+      "oppositionEffect": 0.5,
+      "decayRate": {
+        "enabled": false,
+        "amount": 0,
+        "period": "NEVER"
+      }
+    },
+    "interface": {
+      "tabs": [
+        {
+          "id": "OVERVIEW",
+          "name": "Aperçu",
+          "icon": "overview_icon",
+          "elements": [
+            {
+              "type": "FACTION_SUMMARY",
+              "position": {
+                "x": "5%",
+                "y": "5%",
+                "width": "90%",
+                "height": "20%"
+              },
+              "showDescription": true,
+              "showLeaders": true,
+              "showCenters": true
+            },
+            {
+              "type": "REPUTATION_DISPLAY",
+              "position": {
+                "x": "5%",
+                "y": "30%",
+                "width": "90%",
+                "height": "15%"
+              },
+              "showLevel": true,
+              "showProgress": true,
+              "showNextLevel": true
+            },
+            {
+              "type": "FACTION_BENEFITS",
+              "position": {
+                "x": "5%",
+                "y": "50%",
+                "width": "90%",
+                "height": "20%"
+              },
+              "showCurrentBenefits": true,
+              "showNextLevelBenefits": true
+            },
+            {
+              "type": "FACTION_QUESTS",
+              "position": {
+                "x": "5%",
+                "y": "75%",
+                "width": "90%",
+                "height": "20%"
+              },
+              "maxQuests": 5,
+              "showAvailable": true,
+              "showCompleted": true
+            }
+          ]
+        },
+        {
+          "id": "REPUTATION",
+          "name": "Réputation",
+          "icon": "reputation_icon",
+          "elements": [
+            {
+              "type": "REPUTATION_LEVELS",
+              "position": {
+                "x": "5%",
+                "y": "5%",
+                "width": "90%",
+                "height": "40%"
+              },
+              "showAllLevels": true,
+              "highlightCurrent": true
+            },
+            {
+              "type": "REPUTATION_HISTORY",
+              "position": {
+                "x": "5%",
+                "y": "50%",
+                "width": "90%",
+                "height": "45%"
+              },
+              "maxEntries": 20,
+              "showGains": true,
+              "showLosses": true,
+              "showDates": true
+            }
+          ]
+        },
+        {
+          "id": "REWARDS",
+          "name": "Récompenses",
+          "icon": "rewards_icon",
+          "elements": [
+            {
+              "type": "FACTION_VENDORS",
+              "position": {
+                "x": "5%",
+                "y": "5%",
+                "width": "90%",
+                "height": "30%"
+              },
+              "showLocation": true,
+              "showInventory": true
+            },
+            {
+              "type": "FACTION_REWARDS",
+              "position": {
+                "x": "5%",
+                "y": "40%",
+                "width": "90%",
+                "height": "55%"
+              },
+              "showLocked": true,
+              "showUnlocked": true,
+              "categorized": true
+            }
+          ]
+        }
+      ],
+      "controls": {
+        "switchFactionButton": {
+          "position": {
+            "x": "50%",
+            "y": "5%",
+            "width": "20%",
+            "height": "5%"
+          },
+          "text": "Changer de faction"
+        },
+        "closeButton": {
+          "position": {
+            "x": "95%",
+            "y": "5%",
+            "width": "5%",
+            "height": "5%"
+          },
+          "icon": "close_icon"
+        }
+      },
+      "animations": {
+        "tabTransition": "SLIDE",
+        "openAnimation": "FADE_IN",
+        "closeAnimation": "FADE_OUT",
+        "reputationChangeAnimation": "PULSE"
+      }
+    }
+  }
+}

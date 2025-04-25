@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Index des fichiers d'objets pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Index"
+  },
+  "itemFiles": [
+    {
+      "type": "CAPTURE_STONES",
+      "file": "items_capture_stones.json",
+      "count": 15,
+      "description": "Pierres de capture utilisées pour capturer les variants",
+      "categories": ["Standard", "Spécialisées", "Légendaires"]
+    },
+    {
+      "type": "ARTIFACTS",
+      "file": "items_artifacts.json",
+      "count": 10,
+      "description": "Artefacts légendaires aux pouvoirs uniques",
+      "categories": ["Communication", "Protection", "Armes", "Outils"]
+    },
+    {
+      "type": "CONSUMABLES",
+      "file": "items_consumables.json",
+      "count": 21,
+      "description": "Objets consommables pour soigner et améliorer les variants",
+      "categories": ["Potions", "Élixirs", "Anti-Statut", "Boosters"]
+    },
+    {
+      "type": "TACTICIEN_OUTFITS",
+      "file": "items_tacticien_outfits.json",
+      "count": 15,
+      "description": "Tenues portées par les Tacticiens, offrant des bonus aux variants",
+      "categories": ["Basiques", "Élémentaires", "Spécialisées", "Légendaires"]
+    },
+    {
+      "type": "WARRIOR_WEAPONS",
+      "file": "items_warrior_weapons.json",
+      "count": 10,
+      "description": "Armes utilisées par les PNJ Guerriers contre les variants",
+      "categories": ["Épées", "Arcs", "Lances", "Haches"]
+    },
+    {
+      "type": "WARRIOR_ARMORS",
+      "file": "items_warrior_armors.json",
+      "count": 10,
+      "description": "Armures portées par les PNJ Guerriers pour se protéger des variants",
+      "categories": ["Légères", "Moyennes", "Lourdes", "Boucliers"]
+    },
+    {
+      "type": "VARIANT_HELD_ITEMS",
+      "file": "items_variant_held.json",
+      "count": 15,
+      "description": "Objets pouvant être tenus par les variants pour améliorer leurs capacités",
+      "categories": ["Baies", "Orbes", "Pierres", "Accessoires"]
+    },
+    {
+      "type": "KEY_ITEMS",
+      "file": "items_key_items.json",
+      "count": 0,
+      "description": "Objets importants pour la progression dans l'histoire",
+      "categories": ["Quêtes", "Accès", "Spéciaux"]
+    },
+    {
+      "type": "CRAFTING_MATERIALS",
+      "file": "items_crafting_materials.json",
+      "count": 0,
+      "description": "Matériaux utilisés pour l'artisanat",
+      "categories": ["Minéraux", "Plantes", "Essences", "Fragments"]
+    }
+  ],
+  "totalItems": 96,
+  "lastId": 915
+}

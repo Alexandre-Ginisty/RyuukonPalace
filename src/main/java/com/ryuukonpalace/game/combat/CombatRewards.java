@@ -6,6 +6,9 @@ import com.ryuukonpalace.game.creatures.Creature;
 import com.ryuukonpalace.game.creatures.CreatureType;
 import com.ryuukonpalace.game.items.Equipment;
 import com.ryuukonpalace.game.items.SpecialEquipments;
+import com.ryuukonpalace.game.items.CommonItem;
+import com.ryuukonpalace.game.items.CaptureStoneMaterial;
+import com.ryuukonpalace.game.items.CaptureStoneType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +86,7 @@ public class CombatRewards {
         if (random.nextDouble() < 0.15) {
             Equipment equipment = generateEquipment(defeatedCreature);
             if (equipment != null) {
-                rewards.addItem(equipment);
+                rewards.addEquipment(equipment);
             }
         }
         
@@ -106,33 +109,37 @@ public class CombatRewards {
         switch (type) {
             case FIRE:
                 // Objets liés au feu
-                items.add(new Item("Écaille de feu", "Une écaille brûlante d'une créature de feu.", 10));
+                items.add(new CommonItem("Écaille de feu", "Une écaille brûlante d'une créature de feu.", 10));
                 break;
             case WATER:
                 // Objets liés à l'eau
-                items.add(new Item("Perle d'eau", "Une perle brillante d'une créature aquatique.", 12));
+                items.add(new CommonItem("Perle d'eau", "Une perle brillante d'une créature aquatique.", 12));
                 break;
             case EARTH:
                 // Objets liés à la terre
-                items.add(new Item("Pierre précieuse", "Une pierre précieuse trouvée sur une créature terrestre.", 15));
+                items.add(new CommonItem("Pierre précieuse", "Une pierre précieuse trouvée sur une créature terrestre.", 15));
                 break;
             case NATURE:
                 // Objets liés à la nature
-                items.add(new Item("Graine rare", "Une graine d'une plante rare.", 8));
+                items.add(new CommonItem("Herbe médicinale", "Une herbe rare aux propriétés curatives.", 8));
                 break;
             case ELECTRIC:
                 // Objets liés à l'électricité
-                items.add(new Item("Cristal d'énergie", "Un cristal chargé d'électricité.", 14));
+                items.add(new CommonItem("Cristal électrique", "Un cristal qui émet une légère charge électrique.", 14));
+                break;
+            case AIR:
+                // Objets liés à l'air
+                items.add(new CommonItem("Plume légère", "Une plume extrêmement légère d'une créature aérienne.", 7));
                 break;
             default:
-                // Objets génériques
-                items.add(new Item("Essence mystique", "Une essence mystérieuse extraite d'une créature.", 5));
+                // Objet générique
+                items.add(new CommonItem("Essence mystérieuse", "Une substance étrange d'origine inconnue.", 20));
                 break;
         }
         
-        // Chance de trouver un objet de soin (30% de chance)
+        // Chance de trouver une potion de soin (30% de chance)
         if (random.nextDouble() < 0.3) {
-            items.add(new Item("Potion de soin", "Restaure 50 points de vie à une créature.", 20));
+            items.add(new CommonItem("Potion de soin", "Restaure 50 points de vie à une créature.", 20));
         }
         
         return items;
@@ -145,14 +152,51 @@ public class CombatRewards {
      * @return Pierre de capture générée, ou null
      */
     private CaptureStone generateCaptureStone(Creature defeatedCreature) {
-        // Plus la créature est forte, plus la pierre sera puissante
         int level = defeatedCreature.getLevel();
-        double captureRate = 0.3 + (level / 100.0); // Entre 0.3 et 0.8 selon le niveau
         
-        // Limiter le taux de capture à 0.8 maximum
-        captureRate = Math.min(captureRate, 0.8);
+        // Déterminer le matériau de la pierre en fonction du niveau
+        CaptureStoneMaterial material;
+        if (level >= 30) {
+            material = CaptureStoneMaterial.DIAMOND;
+        } else if (level >= 20) {
+            material = CaptureStoneMaterial.EMERALD;
+        } else if (level >= 10) {
+            material = CaptureStoneMaterial.SAPPHIRE;
+        } else {
+            material = CaptureStoneMaterial.QUARTZ;
+        }
         
-        return new CaptureStone("Pierre de capture", "Une pierre permettant de capturer des créatures. Taux de capture: " + (int)(captureRate * 100) + "%", 50, captureRate);
+        // Déterminer le type de pierre en fonction du type de créature
+        CaptureStoneType stoneType = CaptureStoneType.NEUTRAL;
+        CreatureType creatureType = defeatedCreature.getType();
+        
+        // Associer le type de créature au type de pierre approprié
+        switch (creatureType) {
+            case FIRE:
+                stoneType = CaptureStoneType.FIRE;
+                break;
+            case WATER:
+                stoneType = CaptureStoneType.WATER;
+                break;
+            case EARTH:
+                stoneType = CaptureStoneType.EARTH;
+                break;
+            case AIR:
+                stoneType = CaptureStoneType.AIR;
+                break;
+            case LIGHT:
+                stoneType = CaptureStoneType.LIGHT;
+                break;
+            case SHADOW:
+                stoneType = CaptureStoneType.DARK;
+                break;
+            default:
+                stoneType = CaptureStoneType.NEUTRAL;
+                break;
+        }
+        
+        // Créer la pierre de capture
+        return new CaptureStone("Pierre de capture", "Une pierre permettant de capturer des créatures.", 0, material, stoneType);
     }
     
     /**
@@ -275,6 +319,24 @@ public class CombatRewards {
          */
         public void addItem(Item item) {
             this.items.add(item);
+        }
+        
+        /**
+         * Ajouter un équipement aux récompenses
+         * Convertit l'équipement en Item compatible
+         * 
+         * @param equipment Équipement à ajouter
+         */
+        public void addEquipment(Equipment equipment) {
+            // Créer un CommonItem basé sur l'équipement
+            CommonItem itemEquipment = new CommonItem(
+                equipment.getName(),
+                equipment.getDescription(),
+                equipment.getTextureId(),
+                Item.ItemRarity.valueOf(equipment.getRarity().name()),
+                equipment.getValue()
+            );
+            this.items.add(itemEquipment);
         }
         
         /**

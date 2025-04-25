@@ -11,6 +11,12 @@ public abstract class Item {
     // Description de l'objet
     private String description;
     
+    // ID de l'objet
+    private int id;
+    
+    // Valeur de l'objet (en monnaie du jeu)
+    private int value;
+    
     // ID de la texture de l'objet
     private int textureId;
     
@@ -20,16 +26,32 @@ public abstract class Item {
     /**
      * Constructeur
      * 
+     * @param id ID de l'objet
      * @param name Nom de l'objet
      * @param description Description de l'objet
+     * @param value Valeur de l'objet
      * @param textureId ID de la texture de l'objet
      * @param rarity Rareté de l'objet
      */
-    public Item(String name, String description, int textureId, ItemRarity rarity) {
+    public Item(int id, String name, String description, int value, int textureId, ItemRarity rarity) {
+        this.id = id;
         this.name = name;
         this.description = description;
+        this.value = value;
         this.textureId = textureId;
         this.rarity = rarity;
+    }
+    
+    /**
+     * Constructeur simplifié
+     * 
+     * @param id ID de l'objet
+     * @param name Nom de l'objet
+     * @param description Description de l'objet
+     * @param value Valeur de l'objet
+     */
+    public Item(int id, String name, String description, int value) {
+        this(id, name, description, value, 0, ItemRarity.COMMON);
     }
     
     /**
@@ -66,6 +88,24 @@ public abstract class Item {
      */
     public ItemRarity getRarity() {
         return rarity;
+    }
+    
+    /**
+     * Obtenir l'ID de l'objet
+     * 
+     * @return ID de l'objet
+     */
+    public int getId() {
+        return id;
+    }
+    
+    /**
+     * Obtenir la valeur de l'objet
+     * 
+     * @return Valeur de l'objet
+     */
+    public int getValue() {
+        return value;
     }
     
     /**

@@ -21,6 +21,7 @@ public class Equipment {
         HELMET,         // Casque
         BOOTS,          // Bottes
         ACCESSORY,      // Accessoire
+        AMULET,         // Amulette
         RELIC           // Relique (objet ancien avec des pouvoirs spéciaux)
     }
     
@@ -257,6 +258,44 @@ public class Equipment {
     
     public Map<StatusEffect, Float> getStatusEffectChances() {
         return statusEffectChances;
+    }
+    
+    /**
+     * Calcule la valeur de l'équipement en cristaux
+     * basée sur sa rareté et son niveau
+     * 
+     * @return La valeur en cristaux
+     */
+    public int getValue() {
+        int baseValue = 50; // Valeur de base pour un équipement commun niveau 1
+        
+        // Multiplicateur basé sur la rareté
+        int rarityMultiplier;
+        switch (rarity) {
+            case COMMON:
+                rarityMultiplier = 1;
+                break;
+            case UNCOMMON:
+                rarityMultiplier = 2;
+                break;
+            case RARE:
+                rarityMultiplier = 5;
+                break;
+            case EPIC:
+                rarityMultiplier = 10;
+                break;
+            case LEGENDARY:
+                rarityMultiplier = 25;
+                break;
+            case MYTHIC:
+                rarityMultiplier = 50;
+                break;
+            default:
+                rarityMultiplier = 1;
+        }
+        
+        // La valeur augmente avec le niveau
+        return baseValue * rarityMultiplier * (1 + (level / 5));
     }
     
     /**

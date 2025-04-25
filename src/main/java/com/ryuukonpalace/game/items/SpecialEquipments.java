@@ -34,7 +34,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("criticalChance", 15.0f);
         
         // Effet spécial: Prévoyance
-        equipment.addSpecialEffect(new SpecialEffect("Prévoyance", "20% de chances d'esquiver complètement une attaque") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Prévoyance", "20% de chances d'esquiver complètement une attaque") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 if (Math.random() < 0.2) {
@@ -70,7 +70,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("tenacity", 20.0f);
         
         // Effet spécial: Fureur Croissante
-        equipment.addSpecialEffect(new SpecialEffect("Fureur Croissante", "Gagne +2 d'attaque physique pour chaque 5% de PV perdus") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Fureur Croissante", "Gagne +2 d'attaque physique pour chaque 5% de PV perdus") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 int healthPercentLost = 100 - (wearer.getCurrentHealth() * 100 / wearer.getMaxHealth());
@@ -82,7 +82,7 @@ public class SpecialEquipments {
         });
         
         // Chance d'infliger l'effet Enragé
-        equipment.addStatusEffectChance(StatusEffect.ENRAGED, 15.0f);
+        equipment.addStatusEffectChance(StatusEffect.ENRAGÉ, 15.0f);
         
         return equipment;
     }
@@ -110,7 +110,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("shieldStrength", 15.0f);
         
         // Effet spécial: Drain Arcanique
-        equipment.addSpecialEffect(new SpecialEffect("Drain Arcanique", "Les sorts ont 30% de chances de restaurer 5% des PV max") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Drain Arcanique", "Les sorts ont 30% de chances de restaurer 5% des PV max") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 if (Math.random() < 0.3) {
@@ -121,7 +121,7 @@ public class SpecialEquipments {
         });
         
         // Chance d'infliger l'effet Maudit
-        equipment.addStatusEffectChance(StatusEffect.CURSED, 10.0f);
+        equipment.addStatusEffectChance(StatusEffect.MAUDIT, 10.0f);
         
         return equipment;
     }
@@ -144,7 +144,7 @@ public class SpecialEquipments {
         equipment.addStatBonus("evasion", 15);
         
         // Effet spécial: Propulsion
-        equipment.addSpecialEffect(new SpecialEffect("Propulsion", "15% de chances d'agir deux fois dans un même tour") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Propulsion", "15% de chances d'agir deux fois dans un même tour") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 // L'effet sera géré par le système de combat
@@ -176,7 +176,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("shieldStrength", 15.0f);
         
         // Effet spécial: Aura Apaisante
-        equipment.addSpecialEffect(new SpecialEffect("Aura Apaisante", "Soigne 3% des PV max à chaque tour et a 20% de chances de dissiper un effet de statut négatif") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Aura Apaisante", "Soigne 3% des PV max à chaque tour et a 20% de chances de dissiper un effet de statut négatif") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 int healing = (int)(wearer.getMaxHealth() * 0.03);
@@ -203,7 +203,7 @@ public class SpecialEquipments {
         );
         
         // Bonus aléatoires à chaque combat
-        equipment.addSpecialEffect(new SpecialEffect("Essence Chaotique", "Confère des bonus aléatoires au début de chaque combat") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Essence Chaotique", "Confère des bonus aléatoires au début de chaque combat") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 // Choisir 3 stats aléatoires à améliorer
@@ -243,19 +243,18 @@ public class SpecialEquipments {
         });
         
         // Effet spécial: Déstabilisation
-        equipment.addSpecialEffect(new SpecialEffect("Déstabilisation", "25% de chances d'infliger un effet de statut aléatoire à la cible") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Déstabilisation", "25% de chances d'infliger un effet de statut aléatoire à la cible") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 if (target != null && Math.random() < 0.25) {
                     StatusEffect[] effects = {
-                        StatusEffect.CONFUSED, StatusEffect.DISORIENTED, StatusEffect.ENRAGED,
-                        StatusEffect.CURSED, StatusEffect.UNSTABLE, StatusEffect.DAZED
+                        StatusEffect.CONFUS, StatusEffect.DÉSORIENTÉ, StatusEffect.ENRAGÉ,
+                        StatusEffect.MAUDIT, StatusEffect.INSTABLE, StatusEffect.DÉSÉQUILIBRÉ
                     };
                     
                     // Sélectionner un effet aléatoire et l'appliquer
-                    // Note: L'application réelle de l'effet sera gérée par le système de combat
-                    StatusEffect selectedEffect = effects[(int)(Math.random() * effects.length)];
-                    System.out.println("Effet " + selectedEffect.getName() + " sélectionné pour être appliqué");
+                    StatusEffect effect = effects[(int) (Math.random() * effects.length)];
+                    System.out.println("Le Chaos inflige l'effet " + effect + " à " + target + "!");
                 }
             }
         });
@@ -290,7 +289,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("armorPenetration", 25.0f);
         
         // Effet spécial: Frappe Ombreuse
-        equipment.addSpecialEffect(new SpecialEffect("Frappe Ombreuse", "20% de chances d'infliger des dégâts supplémentaires égaux à 10% des PV max de la cible") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Frappe Ombreuse", "20% de chances d'infliger des dégâts supplémentaires égaux à 10% des PV max de la cible") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 if (target != null && Math.random() < 0.2) {
@@ -300,8 +299,8 @@ public class SpecialEquipments {
             }
         });
         
-        // Chance d'infliger l'effet DAZED
-        equipment.addStatusEffectChance(StatusEffect.DAZED, 20.0f);
+        // Chance d'infliger l'effet DÉSÉQUILIBRÉ
+        equipment.addStatusEffectChance(StatusEffect.DÉSÉQUILIBRÉ, 20.0f);
         
         return equipment;
     }
@@ -329,7 +328,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("shieldStrength", 25.0f);
         
         // Effet spécial: Révélation
-        equipment.addSpecialEffect(new SpecialEffect("Révélation", "Révèle les faiblesses des ennemis, augmentant les dégâts de 20% contre les types vulnérables") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Révélation", "Révèle les faiblesses des ennemis, augmentant les dégâts de 20% contre les types vulnérables") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 // Cet effet sera géré par le système de combat
@@ -337,7 +336,7 @@ public class SpecialEquipments {
         });
         
         // Effet spécial: Purification
-        equipment.addSpecialEffect(new SpecialEffect("Purification", "15% de chances de dissiper tous les effets de statut négatifs et de créer un bouclier adaptatif égal à 10% des PV max") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Purification", "15% de chances de dissiper tous les effets de statut négatifs et de créer un bouclier adaptatif égal à 10% des PV max") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 if (Math.random() < 0.15) {
@@ -348,8 +347,8 @@ public class SpecialEquipments {
             }
         });
         
-        // Chance d'infliger l'effet ILLUMINATED
-        equipment.addStatusEffectChance(StatusEffect.ILLUMINATED, 25.0f);
+        // Chance d'infliger l'effet ILLUMINÉ
+        equipment.addStatusEffectChance(StatusEffect.ILLUMINÉ, 25.0f);
         
         return equipment;
     }
@@ -376,7 +375,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("healingBonus", 15.0f);
         
         // Effet spécial: Régénération Naturelle
-        equipment.addSpecialEffect(new SpecialEffect("Régénération Naturelle", "Récupère 2% des PV max à chaque tour") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Régénération Naturelle", "Récupère 2% des PV max à chaque tour") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 int healing = (int)(wearer.getMaxHealth() * 0.02);
@@ -385,7 +384,7 @@ public class SpecialEquipments {
         });
         
         // Effet spécial: Symbiose
-        equipment.addSpecialEffect(new SpecialEffect("Symbiose", "Lorsque les PV tombent sous 30%, crée un bouclier adaptatif égal à 20% des PV max") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Symbiose", "Lorsque les PV tombent sous 30%, crée un bouclier adaptatif égal à 20% des PV max") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 int healthPercent = wearer.getCurrentHealth() * 100 / wearer.getMaxHealth();
@@ -396,8 +395,8 @@ public class SpecialEquipments {
             }
         });
         
-        // Chance d'infliger l'effet ROOTED
-        equipment.addStatusEffectChance(StatusEffect.ROOTED, 15.0f);
+        // Chance d'infliger l'effet ENRACINÉ
+        equipment.addStatusEffectChance(StatusEffect.ENRACINÉ, 15.0f);
         
         return equipment;
     }
@@ -424,7 +423,7 @@ public class SpecialEquipments {
         equipment.addPercentBonus("criticalChance", 10.0f);
         
         // Effet spécial: Prescience
-        equipment.addSpecialEffect(new SpecialEffect("Prescience", "Au début du combat, révèle l'ordre des actions pour les 3 premiers tours") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Prescience", "Au début du combat, révèle l'ordre des actions pour les 3 premiers tours") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 // Cet effet sera géré par l'interface de combat
@@ -432,15 +431,15 @@ public class SpecialEquipments {
         });
         
         // Effet spécial: Distorsion Temporelle
-        equipment.addSpecialEffect(new SpecialEffect("Distorsion Temporelle", "10% de chances d'agir deux fois dans un même tour") {
+        equipment.addSpecialEffect(new Equipment.SpecialEffect("Distorsion Temporelle", "10% de chances d'agir deux fois dans un même tour") {
             @Override
             public void activate(CombatStats wearer, CombatStats target) {
                 // Cet effet sera géré par le système de combat
             }
         });
         
-        // Chance d'infliger l'effet PREMONITORY
-        equipment.addStatusEffectChance(StatusEffect.PREMONITORY, 20.0f);
+        // Chance d'infliger l'effet PRÉMONITIF
+        equipment.addStatusEffectChance(StatusEffect.PRÉMONITIF, 20.0f);
         
         return equipment;
     }
@@ -512,6 +511,329 @@ public class SpecialEquipments {
     }
     
     /**
+     * Crée un équipement de type Eau
+     * 
+     * @param type Type d'équipement
+     * @param rarity Rareté de l'équipement
+     * @param level Niveau de l'équipement
+     * @return Équipement créé
+     */
+    public static Equipment createWaterEquipment(Equipment.EquipmentType type, Equipment.Rarity rarity, int level) {
+        String name;
+        String description;
+        Map<String, Integer> statBonuses = new HashMap<>();
+        Map<String, Float> percentBonuses = new HashMap<>();
+        
+        switch (type) {
+            case WEAPON:
+                name = "Trident des marées";
+                description = "Un trident qui contrôle les courants marins.";
+                statBonuses.put("attack", 4 + level);
+                percentBonuses.put("water_resistance", 0.1f + (level * 0.01f));
+                break;
+            case ARMOR:
+                name = "Armure des profondeurs";
+                description = "Une armure qui protège des pressions des abysses.";
+                statBonuses.put("defense", 4 + level);
+                statBonuses.put("maxHealth", 8 + (level * 2));
+                break;
+            case ACCESSORY:
+            case AMULET:
+                name = "Amulette des courants";
+                description = "Une amulette qui amplifie les pouvoirs aquatiques.";
+                statBonuses.put("attack", 2 + (level / 2));
+                percentBonuses.put("water_damage", 0.15f + (level * 0.01f));
+                break;
+            case RELIC:
+                name = "Perle de l'océan";
+                description = "Une perle mystique qui protège des effets de statut.";
+                statBonuses.put("maxHealth", 12 + (level * 3));
+                break;
+            default:
+                name = "Équipement aquatique";
+                description = "Un équipement imprégné du pouvoir de l'eau.";
+                statBonuses.put("defense", 2 + level);
+                break;
+        }
+        
+        // Créer l'équipement
+        Equipment equipment = new Equipment(name, description, type, rarity, level);
+        
+        // Ajouter les bonus de statistiques
+        for (Map.Entry<String, Integer> entry : statBonuses.entrySet()) {
+            equipment.addStatBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter les bonus de pourcentage
+        for (Map.Entry<String, Float> entry : percentBonuses.entrySet()) {
+            equipment.addPercentBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter des effets spéciaux selon la rareté
+        if (rarity == Equipment.Rarity.RARE || rarity == Equipment.Rarity.EPIC || rarity == Equipment.Rarity.LEGENDARY) {
+            equipment.addSpecialEffect(new Equipment.SpecialEffect("Affinité aquatique", "Régénère lentement les points de vie en combat") {
+                @Override
+                public void activate(CombatStats wearer, CombatStats target) {
+                    // Régénère 1% des PV max par tour
+                    int healAmount = (int) (wearer.getMaxHealth() * 0.01f);
+                    wearer.heal(healAmount);
+                }
+            });
+        }
+        
+        return equipment;
+    }
+    
+    /**
+     * Crée un équipement de type Terre
+     * 
+     * @param type Type d'équipement
+     * @param rarity Rareté de l'équipement
+     * @param level Niveau de l'équipement
+     * @return Équipement créé
+     */
+    public static Equipment createEarthEquipment(Equipment.EquipmentType type, Equipment.Rarity rarity, int level) {
+        String name;
+        String description;
+        Map<String, Integer> statBonuses = new HashMap<>();
+        Map<String, Float> percentBonuses = new HashMap<>();
+        
+        switch (type) {
+            case WEAPON:
+                name = "Marteau de la montagne";
+                description = "Un marteau lourd forgé dans la pierre la plus dure.";
+                statBonuses.put("attack", 5 + level);
+                statBonuses.put("defense", 2 + (level / 2));
+                break;
+            case ARMOR:
+                name = "Armure de roche";
+                description = "Une armure solide comme la pierre.";
+                statBonuses.put("defense", 6 + level);
+                statBonuses.put("maxHealth", 10 + (level * 2));
+                percentBonuses.put("earth_resistance", 0.15f + (level * 0.01f));
+                break;
+            case HELMET:
+                name = "Casque de granite";
+                description = "Un casque qui protège contre les coups critiques.";
+                statBonuses.put("defense", 3 + (level / 2));
+                percentBonuses.put("criticalResistance", 0.1f + (level * 0.005f));
+                break;
+            case BOOTS:
+                name = "Bottes de la terre";
+                description = "Des bottes qui ancrent fermement au sol.";
+                statBonuses.put("defense", 2 + (level / 3));
+                statBonuses.put("speed", -1); // Réduction de vitesse
+                percentBonuses.put("tenacity", 0.1f + (level * 0.01f));
+                break;
+            case ACCESSORY:
+            case AMULET:
+                name = "Pendentif de pierre";
+                description = "Un pendentif qui renforce la résistance physique.";
+                statBonuses.put("defense", 3 + (level / 2));
+                percentBonuses.put("earth_damage", 0.12f + (level * 0.01f));
+                break;
+            case RELIC:
+                name = "Cœur de la montagne";
+                description = "Un fragment du cœur d'une montagne ancienne.";
+                statBonuses.put("maxHealth", 15 + (level * 3));
+                statBonuses.put("defense", 5 + level);
+                break;
+            default:
+                name = "Équipement terrestre";
+                description = "Un équipement imprégné du pouvoir de la terre.";
+                statBonuses.put("defense", 3 + level);
+                break;
+        }
+        
+        // Créer l'équipement
+        Equipment equipment = new Equipment(name, description, type, rarity, level);
+        
+        // Ajouter les bonus de statistiques
+        for (Map.Entry<String, Integer> entry : statBonuses.entrySet()) {
+            equipment.addStatBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter les bonus de pourcentage
+        for (Map.Entry<String, Float> entry : percentBonuses.entrySet()) {
+            equipment.addPercentBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter des effets spéciaux selon la rareté
+        if (rarity == Equipment.Rarity.EPIC || rarity == Equipment.Rarity.LEGENDARY) {
+            equipment.addSpecialEffect(new Equipment.SpecialEffect("Peau de pierre", "Réduit les dégâts physiques subis") {
+                @Override
+                public void activate(CombatStats wearer, CombatStats target) {
+                    // Réduit les dégâts physiques de 15%
+                    // Cet effet sera géré par le système de combat
+                    System.out.println(wearer + " réduit les dégâts physiques grâce à Peau de pierre!");
+                }
+            });
+        }
+        
+        return equipment;
+    }
+
+    /**
+     * Crée un équipement de type Électrique
+     * 
+     * @param type Type d'équipement
+     * @param rarity Rareté de l'équipement
+     * @param level Niveau de l'équipement
+     * @return Équipement créé
+     */
+    public static Equipment createElectricEquipment(Equipment.EquipmentType type, Equipment.Rarity rarity, int level) {
+        String name;
+        String description;
+        Map<String, Integer> statBonuses = new HashMap<>();
+        Map<String, Float> percentBonuses = new HashMap<>();
+        
+        switch (type) {
+            case WEAPON:
+                name = "Lame foudroyante";
+                description = "Une épée qui frappe avec la vitesse de l'éclair.";
+                statBonuses.put("attack", 3 + level);
+                statBonuses.put("speed", 2 + (level / 3));
+                percentBonuses.put("criticalChance", 0.05f + (level * 0.005f));
+                break;
+            case ARMOR:
+                name = "Armure de foudre";
+                description = "Une armure qui crépite d'électricité.";
+                statBonuses.put("defense", 3 + (level / 2));
+                statBonuses.put("speed", 1 + (level / 5));
+                percentBonuses.put("electric_resistance", 0.15f + (level * 0.01f));
+                break;
+            case ACCESSORY:
+            case AMULET:
+                name = "Amulette d'orage";
+                description = "Une amulette qui amplifie les pouvoirs électriques.";
+                statBonuses.put("attack", 2 + (level / 3));
+                percentBonuses.put("electric_damage", 0.15f + (level * 0.01f));
+                break;
+            case RELIC:
+                name = "Cœur de l'orage";
+                description = "Un fragment d'une tempête éternelle.";
+                statBonuses.put("speed", 3 + (level / 2));
+                statBonuses.put("attack", 4 + level);
+                percentBonuses.put("criticalDamage", 0.1f + (level * 0.01f));
+                break;
+            default:
+                name = "Équipement électrique";
+                description = "Un équipement imprégné du pouvoir de la foudre.";
+                statBonuses.put("speed", 1 + (level / 4));
+                break;
+        }
+        
+        // Créer l'équipement
+        Equipment equipment = new Equipment(name, description, type, rarity, level);
+        
+        // Ajouter les bonus de statistiques
+        for (Map.Entry<String, Integer> entry : statBonuses.entrySet()) {
+            equipment.addStatBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter les bonus de pourcentage
+        for (Map.Entry<String, Float> entry : percentBonuses.entrySet()) {
+            equipment.addPercentBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter des effets spéciaux selon la rareté
+        if (rarity == Equipment.Rarity.RARE || rarity == Equipment.Rarity.EPIC || rarity == Equipment.Rarity.LEGENDARY) {
+            equipment.addSpecialEffect(new Equipment.SpecialEffect("Décharge", "Chance de paralyser l'ennemi") {
+                @Override
+                public void activate(CombatStats wearer, CombatStats target) {
+                    // 10% de chance de paralyser l'ennemi
+                    if (Math.random() < 0.1) {
+                        // Appliquer l'effet de paralysie
+                        // Cet effet sera géré par le système de combat
+                        target.addStatusEffect(StatusEffect.DÉSORIENTÉ, 2);
+                        System.out.println(target + " est paralysé par la Décharge!");
+                    }
+                }
+            });
+        }
+        
+        return equipment;
+    }
+
+    /**
+     * Crée un équipement de type Nature
+     * 
+     * @param type Type d'équipement
+     * @param rarity Rareté de l'équipement
+     * @param level Niveau de l'équipement
+     * @return Équipement créé
+     */
+    public static Equipment createNatureEquipment(Equipment.EquipmentType type, Equipment.Rarity rarity, int level) {
+        String name;
+        String description;
+        Map<String, Integer> statBonuses = new HashMap<>();
+        Map<String, Float> percentBonuses = new HashMap<>();
+        
+        switch (type) {
+            case WEAPON:
+                name = "Bâton de la forêt";
+                description = "Un bâton taillé dans le bois d'un arbre millénaire.";
+                statBonuses.put("attack", 3 + (level / 2));
+                statBonuses.put("magicalAttack", 4 + level);
+                percentBonuses.put("healingBonus", 0.1f + (level * 0.01f));
+                break;
+            case ARMOR:
+                name = "Armure d'écorce";
+                description = "Une armure vivante qui se régénère lentement.";
+                statBonuses.put("defense", 3 + (level / 2));
+                statBonuses.put("magicalDefense", 2 + (level / 3));
+                statBonuses.put("healthRegen", 1 + (level / 5));
+                break;
+            case ACCESSORY:
+            case AMULET:
+                name = "Pendentif de vitalité";
+                description = "Un pendentif qui amplifie les pouvoirs naturels.";
+                statBonuses.put("maxHealth", 8 + (level * 2));
+                percentBonuses.put("nature_damage", 0.12f + (level * 0.01f));
+                break;
+            case RELIC:
+                name = "Graine de l'arbre-monde";
+                description = "Une graine contenant l'essence de la vie.";
+                statBonuses.put("maxHealth", 15 + (level * 3));
+                statBonuses.put("healthRegen", 2 + (level / 3));
+                percentBonuses.put("healingBonus", 0.15f + (level * 0.01f));
+                break;
+            default:
+                name = "Équipement naturel";
+                description = "Un équipement imprégné du pouvoir de la nature.";
+                statBonuses.put("healthRegen", 1 + (level / 5));
+                break;
+        }
+        
+        // Créer l'équipement
+        Equipment equipment = new Equipment(name, description, type, rarity, level);
+        
+        // Ajouter les bonus de statistiques
+        for (Map.Entry<String, Integer> entry : statBonuses.entrySet()) {
+            equipment.addStatBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter les bonus de pourcentage
+        for (Map.Entry<String, Float> entry : percentBonuses.entrySet()) {
+            equipment.addPercentBonus(entry.getKey(), entry.getValue());
+        }
+        
+        // Ajouter des effets spéciaux selon la rareté
+        if (rarity == Equipment.Rarity.RARE || rarity == Equipment.Rarity.EPIC || rarity == Equipment.Rarity.LEGENDARY) {
+            equipment.addSpecialEffect(new Equipment.SpecialEffect("Régénération", "Régénère les points de vie en combat") {
+                @Override
+                public void activate(CombatStats wearer, CombatStats target) {
+                    // Régénère 2% des PV max par tour
+                    int healAmount = (int) (wearer.getMaxHealth() * 0.02f);
+                    wearer.heal(healAmount);
+                }
+            });
+        }
+        
+        return equipment;
+    }
+    
+    /**
      * Effet spécial: Chance de paralyser
      */
     public static class ParalysisChance extends Equipment.SpecialEffect {
@@ -526,7 +848,7 @@ public class SpecialEquipments {
         public void activate(CombatStats wearer, CombatStats target) {
             // Chance de paralyser l'adversaire
             if (Math.random() < chance) {
-                target.addStatusEffect(CombatStats.StatusEffect.PARALYSIS, 2);
+                target.addStatusEffect(StatusEffect.DÉSORIENTÉ, 2);
             }
         }
     }

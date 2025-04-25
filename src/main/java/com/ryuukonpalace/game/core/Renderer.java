@@ -3,6 +3,10 @@ package com.ryuukonpalace.game.core;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe responsable du rendu graphique du jeu.
  * Gère le rendu des textures, des formes géométriques et du texte.
@@ -26,6 +30,20 @@ public class Renderer {
     // Dimensions de l'écran
     private float screenWidth;
     private float screenHeight;
+    
+    // Effets visuels globaux
+    private float globalBrightness = 1.0f;
+    private Color globalTint = Color.WHITE;
+    private List<WeatherEffect> weatherEffects = new ArrayList<>();
+    
+    /**
+     * Énumération pour l'alignement du texte
+     */
+    public enum TextAlignment {
+        LEFT,
+        CENTER,
+        RIGHT
+    }
     
     /**
      * Constructeur privé (singleton)
@@ -111,8 +129,16 @@ public class Renderer {
      * @param a Transparence (0-1)
      */
     public void draw(int textureId, float x, float y, float width, float height, float r, float g, float b, float a) {
-        // Cette méthode sera implémentée plus tard
-        // Pour l'instant, c'est juste un placeholder
+        // Appliquer les effets globaux (luminosité et teinte)
+        float adjustedR = r * globalTint.getRed() / 255.0f * globalBrightness;
+        float adjustedG = g * globalTint.getGreen() / 255.0f * globalBrightness;
+        float adjustedB = b * globalTint.getBlue() / 255.0f * globalBrightness;
+        
+        // Cette méthode sera implémentée plus tard avec les valeurs ajustées
+        // Pour l'instant, on affiche un message de debug avec les valeurs
+        System.out.println("Drawing texture " + textureId + " at (" + x + ", " + y + ") with size (" + 
+                          width + ", " + height + ") and color (" + adjustedR + ", " + adjustedG + ", " + 
+                          adjustedB + ", " + a + ")");
     }
     
     /**
@@ -266,6 +292,21 @@ public class Renderer {
     }
     
     /**
+     * Dessiner du texte avec alignement
+     * @param text Texte à dessiner
+     * @param x Position X dans le monde
+     * @param y Position Y dans le monde
+     * @param size Taille du texte
+     * @param color Couleur au format ARGB (0xAARRGGBB)
+     * @param alignment Alignement du texte (LEFT, CENTER, RIGHT)
+     */
+    public void drawText(String text, float x, float y, int size, int color, TextAlignment alignment) {
+        // Cette méthode sera implémentée plus tard avec une bibliothèque de rendu de texte
+        // Pour l'instant, on utilise la méthode de base
+        drawText(text, x, y, size, color);
+    }
+    
+    /**
      * Dessiner un sprite
      * @param textureId ID de la texture
      * @param x Position X dans le monde
@@ -318,6 +359,9 @@ public class Renderer {
     public void beginRender() {
         GL20.glUseProgram(shaderProgram);
         GL30.glBindVertexArray(vao);
+        
+        // Dessiner les effets météorologiques
+        renderWeatherEffects();
     }
     
     /**
@@ -366,5 +410,85 @@ public class Renderer {
      */
     public float getScreenHeight() {
         return screenHeight;
+    }
+    
+    /**
+     * Définir la luminosité globale
+     * @param brightness Luminosité (0.0 - 1.0)
+     */
+    public void setGlobalBrightness(float brightness) {
+        this.globalBrightness = Math.max(0.0f, Math.min(1.0f, brightness));
+    }
+    
+    /**
+     * Obtenir la luminosité globale
+     * @return Luminosité globale
+     */
+    public float getGlobalBrightness() {
+        return globalBrightness;
+    }
+    
+    /**
+     * Définir la teinte globale
+     * @param tint Teinte (Color)
+     */
+    public void setGlobalTint(Color tint) {
+        this.globalTint = tint != null ? tint : Color.WHITE;
+    }
+    
+    /**
+     * Obtenir la teinte globale
+     * @return Teinte globale
+     */
+    public Color getGlobalTint() {
+        return globalTint;
+    }
+    
+    /**
+     * Ajouter un effet météorologique
+     * @param textureId ID de la texture de l'effet
+     * @param intensity Intensité de l'effet (0.0 - 1.0)
+     */
+    public void addWeatherEffect(int textureId, float intensity) {
+        // Vérifier si l'effet existe déjà
+        for (WeatherEffect effect : weatherEffects) {
+            if (effect.textureId == textureId) {
+                effect.intensity = Math.max(0.0f, Math.min(1.0f, intensity));
+                return;
+            }
+        }
+        
+        // Ajouter un nouvel effet
+        weatherEffects.add(new WeatherEffect(textureId, intensity));
+    }
+    
+    /**
+     * Supprimer tous les effets météorologiques
+     */
+    public void clearWeatherEffects() {
+        weatherEffects.clear();
+    }
+    
+    /**
+     * Dessiner les effets météorologiques
+     */
+    private void renderWeatherEffects() {
+        for (WeatherEffect effect : weatherEffects) {
+            // Dessiner l'effet en plein écran avec l'intensité spécifiée
+            drawUI(effect.textureId, 0, 0, screenWidth, screenHeight, 1.0f, 1.0f, 1.0f, effect.intensity);
+        }
+    }
+    
+    /**
+     * Classe interne pour représenter un effet météorologique
+     */
+    private static class WeatherEffect {
+        int textureId;
+        float intensity;
+        
+        WeatherEffect(int textureId, float intensity) {
+            this.textureId = textureId;
+            this.intensity = Math.max(0.0f, Math.min(1.0f, intensity));
+        }
     }
 }

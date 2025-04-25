@@ -1,0 +1,401 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "PNJ neutres pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "NPCs",
+    "faction": "NEUTRES"
+  },
+  "npcs": [
+    {
+      "id": 4,
+      "name": "Kael",
+      "role": "Chasseur de primes",
+      "description": "Motivations ambiguës, utilise à la fois des variants et des armes",
+      "location": "Darkhaven",
+      "level": 35,
+      "isQuestGiver": true,
+      "isShopkeeper": true,
+      "isTrainer": false,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "MALE",
+        "age": "ADULT",
+        "height": "AVERAGE",
+        "build": "LEAN",
+        "hairColor": "DARK_BROWN",
+        "eyeColor": "AMBER",
+        "distinguishingFeatures": "Cicatrices multiples sur les bras, regard constamment alerte, demi-masque couvrant le bas du visage",
+        "clothing": "Vêtements sombres et pratiques, nombreuses armes dissimulées, pierre de capture modifiée au poignet"
+      },
+      "personality": {
+        "traits": ["Pragmatique", "Méfiant", "Indépendant", "Opportuniste"],
+        "quirks": ["Parle peu mais observe tout", "Collectionne des trophées de ses cibles"],
+        "likes": ["Or", "Liberté", "Défis", "Information"],
+        "dislikes": ["Autorité", "Fanatisme", "Contraintes", "Questions personnelles"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Vous avez une cible ou une offre? Sinon, ne perdez pas mon temps.",
+          "Darkhaven est dangereuse pour les étrangers. Vous cherchez quelqu'un?",
+          "Je vous ai remarqué depuis un moment. Qu'est-ce que vous voulez?"
+        ],
+        "farewell": [
+          "Surveillez vos arrières. Cette ville a des yeux partout.",
+          "Si vous avez besoin de mes services, vous savez où me trouver. Le prix sera élevé.",
+          "Ne parlez pas de notre rencontre. Certaines personnes me cherchent."
+        ],
+        "quest_start": [
+          "J'ai des informations sur une cible lucrative. Intéressé par un partenariat temporaire?",
+          "Un variant rare a été aperçu. Je pourrais partager la prime... si vous m'aidez.",
+          "J'ai besoin d'accéder à un endroit surveillé. Vous pourriez faire diversion."
+        ],
+        "quest_complete": [
+          "Travail efficace. Voici votre part, comme convenu.",
+          "Pas mal. Peut-être qu'on pourra refaire affaire à l'avenir.",
+          "Vous avez prouvé votre utilité. Ces informations valent de l'or, gardez-les."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 3,
+          "level": 33,
+          "nickname": "Shadow"
+        },
+        {
+          "variantId": 16,
+          "level": 30,
+          "nickname": "Blade"
+        }
+      ],
+      "quests": [22, 26, 30],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Collecte d'informations",
+          "location": "Marché de Darkhaven"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Chasse aux primes",
+          "location": "Zones variables selon les contrats"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Négociation de contrats",
+          "location": "Taverne du Loup Noir"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Surveillance ou embuscades",
+          "location": "Zones variables selon les contrats"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 2,
+          "type": "BUSINESS",
+          "description": "Accepte parfois des contrats de Lady Elara"
+        },
+        {
+          "npcId": 3,
+          "type": "NEUTRAL",
+          "description": "Respect mutuel avec Eamon malgré leurs différences"
+        },
+        {
+          "npcId": 10,
+          "type": "ALLY",
+          "description": "Partenariat occasionnel avec le marchand du marché noir"
+        }
+      ],
+      "shopInventory": [
+        {
+          "itemId": 80,
+          "price": 300,
+          "stock": 3,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "itemId": 81,
+          "price": 500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "itemId": 82,
+          "price": 1500,
+          "stock": 1,
+          "restockTime": "MONTHLY"
+        }
+      ],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 700,
+        "money": 1000,
+        "items": [
+          {
+            "itemId": 80,
+            "chance": 0.5
+          },
+          {
+            "itemId": 83,
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "name": "Vex",
+      "role": "Marchand du marché noir",
+      "description": "Spécialisé dans les objets rares et les informations",
+      "location": "Darkhaven",
+      "level": 30,
+      "isQuestGiver": true,
+      "isShopkeeper": true,
+      "isTrainer": false,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "MALE",
+        "age": "MIDDLE_AGED",
+        "height": "SHORT",
+        "build": "STOCKY",
+        "hairColor": "GRAY",
+        "eyeColor": "BLACK",
+        "distinguishingFeatures": "Sourire constamment nerveux, doigts agiles qui ne cessent de bouger, œil gauche légèrement plus petit",
+        "clothing": "Vêtements de qualité mais discrets, nombreuses poches cachées, gants en cuir fin"
+      },
+      "personality": {
+        "traits": ["Rusé", "Cupide", "Informé", "Nerveux"],
+        "quirks": ["Compte constamment son argent", "Connaît des rumeurs sur tout le monde"],
+        "likes": ["Profit", "Secrets", "Objets rares", "Négociation"],
+        "dislikes": ["Autorités", "Violence directe", "Pertes financières", "Loyauté"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Bienvenue, bienvenue! J'ai des marchandises spéciales aujourd'hui, juste pour vous!",
+          "Chut, pas si fort! Vous cherchez quelque chose de... particulier?",
+          "Ah, un client avec du goût! Ou peut-être cherchez-vous des informations? J'ai les deux."
+        ],
+        "farewell": [
+          "Affaire conclue! Revenez quand vous aurez plus d'or... ou plus de secrets.",
+          "N'oubliez pas: vous ne m'avez jamais vu, et je ne vous ai jamais vendu ça.",
+          "Si quelqu'un demande, nous n'avons jamais parlé. Bonne journée, cher client!"
+        ],
+        "quest_start": [
+          "J'ai entendu parler d'un artefact rare... Si vous le récupérez, je vous offre un prix généreux.",
+          "Un de mes fournisseurs a... disparu. Retrouvez-le, ou au moins sa marchandise.",
+          "Les gardes confisquent mes importations. Récupérez mon colis sans vous faire prendre."
+        ],
+        "quest_complete": [
+          "Excellent! Personne ne vous a suivi, j'espère? Voici votre paiement.",
+          "Parfait, parfait! Vous êtes un partenaire commercial fiable. Voici un bonus.",
+          "Ah, enfin! Je commençais à m'inquiéter. Prenez ceci en plus de notre accord."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 17,
+          "level": 25,
+          "nickname": "Sly"
+        }
+      ],
+      "quests": [27, 31, 35],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Inventaire et préparation",
+          "location": "Arrière-boutique cachée"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Commerce discret",
+          "location": "Échoppe au marché de Darkhaven"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Rencontres avec fournisseurs",
+          "location": "Taverne du Loup Noir"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Transactions secrètes",
+          "location": "Entrepôt abandonné"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 4,
+          "type": "ALLY",
+          "description": "Fournit des informations à Kael"
+        },
+        {
+          "npcId": 2,
+          "type": "BUSINESS",
+          "description": "Vend des objets rares à Lady Elara"
+        },
+        {
+          "npcId": 11,
+          "type": "RIVAL",
+          "description": "Concurrence avec d'autres marchands"
+        }
+      ],
+      "shopInventory": [
+        {
+          "itemId": 90,
+          "price": 200,
+          "stock": 5,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "itemId": 91,
+          "price": 800,
+          "stock": 3,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "itemId": 92,
+          "price": 2000,
+          "stock": 1,
+          "restockTime": "MONTHLY"
+        },
+        {
+          "itemId": 93,
+          "price": 5000,
+          "stock": 1,
+          "restockTime": "SEASONAL"
+        }
+      ],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 500,
+        "money": 1500,
+        "items": [
+          {
+            "itemId": 91,
+            "chance": 0.4
+          },
+          {
+            "itemId": 94,
+            "chance": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "name": "Aria",
+      "role": "Voyageuse mystérieuse",
+      "description": "Barde itinérante qui connaît d'anciennes légendes sur les variants",
+      "location": "Variable (souvent dans les tavernes)",
+      "level": 28,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": false,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "FEMALE",
+        "age": "YOUNG_ADULT",
+        "height": "AVERAGE",
+        "build": "SLENDER",
+        "hairColor": "AUBURN",
+        "eyeColor": "VIOLET",
+        "distinguishingFeatures": "Tatouages mystérieux sur les mains, voix mélodieuse qui semble résonner étrangement",
+        "clothing": "Vêtements de voyage colorés, luth orné de symboles anciens, cape aux motifs stellaires"
+      },
+      "personality": {
+        "traits": ["Mystérieuse", "Charmante", "Observatrice", "Énigmatique"],
+        "quirks": ["Parle parfois à des êtres invisibles", "Connaît des chansons que personne d'autre ne connaît"],
+        "likes": ["Histoires anciennes", "Musique", "Voyages", "Étoiles"],
+        "dislikes": ["Rester trop longtemps au même endroit", "Violence", "Questions sur son passé"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Ah, une nouvelle âme à qui conter mes histoires. Asseyez-vous, voyageur.",
+          "Les étoiles m'ont parlé de votre venue. Souhaitez-vous entendre leur message?",
+          "Une chanson pour égayer votre journée? Ou peut-être cherchez-vous des réponses plus profondes?"
+        ],
+        "farewell": [
+          "Nos chemins se séparent ici, mais se recroiseront sous d'autres étoiles.",
+          "Emportez cette mélodie avec vous. Elle vous guidera quand vous serez perdu.",
+          "Le vent m'appelle ailleurs. Jusqu'à notre prochaine rencontre, ami voyageur."
+        ],
+        "quest_start": [
+          "Ma chanson reste inachevée. Aidez-moi à trouver l'inspiration dans les ruines anciennes.",
+          "Un fragment de légende s'est perdu. Cherchez-le là où les variants et les étoiles se rencontrent.",
+          "Cette mélodie cache un secret. Suivez-la jusqu'à sa source, et vous découvrirez un trésor oublié."
+        ],
+        "quest_complete": [
+          "La chanson est maintenant complète, grâce à vous. Écoutez ce qu'elle révèle.",
+          "Vous avez retrouvé ce qui était perdu. Laissez-moi vous conter la véritable histoire.",
+          "Le secret est désormais vôtre. Utilisez cette connaissance avec sagesse."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 8,
+          "level": 27,
+          "nickname": "Melody"
+        }
+      ],
+      "quests": [28, 32, 36],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Méditation et composition",
+          "location": "Lieux naturels isolés"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Voyage entre les villages",
+          "location": "Routes et chemins"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Performance dans les tavernes",
+          "location": "Tavernes de différentes villes"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Observation des étoiles",
+          "location": "Points élevés, collines, toits"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 7,
+          "type": "ACQUAINTANCE",
+          "description": "Partage des connaissances anciennes avec Elder Mira"
+        },
+        {
+          "npcId": 9,
+          "type": "ACQUAINTANCE",
+          "description": "A chanté des légendes pour Sir Rainer Wolfheart"
+        },
+        {
+          "npcId": 1,
+          "type": "MYSTERIOUS",
+          "description": "Semble connaître des secrets sur Maître Orion"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 600,
+        "money": 300,
+        "items": [
+          {
+            "itemId": 100,
+            "chance": 0.6
+          },
+          {
+            "itemId": 101,
+            "chance": 0.3
+          }
+        ]
+      }
+    }
+  ],
+  "totalNpcs": 3,
+  "lastId": 11
+}

@@ -2,12 +2,15 @@ package com.ryuukonpalace.game.world;
 
 import com.ryuukonpalace.game.creatures.Creature;
 import com.ryuukonpalace.game.creatures.CreatureFactory;
+import com.ryuukonpalace.game.creatures.CreatureType;
 import com.ryuukonpalace.game.creatures.ai.CreatureAI;
 import com.ryuukonpalace.game.creatures.ai.CreatureAIManager;
 import com.ryuukonpalace.game.player.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -35,6 +38,9 @@ public class SpawnZone extends GameObject {
     // Nombre de pas nécessaires pour réinitialiser le compteur
     private int stepsToReset;
     
+    // Modificateurs de spawn basés sur le temps et la météo
+    private Map<CreatureType, Float> spawnModifiers;
+    
     // Générateur de nombres aléatoires
     private Random random;
     
@@ -60,6 +66,12 @@ public class SpawnZone extends GameObject {
         this.stepsToReset = stepsToReset;
         this.random = new Random();
         this.isPlayerInZone = false;
+        this.spawnModifiers = new HashMap<>();
+        
+        // Initialiser les modificateurs de spawn par défaut
+        for (CreatureType type : CreatureType.values()) {
+            spawnModifiers.put(type, 1.0f);
+        }
     }
     
     /**
@@ -143,55 +155,128 @@ public class SpawnZone extends GameObject {
     }
     
     /**
+     * Mettre à jour les probabilités de spawn en fonction du temps et de la météo
+     * 
+     * @param timeSystem Système de temps
+     * @param weatherSystem Système de météo
+     */
+    public void updateSpawnProbabilities(TimeSystem timeSystem, WeatherSystem weatherSystem) {
+        // Réinitialiser les modificateurs
+        for (CreatureType type : CreatureType.values()) {
+            spawnModifiers.put(type, 1.0f);
+        }
+        
+        // Appliquer les modificateurs de temps
+        for (CreatureType type : CreatureType.values()) {
+            float timeModifier = timeSystem.getSpawnModifier(type);
+            float currentModifier = spawnModifiers.get(type);
+            spawnModifiers.put(type, currentModifier * timeModifier);
+        }
+        
+        // Appliquer les modificateurs de météo
+        for (CreatureType type : CreatureType.values()) {
+            float weatherModifier = weatherSystem.getSpawnModifier(type);
+            float currentModifier = spawnModifiers.get(type);
+            spawnModifiers.put(type, currentModifier * weatherModifier);
+        }
+    }
+    
+    /**
      * Incrémenter le compteur de pas dans la zone
      * 
      * @return Une créature si une apparition est déclenchée, null sinon
      */
     public Creature incrementSteps() {
-        if (type != SpawnZoneType.RANDOM_SPAWN) {
-            return null;
-        }
-        
-        stepsInZone++;
-        
-        // Vérifier si le compteur doit être réinitialisé
-        if (stepsInZone >= stepsToReset) {
-            stepsInZone = 0;
-        }
-        
-        // Vérifier si une créature apparaît
-        if (random.nextFloat() < spawnChancePerStep && !possibleCreatures.isEmpty()) {
-            // Sélectionner une créature en fonction des poids d'apparition
-            int totalWeight = possibleCreatures.stream().mapToInt(entry -> entry.spawnWeight).sum();
-            int randomWeight = random.nextInt(totalWeight);
+        if (type == SpawnZoneType.RANDOM_SPAWN) {
+            stepsInZone++;
             
-            int currentWeight = 0;
-            for (SpawnEntry entry : possibleCreatures) {
-                currentWeight += entry.spawnWeight;
-                if (randomWeight < currentWeight) {
-                    // Créer la créature avec un niveau aléatoire entre min et max
-                    int level = entry.minLevel + random.nextInt(entry.maxLevel - entry.minLevel + 1);
-                    Creature creature = CreatureFactory.createCreature(entry.creatureId, level);
-                    
-                    if (creature != null) {
-                        // Marquer la créature comme sauvage
-                        creature.setWild(true);
+            // Vérifier si le nombre de pas dépasse le seuil de réinitialisation
+            if (stepsInZone >= stepsToReset) {
+                stepsInZone = 0;
+            }
+            
+            // Calculer la probabilité d'apparition en fonction du nombre de pas
+            float stepMultiplier = Math.min(1.0f, (float) stepsInZone / (float) stepsToReset);
+            float spawnChance = spawnChancePerStep * stepMultiplier;
+            
+            // Générer un nombre aléatoire pour déterminer si une créature apparaît
+            if (random.nextFloat() < spawnChance) {
+                // Réinitialiser le compteur de pas
+                stepsInZone = 0;
+                
+                // Sélectionner une créature en fonction des poids d'apparition
+                if (!possibleCreatures.isEmpty()) {
+                    // Calculer la somme totale des poids d'apparition
+                    int totalWeight = 0;
+                    for (SpawnEntry entry : possibleCreatures) {
+                        // Obtenir le modificateur pour le type de cette créature
+                        Creature tempCreature = CreatureFactory.createCreature(entry.creatureId);
+                        float typeModifier = 1.0f;
+                        if (tempCreature != null) {
+                            CreatureType creatureType = tempCreature.getType();
+                            if (spawnModifiers.containsKey(creatureType)) {
+                                typeModifier = spawnModifiers.get(creatureType);
+                            }
+                        }
                         
-                        // Déterminer le comportement de la créature (70% fuite, 30% agressive)
-                        CreatureAI.BehaviorType behaviorType = random.nextFloat() < 0.7f ? 
-                            CreatureAI.BehaviorType.FLEE : CreatureAI.BehaviorType.AGGRESSIVE;
-                        
-                        // Créer et attacher l'IA à la créature
-                        float moveSpeed = 50.0f + random.nextFloat() * 30.0f; // Vitesse entre 50 et 80
-                        float detectionRange = 150.0f + random.nextFloat() * 50.0f; // Portée entre 150 et 200
-                        CreatureAI ai = new CreatureAI(creature, behaviorType, moveSpeed, detectionRange);
-                        creature.setAI(ai);
-                        
-                        // Activer la créature
-                        creature.setActive(true);
+                        // Appliquer le modificateur au poids d'apparition
+                        totalWeight += entry.spawnWeight * typeModifier;
                     }
                     
-                    return creature;
+                    // Générer un nombre aléatoire entre 0 et la somme totale des poids
+                    int randomWeight = random.nextInt(totalWeight + 1);
+                    
+                    // Parcourir les créatures pour trouver celle qui correspond au poids sélectionné
+                    int currentWeight = 0;
+                    for (SpawnEntry entry : possibleCreatures) {
+                        // Obtenir le modificateur pour le type de cette créature
+                        Creature tempCreature = CreatureFactory.createCreature(entry.creatureId);
+                        float typeModifier = 1.0f;
+                        if (tempCreature != null) {
+                            CreatureType creatureType = tempCreature.getType();
+                            if (spawnModifiers.containsKey(creatureType)) {
+                                typeModifier = spawnModifiers.get(creatureType);
+                            }
+                        }
+                        
+                        // Appliquer le modificateur au poids d'apparition
+                        currentWeight += entry.spawnWeight * typeModifier;
+                        
+                        if (randomWeight <= currentWeight) {
+                            // Créer la créature avec un niveau aléatoire entre min et max
+                            int level = entry.minLevel;
+                            if (entry.maxLevel > entry.minLevel) {
+                                level += random.nextInt(entry.maxLevel - entry.minLevel + 1);
+                            }
+                            
+                            Creature creature = CreatureFactory.createCreature(entry.creatureId, level);
+                            
+                            if (creature != null) {
+                                // Positionner la créature au centre de la zone
+                                float creatureX = x + (width - creature.getWidth()) / 2;
+                                float creatureY = y + (height - creature.getHeight()) / 2;
+                                creature.setPosition(creatureX, creatureY);
+                                
+                                // Marquer la créature comme sauvage
+                                creature.setWild(true);
+                                
+                                // Déterminer le comportement de la créature (70% fuite, 30% agressive)
+                                CreatureAI.BehaviorType behaviorType = random.nextFloat() < 0.7f ? 
+                                    CreatureAI.BehaviorType.FLEE : CreatureAI.BehaviorType.AGGRESSIVE;
+                                
+                                // Créer et attacher l'IA à la créature
+                                float moveSpeed = 50.0f + random.nextFloat() * 30.0f; // Vitesse entre 50 et 80
+                                float detectionRange = 150.0f + random.nextFloat() * 50.0f; // Portée entre 150 et 200
+                                CreatureAI ai = new CreatureAI(creature, behaviorType, moveSpeed, detectionRange);
+                                creature.setAI(ai);
+                                
+                                // Activer la créature
+                                creature.setActive(true);
+                            }
+                            
+                            return creature;
+                        }
+                    }
                 }
             }
         }

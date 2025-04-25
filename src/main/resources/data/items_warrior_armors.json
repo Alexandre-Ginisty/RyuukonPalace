@@ -1,0 +1,421 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Armures utilisées par les Guerriers PNJ dans Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "WARRIOR_ARMORS"
+  },
+  "armors": [
+    {
+      "id": 801,
+      "name": "Armure de Guerrier",
+      "description": "Armure standard utilisée par les Guerriers d'Elderglen",
+      "value": 800,
+      "rarity": "COMMON",
+      "type": "MEDIUM",
+      "defense": 30,
+      "variantResistances": {
+        "FURIEUX": 0.9,
+        "CHAOTIQUE": 0.9
+      },
+      "variantWeaknesses": {
+        "METALLIQUE": 1.2
+      },
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_armor_basic",
+        "textureId": "warrior_armor_basic_tex",
+        "scale": 1.0
+      },
+      "lore": "Cette armure standard est forgée dans les ateliers de Fort Eisenberg et distribuée à tous les Guerriers qui ont terminé leur formation de base. Elle offre une bonne protection contre les attaques physiques des variants tout en permettant une mobilité suffisante."
+    },
+    {
+      "id": 802,
+      "name": "Armure de Feu",
+      "description": "Armure imprégnée d'essence de variants de feu",
+      "value": 1500,
+      "rarity": "UNCOMMON",
+      "type": "MEDIUM",
+      "defense": 35,
+      "variantResistances": {
+        "ARDENT": 0.5,
+        "GLACIAL": 1.5
+      },
+      "variantWeaknesses": {
+        "AQUEUX": 1.3
+      },
+      "effects": [
+        {
+          "type": "FIRE_RESISTANCE",
+          "description": "Réduit les dégâts de feu",
+          "power": 50,
+          "chance": 100
+        },
+        {
+          "type": "HEAT_AURA",
+          "description": "Inflige des dégâts de feu aux ennemis proches",
+          "power": 10,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_armor_fire",
+        "textureId": "warrior_armor_fire_tex",
+        "scale": 1.0,
+        "effectId": "fire_glow"
+      },
+      "lore": "Cette armure a été forgée dans la chaleur intense générée par des variants Ardents capturés. Le métal est imprégné d'essence de feu, ce qui lui confère une résistance exceptionnelle aux attaques de type feu et une légère aura de chaleur qui peut brûler les ennemis qui s'approchent trop près."
+    },
+    {
+      "id": 803,
+      "name": "Armure de Glace",
+      "description": "Armure imprégnée d'essence de variants glaciaux",
+      "value": 1500,
+      "rarity": "UNCOMMON",
+      "type": "MEDIUM",
+      "defense": 35,
+      "variantResistances": {
+        "GLACIAL": 0.5,
+        "AQUEUX": 0.8
+      },
+      "variantWeaknesses": {
+        "ARDENT": 1.3
+      },
+      "effects": [
+        {
+          "type": "ICE_RESISTANCE",
+          "description": "Réduit les dégâts de glace",
+          "power": 50,
+          "chance": 100
+        },
+        {
+          "type": "FROST_AURA",
+          "description": "Ralentit les ennemis proches",
+          "power": 20,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_armor_ice",
+        "textureId": "warrior_armor_ice_tex",
+        "scale": 1.0,
+        "effectId": "ice_mist"
+      },
+      "lore": "Cette armure a été forgée dans les profondeurs glacées de Frostpeak Mountains, refroidie avec l'essence de variants Glaciaux. Le métal est constamment couvert d'une fine couche de givre qui ne fond jamais, et l'air autour du porteur est sensiblement plus froid, ralentissant les mouvements des ennemis proches."
+    },
+    {
+      "id": 804,
+      "name": "Armure Lourde",
+      "description": "Armure massive offrant une protection maximale",
+      "value": 2000,
+      "rarity": "RARE",
+      "type": "HEAVY",
+      "defense": 50,
+      "variantResistances": {
+        "FURIEUX": 0.7,
+        "CHAOTIQUE": 0.7,
+        "NATUREL": 0.8
+      },
+      "variantWeaknesses": {
+        "METALLIQUE": 1.3,
+        "STRATEGE": 1.2
+      },
+      "effects": [
+        {
+          "type": "PHYSICAL_RESISTANCE",
+          "description": "Réduit considérablement les dégâts physiques",
+          "power": 40,
+          "chance": 100
+        },
+        {
+          "type": "MOVEMENT_PENALTY",
+          "description": "Réduit la vitesse de déplacement",
+          "power": -30,
+          "chance": 100
+        },
+        {
+          "type": "INTIMIDATION",
+          "description": "Chance d'intimider les variants de faible niveau",
+          "power": 25,
+          "chance": 40
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_armor_heavy",
+        "textureId": "warrior_armor_heavy_tex",
+        "scale": 1.0
+      },
+      "lore": "Cette armure massive est réservée aux Guerriers les plus forts physiquement, car son poids considérable ralentit significativement les mouvements. En contrepartie, elle offre une protection exceptionnelle contre presque tous les types d'attaques, et son apparence intimidante peut suffire à faire fuir les variants les moins agressifs."
+    },
+    {
+      "id": 805,
+      "name": "Bouclier du Guerrier",
+      "description": "Bouclier standard utilisé par les Guerriers d'Elderglen",
+      "value": 500,
+      "rarity": "COMMON",
+      "type": "SHIELD",
+      "defense": 20,
+      "variantResistances": {},
+      "variantWeaknesses": {},
+      "effects": [
+        {
+          "type": "BLOCK_CHANCE",
+          "description": "Chance de bloquer complètement une attaque",
+          "power": 25,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_shield_basic",
+        "textureId": "warrior_shield_basic_tex",
+        "scale": 1.0
+      },
+      "lore": "Ce bouclier robuste est fabriqué en acier renforcé et distribué à tous les Guerriers formés au combat défensif. Sa taille et son poids sont équilibrés pour permettre à la fois une bonne protection et une mobilité suffisante au combat."
+    },
+    {
+      "id": 806,
+      "name": "Bouclier de Feu",
+      "description": "Bouclier imprégné d'essence de variants de feu",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "SHIELD",
+      "defense": 25,
+      "variantResistances": {
+        "ARDENT": 0.6,
+        "GLACIAL": 1.3
+      },
+      "variantWeaknesses": {
+        "AQUEUX": 1.2
+      },
+      "effects": [
+        {
+          "type": "BLOCK_CHANCE",
+          "description": "Chance de bloquer complètement une attaque",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "FIRE_RESISTANCE",
+          "description": "Réduit les dégâts de feu",
+          "power": 40,
+          "chance": 100
+        },
+        {
+          "type": "FLAME_COUNTER",
+          "description": "Inflige des dégâts de feu lors d'un blocage réussi",
+          "power": 20,
+          "chance": 50
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_shield_fire",
+        "textureId": "warrior_shield_fire_tex",
+        "scale": 1.0,
+        "effectId": "fire_edge"
+      },
+      "lore": "Ce bouclier a été forgé dans la chaleur intense générée par des variants Ardents capturés. Le métal est imprégné d'essence de feu, ce qui lui confère une résistance exceptionnelle aux attaques de type feu. Lors d'un blocage réussi, le bouclier peut libérer une vague de chaleur qui brûle l'attaquant."
+    },
+    {
+      "id": 807,
+      "name": "Bouclier de Glace",
+      "description": "Bouclier imprégné d'essence de variants glaciaux",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "SHIELD",
+      "defense": 25,
+      "variantResistances": {
+        "GLACIAL": 0.6,
+        "AQUEUX": 0.8
+      },
+      "variantWeaknesses": {
+        "ARDENT": 1.2
+      },
+      "effects": [
+        {
+          "type": "BLOCK_CHANCE",
+          "description": "Chance de bloquer complètement une attaque",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "ICE_RESISTANCE",
+          "description": "Réduit les dégâts de glace",
+          "power": 40,
+          "chance": 100
+        },
+        {
+          "type": "FROST_COUNTER",
+          "description": "Ralentit l'attaquant lors d'un blocage réussi",
+          "power": 30,
+          "chance": 50
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_shield_ice",
+        "textureId": "warrior_shield_ice_tex",
+        "scale": 1.0,
+        "effectId": "frost_edge"
+      },
+      "lore": "Ce bouclier a été forgé dans les profondeurs glacées de Frostpeak Mountains, refroidi avec l'essence de variants Glaciaux. Le métal est constamment couvert d'une fine couche de givre qui ne fond jamais. Lors d'un blocage réussi, le bouclier peut libérer une vague de froid qui ralentit l'attaquant."
+    },
+    {
+      "id": 808,
+      "name": "Armure du Général",
+      "description": "Armure d'apparat portée par le Général Thorne",
+      "value": 8000,
+      "rarity": "VERY_RARE",
+      "type": "HEAVY",
+      "defense": 70,
+      "variantResistances": {
+        "FURIEUX": 0.6,
+        "CHAOTIQUE": 0.6,
+        "STRATEGE": 0.7,
+        "MYSTIQUE": 0.7
+      },
+      "variantWeaknesses": {},
+      "effects": [
+        {
+          "type": "PHYSICAL_RESISTANCE",
+          "description": "Réduit considérablement les dégâts physiques",
+          "power": 50,
+          "chance": 100
+        },
+        {
+          "type": "COMMAND_AURA",
+          "description": "Augmente les statistiques des alliés à proximité",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "INTIMIDATION",
+          "description": "Chance d'intimider les variants et ennemis",
+          "power": 40,
+          "chance": 60
+        },
+        {
+          "type": "VARIANT_RESISTANCE",
+          "description": "Résistance à tous les types de variants",
+          "power": 20,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "general_armor",
+        "textureId": "general_armor_tex",
+        "scale": 1.0,
+        "effectId": "authority_aura"
+      },
+      "lore": "Cette armure est le symbole du pouvoir militaire des Guerriers. Forgée avec des métaux rares et renforcée par des techniques secrètes, elle a été transmise de général en général depuis des générations. Le Général Thorne l'a modifiée pour qu'elle soit encore plus résistante aux attaques des variants, utilisant ironiquement l'essence même de créatures qu'il méprise pour se protéger contre elles."
+    },
+    {
+      "id": 809,
+      "name": "Manteau de Kael",
+      "description": "Long manteau porté par le célèbre chasseur de primes",
+      "value": 7000,
+      "rarity": "VERY_RARE",
+      "type": "LIGHT",
+      "defense": 40,
+      "variantResistances": {
+        "OMBREUX": 0.5,
+        "VISIONNAIRE": 0.7
+      },
+      "variantWeaknesses": {
+        "LUMINEUX": 1.2
+      },
+      "effects": [
+        {
+          "type": "STEALTH_MASTERY",
+          "description": "Rend le porteur presque invisible dans l'ombre",
+          "power": 50,
+          "chance": 100
+        },
+        {
+          "type": "TRACKING",
+          "description": "Permet de suivre facilement les traces de variants",
+          "power": 60,
+          "chance": 100
+        },
+        {
+          "type": "WEATHER_RESISTANCE",
+          "description": "Protège des conditions météorologiques extrêmes",
+          "power": 40,
+          "chance": 100
+        },
+        {
+          "type": "POCKET_DIMENSION",
+          "description": "Possède de nombreuses poches plus grandes qu'elles n'en ont l'air",
+          "power": 100,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "kael_coat",
+        "textureId": "kael_coat_tex",
+        "scale": 1.0,
+        "effectId": "shadow_wisp"
+      },
+      "lore": "Ce manteau a été fabriqué par Kael à partir des peaux de divers variants qu'il a chassés au fil des ans. Chaque pièce a été soigneusement sélectionnée pour ses propriétés uniques et cousue avec du fil imprégné d'essence d'Ombreux. Les nombreuses poches cachées contiennent un arsenal d'outils et d'armes, et certains affirment que certaines de ces poches défient les lois de l'espace, contenant bien plus que leur volume apparent ne le permettrait."
+    },
+    {
+      "id": 810,
+      "name": "Tenue d'Aria",
+      "description": "Combinaison légère et sombre de l'assassin légendaire",
+      "value": 7500,
+      "rarity": "VERY_RARE",
+      "type": "LIGHT",
+      "defense": 35,
+      "variantResistances": {
+        "OMBREUX": 0.4,
+        "POISON": 0.0
+      },
+      "variantWeaknesses": {
+        "LUMINEUX": 1.5
+      },
+      "effects": [
+        {
+          "type": "SHADOW_BLEND",
+          "description": "Permet de se fondre complètement dans les ombres",
+          "power": 70,
+          "chance": 100
+        },
+        {
+          "type": "SILENT_MOVEMENT",
+          "description": "Rend les mouvements totalement silencieux",
+          "power": 60,
+          "chance": 100
+        },
+        {
+          "type": "POISON_RESISTANCE",
+          "description": "Immunité aux poisons",
+          "power": 100,
+          "chance": 100
+        },
+        {
+          "type": "AGILITY_BOOST",
+          "description": "Augmente considérablement l'agilité",
+          "power": 50,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "aria_outfit",
+        "textureId": "aria_outfit_tex",
+        "scale": 1.0,
+        "effectId": "shadow_cloak"
+      },
+      "lore": "Cette tenue a appartenu à Aria, une assassin légendaire qui opérait dans l'ombre il y a plusieurs décennies. Fabriquée à partir de soie d'ombre, un matériau extrêmement rare tissé par certains variants Ombreux, elle permet à son porteur de se fondre presque parfaitement dans les ténèbres. La légende raconte qu'Aria pouvait entrer dans les demeures les mieux gardées sans jamais être détectée, et que même les variants Visionnaires ne pouvaient percevoir sa présence."
+    }
+  ],
+  "totalArmors": 10,
+  "lastId": 810
+}

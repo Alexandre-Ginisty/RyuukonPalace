@@ -1,0 +1,373 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "PNJ de la faction des Guerriers pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "NPCs",
+    "faction": "GUERRIERS"
+  },
+  "npcs": [
+    {
+      "id": 3,
+      "name": "Eamon",
+      "role": "Jeune guerrier",
+      "description": "Talentueux et déterminé à protéger son peuple sans l'aide des variants",
+      "location": "Stormpeak",
+      "level": 25,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": true,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "MALE",
+        "age": "YOUNG_ADULT",
+        "height": "TALL",
+        "build": "ATHLETIC",
+        "hairColor": "BLACK",
+        "eyeColor": "BROWN",
+        "distinguishingFeatures": "Cicatrice sur la joue droite, regard intense et déterminé",
+        "clothing": "Armure légère de cuir avec l'emblème des Guerriers, épée à la ceinture"
+      },
+      "personality": {
+        "traits": ["Courageux", "Déterminé", "Loyal", "Impulsif"],
+        "quirks": ["S'entraîne à l'aube tous les jours", "Touche son épée pour se rassurer"],
+        "likes": ["Combat honorable", "Entraînement", "Histoires de héros", "Protéger les faibles"],
+        "dislikes": ["Utilisation de variants", "Lâcheté", "Tricherie", "Politique"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Salut, voyageur. Vous cherchez à vous entraîner ou à combattre?",
+          "Un nouveau visage à Stormpeak? J'espère que vous n'êtes pas un de ces Tacticiens.",
+          "Prêt à affronter les dangers sans vous cacher derrière des variants?"
+        ],
+        "farewell": [
+          "Restez fort et vigilant. Les variants sont partout.",
+          "Entraînez-vous dur. C'est la seule façon de survivre sans dépendre des variants.",
+          "Que votre lame reste aiguisée et votre cœur vaillant."
+        ],
+        "quest_start": [
+          "J'ai repéré un groupe de variants agressifs près du village. Aidez-moi à les repousser.",
+          "Les Tacticiens essaient de recruter dans notre village. Nous devons montrer notre force.",
+          "Mon maître d'armes a besoin de matériaux pour forger de nouvelles armes. Pouvez-vous nous aider?"
+        ],
+        "quest_complete": [
+          "Bien combattu! Vous avez l'étoffe d'un vrai Guerrier.",
+          "Merci pour votre aide. Notre faction a besoin de gens comme vous.",
+          "Votre courage est impressionnant. Voici votre récompense."
+        ]
+      },
+      "capturedVariants": [],
+      "quests": [2, 11, 19],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Entraînement personnel",
+          "location": "Terrain d'entraînement de Stormpeak"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Patrouille autour du village",
+          "location": "Environs de Stormpeak"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Entraînement des jeunes guerriers",
+          "location": "Terrain d'entraînement de Stormpeak"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Garde au poste de surveillance",
+          "location": "Tour de garde de Stormpeak"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 6,
+          "type": "SUBORDINATE",
+          "description": "Loyal au Général Thorne"
+        },
+        {
+          "npcId": 9,
+          "type": "STUDENT",
+          "description": "Apprenti de Sir Rainer Wolfheart"
+        },
+        {
+          "npcId": 4,
+          "type": "NEUTRAL",
+          "description": "Méfiant envers Kael mais respecte ses compétences"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [
+        {
+          "skillName": "Frappe Précise",
+          "description": "Augmente les chances de coup critique",
+          "cost": 1500,
+          "requiredLevel": 10
+        },
+        {
+          "skillName": "Parade Parfaite",
+          "description": "Améliore les capacités défensives",
+          "cost": 2000,
+          "requiredLevel": 15
+        }
+      ],
+      "rewards": {
+        "experience": 600,
+        "money": 400,
+        "items": [
+          {
+            "itemId": 60,
+            "chance": 0.6
+          },
+          {
+            "itemId": 61,
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "name": "Général Thorne",
+      "role": "Commandant militaire",
+      "description": "Leader charismatique des Guerriers, connu pour sa bravoure au combat",
+      "location": "Fort Eisenberg",
+      "level": 45,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": true,
+      "isFactionLeader": true,
+      "appearance": {
+        "gender": "MALE",
+        "age": "MIDDLE_AGED",
+        "height": "VERY_TALL",
+        "build": "MUSCULAR",
+        "hairColor": "BROWN",
+        "eyeColor": "STEEL_GRAY",
+        "distinguishingFeatures": "Nombreuses cicatrices de bataille, œil droit légèrement plus clair que le gauche",
+        "clothing": "Armure complète aux couleurs des Guerriers, cape rouge, épée massive"
+      },
+      "personality": {
+        "traits": ["Autoritaire", "Stratège", "Inflexible", "Honorable"],
+        "quirks": ["Ne dort jamais plus de quatre heures", "Cite souvent d'anciens traités militaires"],
+        "likes": ["Discipline", "Courage", "Loyauté", "Stratégie militaire"],
+        "dislikes": ["Faiblesse", "Dépendance aux variants", "Compromis", "Hésitation"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Vous vous présentez devant moi. J'espère que ce n'est pas pour rien.",
+          "Un guerrier se juge à ses actes, pas à ses paroles. Qu'avez-vous accompli?",
+          "Fort Eisenberg n'accueille que les plus braves. Êtes-vous de ceux-là?"
+        ],
+        "farewell": [
+          "Que votre épée reste aiguisée et votre volonté inébranlable.",
+          "Nous nous reverrons sur le champ de bataille ou à la table du conseil.",
+          "Prouvez votre valeur par vos actes. Les Guerriers vous observent."
+        ],
+        "quest_start": [
+          "Les Tacticiens gagnent du terrain. Nous devons frapper fort pour montrer notre puissance.",
+          "Un avant-poste est menacé par des variants sauvages. Allez prêter main-forte à nos troupes.",
+          "J'ai besoin d'informations sur les mouvements des Tacticiens. Cette mission requiert discrétion et courage."
+        ],
+        "quest_complete": [
+          "Mission accomplie avec honneur. Les Guerriers reconnaissent votre valeur.",
+          "Votre rapport est précis et votre action décisive. Vous montez en grade.",
+          "Vous avez prouvé votre loyauté envers notre cause. Voici votre récompense."
+        ]
+      },
+      "capturedVariants": [],
+      "quests": [4, 13, 20],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Inspection des troupes",
+          "location": "Cour principale de Fort Eisenberg"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Conseil de guerre",
+          "location": "Salle stratégique de Fort Eisenberg"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Entraînement personnel",
+          "location": "Arène de Fort Eisenberg"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Planification stratégique",
+          "location": "Quartiers du Général"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 2,
+          "type": "ENEMY",
+          "description": "Opposition politique à Lady Elara"
+        },
+        {
+          "npcId": 3,
+          "type": "MENTOR",
+          "description": "Voit du potentiel en Eamon"
+        },
+        {
+          "npcId": 9,
+          "type": "ALLY",
+          "description": "Alliance militaire avec Sir Rainer Wolfheart"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [
+        {
+          "skillName": "Tactique Militaire",
+          "description": "Améliore l'efficacité en combat de groupe",
+          "cost": 3000,
+          "requiredLevel": 20
+        },
+        {
+          "skillName": "Frappe du Général",
+          "description": "Attaque puissante qui peut étourdir l'ennemi",
+          "cost": 5000,
+          "requiredLevel": 30
+        }
+      ],
+      "rewards": {
+        "experience": 1000,
+        "money": 800,
+        "items": [
+          {
+            "itemId": 65,
+            "chance": 0.5
+          },
+          {
+            "itemId": 66,
+            "chance": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "Sir Rainer Wolfheart",
+      "role": "Chevalier",
+      "description": "Protecteur de la vallée de Whisperwind, combattant légendaire",
+      "location": "Whisperwind Valley",
+      "level": 40,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": true,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "MALE",
+        "age": "MIDDLE_AGED",
+        "height": "TALL",
+        "build": "ATHLETIC",
+        "hairColor": "SILVER",
+        "eyeColor": "BLUE",
+        "distinguishingFeatures": "Barbe taillée avec soin, posture parfaitement droite, regard perçant",
+        "clothing": "Armure élégante ornée de motifs de loups, épée ancestrale à la ceinture"
+      },
+      "personality": {
+        "traits": ["Noble", "Juste", "Stoïque", "Protecteur"],
+        "quirks": ["Parle aux loups de la vallée", "Ne retire jamais son armure en public"],
+        "likes": ["Honneur", "Traditions", "Nature sauvage", "Histoires héroïques"],
+        "dislikes": ["Manipulation des variants", "Corruption", "Mensonges", "Déshonneur"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Bienvenue dans la vallée de Whisperwind, voyageur. Que les vents vous soient favorables.",
+          "Les loups m'ont annoncé votre venue. Que cherchez-vous dans notre vallée?",
+          "Un visiteur... Rare sont ceux qui s'aventurent jusqu'ici. Quel est votre but?"
+        ],
+        "farewell": [
+          "Que l'honneur guide vos pas et que le courage habite votre cœur.",
+          "Les loups veilleront sur votre chemin jusqu'aux frontières de la vallée.",
+          "Revenez quand vous le souhaiterez. Whisperwind accueille toujours les âmes honorables."
+        ],
+        "quest_start": [
+          "Les esprits de la vallée sont perturbés. Nous devons découvrir ce qui les trouble.",
+          "Des braconniers capturent des variants pour les vendre aux Tacticiens. Ils doivent être arrêtés.",
+          "Une ancienne relique de ma famille a été volée. Aidez-moi à la récupérer avec honneur."
+        ],
+        "quest_complete": [
+          "Vous avez agi avec honneur et courage. La vallée vous en est reconnaissante.",
+          "Justice a été rendue. Votre nom sera chanté dans les légendes de Whisperwind.",
+          "L'héritage est préservé grâce à vous. Acceptez ce présent en signe de gratitude."
+        ]
+      },
+      "capturedVariants": [],
+      "quests": [6, 18, 25],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Méditation au sommet de la colline",
+          "location": "Colline des Murmures"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Patrouille dans la vallée",
+          "location": "Whisperwind Valley"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Entraînement des chevaliers",
+          "location": "Manoir Wolfheart"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Communion avec les esprits de la vallée",
+          "location": "Cercle de Pierres Anciennes"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 3,
+          "type": "MENTOR",
+          "description": "Maître d'Eamon"
+        },
+        {
+          "npcId": 6,
+          "type": "ALLY",
+          "description": "Allié stratégique du Général Thorne"
+        },
+        {
+          "npcId": 4,
+          "type": "NEUTRAL",
+          "description": "Respecte les compétences de Kael malgré leurs différences"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [
+        {
+          "skillName": "Code du Chevalier",
+          "description": "Augmente la défense et la résistance",
+          "cost": 2500,
+          "requiredLevel": 15
+        },
+        {
+          "skillName": "Lame de Justice",
+          "description": "Attaque puissante efficace contre les variants",
+          "cost": 4000,
+          "requiredLevel": 25
+        }
+      ],
+      "rewards": {
+        "experience": 800,
+        "money": 600,
+        "items": [
+          {
+            "itemId": 70,
+            "chance": 0.6
+          },
+          {
+            "itemId": 71,
+            "chance": 0.3
+          }
+        ]
+      }
+    }
+  ],
+  "totalNpcs": 3,
+  "lastId": 9
+}

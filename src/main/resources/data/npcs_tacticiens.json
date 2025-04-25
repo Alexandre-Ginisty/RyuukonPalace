@@ -1,0 +1,677 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "PNJ de la faction des Tacticiens pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "NPCs",
+    "faction": "TACTICIENS"
+  },
+  "npcs": [
+    {
+      "id": 1,
+      "name": "Maître Orion",
+      "role": "Sage respecté",
+      "description": "Mentor des héros, maîtrisant tous les Signes de Pouvoir",
+      "location": "Temple of Dawn",
+      "level": 50,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": true,
+      "isFactionLeader": true,
+      "appearance": {
+        "gender": "MALE",
+        "age": "ELDERLY",
+        "height": "AVERAGE",
+        "build": "THIN",
+        "hairColor": "WHITE",
+        "eyeColor": "BLUE",
+        "distinguishingFeatures": "Longue barbe blanche, yeux lumineux qui semblent voir au-delà de l'apparence",
+        "clothing": "Robes bleues ornées de symboles mystiques argentés"
+      },
+      "personality": {
+        "traits": ["Sage", "Patient", "Mystérieux", "Bienveillant"],
+        "quirks": ["Parle souvent par énigmes", "Semble toujours savoir ce qui va se passer"],
+        "likes": ["Connaissances anciennes", "Thé rare", "Méditation"],
+        "dislikes": ["Violence inutile", "Arrogance", "Précipitation"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Ah, te voilà enfin. Les signes m'avaient annoncé ta venue.",
+          "Bienvenue, jeune tacticien. Que les signes t'éclairent aujourd'hui.",
+          "Je t'attendais. Les variants sont agités ces derniers temps."
+        ],
+        "farewell": [
+          "Que les signes te guident sur ton chemin.",
+          "Reviens me voir quand tu auras besoin de sagesse.",
+          "N'oublie pas ce que je t'ai enseigné. Le pouvoir vient avec des responsabilités."
+        ],
+        "quest_start": [
+          "J'ai une tâche qui requiert tes talents. Un variant rare a été aperçu près de Whisperwood Forest.",
+          "Les signes m'ont révélé un danger imminent. J'ai besoin de ton aide pour le contrer.",
+          "Il est temps de mettre tes compétences à l'épreuve. Voici une mission qui te mettra au défi."
+        ],
+        "quest_complete": [
+          "Tu as bien agi. Ta maîtrise des signes s'améliore.",
+          "Je savais que tu réussirais. Voici ta récompense, bien méritée.",
+          "Les signes ne m'ont pas trompé à ton sujet. Tu as un grand potentiel."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 1,
+          "level": 45,
+          "nickname": "Sagax"
+        },
+        {
+          "variantId": 4,
+          "level": 42,
+          "nickname": "Lumen"
+        },
+        {
+          "variantId": 7,
+          "level": 48,
+          "nickname": "Tempus"
+        }
+      ],
+      "quests": [1, 5, 12],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Méditation au Temple",
+          "location": "Temple of Dawn"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Enseignement aux apprentis",
+          "location": "Temple of Dawn"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Étude des anciens textes",
+          "location": "Temple of Dawn"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Observation des étoiles",
+          "location": "Temple of Dawn"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 2,
+          "type": "ALLY",
+          "description": "Conseiller de Lady Elara"
+        },
+        {
+          "npcId": 5,
+          "type": "MENTOR",
+          "description": "Mentor de Lysandra"
+        },
+        {
+          "npcId": 7,
+          "type": "ALLY",
+          "description": "Respecte Elder Mira pour sa sagesse"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [
+        {
+          "skillName": "Signe de Capture Avancé",
+          "description": "Améliore les chances de capture des variants puissants",
+          "cost": 5000,
+          "requiredLevel": 20
+        },
+        {
+          "skillName": "Méditation Profonde",
+          "description": "Augmente la régénération de mana",
+          "cost": 3000,
+          "requiredLevel": 15
+        }
+      ],
+      "rewards": {
+        "experience": 1000,
+        "money": 500,
+        "items": [
+          {
+            "itemId": 15,
+            "chance": 0.5
+          },
+          {
+            "itemId": 22,
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Lady Elara",
+      "role": "Noble influente",
+      "description": "Experte en politique et en commerce, collectionneuse de variants rares",
+      "location": "Lumina",
+      "level": 40,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": false,
+      "isFactionLeader": true,
+      "appearance": {
+        "gender": "FEMALE",
+        "age": "MIDDLE_AGED",
+        "height": "TALL",
+        "build": "SLENDER",
+        "hairColor": "AUBURN",
+        "eyeColor": "GREEN",
+        "distinguishingFeatures": "Port altier, bijoux élégants ornés de pierres de capture miniatures",
+        "clothing": "Robes somptueuses aux couleurs de la faction des Tacticiens"
+      },
+      "personality": {
+        "traits": ["Charismatique", "Calculatrice", "Ambitieuse", "Raffinée"],
+        "quirks": ["Collectionne obsessivement les variants rares", "Parle toujours avec un ton mesuré"],
+        "likes": ["Art", "Politique", "Variants rares", "Luxe"],
+        "dislikes": ["Vulgarité", "Impulsivité", "Désordre"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Bienvenue dans ma demeure. J'espère que vous apportez des nouvelles intéressantes.",
+          "Ah, vous voilà. Nous avons beaucoup à discuter concernant l'avenir de notre faction.",
+          "Entrez, je vous en prie. Le thé est servi, et les affaires nous attendent."
+        ],
+        "farewell": [
+          "Nos chemins se recroiseront bientôt, j'en suis certaine.",
+          "N'oubliez pas notre arrangement. Je récompense généreusement la loyauté.",
+          "Que les signes vous guident. Et n'hésitez pas à me rapporter tout variant rare que vous trouveriez."
+        ],
+        "quest_start": [
+          "J'ai une mission délicate qui requiert discrétion et finesse. Êtes-vous à la hauteur?",
+          "Mes sources m'ont informée d'une opportunité unique. Je vous offre la chance d'y participer.",
+          "Les Guerriers deviennent trop audacieux. J'ai besoin de quelqu'un pour... tempérer leurs ardeurs."
+        ],
+        "quest_complete": [
+          "Excellent travail. Votre réputation au sein de notre faction s'améliore.",
+          "Je suis satisfaite de vos résultats. Voici votre récompense, comme convenu.",
+          "Vous avez prouvé votre valeur. Peut-être vous confierai-je des missions plus importantes à l'avenir."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 2,
+          "level": 38,
+          "nickname": "Regalia"
+        },
+        {
+          "variantId": 5,
+          "level": 36,
+          "nickname": "Mystique"
+        },
+        {
+          "variantId": 9,
+          "level": 40,
+          "nickname": "Luminara"
+        }
+      ],
+      "quests": [3, 8, 15],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Réunions politiques",
+          "location": "Palais de Lumina"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Audiences publiques",
+          "location": "Palais de Lumina"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Dîners diplomatiques",
+          "location": "Manoir Elara"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Étude de sa collection de variants",
+          "location": "Manoir Elara"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 1,
+          "type": "ALLY",
+          "description": "Respecte les conseils de Maître Orion"
+        },
+        {
+          "npcId": 4,
+          "type": "RIVAL",
+          "description": "Méfiance envers Kael et ses méthodes"
+        },
+        {
+          "npcId": 6,
+          "type": "ENEMY",
+          "description": "Opposition politique au Général Thorne"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 800,
+        "money": 1200,
+        "items": [
+          {
+            "itemId": 18,
+            "chance": 0.4
+          },
+          {
+            "itemId": 25,
+            "chance": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Lysandra",
+      "role": "Guérisseuse",
+      "description": "Dévouée à aider les autres, utilise des variants de type Serein",
+      "location": "Lumina",
+      "level": 30,
+      "isQuestGiver": true,
+      "isShopkeeper": true,
+      "isTrainer": false,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "FEMALE",
+        "age": "YOUNG_ADULT",
+        "height": "AVERAGE",
+        "build": "SLENDER",
+        "hairColor": "BLONDE",
+        "eyeColor": "BLUE",
+        "distinguishingFeatures": "Mains toujours entourées d'une légère aura bleutée, expression douce",
+        "clothing": "Robe blanche et bleue avec symboles de guérison"
+      },
+      "personality": {
+        "traits": ["Compatissante", "Patiente", "Dévouée", "Intuitive"],
+        "quirks": ["Parle doucement aux plantes", "Peut sentir la douleur des autres"],
+        "likes": ["Guérison", "Nature", "Variants sereins", "Aider les autres"],
+        "dislikes": ["Violence", "Souffrance", "Cruauté envers les variants"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Bienvenue à l'infirmerie. Comment puis-je vous aider aujourd'hui?",
+          "Je sens que vous avez besoin de soins. Laissez-moi vous aider.",
+          "Que les énergies sereines vous apaisent. Que puis-je faire pour vous?"
+        ],
+        "farewell": [
+          "Prenez soin de vous, et revenez si vous avez besoin de guérison.",
+          "Que la sérénité vous accompagne sur votre chemin.",
+          "N'oubliez pas de prendre vos potions régulièrement."
+        ],
+        "quest_start": [
+          "J'ai besoin d'herbes rares pour mes remèdes. Pourriez-vous m'aider à les trouver?",
+          "Un groupe de voyageurs blessés est arrivé. J'ai besoin d'aide pour préparer des remèdes.",
+          "Les variants sereins sont perturbés dans la forêt. Pourriez-vous découvrir ce qui les trouble?"
+        ],
+        "quest_complete": [
+          "Merci infiniment. Ces remèdes sauveront des vies.",
+          "Votre aide a été précieuse. Voici quelques potions en remerciement.",
+          "Grâce à vous, l'équilibre est rétabli. Les variants sereins sont apaisés."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 13,
+          "level": 28,
+          "nickname": "Tranquil"
+        },
+        {
+          "variantId": 14,
+          "level": 27,
+          "nickname": "Harmony"
+        }
+      ],
+      "quests": [7, 14, 21],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Cueillette d'herbes médicinales",
+          "location": "Jardins de Lumina"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Soins aux patients",
+          "location": "Infirmerie de Lumina"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Préparation de remèdes",
+          "location": "Infirmerie de Lumina"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Méditation avec ses variants",
+          "location": "Quartiers personnels"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 1,
+          "type": "STUDENT",
+          "description": "Apprentie de Maître Orion"
+        },
+        {
+          "npcId": 2,
+          "type": "ALLY",
+          "description": "Soigne Lady Elara et sa famille"
+        },
+        {
+          "npcId": 7,
+          "type": "FRIEND",
+          "description": "Amie proche d'Elder Mira"
+        }
+      ],
+      "shopInventory": [
+        {
+          "itemId": 30,
+          "price": 50,
+          "stock": 10,
+          "restockTime": "DAILY"
+        },
+        {
+          "itemId": 31,
+          "price": 120,
+          "stock": 5,
+          "restockTime": "DAILY"
+        },
+        {
+          "itemId": 32,
+          "price": 300,
+          "stock": 3,
+          "restockTime": "WEEKLY"
+        }
+      ],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 500,
+        "money": 300,
+        "items": [
+          {
+            "itemId": 30,
+            "chance": 0.8
+          },
+          {
+            "itemId": 31,
+            "chance": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "Elder Mira",
+      "role": "Prêtresse",
+      "description": "Gardienne des traditions sacrées et des rituels de capture",
+      "location": "Temple of Dawn",
+      "level": 45,
+      "isQuestGiver": true,
+      "isShopkeeper": false,
+      "isTrainer": true,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "FEMALE",
+        "age": "ELDERLY",
+        "height": "SHORT",
+        "build": "FRAIL",
+        "hairColor": "SILVER",
+        "eyeColor": "VIOLET",
+        "distinguishingFeatures": "Tatouages rituels sur les mains et le front, voix mélodieuse",
+        "clothing": "Robes cérémonielles violettes avec symboles argentés"
+      },
+      "personality": {
+        "traits": ["Spirituelle", "Sage", "Traditionaliste", "Mystérieuse"],
+        "quirks": ["Parle parfois dans une langue ancienne", "Peut prédire la pluie"],
+        "likes": ["Rituels anciens", "Histoire", "Enseignement", "Harmonie"],
+        "dislikes": ["Irrespect des traditions", "Précipitation", "Arrogance"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Les anciens vous accueillent, enfant des signes.",
+          "Votre aura est troublée aujourd'hui. Venez-vous chercher conseil?",
+          "Le Temple vous ouvre ses portes. Que cherchez-vous en ces lieux sacrés?"
+        ],
+        "farewell": [
+          "Que les anciens veillent sur votre chemin.",
+          "N'oubliez pas d'honorer les rituels quotidiens.",
+          "Revenez quand les signes vous appelleront."
+        ],
+        "quest_start": [
+          "Les rituels anciens doivent être préservés. J'ai besoin de votre aide pour une cérémonie importante.",
+          "Un lieu sacré a été profané. Nous devons le purifier avant que les variants ne se déchaînent.",
+          "J'ai eu une vision troublante. Vous devez récupérer un artefact ancien avant qu'il ne tombe entre de mauvaises mains."
+        ],
+        "quest_complete": [
+          "Les anciens sont satisfaits. Votre dévouement est remarquable.",
+          "L'équilibre est rétabli. Voici une bénédiction pour vous remercier.",
+          "Votre action a préservé l'harmonie. Vous méritez cet enseignement sacré."
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 8,
+          "level": 42,
+          "nickname": "Oracle"
+        },
+        {
+          "variantId": 9,
+          "level": 40,
+          "nickname": "Lumina"
+        }
+      ],
+      "quests": [9, 16, 23],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Rituel de l'aube",
+          "location": "Autel principal du Temple"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Enseignement des rituels",
+          "location": "Salle d'étude du Temple"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Méditation",
+          "location": "Jardin sacré du Temple"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Communion avec les anciens",
+          "location": "Sanctuaire intérieur"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 1,
+          "type": "ALLY",
+          "description": "Collabore avec Maître Orion sur les rituels anciens"
+        },
+        {
+          "npcId": 5,
+          "type": "FRIEND",
+          "description": "Amie et mentor de Lysandra"
+        },
+        {
+          "npcId": 8,
+          "type": "RIVAL",
+          "description": "Désapprouve les méthodes de Dr. Elara Stein"
+        }
+      ],
+      "shopInventory": [],
+      "trainingOptions": [
+        {
+          "skillName": "Rituel de Capture",
+          "description": "Améliore les chances de capture par un rituel ancien",
+          "cost": 2000,
+          "requiredLevel": 10
+        },
+        {
+          "skillName": "Communion des Signes",
+          "description": "Permet de communiquer brièvement avec un variant capturé",
+          "cost": 4000,
+          "requiredLevel": 20
+        }
+      ],
+      "rewards": {
+        "experience": 700,
+        "money": 400,
+        "items": [
+          {
+            "itemId": 40,
+            "chance": 0.6
+          },
+          {
+            "itemId": 41,
+            "chance": 0.3
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "Dr. Elara Stein",
+      "role": "Alchimiste",
+      "description": "Spécialisée dans les potions et les artefacts magiques",
+      "location": "Lumina",
+      "level": 35,
+      "isQuestGiver": true,
+      "isShopkeeper": true,
+      "isTrainer": false,
+      "isFactionLeader": false,
+      "appearance": {
+        "gender": "FEMALE",
+        "age": "MIDDLE_AGED",
+        "height": "AVERAGE",
+        "build": "THIN",
+        "hairColor": "RED",
+        "eyeColor": "AMBER",
+        "distinguishingFeatures": "Lunettes à verres épais, doigts tachés par des produits chimiques",
+        "clothing": "Robe de laboratoire avec de nombreuses poches remplies d'ingrédients"
+      },
+      "personality": {
+        "traits": ["Brillante", "Excentrique", "Curieuse", "Distraite"],
+        "quirks": ["Parle à ses expériences", "Oublie souvent de manger"],
+        "likes": ["Expérimentation", "Découvertes", "Livres rares", "Café fort"],
+        "dislikes": ["Superstition", "Interruptions", "Limitations"]
+      },
+      "dialogue": {
+        "greeting": [
+          "Ah! Un sujet d'étude intéressant! Euh, je veux dire, un visiteur!",
+          "Attention aux fioles sur la table! Certaines sont... instables.",
+          "Vous tombez bien! J'ai justement besoin d'un assistant pour ma dernière expérience!"
+        ],
+        "farewell": [
+          "Oui, oui, à bientôt. J'ai une formule à terminer.",
+          "Revenez quand vous voudrez! Apportez des échantillons rares si possible!",
+          "N'oubliez pas de tester cette potion et de me dire si vous développez des effets secondaires!"
+        ],
+        "quest_start": [
+          "J'ai besoin d'ingrédients rares pour ma nouvelle formule. Pourriez-vous les collecter?",
+          "Un de mes artefacts expérimentaux s'est... égaré. Il faut absolument le retrouver avant qu'il n'explose.",
+          "J'ai une théorie fascinante sur les variants mystiques. Aidez-moi à la prouver!"
+        ],
+        "quest_complete": [
+          "Parfait! Ces échantillons sont exactement ce qu'il me fallait!",
+          "Excellent travail! Voici quelques-unes de mes créations en remerciement.",
+          "Mes calculs étaient justes! Vos données confirment ma théorie!"
+        ]
+      },
+      "capturedVariants": [
+        {
+          "variantId": 5,
+          "level": 32,
+          "nickname": "Enigma"
+        },
+        {
+          "variantId": 15,
+          "level": 30,
+          "nickname": "Catalyst"
+        }
+      ],
+      "quests": [10, 17, 24],
+      "schedule": [
+        {
+          "time": "MORNING",
+          "activity": "Collecte d'ingrédients",
+          "location": "Jardins alchimiques"
+        },
+        {
+          "time": "AFTERNOON",
+          "activity": "Expérimentations",
+          "location": "Laboratoire"
+        },
+        {
+          "time": "EVENING",
+          "activity": "Prise de notes",
+          "location": "Bibliothèque"
+        },
+        {
+          "time": "NIGHT",
+          "activity": "Expériences secrètes",
+          "location": "Laboratoire souterrain"
+        }
+      ],
+      "relationships": [
+        {
+          "npcId": 2,
+          "type": "ALLY",
+          "description": "Fournit des potions spéciales à Lady Elara"
+        },
+        {
+          "npcId": 5,
+          "type": "COLLEAGUE",
+          "description": "Collabore avec Lysandra sur des remèdes"
+        },
+        {
+          "npcId": 7,
+          "type": "RIVAL",
+          "description": "Considère les méthodes d'Elder Mira comme dépassées"
+        }
+      ],
+      "shopInventory": [
+        {
+          "itemId": 50,
+          "price": 200,
+          "stock": 5,
+          "restockTime": "DAILY"
+        },
+        {
+          "itemId": 51,
+          "price": 500,
+          "stock": 3,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "itemId": 52,
+          "price": 1000,
+          "stock": 1,
+          "restockTime": "MONTHLY"
+        }
+      ],
+      "trainingOptions": [],
+      "rewards": {
+        "experience": 600,
+        "money": 500,
+        "items": [
+          {
+            "itemId": 50,
+            "chance": 0.7
+          },
+          {
+            "itemId": 51,
+            "chance": 0.4
+          }
+        ]
+      }
+    }
+  ],
+  "totalNpcs": 5,
+  "lastId": 8
+}

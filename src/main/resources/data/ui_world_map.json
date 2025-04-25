@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Configuration de la carte du monde et mini-carte pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "UserInterface"
+  },
+  "worldMapSystem": {
+    "fullMap": {
+      "background": "world_map_bg",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "initialZoom": 0.8,
+      "minZoom": 0.5,
+      "maxZoom": 2.0,
+      "panEnabled": true,
+      "regions": [
+        {
+          "id": "LUMINA_REGION",
+          "name": "Région de Lumina",
+          "texture": "map_region_lumina",
+          "position": {
+            "x": 960,
+            "y": 540
+          },
+          "discoveredByDefault": true
+        },
+        {
+          "id": "DARKHAVEN_REGION",
+          "name": "Région de Darkhaven",
+          "texture": "map_region_darkhaven",
+          "position": {
+            "x": 1200,
+            "y": 800
+          },
+          "discoveredByDefault": false
+        },
+        {
+          "id": "STORMPEAK_REGION",
+          "name": "Région de Stormpeak",
+          "texture": "map_region_stormpeak",
+          "position": {
+            "x": 700,
+            "y": 300
+          },
+          "discoveredByDefault": false
+        },
+        {
+          "id": "WHISPERWOOD_REGION",
+          "name": "Forêt de Whisperwood",
+          "texture": "map_region_whisperwood",
+          "position": {
+            "x": 500,
+            "y": 600
+          },
+          "discoveredByDefault": false
+        },
+        {
+          "id": "FROSTPEAK_REGION",
+          "name": "Montagnes de Frostpeak",
+          "texture": "map_region_frostpeak",
+          "position": {
+            "x": 1300,
+            "y": 200
+          },
+          "discoveredByDefault": false
+        }
+      ],
+      "locations": [
+        {
+          "id": "LUMINA_CITY",
+          "name": "Lumina",
+          "type": "CITY",
+          "icon": "city_icon",
+          "position": {
+            "x": 960,
+            "y": 540
+          },
+          "regionId": "LUMINA_REGION",
+          "discoveredByDefault": true,
+          "fastTravelEnabled": true,
+          "description": "Capitale d'Elderglen, centre de la connaissance et du pouvoir"
+        },
+        {
+          "id": "DARKHAVEN_CITY",
+          "name": "Darkhaven",
+          "type": "CITY",
+          "icon": "port_city_icon",
+          "position": {
+            "x": 1200,
+            "y": 800
+          },
+          "regionId": "DARKHAVEN_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": true,
+          "description": "Ville portuaire dynamique, plaque tournante du commerce et des intrigues"
+        },
+        {
+          "id": "STORMPEAK_VILLAGE",
+          "name": "Stormpeak",
+          "type": "VILLAGE",
+          "icon": "village_icon",
+          "position": {
+            "x": 700,
+            "y": 300
+          },
+          "regionId": "STORMPEAK_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": true,
+          "description": "Village montagnard isolé, réputé pour ses guerriers"
+        },
+        {
+          "id": "TEMPLE_OF_DAWN",
+          "name": "Temple of Dawn",
+          "type": "LANDMARK",
+          "icon": "temple_icon",
+          "position": {
+            "x": 850,
+            "y": 450
+          },
+          "regionId": "LUMINA_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": true,
+          "description": "Sanctuaire sacré où les maîtres enseignent les Signes de Pouvoir"
+        },
+        {
+          "id": "FORT_EISENBERG",
+          "name": "Fort Eisenberg",
+          "type": "FORTRESS",
+          "icon": "fortress_icon",
+          "position": {
+            "x": 600,
+            "y": 250
+          },
+          "regionId": "STORMPEAK_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": true,
+          "description": "Forteresse imprenable gardée par des Guerriers d'élite"
+        },
+        {
+          "id": "SHADOW_CAVERNS",
+          "name": "Shadow Caverns",
+          "type": "DUNGEON",
+          "icon": "cave_icon",
+          "position": {
+            "x": 1100,
+            "y": 350
+          },
+          "regionId": "LUMINA_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": false,
+          "description": "Réseau souterrain abritant des variants dangereux de type Ombreux"
+        },
+        {
+          "id": "ANCIENT_RUINS",
+          "name": "Ancient Ruins",
+          "type": "RUINS",
+          "icon": "ruins_icon",
+          "position": {
+            "x": 400,
+            "y": 700
+          },
+          "regionId": "WHISPERWOOD_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": false,
+          "description": "Vestiges d'une civilisation oubliée renfermant des artefacts puissants"
+        },
+        {
+          "id": "WHISPERWIND_VALLEY",
+          "name": "Whisperwind Valley",
+          "type": "VALLEY",
+          "icon": "valley_icon",
+          "position": {
+            "x": 550,
+            "y": 650
+          },
+          "regionId": "WHISPERWOOD_REGION",
+          "discoveredByDefault": false,
+          "fastTravelEnabled": true,
+          "description": "Vallée verdoyante connue pour ses vents murmurants et ses esprits protecteurs"
+        }
+      ],
+      "routes": [
+        {
+          "id": "ROUTE_1",
+          "name": "Route 1",
+          "start": "LUMINA_CITY",
+          "end": "TEMPLE_OF_DAWN",
+          "type": "MAIN_ROAD",
+          "discoveredByDefault": true
+        },
+        {
+          "id": "ROUTE_2",
+          "name": "Route 2",
+          "start": "LUMINA_CITY",
+          "end": "DARKHAVEN_CITY",
+          "type": "MAIN_ROAD",
+          "discoveredByDefault": false
+        },
+        {
+          "id": "ROUTE_3",
+          "name": "Route 3",
+          "start": "LUMINA_CITY",
+          "end": "SHADOW_CAVERNS",
+          "type": "DANGEROUS_PATH",
+          "discoveredByDefault": false
+        },
+        {
+          "id": "ROUTE_4",
+          "name": "Route 4",
+          "start": "TEMPLE_OF_DAWN",
+          "end": "STORMPEAK_VILLAGE",
+          "type": "MOUNTAIN_PATH",
+          "discoveredByDefault": false
+        },
+        {
+          "id": "ROUTE_5",
+          "name": "Route 5",
+          "start": "STORMPEAK_VILLAGE",
+          "end": "FORT_EISENBERG",
+          "type": "MOUNTAIN_PATH",
+          "discoveredByDefault": false
+        },
+        {
+          "id": "ROUTE_6",
+          "name": "Route 6",
+          "start": "TEMPLE_OF_DAWN",
+          "end": "WHISPERWIND_VALLEY",
+          "type": "FOREST_PATH",
+          "discoveredByDefault": false
+        },
+        {
+          "id": "ROUTE_7",
+          "name": "Route 7",
+          "start": "WHISPERWIND_VALLEY",
+          "end": "ANCIENT_RUINS",
+          "type": "HIDDEN_PATH",
+          "discoveredByDefault": false
+        }
+      ],
+      "controls": {
+        "zoomButtons": {
+          "enabled": true,
+          "position": {
+            "x": "95%",
+            "y": "50%"
+          }
+        },
+        "legendButton": {
+          "enabled": true,
+          "position": {
+            "x": "95%",
+            "y": "10%"
+          }
+        },
+        "fastTravelButton": {
+          "enabled": true,
+          "position": {
+            "x": "95%",
+            "y": "20%"
+          }
+        },
+        "closeButton": {
+          "enabled": true,
+          "position": {
+            "x": "95%",
+            "y": "5%"
+          }
+        }
+      },
+      "legend": {
+        "position": {
+          "x": "5%",
+          "y": "5%"
+        },
+        "background": {
+          "color": "#1A1A1A",
+          "opacity": 0.8
+        },
+        "border": {
+          "enabled": true,
+          "color": "#3A2E21",
+          "thickness": 2
+        },
+        "entries": [
+          {
+            "type": "CITY",
+            "icon": "city_icon",
+            "description": "Ville principale"
+          },
+          {
+            "type": "VILLAGE",
+            "icon": "village_icon",
+            "description": "Village"
+          },
+          {
+            "type": "LANDMARK",
+            "icon": "temple_icon",
+            "description": "Point d'intérêt"
+          },
+          {
+            "type": "DUNGEON",
+            "icon": "cave_icon",
+            "description": "Donjon"
+          },
+          {
+            "type": "MAIN_ROAD",
+            "icon": "main_road_icon",
+            "description": "Route principale"
+          },
+          {
+            "type": "DANGEROUS_PATH",
+            "icon": "dangerous_path_icon",
+            "description": "Chemin dangereux"
+          }
+        ]
+      },
+      "fogOfWar": {
+        "enabled": true,
+        "revealRadius": 200
+      },
+      "questMarkers": {
+        "enabled": true,
+        "activeQuestColor": "#FFD700",
+        "completedQuestColor": "#808080",
+        "availableQuestColor": "#FFFFFF",
+        "pulseAnimation": true
+      }
+    },
+    "miniMap": {
+      "enabled": true,
+      "position": {
+        "x": "85%",
+        "y": "15%",
+        "width": "15%",
+        "height": "15%"
+      },
+      "border": {
+        "enabled": true,
+        "color": "#3A2E21",
+        "thickness": 2,
+        "cornerRadius": 5
+      },
+      "background": {
+        "color": "#1A1A1A",
+        "opacity": 0.7
+      },
+      "playerIcon": {
+        "texture": "player_icon_minimap",
+        "size": 10,
+        "pulseAnimation": true
+      },
+      "zoom": 0.3,
+      "rotateWithPlayer": true,
+      "showNearbyEnemies": true,
+      "showNearbyItems": true,
+      "showNearbyNPCs": true,
+      "showQuestMarkers": true,
+      "visibilityRadius": 300,
+      "controls": {
+        "zoomButtons": {
+          "enabled": false
+        },
+        "expandButton": {
+          "enabled": true,
+          "position": {
+            "x": "95%",
+            "y": "5%"
+          },
+          "size": 20
+        }
+      },
+      "compassEnabled": true,
+      "coordinatesDisplay": false
+    },
+    "weatherEffects": {
+      "showOnMap": true,
+      "rainTexture": "rain_overlay",
+      "snowTexture": "snow_overlay",
+      "fogTexture": "fog_overlay",
+      "stormTexture": "storm_overlay"
+    },
+    "timeOfDayEffects": {
+      "enabled": true,
+      "dayTexture": "day_overlay",
+      "nightTexture": "night_overlay",
+      "duskTexture": "dusk_overlay",
+      "dawnTexture": "dawn_overlay"
+    }
+  }
+}

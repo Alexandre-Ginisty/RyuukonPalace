@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "version": "1.2",
+    "description": "Index des fichiers de variants pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Index"
+  },
+  "variantFiles": [
+    {
+      "type": "STRATEGE",
+      "file": "variants_stratege.json",
+      "count": 3,
+      "categories": ["Stratège"],
+      "description": "Variants qui utilisent des tactiques et des plans complexes",
+      "characteristics": "Intelligents, calculateurs, manipulateurs",
+      "resistances": ["Furieux", "Chaotique"],
+      "weaknesses": ["Mystique", "Visionnaire"]
+    },
+    {
+      "type": "FURIEUX",
+      "file": "variants_furieux.json",
+      "count": 0,
+      "categories": ["Furieux"],
+      "description": "Variants impulsifs et agressifs",
+      "characteristics": "Puissants, violents, difficiles à contrôler",
+      "resistances": ["Serein", "Lumineux"],
+      "weaknesses": ["Stratège", "Ombreux"]
+    },
+    {
+      "type": "MYSTIQUE",
+      "file": "variants_mystique.json",
+      "count": 0,
+      "categories": ["Mystique"],
+      "description": "Variants liés à l'inconnu et à la magie",
+      "characteristics": "Mystérieux, imprévisibles, utilisent des pouvoirs occultes",
+      "resistances": ["Inventeur", "Naturel"],
+      "weaknesses": ["Lumineux", "Serein"]
+    },
+    {
+      "type": "INVENTEUR",
+      "file": "variants_inventeur.json",
+      "count": 0,
+      "categories": ["Inventeur"],
+      "description": "Variants qui créent et manipulent des objets",
+      "characteristics": "Ingénieux, adaptables, utilisent des outils",
+      "resistances": ["Visionnaire", "Ombreux"],
+      "weaknesses": ["Naturel", "Furieux"]
+    },
+    {
+      "type": "SEREIN",
+      "file": "variants_serein.json",
+      "count": 3,
+      "categories": ["Serein"],
+      "description": "Variants calmes et équilibrés",
+      "characteristics": "Pacifiques, guérisseurs, méditatifs",
+      "resistances": ["Furieux", "Chaotique"],
+      "weaknesses": ["Mystique", "Inventeur"]
+    },
+    {
+      "type": "CHAOTIQUE",
+      "file": "variants_chaotique.json",
+      "count": 0,
+      "categories": ["Chaotique"],
+      "description": "Variants imprévisibles et destructeurs",
+      "characteristics": "Instables, dangereux, transformateurs",
+      "resistances": ["Stratège", "Visionnaire"],
+      "weaknesses": ["Lumineux", "Stratège"]
+    },
+    {
+      "type": "VISIONNAIRE",
+      "file": "variants_visionnaire.json",
+      "count": 0,
+      "categories": ["Visionnaire"],
+      "description": "Variants qui peuvent voir l'avenir ou manipuler le temps",
+      "characteristics": "Prophétiques, manipulent la perception",
+      "resistances": ["Serein", "Lumineux"],
+      "weaknesses": ["Ombreux", "Chaotique"]
+    },
+    {
+      "type": "OMBREUX",
+      "file": "variants_ombreux.json",
+      "count": 3,
+      "categories": ["Ombreux"],
+      "description": "Variants liés à l'obscurité et aux secrets",
+      "characteristics": "Furtifs, mystérieux, manipulateurs d'ombre",
+      "resistances": ["Mystique", "Naturel"],
+      "weaknesses": ["Lumineux", "Serein"]
+    },
+    {
+      "type": "LUMINEUX",
+      "file": "variants_lumineux.json",
+      "count": 0,
+      "categories": ["Lumineux"],
+      "description": "Variants liés à la lumière et à la vérité",
+      "characteristics": "Révélateurs, purificateurs, éblouissants",
+      "resistances": ["Ombreux", "Furieux"],
+      "weaknesses": ["Mystique", "Visionnaire"]
+    },
+    {
+      "type": "NATUREL",
+      "file": "variants_naturel.json",
+      "count": 0,
+      "categories": ["Naturel"],
+      "description": "Variants en harmonie avec la nature et les éléments",
+      "characteristics": "Adaptables, contrôlent les éléments naturels",
+      "resistances": ["Inventeur", "Chaotique"],
+      "weaknesses": ["Furieux", "Chaotique"]
+    }
+  ],
+  "totalVariants": 9,
+  "lastId": 9
+}

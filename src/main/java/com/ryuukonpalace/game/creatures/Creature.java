@@ -35,6 +35,12 @@ public class Creature extends GameObject {
     private boolean isWild; // Indique si la créature est sauvage
     private CombatStats combatStats; // Statistiques avancées pour le combat
     
+    // Durée de vie de la créature dans le monde (en secondes, 0 = infinie)
+    private float lifeDuration;
+    
+    // Temps écoulé depuis l'apparition de la créature
+    private float lifeElapsed;
+    
     /**
      * Constructor for creating a new creature
      * 
@@ -64,6 +70,8 @@ public class Creature extends GameObject {
         this.friendship = 70; // Valeur d'amitié par défaut
         this.ai = null;
         this.isWild = false;
+        this.lifeDuration = 0; // Par défaut, la créature ne disparaît pas
+        this.lifeElapsed = 0;
         
         // Initialiser les statistiques de combat avancées
         this.combatStats = new CombatStats(health, attack, attack/2, defense, defense/2, speed);
@@ -88,6 +96,11 @@ public class Creature extends GameObject {
         // Si la créature a une IA et est active, mettre à jour son comportement
         if (ai != null && active) {
             // L'IA sera mise à jour par le système de jeu qui fournira le joueur
+        }
+        
+        // Mettre à jour le temps de vie si la durée est définie
+        if (lifeDuration > 0) {
+            lifeElapsed += deltaTime;
         }
     }
     
@@ -442,6 +455,71 @@ public class Creature extends GameObject {
         // Pour les statistiques magiques, on utilise une valeur par défaut basée sur les stats physiques
         combatStats.setMagicalAttack(this.attack / 2);
         combatStats.setMagicalDefense(this.defense / 2);
+    }
+    
+    /**
+     * Calcule le ratio d'expérience actuelle par rapport à l'expérience nécessaire pour le niveau suivant
+     * 
+     * @return Un nombre entre 0.0 et 1.0 représentant le pourcentage d'expérience acquise
+     */
+    public float getExperienceRatio() {
+        // Calcul de l'expérience nécessaire pour le niveau actuel
+        int expForCurrentLevel = calculateExpForLevel(level);
+        
+        // Calcul de l'expérience nécessaire pour le niveau suivant
+        int expForNextLevel = calculateExpForLevel(level + 1);
+        
+        // Calcul de l'expérience acquise depuis le dernier niveau
+        int expGained = experience - expForCurrentLevel;
+        
+        // Calcul de l'expérience totale nécessaire pour passer au niveau suivant
+        int expNeeded = expForNextLevel - expForCurrentLevel;
+        
+        // Retourne le ratio (entre 0.0 et 1.0)
+        return (float) expGained / expNeeded;
+    }
+    
+    /**
+     * Calcule l'expérience totale nécessaire pour atteindre un niveau donné
+     * 
+     * @param level Le niveau cible
+     * @return L'expérience totale nécessaire
+     */
+    private int calculateExpForLevel(int level) {
+        // Formule simple : 100 * (niveau^3) / 5
+        // Cette formule est similaire à celle utilisée dans Pokémon
+        return (int) (100 * Math.pow(level, 3) / 5);
+    }
+    
+    /**
+     * Vérifier si la créature a expiré (sa durée de vie est écoulée)
+     * 
+     * @return true si la créature a expiré, false sinon
+     */
+    public boolean isExpired() {
+        return lifeDuration > 0 && lifeElapsed >= lifeDuration;
+    }
+    
+    /**
+     * Définir la durée de vie de la créature dans le monde
+     * 
+     * @param duration Durée en secondes (0 = infinie)
+     */
+    public void setLifeDuration(float duration) {
+        this.lifeDuration = Math.max(0, duration);
+        this.lifeElapsed = 0; // Réinitialiser le temps écoulé
+    }
+    
+    /**
+     * Obtenir la durée de vie restante de la créature
+     * 
+     * @return Durée restante en secondes (0 = infinie ou expirée)
+     */
+    public float getRemainingLifeDuration() {
+        if (lifeDuration <= 0) {
+            return 0; // Durée infinie
+        }
+        return Math.max(0, lifeDuration - lifeElapsed);
     }
     
     // Getters and setters

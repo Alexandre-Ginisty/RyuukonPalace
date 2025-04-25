@@ -1,0 +1,78 @@
+{
+  "dataStructure": {
+    "variants": {
+      "description": "Fichiers contenant les données des variants (créatures) organisés par type",
+      "files": [
+        "variants_stratege.json",
+        "variants_furieux.json",
+        "variants_mystique.json",
+        "variants_inventeur.json",
+        "variants_serein.json",
+        "variants_chaotique.json",
+        "variants_visionnaire.json",
+        "variants_ombreux.json",
+        "variants_lumineux.json",
+        "variants_naturel.json",
+        "variants_index.json"
+      ]
+    },
+    "npcs": {
+      "description": "Fichiers contenant les données des personnages non-joueurs",
+      "files": [
+        "npcs_tacticiens.json",
+        "npcs_guerriers.json",
+        "npcs_neutres.json",
+        "npcs_index.json"
+      ]
+    },
+    "items": {
+      "description": "Fichiers contenant les données des objets et équipements",
+      "files": [
+        "items_capture_stones.json",
+        "items_weapons.json",
+        "items_armors.json",
+        "items_consumables.json",
+        "items_artifacts.json",
+        "items_index.json"
+      ]
+    },
+    "locations": {
+      "description": "Fichiers contenant les données des lieux et zones",
+      "files": [
+        "locations_cities.json",
+        "locations_dungeons.json",
+        "locations_wilderness.json",
+        "spawn_zones.json",
+        "locations_index.json"
+      ]
+    },
+    "quests": {
+      "description": "Fichiers contenant les données des quêtes",
+      "files": [
+        "quests_main.json",
+        "quests_tacticiens.json",
+        "quests_guerriers.json",
+        "quests_side.json",
+        "quests_index.json"
+      ]
+    },
+    "game_mechanics": {
+      "description": "Fichiers contenant les données des mécaniques de jeu",
+      "files": [
+        "combat_mechanics.json",
+        "capture_mechanics.json",
+        "evolution_mechanics.json",
+        "faction_mechanics.json"
+      ]
+    },
+    "animations": {
+      "description": "Fichiers contenant les configurations des animations",
+      "files": [
+        "animations_config.json",
+        "animations_variants.json",
+        "animations_npcs.json",
+        "animations_player.json"
+      ]
+    }
+  }
+}

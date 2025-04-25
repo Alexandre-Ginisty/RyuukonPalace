@@ -1,0 +1,209 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Configuration du système de combat pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "GameSystem"
+  },
+  "combatSystem": {
+    "type": "TURN_BASED",
+    "transitionType": "POKEMON_STYLE",
+    "battleScreen": {
+      "enabled": true,
+      "transitionEffects": [
+        {
+          "name": "SCREEN_SHAKE",
+          "duration": 0.5,
+          "intensity": 0.3
+        },
+        {
+          "name": "FADE_TO_BLACK",
+          "duration": 0.8
+        },
+        {
+          "name": "BATTLE_INTRO_ANIMATION",
+          "duration": 1.2
+        }
+      ],
+      "backgrounds": [
+        {
+          "type": "FOREST",
+          "textureId": "battle_bg_forest",
+          "conditions": {
+            "location": ["Whisperwood Forest", "Whisperwind Valley"]
+          }
+        },
+        {
+          "type": "MOUNTAIN",
+          "textureId": "battle_bg_mountain",
+          "conditions": {
+            "location": ["Stormpeak", "Frostpeak Mountains"]
+          }
+        },
+        {
+          "type": "CITY",
+          "textureId": "battle_bg_city",
+          "conditions": {
+            "location": ["Lumina", "Darkhaven"]
+          }
+        },
+        {
+          "type": "CAVE",
+          "textureId": "battle_bg_cave",
+          "conditions": {
+            "location": ["Shadow Caverns", "Ancient Ruins"]
+          }
+        },
+        {
+          "type": "TEMPLE",
+          "textureId": "battle_bg_temple",
+          "conditions": {
+            "location": ["Temple of Dawn"]
+          }
+        },
+        {
+          "type": "FORTRESS",
+          "textureId": "battle_bg_fortress",
+          "conditions": {
+            "location": ["Fort Eisenberg"]
+          }
+        }
+      ]
+    },
+    "turnSystem": {
+      "orderDeterminant": "SPEED",
+      "actionTypes": [
+        {
+          "name": "ATTACK",
+          "description": "Utiliser une capacité du variant",
+          "icon": "attack_icon"
+        },
+        {
+          "name": "ITEM",
+          "description": "Utiliser un objet",
+          "icon": "item_icon"
+        },
+        {
+          "name": "SWITCH",
+          "description": "Changer de variant",
+          "icon": "switch_icon"
+        },
+        {
+          "name": "CAPTURE",
+          "description": "Tenter de capturer un variant sauvage",
+          "icon": "capture_icon",
+          "conditions": {
+            "opponentType": "WILD_VARIANT"
+          }
+        },
+        {
+          "name": "FLEE",
+          "description": "Tenter de fuir le combat",
+          "icon": "flee_icon",
+          "conditions": {
+            "opponentType": "WILD_VARIANT"
+          }
+        }
+      ],
+      "turnPhases": [
+        {
+          "name": "ACTION_SELECTION",
+          "description": "Le joueur choisit une action"
+        },
+        {
+          "name": "SPEED_CALCULATION",
+          "description": "Détermination de l'ordre des actions"
+        },
+        {
+          "name": "ACTION_EXECUTION",
+          "description": "Exécution des actions dans l'ordre de vitesse"
+        },
+        {
+          "name": "STATUS_EFFECT_APPLICATION",
+          "description": "Application des effets de statut à la fin du tour"
+        },
+        {
+          "name": "TURN_END_EFFECTS",
+          "description": "Application des effets de fin de tour"
+        }
+      ]
+    },
+    "battleTypes": [
+      {
+        "type": "WILD_VARIANT",
+        "description": "Combat contre un variant sauvage",
+        "music": "wild_battle_theme",
+        "captureEnabled": true,
+        "fleeEnabled": true
+      },
+      {
+        "type": "TRAINER_BATTLE",
+        "description": "Combat contre un autre Tacticien",
+        "music": "trainer_battle_theme",
+        "captureEnabled": false,
+        "fleeEnabled": false
+      },
+      {
+        "type": "WARRIOR_BATTLE",
+        "description": "Combat contre un Guerrier",
+        "music": "warrior_battle_theme",
+        "captureEnabled": false,
+        "fleeEnabled": false,
+        "specialRules": {
+          "warriorDirectAttack": true,
+          "warriorItemUse": true
+        }
+      },
+      {
+        "type": "BOSS_BATTLE",
+        "description": "Combat contre un variant légendaire ou un boss",
+        "music": "boss_battle_theme",
+        "captureEnabled": true,
+        "fleeEnabled": false,
+        "specialRules": {
+          "multiPhase": true,
+          "specialMechanics": true
+        }
+      }
+    ],
+    "combatUI": {
+      "layout": "POKEMON_STYLE",
+      "elements": [
+        {
+          "type": "VARIANT_INFO_PANEL",
+          "position": "TOP_LEFT",
+          "showsHP": true,
+          "showsLevel": true,
+          "showsName": true,
+          "showsStatus": true
+        },
+        {
+          "type": "ENEMY_INFO_PANEL",
+          "position": "TOP_RIGHT",
+          "showsHP": true,
+          "showsLevel": true,
+          "showsName": true,
+          "showsStatus": true
+        },
+        {
+          "type": "ACTION_MENU",
+          "position": "BOTTOM",
+          "style": "GRID"
+        },
+        {
+          "type": "BATTLE_LOG",
+          "position": "BOTTOM_CENTER",
+          "maxLines": 3,
+          "autoScroll": true
+        }
+      ],
+      "animations": {
+        "attackAnimations": true,
+        "damageAnimations": true,
+        "statusEffectAnimations": true,
+        "captureAnimations": true,
+        "evolutionAnimations": true
+      }
+    }
+  }
+}

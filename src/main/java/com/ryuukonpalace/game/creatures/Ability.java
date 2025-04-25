@@ -15,22 +15,25 @@ public class Ability {
     private EffectType effectType;
     private int effectChance;
     private DamageType damageType;
+    private int id; // ID unique de la capacité
     
     /**
-     * Constructor for creating a new ability
+     * Constructeur pour créer une nouvelle capacité
      * 
-     * @param name Name of the ability
-     * @param description Description of what the ability does
-     * @param type Type of the ability (determines effectiveness)
-     * @param power Base power of the ability
-     * @param accuracy Chance to hit (0-100)
-     * @param maxUses Maximum number of times the ability can be used
-     * @param effectType Type of additional effect, if any
-     * @param effectChance Chance for the additional effect to occur (0-100)
-     * @param damageType Type of damage (physical or magical)
+     * @param id ID unique de la capacité
+     * @param name Nom de la capacité
+     * @param description Description de ce que fait la capacité
+     * @param type Type de la capacité (détermine l'efficacité)
+     * @param power Puissance de base de la capacité
+     * @param accuracy Chance de toucher (0-100)
+     * @param maxUses Nombre maximum de fois que la capacité peut être utilisée
+     * @param effectType Type d'effet additionnel, le cas échéant
+     * @param effectChance Chance que l'effet additionnel se produise (0-100)
+     * @param damageType Type de dégâts (physique ou magique)
      */
-    public Ability(String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
+    public Ability(int id, String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
                   EffectType effectType, int effectChance, DamageType damageType) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
@@ -44,11 +47,36 @@ public class Ability {
     }
     
     /**
-     * Simplified constructor with default DamageType (PHYSICAL)
+     * Constructeur simplifié avec ID et DamageType par défaut (PHYSICAL)
+     */
+    public Ability(int id, String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
+                  EffectType effectType, int effectChance) {
+        this(id, name, description, type, power, accuracy, maxUses, effectType, effectChance, DamageType.PHYSICAL);
+    }
+    
+    /**
+     * Constructeur complet sans ID (pour la compatibilité)
+     */
+    public Ability(String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
+                  EffectType effectType, int effectChance, DamageType damageType) {
+        this(0, name, description, type, power, accuracy, maxUses, effectType, effectChance, damageType);
+    }
+    
+    /**
+     * Constructeur original sans ID (pour compatibilité avec le code existant)
+     * 
+     * @param name Nom de la capacité
+     * @param description Description de ce que fait la capacité
+     * @param type Type de la capacité (détermine l'efficacité)
+     * @param power Puissance de base de la capacité
+     * @param accuracy Chance de toucher (0-100)
+     * @param maxUses Nombre maximum de fois que la capacité peut être utilisée
+     * @param effectType Type d'effet additionnel, le cas échéant
+     * @param effectChance Chance que l'effet additionnel se produise (0-100)
      */
     public Ability(String name, String description, CreatureType type, int power, int accuracy, int maxUses, 
                   EffectType effectType, int effectChance) {
-        this(name, description, type, power, accuracy, maxUses, effectType, effectChance, DamageType.PHYSICAL);
+        this(0, name, description, type, power, accuracy, maxUses, effectType, effectChance, DamageType.PHYSICAL);
     }
     
     /**
@@ -115,6 +143,15 @@ public class Ability {
     }
     
     // Getters
+    
+    /**
+     * Obtenir l'ID de la capacité
+     * 
+     * @return ID de la capacité
+     */
+    public int getId() {
+        return id;
+    }
     
     public String getName() {
         return name;

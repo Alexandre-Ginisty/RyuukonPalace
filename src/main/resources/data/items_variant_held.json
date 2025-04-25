@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Objets pouvant être tenus par les variants dans Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "VARIANT_HELD_ITEMS"
+  },
+  "heldItems": [
+    {
+      "id": 901,
+      "name": "Baie Vitalité",
+      "description": "Restaure une partie des PV du variant lorsqu'ils sont bas",
+      "value": 500,
+      "rarity": "COMMON",
+      "type": "BERRY",
+      "effect": {
+        "type": "AUTO_HEAL",
+        "condition": "HP_LOW",
+        "threshold": 25,
+        "value": 25,
+        "percentage": true,
+        "oneTime": true
+      }
+    },
+    {
+      "id": 902,
+      "name": "Bandeau Focus",
+      "description": "Permet au variant de résister à un effet de statut",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "ACCESSORY",
+      "effect": {
+        "type": "STATUS_RESISTANCE",
+        "condition": "ANY_STATUS",
+        "value": 100,
+        "percentage": true,
+        "oneTime": true
+      }
+    },
+    {
+      "id": 903,
+      "name": "Orbe Puissance",
+      "description": "Augmente la puissance des attaques du variant",
+      "value": 1000,
+      "rarity": "UNCOMMON",
+      "type": "ORB",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "ATTACK",
+        "value": 10,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 904,
+      "name": "Orbe Défense",
+      "description": "Augmente la défense du variant",
+      "value": 1000,
+      "rarity": "UNCOMMON",
+      "type": "ORB",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "DEFENSE",
+        "value": 10,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 905,
+      "name": "Orbe Vitesse",
+      "description": "Augmente la vitesse du variant",
+      "value": 1000,
+      "rarity": "UNCOMMON",
+      "type": "ORB",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "SPEED",
+        "value": 10,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 906,
+      "name": "Pierre Feu",
+      "description": "Augmente la puissance des attaques de type Feu",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL_STONE",
+      "effect": {
+        "type": "BOOST_TYPE",
+        "variantType": "ARDENT",
+        "value": 20,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 907,
+      "name": "Pierre Eau",
+      "description": "Augmente la puissance des attaques de type Eau",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL_STONE",
+      "effect": {
+        "type": "BOOST_TYPE",
+        "variantType": "AQUEUX",
+        "value": 20,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 908,
+      "name": "Pierre Terre",
+      "description": "Augmente la puissance des attaques de type Terre",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL_STONE",
+      "effect": {
+        "type": "BOOST_TYPE",
+        "variantType": "TERRESTRE",
+        "value": 20,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 909,
+      "name": "Pierre Air",
+      "description": "Augmente la puissance des attaques de type Air",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL_STONE",
+      "effect": {
+        "type": "BOOST_TYPE",
+        "variantType": "AERIEN",
+        "value": 20,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 910,
+      "name": "Lunettes Précision",
+      "description": "Augmente la précision des attaques du variant",
+      "value": 1500,
+      "rarity": "RARE",
+      "type": "ACCESSORY",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "ACCURACY",
+        "value": 15,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 911,
+      "name": "Graine Miracle",
+      "description": "Augmente légèrement toutes les statistiques du variant",
+      "value": 2000,
+      "rarity": "RARE",
+      "type": "SEED",
+      "effect": {
+        "type": "BOOST_ALL_STATS",
+        "value": 5,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 912,
+      "name": "Amulette Critique",
+      "description": "Augmente les chances de coup critique",
+      "value": 1800,
+      "rarity": "RARE",
+      "type": "ACCESSORY",
+      "effect": {
+        "type": "BOOST_CRIT_CHANCE",
+        "value": 10,
+        "percentage": false,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 913,
+      "name": "Cristal d'Expérience",
+      "description": "Augmente l'expérience gagnée par le variant",
+      "value": 2500,
+      "rarity": "RARE",
+      "type": "CRYSTAL",
+      "effect": {
+        "type": "BOOST_EXP_GAIN",
+        "value": 50,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 914,
+      "name": "Plume Légère",
+      "description": "Permet au variant d'attaquer en premier dans la plupart des situations",
+      "value": 3000,
+      "rarity": "VERY_RARE",
+      "type": "ACCESSORY",
+      "effect": {
+        "type": "FIRST_STRIKE",
+        "condition": "ALWAYS",
+        "value": 100,
+        "percentage": true,
+        "oneTime": false
+      }
+    },
+    {
+      "id": 915,
+      "name": "Écaille Résistante",
+      "description": "Permet au variant de survivre à une attaque fatale",
+      "value": 3500,
+      "rarity": "VERY_RARE",
+      "type": "SCALE",
+      "effect": {
+        "type": "SURVIVE_FATAL",
+        "condition": "HP_ZERO",
+        "value": 1,
+        "percentage": false,
+        "oneTime": true
+      }
+    }
+  ],
+  "totalItems": 15,
+  "lastId": 915
+}

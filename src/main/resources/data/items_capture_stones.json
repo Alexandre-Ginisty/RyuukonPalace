@@ -1,0 +1,620 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Pierres de capture pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "CAPTURE_STONES"
+  },
+  "captureStones": [
+    {
+      "id": 1,
+      "name": "Pierre de Capture Basique",
+      "description": "Une pierre de capture standard utilisée par les débutants. Efficacité limitée contre les variants puissants.",
+      "value": 100,
+      "rarity": "COMMON",
+      "captureRate": 0.3,
+      "material": "STONE",
+      "type": "STANDARD",
+      "bonusTypes": [],
+      "penaltyTypes": [],
+      "requiredLevel": 1,
+      "lore": "Les pierres de capture basiques sont fabriquées en masse par les artisans de Lumina. Elles contiennent juste assez d'énergie pour capturer des variants de faible niveau.",
+      "appearance": "Pierre grise avec un symbole simple gravé, émettant une faible lueur bleue lorsqu'activée.",
+      "craftingRequirements": [
+        {
+          "itemId": 200,
+          "quantity": 1,
+          "name": "Pierre brute"
+        },
+        {
+          "itemId": 201,
+          "quantity": 1,
+          "name": "Essence mineure"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique du Tacticien",
+          "price": 100,
+          "stock": 10,
+          "restockTime": "DAILY"
+        },
+        {
+          "location": "Darkhaven",
+          "shopName": "Échoppe de Vex",
+          "price": 120,
+          "stock": 5,
+          "restockTime": "DAILY"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pierre de Capture Avancée",
+      "description": "Une pierre de capture de qualité supérieure, plus efficace contre les variants de niveau intermédiaire.",
+      "value": 500,
+      "rarity": "UNCOMMON",
+      "captureRate": 0.5,
+      "material": "CRYSTAL",
+      "type": "ENHANCED",
+      "bonusTypes": [],
+      "penaltyTypes": [],
+      "requiredLevel": 10,
+      "lore": "Ces pierres sont taillées avec précision par des artisans expérimentés. Elles peuvent contenir des variants plus puissants grâce à leur structure cristalline renforcée.",
+      "appearance": "Pierre bleu clair avec des motifs complexes gravés, émettant une lueur plus intense lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 202,
+          "quantity": 1,
+          "name": "Cristal pur"
+        },
+        {
+          "itemId": 203,
+          "quantity": 2,
+          "name": "Essence standard"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique du Tacticien",
+          "price": 500,
+          "stock": 5,
+          "restockTime": "DAILY"
+        },
+        {
+          "location": "Temple of Dawn",
+          "shopName": "Sanctuaire des Signes",
+          "price": 450,
+          "stock": 3,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Pierre de Capture Supérieure",
+      "description": "Une pierre de capture de haute qualité, très efficace contre la plupart des variants.",
+      "value": 2000,
+      "rarity": "RARE",
+      "captureRate": 0.7,
+      "material": "GEM",
+      "type": "SUPERIOR",
+      "bonusTypes": [],
+      "penaltyTypes": [],
+      "requiredLevel": 25,
+      "lore": "Ces pierres rares sont créées par les maîtres artisans de Lumina. Elles contiennent des circuits énergétiques complexes qui permettent de capturer même des variants très puissants.",
+      "appearance": "Gemme violette translucide avec des symboles mystiques gravés en profondeur, émettant une aura pulsante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 205,
+          "quantity": 3,
+          "name": "Essence supérieure"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Temple of Dawn",
+          "shopName": "Sanctuaire des Signes",
+          "price": 2000,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        },
+        {
+          "location": "Darkhaven",
+          "shopName": "Marché Noir",
+          "price": 2500,
+          "stock": 1,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Pierre de Capture Maîtresse",
+      "description": "Une pierre de capture exceptionnelle, capable de capturer presque tous les variants.",
+      "value": 10000,
+      "rarity": "VERY_RARE",
+      "captureRate": 0.9,
+      "material": "ARTIFACT",
+      "type": "MASTER",
+      "bonusTypes": [],
+      "penaltyTypes": [],
+      "requiredLevel": 40,
+      "lore": "Ces pierres légendaires sont créées en utilisant des techniques anciennes et des matériaux extrêmement rares. Seuls les Tacticiens les plus accomplis peuvent les utiliser efficacement.",
+      "appearance": "Artefact doré et bleu avec des circuits lumineux complexes, émettant une puissante aura multicolore lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 207,
+          "quantity": 1,
+          "name": "Cristal parfait"
+        },
+        {
+          "itemId": 208,
+          "quantity": 3,
+          "name": "Essence légendaire"
+        },
+        {
+          "itemId": 209,
+          "quantity": 1,
+          "name": "Signe ancien"
+        },
+        {
+          "itemId": 210,
+          "quantity": 1,
+          "name": "Cœur de variant"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Temple of Dawn",
+          "shopName": "Chambre des Reliques",
+          "price": 10000,
+          "stock": 1,
+          "restockTime": "MONTHLY"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pierre de Capture Stratège",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Stratège.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["STRATEGE"],
+      "penaltyTypes": ["FURIEUX"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres sont imprégnées d'énergies qui résonnent particulièrement bien avec les variants de type Stratège, facilitant leur capture.",
+      "appearance": "Gemme bleu foncé avec des motifs géométriques précis, émettant une lueur bleue structurée lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 211,
+          "quantity": 2,
+          "name": "Essence de Stratège"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Pierre de Capture Furieux",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Furieux.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["FURIEUX"],
+      "penaltyTypes": ["SEREIN"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres contiennent des circuits énergétiques capables d'absorber et de canaliser la rage des variants Furieux.",
+      "appearance": "Gemme rouge vif avec des motifs chaotiques, émettant une lueur rouge pulsante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 212,
+          "quantity": 2,
+          "name": "Essence de Furieux"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Pierre de Capture Mystique",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Mystique.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["MYSTIQUE"],
+      "penaltyTypes": ["INVENTEUR"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres sont imprégnées d'énergies mystérieuses qui entrent en résonance avec les pouvoirs occultes des variants Mystiques.",
+      "appearance": "Gemme violette avec des symboles ésotériques, émettant une lueur violette nébuleuse lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 213,
+          "quantity": 2,
+          "name": "Essence de Mystique"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Pierre de Capture Inventeur",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Inventeur.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["INVENTEUR"],
+      "penaltyTypes": ["VISIONNAIRE"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres contiennent des mécanismes complexes qui peuvent s'adapter aux créations ingénieuses des variants Inventeurs.",
+      "appearance": "Gemme jaune avec des circuits mécaniques gravés, émettant une lueur jaune scintillante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 214,
+          "quantity": 2,
+          "name": "Essence d'Inventeur"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Pierre de Capture Serein",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Serein.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["SEREIN"],
+      "penaltyTypes": ["MYSTIQUE"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres émettent une énergie apaisante qui facilite la capture des variants Sereins en harmonisant leurs vibrations.",
+      "appearance": "Gemme bleu clair avec des motifs ondulants, émettant une lueur bleue calme et constante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 215,
+          "quantity": 2,
+          "name": "Essence de Serein"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Pierre de Capture Chaotique",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Chaotique.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["CHAOTIQUE"],
+      "penaltyTypes": ["STRATEGE"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres possèdent une structure interne délibérément instable qui entre en résonance avec l'énergie chaotique des variants correspondants.",
+      "appearance": "Gemme multicolore avec des motifs asymétriques, émettant une lueur changeante et imprévisible lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 216,
+          "quantity": 2,
+          "name": "Essence de Chaotique"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Pierre de Capture Visionnaire",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Visionnaire.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["VISIONNAIRE"],
+      "penaltyTypes": ["OMBREUX"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres contiennent des cristaux temporels qui peuvent s'accorder aux distorsions de perception créées par les variants Visionnaires.",
+      "appearance": "Gemme blanche avec des motifs spiralés, émettant une lueur blanche éthérée lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 217,
+          "quantity": 2,
+          "name": "Essence de Visionnaire"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Pierre de Capture Ombreux",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Ombreux.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["OMBREUX"],
+      "penaltyTypes": ["LUMINEUX"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres sont imprégnées d'une énergie sombre qui peut pénétrer les défenses des variants Ombreux et les attirer à l'intérieur.",
+      "appearance": "Gemme noire avec des veines grises, absorbant la lumière environnante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 218,
+          "quantity": 2,
+          "name": "Essence d'Ombreux"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Pierre de Capture Lumineux",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Lumineux.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["LUMINEUX"],
+      "penaltyTypes": ["MYSTIQUE"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres sont capables de réfléchir et d'amplifier la lumière émise par les variants Lumineux, les attirant comme des papillons vers une flamme.",
+      "appearance": "Gemme dorée avec des facettes prismatiques, émettant un éclat éblouissant lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 219,
+          "quantity": 2,
+          "name": "Essence de Lumineux"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Pierre de Capture Naturel",
+      "description": "Une pierre de capture spécialisée, particulièrement efficace contre les variants de type Naturel.",
+      "value": 1500,
+      "rarity": "RARE",
+      "captureRate": 0.5,
+      "material": "GEM",
+      "type": "SPECIALIZED",
+      "bonusTypes": ["NATUREL"],
+      "penaltyTypes": ["FURIEUX"],
+      "requiredLevel": 20,
+      "lore": "Ces pierres sont infusées d'essences naturelles qui créent un environnement familier et accueillant pour les variants Naturels.",
+      "appearance": "Gemme verte avec des motifs organiques, émettant une lueur verte vivante lors de l'activation.",
+      "craftingRequirements": [
+        {
+          "itemId": 204,
+          "quantity": 1,
+          "name": "Gemme rare"
+        },
+        {
+          "itemId": 220,
+          "quantity": 2,
+          "name": "Essence de Naturel"
+        },
+        {
+          "itemId": 206,
+          "quantity": 1,
+          "name": "Fragment de signe"
+        }
+      ],
+      "shopLocations": [
+        {
+          "location": "Lumina",
+          "shopName": "Boutique Spécialisée",
+          "price": 1500,
+          "stock": 2,
+          "restockTime": "WEEKLY"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Pierre de Capture Ancienne",
+      "description": "Une pierre de capture légendaire datant d'une époque révolue, extrêmement efficace mais imprévisible.",
+      "value": 20000,
+      "rarity": "LEGENDARY",
+      "captureRate": 0.8,
+      "material": "ANCIENT",
+      "type": "LEGENDARY",
+      "bonusTypes": ["STRATEGE", "MYSTIQUE", "VISIONNAIRE"],
+      "penaltyTypes": [],
+      "requiredLevel": 50,
+      "lore": "Ces pierres rarissimes ont été créées par les premiers Tacticiens. Leur technologie perdue leur confère des propriétés uniques, mais elles sont difficiles à maîtriser.",
+      "appearance": "Artefact cristallin aux couleurs changeantes avec des inscriptions anciennes, émettant une aura puissante et mystérieuse lors de l'activation.",
+      "craftingRequirements": [],
+      "shopLocations": []
+    }
+  ],
+  "totalItems": 15,
+  "lastId": 15
+}

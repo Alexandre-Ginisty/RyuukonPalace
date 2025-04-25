@@ -1,0 +1,111 @@
+{
+  "characters": {
+    "hero": {
+      "model": "hero.fbx",
+      "animations": {
+        "idle": "idle.fbx",
+        "walk": "walk.fbx",
+        "attack": "attack.fbx",
+        "hurt": "hurt.fbx",
+        "die": "die.fbx"
+      }
+    }
+  },
+  "npcs": {
+    "kael": {
+      "model": "Kael_tpose.fbx",
+      "animations": {
+        "idle": "Kael_tpose.fbx",
+        "walk": "Start Walking kael.fbx"
+      }
+    },
+    "orion": {
+      "model": "",
+      "animations": {}
+    },
+    "elara": {
+      "model": "",
+      "animations": {}
+    },
+    "eamon": {
+      "model": "",
+      "animations": {}
+    },
+    "lysandra": {
+      "model": "",
+      "animations": {}
+    },
+    "thorne": {
+      "model": "",
+      "animations": {}
+    },
+    "mira": {
+      "model": "",
+      "animations": {}
+    },
+    "stein": {
+      "model": "",
+      "animations": {}
+    },
+    "wolfheart": {
+      "model": "",
+      "animations": {}
+    }
+  },
+  "variants": {
+    "stratege": {
+      "model": "",
+      "animations": {}
+    },
+    "furieux": {
+      "model": "",
+      "animations": {}
+    },
+    "mystique": {
+      "model": "",
+      "animations": {}
+    },
+    "inventeur": {
+      "model": "",
+      "animations": {}
+    },
+    "serein": {
+      "model": "",
+      "animations": {}
+    },
+    "chaotique": {
+      "model": "",
+      "animations": {}
+    },
+    "visionnaire": {
+      "model": "",
+      "animations": {}
+    },
+    "ombreux": {
+      "model": "",
+      "animations": {}
+    },
+    "lumineux": {
+      "model": "",
+      "animations": {}
+    },
+    "naturel": {
+      "model": "",
+      "animations": {}
+    }
+  },
+  "animation_sets": {
+    "default": {
+      "idle": "",
+      "walk": "",
+      "run": "",
+      "attack": "",
+      "special_attack": "",
+      "hurt": "",
+      "die": "",
+      "victory": "",
+      "use_item": "",
+      "interact": ""
+    }
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Armes utilisées par les Guerriers PNJ dans Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "WARRIOR_WEAPONS"
+  },
+  "weapons": [
+    {
+      "id": 701,
+      "name": "Épée du Guerrier",
+      "description": "Épée standard utilisée par les Guerriers d'Elderglen",
+      "value": 500,
+      "rarity": "COMMON",
+      "type": "SWORD",
+      "damage": 25,
+      "variantTypeEffectiveness": {
+        "FURIEUX": 1.2,
+        "CHAOTIQUE": 1.0,
+        "MYSTIQUE": 0.8
+      },
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_sword_basic",
+        "textureId": "warrior_sword_basic_tex",
+        "scale": 1.0
+      },
+      "lore": "Cette épée standard est forgée dans les ateliers de Fort Eisenberg et distribuée à tous les Guerriers qui ont terminé leur formation de base. Bien que simple, elle est parfaitement équilibrée et suffisamment robuste pour affronter la plupart des variants communs."
+    },
+    {
+      "id": 702,
+      "name": "Lame de Feu",
+      "description": "Épée imprégnée d'essence de variants de feu",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "SWORD",
+      "damage": 35,
+      "variantTypeEffectiveness": {
+        "NATUREL": 1.5,
+        "GLACIAL": 1.3,
+        "AQUEUX": 0.7
+      },
+      "effects": [
+        {
+          "type": "FIRE_DAMAGE",
+          "description": "Inflige des dégâts de feu supplémentaires",
+          "power": 15,
+          "chance": 100
+        },
+        {
+          "type": "BURN_CHANCE",
+          "description": "Chance d'enflammer l'ennemi",
+          "power": 20,
+          "chance": 30
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_sword_fire",
+        "textureId": "warrior_sword_fire_tex",
+        "scale": 1.0,
+        "effectId": "fire_glow"
+      },
+      "lore": "Cette épée a été forgée avec du métal chauffé dans le souffle d'un variant Ardent, puis imprégnée d'essence de feu. La lame conserve une chaleur constante et laisse une traînée de flammes dans l'air lorsqu'elle est maniée avec force."
+    },
+    {
+      "id": 703,
+      "name": "Arc de Précision",
+      "description": "Arc finement travaillé permettant des tirs précis à longue distance",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "BOW",
+      "damage": 20,
+      "variantTypeEffectiveness": {
+        "AERIEN": 1.3,
+        "VISIONNAIRE": 1.1,
+        "FURIEUX": 0.9
+      },
+      "effects": [
+        {
+          "type": "ACCURACY_BOOST",
+          "description": "Augmente la précision des tirs",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "RANGE_BOOST",
+          "description": "Augmente la portée des tirs",
+          "power": 20,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_bow_precision",
+        "textureId": "warrior_bow_precision_tex",
+        "scale": 1.0
+      },
+      "lore": "Cet arc est fabriqué à partir de bois flexible provenant des arbres de Whisperwood Forest. Les archers Guerriers l'utilisent pour abattre les variants Aériens avant qu'ils ne puissent s'approcher."
+    },
+    {
+      "id": 704,
+      "name": "Marteau de Guerre",
+      "description": "Arme lourde capable de briser les défenses des variants",
+      "value": 950,
+      "rarity": "UNCOMMON",
+      "type": "HAMMER",
+      "damage": 40,
+      "variantTypeEffectiveness": {
+        "TERRESTRE": 1.4,
+        "METALLIQUE": 1.2,
+        "AERIEN": 0.8
+      },
+      "effects": [
+        {
+          "type": "ARMOR_BREAK",
+          "description": "Réduit la défense de l'ennemi",
+          "power": 30,
+          "chance": 40
+        },
+        {
+          "type": "STUN_CHANCE",
+          "description": "Chance d'étourdir l'ennemi",
+          "power": 25,
+          "chance": 20
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_hammer",
+        "textureId": "warrior_hammer_tex",
+        "scale": 1.0
+      },
+      "lore": "Ce marteau massif est l'arme préférée des Guerriers qui affrontent les variants Terrestres et Métalliques. Son poids considérable permet de briser même les carapaces les plus dures."
+    },
+    {
+      "id": 705,
+      "name": "Épée de Glace",
+      "description": "Lame forgée avec l'essence de variants glaciaux",
+      "value": 1300,
+      "rarity": "UNCOMMON",
+      "type": "SWORD",
+      "damage": 32,
+      "variantTypeEffectiveness": {
+        "NATUREL": 1.3,
+        "AERIEN": 1.2,
+        "ARDENT": 0.6
+      },
+      "effects": [
+        {
+          "type": "ICE_DAMAGE",
+          "description": "Inflige des dégâts de glace supplémentaires",
+          "power": 15,
+          "chance": 100
+        },
+        {
+          "type": "FREEZE_CHANCE",
+          "description": "Chance de ralentir l'ennemi",
+          "power": 20,
+          "chance": 25
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_sword_ice",
+        "textureId": "warrior_sword_ice_tex",
+        "scale": 1.0,
+        "effectId": "ice_mist"
+      },
+      "lore": "Cette épée a été forgée dans les profondeurs glacées de Frostpeak Mountains, trempée dans l'essence de variants Glaciaux. La lame est constamment entourée d'une fine brume givrée et peut geler l'humidité de l'air au contact."
+    },
+    {
+      "id": 706,
+      "name": "Hache de Guerre",
+      "description": "Hache massive utilisée par les Guerriers d'élite",
+      "value": 1400,
+      "rarity": "RARE",
+      "type": "AXE",
+      "damage": 45,
+      "variantTypeEffectiveness": {
+        "NATUREL": 1.4,
+        "TERRESTRE": 1.2,
+        "METALLIQUE": 0.8
+      },
+      "effects": [
+        {
+          "type": "CLEAVE",
+          "description": "Les attaques touchent plusieurs ennemis",
+          "power": 30,
+          "chance": 100
+        },
+        {
+          "type": "BLEED_CHANCE",
+          "description": "Chance de faire saigner l'ennemi, causant des dégâts sur la durée",
+          "power": 25,
+          "chance": 35
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_axe",
+        "textureId": "warrior_axe_tex",
+        "scale": 1.0
+      },
+      "lore": "Cette hache massive est réservée aux Guerriers d'élite qui ont prouvé leur valeur au combat. Son tranchant est si affûté qu'il peut couper à travers plusieurs variants d'un seul coup puissant."
+    },
+    {
+      "id": 707,
+      "name": "Lance de Foudre",
+      "description": "Lance imprégnée d'essence de variants électriques",
+      "value": 2200,
+      "rarity": "RARE",
+      "type": "SPEAR",
+      "damage": 40,
+      "variantTypeEffectiveness": {
+        "AQUEUX": 1.6,
+        "AERIEN": 1.3,
+        "TERRESTRE": 0.6
+      },
+      "effects": [
+        {
+          "type": "LIGHTNING_DAMAGE",
+          "description": "Inflige des dégâts électriques supplémentaires",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "CHAIN_LIGHTNING",
+          "description": "Chance que les dégâts se propagent aux ennemis proches",
+          "power": 30,
+          "chance": 20
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "warrior_spear_lightning",
+        "textureId": "warrior_spear_lightning_tex",
+        "scale": 1.0,
+        "effectId": "lightning_sparks"
+      },
+      "lore": "Cette lance a été créée en capturant la foudre d'un orage invoqué par un variant électrique. La pointe métallique crépite constamment d'électricité statique et peut décharger de puissantes étincelles lors d'un impact."
+    },
+    {
+      "id": 708,
+      "name": "Lame du Général",
+      "description": "Épée d'apparat portée par le Général Thorne",
+      "value": 5000,
+      "rarity": "VERY_RARE",
+      "type": "SWORD",
+      "damage": 60,
+      "variantTypeEffectiveness": {
+        "STRATEGE": 1.5,
+        "MYSTIQUE": 1.4,
+        "VISIONNAIRE": 1.3,
+        "FURIEUX": 1.2
+      },
+      "effects": [
+        {
+          "type": "COMMAND_AURA",
+          "description": "Augmente les statistiques des alliés à proximité",
+          "power": 25,
+          "chance": 100
+        },
+        {
+          "type": "INTIMIDATE",
+          "description": "Chance de faire fuir les variants sauvages de faible niveau",
+          "power": 40,
+          "chance": 60
+        },
+        {
+          "type": "VARIANT_SLAYER",
+          "description": "Inflige des dégâts supplémentaires à tous les types de variants",
+          "power": 35,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "general_sword",
+        "textureId": "general_sword_tex",
+        "scale": 1.0,
+        "effectId": "authority_aura"
+      },
+      "lore": "Cette épée est transmise de génération en génération aux chefs des Guerriers. Selon la légende, elle aurait été forgée avec le métal d'une météorite et trempée dans l'essence de cent variants vaincus en combat loyal. Le Général Thorne l'a reçue lors de sa nomination et ne s'en sépare jamais, même pour dormir."
+    },
+    {
+      "id": 709,
+      "name": "Arc de Kael",
+      "description": "Arc composite utilisé par le célèbre chasseur de primes",
+      "value": 4500,
+      "rarity": "VERY_RARE",
+      "type": "BOW",
+      "damage": 50,
+      "variantTypeEffectiveness": {
+        "OMBREUX": 1.5,
+        "AERIEN": 1.4,
+        "CHAOTIQUE": 1.3
+      },
+      "effects": [
+        {
+          "type": "TRACKING_SHOT",
+          "description": "Les flèches poursuivent leur cible",
+          "power": 35,
+          "chance": 70
+        },
+        {
+          "type": "PIERCING",
+          "description": "Les flèches ignorent partiellement l'armure",
+          "power": 40,
+          "chance": 100
+        },
+        {
+          "type": "MARK_TARGET",
+          "description": "Marque la cible, la rendant plus facile à suivre",
+          "power": 100,
+          "chance": 100
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "kael_bow",
+        "textureId": "kael_bow_tex",
+        "scale": 1.0,
+        "effectId": "shadow_trail"
+      },
+      "lore": "Cet arc a été fabriqué par Kael lui-même, utilisant des matériaux récoltés lors de ses nombreuses chasses. La corde est faite de tendons de variants particulièrement résistants, et le bois provient d'un arbre rare de Whisperwood Forest. Kael prétend que son arc 'sent' les variants et guide ses flèches vers leurs points faibles."
+    },
+    {
+      "id": 710,
+      "name": "Dagues Jumelles d'Aria",
+      "description": "Paire de dagues utilisées par l'assassin légendaire",
+      "value": 5500,
+      "rarity": "VERY_RARE",
+      "type": "DAGGER",
+      "damage": 35,
+      "variantTypeEffectiveness": {
+        "LUMINEUX": 1.6,
+        "STRATEGE": 1.4,
+        "OMBREUX": 0.5
+      },
+      "effects": [
+        {
+          "type": "DUAL_STRIKE",
+          "description": "Permet d'attaquer deux fois rapidement",
+          "power": 100,
+          "chance": 100
+        },
+        {
+          "type": "POISON_CHANCE",
+          "description": "Chance d'empoisonner l'ennemi",
+          "power": 30,
+          "chance": 40
+        },
+        {
+          "type": "SHADOW_STEP",
+          "description": "Chance de devenir brièvement invisible après une attaque",
+          "power": 100,
+          "chance": 25
+        }
+      ],
+      "npcOnly": true,
+      "appearance": {
+        "modelId": "aria_daggers",
+        "textureId": "aria_daggers_tex",
+        "scale": 1.0,
+        "effectId": "shadow_wisp"
+      },
+      "lore": "Ces dagues appartenaient à Aria, une assassin légendaire qui opérait dans l'ombre il y a plusieurs décennies. On raconte qu'elle pouvait éliminer sa cible et disparaître sans laisser de trace, comme si elle se fondait dans les ténèbres. Les lames sont imprégnées d'essence de variants Ombreux, leur conférant une aura sombre et la capacité de trancher presque n'importe quoi."
+    }
+  ],
+  "totalWeapons": 10,
+  "lastId": 710
+}

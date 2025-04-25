@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Configuration du système de dialogue pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "UserInterface"
+  },
+  "dialogueSystem": {
+    "layout": "POKEMON_STYLE",
+    "background": {
+      "default": "dialogue_bg_default",
+      "important": "dialogue_bg_important",
+      "quest": "dialogue_bg_quest"
+    },
+    "dialogueBox": {
+      "position": {
+        "x": "10%",
+        "y": "70%",
+        "width": "80%",
+        "height": "25%"
+      },
+      "border": {
+        "enabled": true,
+        "thickness": 2,
+        "color": "#3A2E21",
+        "cornerRadius": 8
+      },
+      "background": {
+        "color": "#1A1A1A",
+        "opacity": 0.85
+      }
+    },
+    "speakerDisplay": {
+      "position": {
+        "x": "10%",
+        "y": "65%",
+        "width": "30%",
+        "height": "5%"
+      },
+      "background": {
+        "color": "#2E2E2E",
+        "opacity": 0.9
+      },
+      "font": "main_bold",
+      "fontSize": 18,
+      "textColor": "#FFFFFF"
+    },
+    "portraitDisplay": {
+      "enabled": true,
+      "position": {
+        "x": "5%",
+        "y": "30%",
+        "width": "20%",
+        "height": "35%"
+      },
+      "border": {
+        "enabled": true,
+        "thickness": 3,
+        "color": "#3A2E21"
+      }
+    },
+    "textDisplay": {
+      "font": "main",
+      "fontSize": 16,
+      "textColor": "#FFFFFF",
+      "textSpeed": 30,
+      "padding": {
+        "top": 15,
+        "right": 15,
+        "bottom": 15,
+        "left": 15
+      },
+      "lineSpacing": 1.2,
+      "charactersPerLine": 60,
+      "maxLines": 3
+    },
+    "controls": {
+      "continueIndicator": {
+        "enabled": true,
+        "position": {
+          "x": "85%",
+          "y": "92%",
+          "width": "5%",
+          "height": "5%"
+        },
+        "animation": "PULSE",
+        "icon": "continue_arrow"
+      },
+      "skipButton": {
+        "enabled": true,
+        "position": {
+          "x": "90%",
+          "y": "5%",
+          "width": "8%",
+          "height": "5%"
+        },
+        "text": "Passer",
+        "icon": "skip_icon"
+      },
+      "autoButton": {
+        "enabled": true,
+        "position": {
+          "x": "80%",
+          "y": "5%",
+          "width": "8%",
+          "height": "5%"
+        },
+        "text": "Auto",
+        "icon": "auto_icon"
+      },
+      "historyButton": {
+        "enabled": true,
+        "position": {
+          "x": "70%",
+          "y": "5%",
+          "width": "8%",
+          "height": "5%"
+        },
+        "text": "Historique",
+        "icon": "history_icon"
+      }
+    },
+    "choiceSystem": {
+      "enabled": true,
+      "maxChoices": 4,
+      "choiceBox": {
+        "background": {
+          "color": "#2E2E2E",
+          "opacity": 0.9
+        },
+        "border": {
+          "enabled": true,
+          "thickness": 2,
+          "color": "#3A2E21",
+          "cornerRadius": 5
+        },
+        "height": "10%",
+        "width": "70%",
+        "spacing": 10
+      },
+      "choiceText": {
+        "font": "main",
+        "fontSize": 16,
+        "textColor": "#FFFFFF",
+        "hoverTextColor": "#FFD700",
+        "padding": {
+          "top": 10,
+          "right": 15,
+          "bottom": 10,
+          "left": 15
+        }
+      },
+      "position": {
+        "x": "15%",
+        "y": "40%"
+      }
+    },
+    "emotionSystem": {
+      "enabled": true,
+      "emotions": [
+        "NEUTRAL",
+        "HAPPY",
+        "SAD",
+        "ANGRY",
+        "SURPRISED",
+        "SCARED",
+        "THOUGHTFUL",
+        "SUSPICIOUS"
+      ],
+      "textEffects": {
+        "ANGRY": {
+          "color": "#FF4040",
+          "shake": true,
+          "fontSize": 18
+        },
+        "HAPPY": {
+          "color": "#80FF80"
+        },
+        "SAD": {
+          "color": "#8080FF",
+          "fontSize": 14
+        },
+        "SURPRISED": {
+          "color": "#FFFF80",
+          "shake": true
+        },
+        "SCARED": {
+          "color": "#C080FF",
+          "shake": true,
+          "fontSize": 14
+        }
+      }
+    },
+    "dialogueHistory": {
+      "enabled": true,
+      "maxEntries": 50,
+      "background": {
+        "color": "#1A1A1A",
+        "opacity": 0.95
+      },
+      "scrollable": true,
+      "showPortraits": true,
+      "showTimestamps": false
+    },
+    "specialEffects": {
+      "textReveal": {
+        "enabled": true,
+        "sound": "text_blip"
+      },
+      "importantDialogue": {
+        "shake": true,
+        "flash": true,
+        "sound": "important_dialogue"
+      },
+      "dialogueTransition": {
+        "enabled": true,
+        "animation": "FADE",
+        "duration": 0.3
+      }
+    },
+    "questDialogue": {
+      "highlight": true,
+      "icon": "quest_icon",
+      "sound": "quest_accepted"
+    },
+    "tutorialDialogue": {
+      "border": {
+        "color": "#4080FF",
+        "thickness": 3
+      },
+      "background": {
+        "color": "#162C4D",
+        "opacity": 0.9
+      }
+    }
+  }
+}

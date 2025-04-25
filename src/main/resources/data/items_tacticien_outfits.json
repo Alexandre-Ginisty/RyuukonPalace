@@ -1,0 +1,692 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Tenues de Tacticien pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "TACTICIEN_OUTFITS"
+  },
+  "outfits": [
+    {
+      "id": 601,
+      "name": "Tenue de Novice",
+      "description": "Tenue standard donnée aux apprentis Tacticiens",
+      "value": 100,
+      "rarity": "COMMON",
+      "type": "BASIC",
+      "requiredLevel": 1,
+      "variantBoosts": [],
+      "captureBoosts": [],
+      "appearance": {
+        "male": {
+          "torsoId": "novice_male_torso",
+          "legsId": "novice_male_legs",
+          "headId": "novice_male_head",
+          "handsId": "novice_male_hands"
+        },
+        "female": {
+          "torsoId": "novice_female_torso",
+          "legsId": "novice_female_legs",
+          "headId": "novice_female_head",
+          "handsId": "novice_female_hands"
+        }
+      },
+      "lore": "Cette tenue simple est remise à tous les apprentis Tacticiens lors de leur entrée à l'Académie. Elle est conçue pour être confortable et pratique, mais n'offre aucun avantage particulier."
+    },
+    {
+      "id": 602,
+      "name": "Tenue d'Étudiant",
+      "description": "Tenue portée par les étudiants de l'Académie des Tacticiens",
+      "value": 500,
+      "rarity": "COMMON",
+      "type": "ACADEMIC",
+      "requiredLevel": 5,
+      "variantBoosts": [
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 5
+        }
+      ],
+      "captureBoosts": [],
+      "appearance": {
+        "male": {
+          "torsoId": "student_male_torso",
+          "legsId": "student_male_legs",
+          "headId": "student_male_head",
+          "handsId": "student_male_hands"
+        },
+        "female": {
+          "torsoId": "student_female_torso",
+          "legsId": "student_female_legs",
+          "headId": "student_female_head",
+          "handsId": "student_female_hands"
+        }
+      },
+      "lore": "Cette tenue est remise aux étudiants qui ont réussi leur premier semestre à l'Académie. Les symboles brodés sur le col représentent les différents types de variants et aident à renforcer le lien avec les variants de type Stratège."
+    },
+    {
+      "id": 603,
+      "name": "Tenue de Tacticien",
+      "description": "Tenue officielle des Tacticiens diplômés",
+      "value": 1200,
+      "rarity": "UNCOMMON",
+      "type": "OFFICIAL",
+      "requiredLevel": 10,
+      "variantBoosts": [
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 8
+        },
+        {
+          "type": "VISIONNAIRE",
+          "statBoost": "PERCEPTION",
+          "value": 5
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "STRATEGE",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "tactician_male_torso",
+          "legsId": "tactician_male_legs",
+          "headId": "tactician_male_head",
+          "handsId": "tactician_male_hands"
+        },
+        "female": {
+          "torsoId": "tactician_female_torso",
+          "legsId": "tactician_female_legs",
+          "headId": "tactician_female_head",
+          "handsId": "tactician_female_hands"
+        }
+      },
+      "lore": "Cette tenue est remise lors de la cérémonie de graduation de l'Académie des Tacticiens. Les motifs complexes tissés dans le tissu aident à canaliser les Signes de Pouvoir et renforcent le lien avec certains types de variants."
+    },
+    {
+      "id": 604,
+      "name": "Tenue de Feu",
+      "description": "Tenue imprégnée d'essence de variants de feu",
+      "value": 2000,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL",
+      "requiredLevel": 15,
+      "variantBoosts": [
+        {
+          "type": "ARDENT",
+          "statBoost": "ATTACK",
+          "value": 15
+        },
+        {
+          "type": "ARDENT",
+          "statBoost": "SPEED",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "ARDENT",
+          "value": 20
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "fire_male_torso",
+          "legsId": "fire_male_legs",
+          "headId": "fire_male_head",
+          "handsId": "fire_male_hands"
+        },
+        "female": {
+          "torsoId": "fire_female_torso",
+          "legsId": "fire_female_legs",
+          "headId": "fire_female_head",
+          "handsId": "fire_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens spécialisés dans les variants de type Ardent. Le tissu est imprégné d'essence de ces variants, ce qui lui confère une légère chaleur et des teintes rougeoyantes qui semblent fluctuer avec la lumière."
+    },
+    {
+      "id": 605,
+      "name": "Tenue d'Eau",
+      "description": "Tenue imprégnée d'essence de variants aqueux",
+      "value": 2000,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL",
+      "requiredLevel": 15,
+      "variantBoosts": [
+        {
+          "type": "AQUEUX",
+          "statBoost": "DEFENSE",
+          "value": 15
+        },
+        {
+          "type": "AQUEUX",
+          "statBoost": "SPECIAL_DEFENSE",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "AQUEUX",
+          "value": 20
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "water_male_torso",
+          "legsId": "water_male_legs",
+          "headId": "water_male_head",
+          "handsId": "water_male_hands"
+        },
+        "female": {
+          "torsoId": "water_female_torso",
+          "legsId": "water_female_legs",
+          "headId": "water_female_head",
+          "handsId": "water_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens spécialisés dans les variants de type Aqueux. Le tissu est imprégné d'essence de ces variants, ce qui lui confère une légère fraîcheur et des teintes bleutées qui semblent onduler comme l'eau."
+    },
+    {
+      "id": 606,
+      "name": "Tenue de Terre",
+      "description": "Tenue imprégnée d'essence de variants terrestres",
+      "value": 2000,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL",
+      "requiredLevel": 15,
+      "variantBoosts": [
+        {
+          "type": "TERRESTRE",
+          "statBoost": "DEFENSE",
+          "value": 15
+        },
+        {
+          "type": "TERRESTRE",
+          "statBoost": "HP",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "TERRESTRE",
+          "value": 20
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "earth_male_torso",
+          "legsId": "earth_male_legs",
+          "headId": "earth_male_head",
+          "handsId": "earth_male_hands"
+        },
+        "female": {
+          "torsoId": "earth_female_torso",
+          "legsId": "earth_female_legs",
+          "headId": "earth_female_head",
+          "handsId": "earth_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens spécialisés dans les variants de type Terrestre. Le tissu est imprégné d'essence de ces variants, ce qui lui confère une solidité inhabituelle et des teintes brunes et vertes qui évoquent la terre fertile."
+    },
+    {
+      "id": 607,
+      "name": "Tenue d'Air",
+      "description": "Tenue imprégnée d'essence de variants aériens",
+      "value": 2000,
+      "rarity": "UNCOMMON",
+      "type": "ELEMENTAL",
+      "requiredLevel": 15,
+      "variantBoosts": [
+        {
+          "type": "AERIEN",
+          "statBoost": "SPEED",
+          "value": 15
+        },
+        {
+          "type": "AERIEN",
+          "statBoost": "EVASION",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "AERIEN",
+          "value": 20
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "air_male_torso",
+          "legsId": "air_male_legs",
+          "headId": "air_male_head",
+          "handsId": "air_male_hands"
+        },
+        "female": {
+          "torsoId": "air_female_torso",
+          "legsId": "air_female_legs",
+          "headId": "air_female_head",
+          "handsId": "air_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens spécialisés dans les variants de type Aérien. Le tissu est imprégné d'essence de ces variants, ce qui la rend incroyablement légère et lui confère des teintes blanches et bleu clair qui semblent flotter avec la brise."
+    },
+    {
+      "id": 608,
+      "name": "Tenue de Lumière",
+      "description": "Tenue imprégnée d'essence de variants lumineux",
+      "value": 2500,
+      "rarity": "RARE",
+      "type": "ELEMENTAL",
+      "requiredLevel": 20,
+      "variantBoosts": [
+        {
+          "type": "LUMINEUX",
+          "statBoost": "SPECIAL_ATTACK",
+          "value": 15
+        },
+        {
+          "type": "LUMINEUX",
+          "statBoost": "ACCURACY",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "LUMINEUX",
+          "value": 20
+        },
+        {
+          "variantType": "OMBREUX",
+          "value": -10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "light_male_torso",
+          "legsId": "light_male_legs",
+          "headId": "light_male_head",
+          "handsId": "light_male_hands"
+        },
+        "female": {
+          "torsoId": "light_female_torso",
+          "legsId": "light_female_legs",
+          "headId": "light_female_head",
+          "handsId": "light_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens du Temple of Dawn spécialisés dans les variants de type Lumineux. Le tissu semble capturer et amplifier la lumière environnante, émettant une douce lueur dorée dans l'obscurité."
+    },
+    {
+      "id": 609,
+      "name": "Tenue d'Ombre",
+      "description": "Tenue imprégnée d'essence de variants ombreux",
+      "value": 2500,
+      "rarity": "RARE",
+      "type": "ELEMENTAL",
+      "requiredLevel": 20,
+      "variantBoosts": [
+        {
+          "type": "OMBREUX",
+          "statBoost": "EVASION",
+          "value": 15
+        },
+        {
+          "type": "OMBREUX",
+          "statBoost": "SPEED",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "OMBREUX",
+          "value": 20
+        },
+        {
+          "variantType": "LUMINEUX",
+          "value": -10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "shadow_male_torso",
+          "legsId": "shadow_male_legs",
+          "headId": "shadow_male_head",
+          "handsId": "shadow_male_hands"
+        },
+        "female": {
+          "torsoId": "shadow_female_torso",
+          "legsId": "shadow_female_legs",
+          "headId": "shadow_female_head",
+          "handsId": "shadow_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été créée par des Tacticiens de Darkhaven spécialisés dans les variants de type Ombreux. Le tissu semble absorber la lumière environnante, créant une aura de pénombre autour du porteur et rendant ses contours légèrement flous."
+    },
+    {
+      "id": 610,
+      "name": "Tenue de Maître",
+      "description": "Tenue portée par les Tacticiens de haut rang",
+      "value": 5000,
+      "rarity": "RARE",
+      "type": "MASTER",
+      "requiredLevel": 30,
+      "variantBoosts": [
+        {
+          "type": "ALL",
+          "statBoost": "ALL",
+          "value": 5
+        },
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 10
+        },
+        {
+          "type": "VISIONNAIRE",
+          "statBoost": "PERCEPTION",
+          "value": 10
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "ALL",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "master_male_torso",
+          "legsId": "master_male_legs",
+          "headId": "master_male_head",
+          "handsId": "master_male_hands"
+        },
+        "female": {
+          "torsoId": "master_female_torso",
+          "legsId": "master_female_legs",
+          "headId": "master_female_head",
+          "handsId": "master_female_hands"
+        }
+      },
+      "lore": "Cette tenue est portée par les Tacticiens qui ont atteint le rang de Maître. Les motifs complexes tissés dans le tissu représentent les dix types de variants et aident à canaliser les Signes de Pouvoir avec une efficacité accrue."
+    },
+    {
+      "id": 611,
+      "name": "Tenue du Conseil",
+      "description": "Tenue cérémonielle portée par les membres du Conseil des Sages",
+      "value": 10000,
+      "rarity": "VERY_RARE",
+      "type": "CEREMONIAL",
+      "requiredLevel": 40,
+      "variantBoosts": [
+        {
+          "type": "ALL",
+          "statBoost": "ALL",
+          "value": 10
+        },
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 15
+        },
+        {
+          "type": "VISIONNAIRE",
+          "statBoost": "PERCEPTION",
+          "value": 15
+        },
+        {
+          "type": "MYSTIQUE",
+          "statBoost": "SPECIAL_ATTACK",
+          "value": 15
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "ALL",
+          "value": 15
+        },
+        {
+          "variantType": "RARE",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "council_male_torso",
+          "legsId": "council_male_legs",
+          "headId": "council_male_head",
+          "handsId": "council_male_hands"
+        },
+        "female": {
+          "torsoId": "council_female_torso",
+          "legsId": "council_female_legs",
+          "headId": "council_female_head",
+          "handsId": "council_female_hands"
+        }
+      },
+      "lore": "Cette tenue somptueuse est portée uniquement par les membres du Conseil des Sages lors des cérémonies importantes. Chaque pièce est tissée à la main avec des fils imprégnés d'essence de variants rares et ornée de symboles anciens qui amplifient considérablement les Signes de Pouvoir."
+    },
+    {
+      "id": 612,
+      "name": "Tenue de Maître Orion",
+      "description": "Réplique de la tenue portée par le légendaire Maître Orion",
+      "value": 15000,
+      "rarity": "LEGENDARY",
+      "type": "LEGENDARY",
+      "requiredLevel": 50,
+      "variantBoosts": [
+        {
+          "type": "ALL",
+          "statBoost": "ALL",
+          "value": 15
+        },
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 20
+        },
+        {
+          "type": "VISIONNAIRE",
+          "statBoost": "PERCEPTION",
+          "value": 20
+        },
+        {
+          "type": "MYSTIQUE",
+          "statBoost": "SPECIAL_ATTACK",
+          "value": 20
+        },
+        {
+          "type": "LUMINEUX",
+          "statBoost": "SPECIAL_DEFENSE",
+          "value": 20
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "ALL",
+          "value": 25
+        },
+        {
+          "variantType": "RARE",
+          "value": 15
+        },
+        {
+          "variantType": "LEGENDARY",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "orion_male_torso",
+          "legsId": "orion_male_legs",
+          "headId": "orion_male_head",
+          "handsId": "orion_male_hands"
+        },
+        "female": {
+          "torsoId": "orion_female_torso",
+          "legsId": "orion_female_legs",
+          "headId": "orion_female_head",
+          "handsId": "orion_female_hands"
+        }
+      },
+      "lore": "Cette tenue est une réplique de celle portée par Maître Orion, le plus grand Tacticien de l'histoire d'Elderglen. Bien que ce ne soit qu'une réplique, elle a été créée avec un soin extrême et imprégnée d'essences de variants rares, ce qui lui confère une partie des pouvoirs de l'original. La véritable tenue de Maître Orion est conservée dans une chambre sécurisée du Temple of Dawn et n'est jamais portée."
+    },
+    {
+      "id": 613,
+      "name": "Tenue de Chasseur",
+      "description": "Tenue inspirée de celle portée par Kael, le chasseur de variants",
+      "value": 8000,
+      "rarity": "VERY_RARE",
+      "type": "SPECIALIZED",
+      "requiredLevel": 35,
+      "variantBoosts": [
+        {
+          "type": "OMBREUX",
+          "statBoost": "EVASION",
+          "value": 20
+        },
+        {
+          "type": "OMBREUX",
+          "statBoost": "SPEED",
+          "value": 15
+        },
+        {
+          "type": "CHAOTIQUE",
+          "statBoost": "ATTACK",
+          "value": 15
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "WILD",
+          "value": 20
+        },
+        {
+          "variantType": "RARE",
+          "value": 15
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "hunter_male_torso",
+          "legsId": "hunter_male_legs",
+          "headId": "hunter_male_head",
+          "handsId": "hunter_male_hands"
+        },
+        "female": {
+          "torsoId": "hunter_female_torso",
+          "legsId": "hunter_female_legs",
+          "headId": "hunter_female_head",
+          "handsId": "hunter_female_hands"
+        }
+      },
+      "lore": "Cette tenue est inspirée de celle portée par Kael, le célèbre chasseur de variants. Elle est conçue pour la discrétion et la mobilité, avec de nombreuses poches cachées pour transporter des pierres de capture et autres objets utiles. Le tissu est traité avec des essences de variants Ombreux pour aider le porteur à se fondre dans les ombres."
+    },
+    {
+      "id": 614,
+      "name": "Tenue d'Explorateur",
+      "description": "Tenue robuste conçue pour l'exploration de zones dangereuses",
+      "value": 6000,
+      "rarity": "RARE",
+      "type": "SPECIALIZED",
+      "requiredLevel": 25,
+      "variantBoosts": [
+        {
+          "type": "TERRESTRE",
+          "statBoost": "DEFENSE",
+          "value": 15
+        },
+        {
+          "type": "NATUREL",
+          "statBoost": "HP",
+          "value": 15
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "WILD",
+          "value": 15
+        },
+        {
+          "variantType": "TERRESTRE",
+          "value": 10
+        },
+        {
+          "variantType": "NATUREL",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "explorer_male_torso",
+          "legsId": "explorer_male_legs",
+          "headId": "explorer_male_head",
+          "handsId": "explorer_male_hands"
+        },
+        "female": {
+          "torsoId": "explorer_female_torso",
+          "legsId": "explorer_female_legs",
+          "headId": "explorer_female_head",
+          "handsId": "explorer_female_hands"
+        }
+      },
+      "lore": "Cette tenue a été conçue par des Tacticiens qui explorent régulièrement les régions sauvages d'Elderglen à la recherche de variants rares. Elle offre une bonne protection contre les éléments et est renforcée aux endroits stratégiques pour résister aux conditions difficiles."
+    },
+    {
+      "id": 615,
+      "name": "Tenue de Chercheur",
+      "description": "Tenue portée par les Tacticiens qui étudient les variants",
+      "value": 7000,
+      "rarity": "RARE",
+      "type": "SPECIALIZED",
+      "requiredLevel": 25,
+      "variantBoosts": [
+        {
+          "type": "STRATEGE",
+          "statBoost": "INTELLIGENCE",
+          "value": 20
+        },
+        {
+          "type": "VISIONNAIRE",
+          "statBoost": "PERCEPTION",
+          "value": 15
+        }
+      ],
+      "captureBoosts": [
+        {
+          "variantType": "STRATEGE",
+          "value": 15
+        },
+        {
+          "variantType": "VISIONNAIRE",
+          "value": 15
+        },
+        {
+          "variantType": "MYSTIQUE",
+          "value": 10
+        }
+      ],
+      "appearance": {
+        "male": {
+          "torsoId": "researcher_male_torso",
+          "legsId": "researcher_male_legs",
+          "headId": "researcher_male_head",
+          "handsId": "researcher_male_hands"
+        },
+        "female": {
+          "torsoId": "researcher_female_torso",
+          "legsId": "researcher_female_legs",
+          "headId": "researcher_female_head",
+          "handsId": "researcher_female_hands"
+        }
+      },
+      "lore": "Cette tenue est portée par les Tacticiens qui se consacrent à l'étude scientifique des variants. Elle comporte de nombreuses poches pour transporter des instruments de mesure et des carnets de notes, ainsi que des symboles spécifiques qui facilitent la communication avec les variants intellectuels."
+    }
+  ],
+  "totalOutfits": 15,
+  "lastId": 615
+}

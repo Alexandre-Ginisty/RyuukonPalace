@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Index des lieux pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Index"
+  },
+  "locationFiles": [
+    {
+      "type": "CITIES",
+      "file": "locations_cities.json",
+      "count": 0,
+      "description": "Villes et villages principaux d'Elderglen",
+      "categories": ["Capitales", "Villages", "Avant-postes"]
+    },
+    {
+      "type": "DUNGEONS",
+      "file": "locations_dungeons.json",
+      "count": 0,
+      "description": "Donjons, ruines et zones dangereuses",
+      "categories": ["Ruines", "Grottes", "Temples", "Forteresses"]
+    },
+    {
+      "type": "WILDERNESS",
+      "file": "locations_wilderness.json",
+      "count": 0,
+      "description": "Zones naturelles comme forêts, montagnes et lacs",
+      "categories": ["Forêts", "Montagnes", "Plaines", "Lacs"]
+    },
+    {
+      "type": "SPAWN_ZONES",
+      "file": "spawn_zones.json",
+      "count": 0,
+      "description": "Zones où les variants peuvent apparaître",
+      "categories": ["Communes", "Rares", "Légendaires"]
+    }
+  ],
+  "totalLocations": 0,
+  "lastId": 0
+}

@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Index des fichiers de PNJ pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Index"
+  },
+  "npcFiles": [
+    {
+      "faction": "TACTICIENS",
+      "file": "npcs_tacticiens.json",
+      "count": 0,
+      "description": "Personnages appartenant à la faction des Tacticiens",
+      "philosophy": "Exploitent et éduquent les variants pour combattre d'autres variants et accomplir des tâches quotidiennes",
+      "methods": "Utilisent des Signes de Pouvoir et des Pierres de Capture",
+      "centers": ["Lumina", "Temple of Dawn", "Darkhaven"],
+      "leaders": ["Maître Orion", "Lady Elara"]
+    },
+    {
+      "faction": "GUERRIERS",
+      "file": "npcs_guerriers.json",
+      "count": 0,
+      "description": "Personnages appartenant à la faction des Guerriers",
+      "philosophy": "Rejettent l'utilisation de variants comme outils, préfèrent s'engager dans des duels directs",
+      "methods": "Combat direct, armes spéciales anti-variants",
+      "centers": ["Stormpeak", "Fort Eisenberg"],
+      "leaders": ["Général Thorne", "Sir Rainer Wolfheart"]
+    },
+    {
+      "faction": "NEUTRES",
+      "file": "npcs_neutres.json",
+      "count": 0,
+      "description": "Personnages n'appartenant à aucune faction ou ayant une position neutre",
+      "philosophy": "Diverses philosophies, souvent pragmatiques ou indépendantes",
+      "methods": "Variés, selon les individus",
+      "centers": ["Darkhaven", "Whisperwind Valley", "Zones rurales"],
+      "leaders": ["Divers marchands et aventuriers indépendants"]
+    }
+  ],
+  "totalNpcs": 0,
+  "lastId": 0
+}

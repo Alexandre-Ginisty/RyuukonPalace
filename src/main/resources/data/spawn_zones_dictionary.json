@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Dictionnaire des zones de spawn des créatures de Ryuukon Palace",
+    "lastUpdated": "2025-04-24"
+  },
+  "spawn_zones": [
+    {
+      "id": "whisperwood_forest_sunny",
+      "name": "Whisperwood Forest - Zones ensoleillées",
+      "description": "Clairières et zones ensoleillées de la forêt enchantée de Whisperwood, où la lumière filtre à travers la canopée.",
+      "type": "Herbes hautes ensoleillées",
+      "dominant_types": ["FIRE", "NATURE", "LIGHT"],
+      "creatures": [1, 14, 22, 25, 31],
+      "rarity_modifiers": {
+        "FIRE": 1.5,
+        "NATURE": 1.3,
+        "LIGHT": 1.4,
+        "WATER": 0.7,
+        "SHADOW": 0.5
+      },
+      "time_conditions": {
+        "day": 1.5,
+        "night": 0.6,
+        "dawn": 1.2,
+        "dusk": 0.8
+      },
+      "weather_conditions": {
+        "sunny": 1.5,
+        "cloudy": 1.0,
+        "rainy": 0.7,
+        "stormy": 0.5,
+        "foggy": 0.8
+      },
+      "texture": "zones/whisperwood_sunny.png"
+    },
+    {
+      "id": "whisperwood_forest_shaded",
+      "name": "Whisperwood Forest - Zones ombragées",
+      "description": "Zones densément boisées et ombragées de la forêt de Whisperwood, où peu de lumière pénètre.",
+      "type": "Zones ombragées",
+      "dominant_types": ["SHADOW", "NATURE", "PSYCHIC"],
+      "creatures": [12, 15, 23, 27, 33],
+      "rarity_modifiers": {
+        "SHADOW": 1.5,
+        "NATURE": 1.3,
+        "PSYCHIC": 1.4,
+        "FIRE": 0.6,
+        "LIGHT": 0.5
+      },
+      "time_conditions": {
+        "day": 0.7,
+        "night": 1.5,
+        "dawn": 0.9,
+        "dusk": 1.3
+      },
+      "weather_conditions": {
+        "sunny": 0.7,
+        "cloudy": 1.2,
+        "rainy": 1.3,
+        "stormy": 1.1,
+        "foggy": 1.5
+      },
+      "texture": "zones/whisperwood_shaded.png"
+    },
+    {
+      "id": "darkhaven_port",
+      "name": "Darkhaven - Port",
+      "description": "Les quais animés et les eaux du port de Darkhaven, où les navires marchands vont et viennent.",
+      "type": "Zone aquatique urbaine",
+      "dominant_types": ["WATER", "AIR", "METAL"],
+      "creatures": [4, 10, 19, 26, 34],
+      "rarity_modifiers": {
+        "WATER": 1.6,
+        "AIR": 1.2,
+        "METAL": 1.3,
+        "EARTH": 0.7,
+        "FIRE": 0.6
+      },
+      "time_conditions": {
+        "day": 1.2,
+        "night": 1.0,
+        "dawn": 1.3,
+        "dusk": 1.1
+      },
+      "weather_conditions": {
+        "sunny": 1.0,
+        "cloudy": 1.1,
+        "rainy": 1.3,
+        "stormy": 1.5,
+        "foggy": 1.4
+      },
+      "texture": "zones/darkhaven_port.png"
+    },
+    {
+      "id": "frostpeak_mountains_rocky",
+      "name": "Frostpeak Mountains - Zones rocheuses",
+      "description": "Terrains escarpés et rocheux des montagnes de Frostpeak, balayés par des vents glacials.",
+      "type": "Zone rocheuse montagneuse",
+      "dominant_types": ["EARTH", "ICE", "AIR"],
+      "creatures": [7, 13, 18, 29, 35],
+      "rarity_modifiers": {
+        "EARTH": 1.6,
+        "ICE": 1.5,
+        "AIR": 1.3,
+        "FIRE": 0.8,
+        "WATER": 0.7
+      },
+      "time_conditions": {
+        "day": 1.3,
+        "night": 0.9,
+        "dawn": 1.1,
+        "dusk": 1.0
+      },
+      "weather_conditions": {
+        "sunny": 1.1,
+        "cloudy": 1.2,
+        "rainy": 0.8,
+        "stormy": 1.4,
+        "foggy": 0.9,
+        "snowy": 1.6
+      },
+      "texture": "zones/frostpeak_rocky.png"
+    },
+    {
+      "id": "shadow_caverns_dark",
+      "name": "Shadow Caverns - Zones obscures",
+      "description": "Profondeurs ténébreuses des cavernes, où la lumière n'a jamais pénétré et où des créatures étranges se cachent.",
+      "type": "Zone souterraine obscure",
+      "dominant_types": ["SHADOW", "EARTH", "PSYCHIC", "MYTHICAL"],
+      "creatures": [9, 16, 24, 30, 36],
+      "rarity_modifiers": {
+        "SHADOW": 1.8,
+        "EARTH": 1.4,
+        "PSYCHIC": 1.5,
+        "MYTHICAL": 1.3,
+        "LIGHT": 0.4,
+        "FIRE": 0.7
+      },
+      "time_conditions": {
+        "day": 1.0,
+        "night": 1.0,
+        "dawn": 1.0,
+        "dusk": 1.0
+      },
+      "weather_conditions": {
+        "sunny": 1.0,
+        "cloudy": 1.0,
+        "rainy": 1.0,
+        "stormy": 1.0,
+        "foggy": 1.0
+      },
+      "texture": "zones/shadow_caverns_dark.png"
+    },
+    {
+      "id": "temple_of_dawn_sanctuary",
+      "name": "Temple of Dawn - Sanctuaire",
+      "description": "Le sanctuaire sacré du Temple de l'Aube, baigné d'une lumière mystique et protégé par d'anciennes magies.",
+      "type": "Zone sacrée lumineuse",
+      "dominant_types": ["LIGHT", "PSYCHIC", "MYTHICAL"],
+      "creatures": [3, 17, 21, 28, 32],
+      "rarity_modifiers": {
+        "LIGHT": 1.8,
+        "PSYCHIC": 1.5,
+        "MYTHICAL": 1.4,
+        "SHADOW": 0.3,
+        "DARK": 0.2
+      },
+      "time_conditions": {
+        "day": 1.4,
+        "night": 0.8,
+        "dawn": 1.8,
+        "dusk": 1.0
+      },
+      "weather_conditions": {
+        "sunny": 1.5,
+        "cloudy": 1.0,
+        "rainy": 0.8,
+        "stormy": 0.7,
+        "foggy": 1.2
+      },
+      "texture": "zones/temple_dawn_sanctuary.png"
+    },
+    {
+      "id": "whisperwind_valley_streams",
+      "name": "Whisperwind Valley - Ruisseaux",
+      "description": "Les ruisseaux cristallins qui serpentent à travers la vallée verdoyante de Whisperwind, murmurante de secrets.",
+      "type": "Zone aquatique naturelle",
+      "dominant_types": ["WATER", "NATURE", "AIR"],
+      "creatures": [4, 11, 20, 25, 31],
+      "rarity_modifiers": {
+        "WATER": 1.7,
+        "NATURE": 1.4,
+        "AIR": 1.2,
+        "FIRE": 0.6,
+        "EARTH": 0.9
+      },
+      "time_conditions": {
+        "day": 1.3,
+        "night": 0.9,
+        "dawn": 1.5,
+        "dusk": 1.2
+      },
+      "weather_conditions": {
+        "sunny": 1.2,
+        "cloudy": 1.1,
+        "rainy": 1.6,
+        "stormy": 1.3,
+        "foggy": 1.4
+      },
+      "texture": "zones/whisperwind_streams.png"
+    },
+    {
+      "id": "ancient_ruins_collapsed",
+      "name": "Ancient Ruins - Zones effondrées",
+      "description": "Sections effondrées des ruines anciennes, où la nature reprend ses droits parmi les décombres de civilisations oubliées.",
+      "type": "Zone de ruines",
+      "dominant_types": ["EARTH", "METAL", "MYTHICAL", "SHADOW"],
+      "creatures": [7, 8, 16, 22, 36],
+      "rarity_modifiers": {
+        "EARTH": 1.5,
+        "METAL": 1.4,
+        "MYTHICAL": 1.3,
+        "SHADOW": 1.2,
+        "WATER": 0.7,
+        "AIR": 0.8
+      },
+      "time_conditions": {
+        "day": 1.0,
+        "night": 1.3,
+        "dawn": 1.1,
+        "dusk": 1.2
+      },
+      "weather_conditions": {
+        "sunny": 0.9,
+        "cloudy": 1.1,
+        "rainy": 1.2,
+        "stormy": 1.3,
+        "foggy": 1.4
+      },
+      "texture": "zones/ancient_ruins_collapsed.png"
+    }
+  ]
+}

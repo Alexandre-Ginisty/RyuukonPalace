@@ -1,0 +1,638 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Objets consommables pour les variants dans Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "CONSUMABLES"
+  },
+  "consumables": [
+    {
+      "id": 401,
+      "name": "Potion de Soin",
+      "description": "Restaure une partie des PV d'un variant",
+      "value": 300,
+      "rarity": "COMMON",
+      "type": "HEALING",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "RESTORE_HP",
+        "value": 50,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 504,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 402,
+      "name": "Super Potion",
+      "description": "Restaure une grande partie des PV d'un variant",
+      "value": 700,
+      "rarity": "UNCOMMON",
+      "type": "HEALING",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "RESTORE_HP",
+        "value": 120,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 3
+        },
+        {
+          "itemId": 504,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": 403,
+      "name": "Potion Max",
+      "description": "Restaure tous les PV d'un variant",
+      "value": 1500,
+      "rarity": "RARE",
+      "type": "HEALING",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "RESTORE_HP",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 5
+        },
+        {
+          "itemId": 504,
+          "quantity": 3
+        },
+        {
+          "itemId": 507,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 404,
+      "name": "Élixir d'Énergie",
+      "description": "Restaure les PP d'une capacité d'un variant",
+      "value": 500,
+      "rarity": "UNCOMMON",
+      "type": "ENERGY",
+      "targetType": "VARIANT_ABILITY",
+      "effect": {
+        "type": "RESTORE_PP",
+        "value": 10,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 507,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 405,
+      "name": "Élixir Max",
+      "description": "Restaure tous les PP de toutes les capacités d'un variant",
+      "value": 2000,
+      "rarity": "RARE",
+      "type": "ENERGY",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "RESTORE_ALL_PP",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 4
+        },
+        {
+          "itemId": 507,
+          "quantity": 3
+        },
+        {
+          "itemId": 515,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 406,
+      "name": "Antidote",
+      "description": "Guérit un variant empoisonné",
+      "value": 250,
+      "rarity": "COMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_STATUS",
+        "statusType": "POISON",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 1
+        },
+        {
+          "itemId": 516,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 407,
+      "name": "Anti-Brûlure",
+      "description": "Guérit un variant brûlé",
+      "value": 250,
+      "rarity": "COMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_STATUS",
+        "statusType": "BURN",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 1
+        },
+        {
+          "itemId": 517,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 408,
+      "name": "Dégivrant",
+      "description": "Guérit un variant gelé",
+      "value": 250,
+      "rarity": "COMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_STATUS",
+        "statusType": "FREEZE",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 1
+        },
+        {
+          "itemId": 510,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 409,
+      "name": "Réveil",
+      "description": "Réveille un variant endormi",
+      "value": 250,
+      "rarity": "COMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_STATUS",
+        "statusType": "SLEEP",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 1
+        },
+        {
+          "itemId": 518,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 410,
+      "name": "Anti-Paralysie",
+      "description": "Guérit un variant paralysé",
+      "value": 250,
+      "rarity": "COMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_STATUS",
+        "statusType": "PARALYSIS",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 1
+        },
+        {
+          "itemId": 513,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 411,
+      "name": "Guérison Totale",
+      "description": "Guérit tous les problèmes de statut d'un variant",
+      "value": 600,
+      "rarity": "UNCOMMON",
+      "type": "STATUS",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "CURE_ALL_STATUS",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 3
+        },
+        {
+          "itemId": 516,
+          "quantity": 1
+        },
+        {
+          "itemId": 517,
+          "quantity": 1
+        },
+        {
+          "itemId": 518,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 412,
+      "name": "Restauration",
+      "description": "Restaure les PV et guérit tous les problèmes de statut d'un variant",
+      "value": 1200,
+      "rarity": "RARE",
+      "type": "HEALING",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "FULL_RESTORE",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 5
+        },
+        {
+          "itemId": 504,
+          "quantity": 3
+        },
+        {
+          "itemId": 507,
+          "quantity": 2
+        },
+        {
+          "itemId": 515,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 413,
+      "name": "Boost d'Attaque",
+      "description": "Augmente temporairement l'attaque d'un variant",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "STAT_BOOST",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "ATTACK",
+        "value": 25,
+        "percentage": true,
+        "duration": 3
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 510,
+          "quantity": 1
+        },
+        {
+          "itemId": 508,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 414,
+      "name": "Boost de Défense",
+      "description": "Augmente temporairement la défense d'un variant",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "STAT_BOOST",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "DEFENSE",
+        "value": 25,
+        "percentage": true,
+        "duration": 3
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 512,
+          "quantity": 1
+        },
+        {
+          "itemId": 508,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 415,
+      "name": "Boost de Vitesse",
+      "description": "Augmente temporairement la vitesse d'un variant",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "STAT_BOOST",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "SPEED",
+        "value": 25,
+        "percentage": true,
+        "duration": 3
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 513,
+          "quantity": 1
+        },
+        {
+          "itemId": 509,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 416,
+      "name": "Boost de Précision",
+      "description": "Augmente temporairement la précision d'un variant",
+      "value": 800,
+      "rarity": "UNCOMMON",
+      "type": "STAT_BOOST",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "BOOST_STAT",
+        "statType": "ACCURACY",
+        "value": 25,
+        "percentage": true,
+        "duration": 3
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 2
+        },
+        {
+          "itemId": 514,
+          "quantity": 1
+        },
+        {
+          "itemId": 507,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 417,
+      "name": "Élixir d'Expérience",
+      "description": "Donne une petite quantité d'expérience à un variant",
+      "value": 1000,
+      "rarity": "UNCOMMON",
+      "type": "EXPERIENCE",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "GAIN_EXP",
+        "value": 500,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 3
+        },
+        {
+          "itemId": 507,
+          "quantity": 2
+        },
+        {
+          "itemId": 515,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 418,
+      "name": "Grand Élixir d'Expérience",
+      "description": "Donne une grande quantité d'expérience à un variant",
+      "value": 3000,
+      "rarity": "RARE",
+      "type": "EXPERIENCE",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "GAIN_EXP",
+        "value": 2000,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 5
+        },
+        {
+          "itemId": 507,
+          "quantity": 3
+        },
+        {
+          "itemId": 515,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": 419,
+      "name": "Bonbon Rare",
+      "description": "Augmente définitivement une statistique d'un variant",
+      "value": 5000,
+      "rarity": "VERY_RARE",
+      "type": "PERMANENT_BOOST",
+      "targetType": "VARIANT",
+      "effect": {
+        "type": "PERMANENT_STAT_BOOST",
+        "statType": "ANY",
+        "value": 5,
+        "percentage": false
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 503,
+          "quantity": 10
+        },
+        {
+          "itemId": 507,
+          "quantity": 5
+        },
+        {
+          "itemId": 515,
+          "quantity": 3
+        },
+        {
+          "itemId": 519,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 420,
+      "name": "Amulette de Capture",
+      "description": "Augmente temporairement les chances de capture de variants",
+      "value": 1500,
+      "rarity": "RARE",
+      "type": "CAPTURE_AID",
+      "targetType": "TACTICIEN",
+      "effect": {
+        "type": "BOOST_CAPTURE_RATE",
+        "value": 30,
+        "percentage": true,
+        "duration": 5
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 507,
+          "quantity": 3
+        },
+        {
+          "itemId": 515,
+          "quantity": 2
+        },
+        {
+          "itemId": 519,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 421,
+      "name": "Talisman de Fuite",
+      "description": "Permet de fuir à coup sûr un combat contre un variant sauvage",
+      "value": 1000,
+      "rarity": "UNCOMMON",
+      "type": "ESCAPE",
+      "targetType": "TACTICIEN",
+      "effect": {
+        "type": "GUARANTEED_ESCAPE",
+        "value": 100,
+        "percentage": true
+      },
+      "usageLimit": 1,
+      "craftable": true,
+      "craftingMaterials": [
+        {
+          "itemId": 504,
+          "quantity": 3
+        },
+        {
+          "itemId": 513,
+          "quantity": 2
+        },
+        {
+          "itemId": 509,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "totalConsumables": 21,
+  "lastId": 421
+}

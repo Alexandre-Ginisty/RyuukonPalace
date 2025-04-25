@@ -33,8 +33,10 @@ public class CaptureStone extends Item {
      */
     public CaptureStone(CaptureStoneMaterial material, CaptureStoneType type) {
         super(
+            0, // ID temporaire, à remplacer par un ID unique
             material.getName() + " " + type.getName() + " Pierre de Capture",
             "Une pierre de " + material.getName() + " qui résonne avec l'énergie " + type.getDescription(),
+            calculateValue(material, type),
             loadTextureForStone(material, type),
             getRarityForMaterial(material)
         );
@@ -57,6 +59,43 @@ public class CaptureStone extends Item {
         this(material, type);
         this.capturedCreature = creature;
         this.active = true;
+    }
+    
+    /**
+     * Constructeur avec nom et description personnalisés
+     * 
+     * @param id ID de l'objet
+     * @param name Nom de la pierre
+     * @param description Description de la pierre
+     * @param value Valeur de la pierre
+     * @param material Matériau de la pierre
+     * @param type Type de la pierre
+     */
+    public CaptureStone(int id, String name, String description, int value, CaptureStoneMaterial material, CaptureStoneType type) {
+        super(id, name, description, value, loadTextureForStone(material, type), getRarityForMaterial(material));
+        this.material = material;
+        this.type = type;
+        this.capturedCreature = null;
+        this.active = false;
+        this.captureBonus = 0.0f;
+    }
+    
+    /**
+     * Constructeur avec nom et description personnalisés (pour compatibilité)
+     * 
+     * @param name Nom de la pierre
+     * @param description Description de la pierre
+     * @param textureId ID de la texture
+     * @param material Matériau de la pierre
+     * @param type Type de la pierre
+     */
+    public CaptureStone(String name, String description, int textureId, CaptureStoneMaterial material, CaptureStoneType type) {
+        super(0, name, description, calculateValue(material, type), textureId, getRarityForMaterial(material));
+        this.material = material;
+        this.type = type;
+        this.capturedCreature = null;
+        this.active = false;
+        this.captureBonus = 0.0f;
     }
     
     /**
@@ -93,6 +132,15 @@ public class CaptureStone extends Item {
      */
     public boolean isActive() {
         return active;
+    }
+    
+    /**
+     * Définir si la pierre est active
+     * 
+     * @param active État d'activation de la pierre
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
     /**
@@ -219,5 +267,62 @@ public class CaptureStone extends Item {
             default:
                 return ItemRarity.COMMON;
         }
+    }
+    
+    /**
+     * Calculer la valeur de la pierre en fonction du matériau et du type
+     * 
+     * @param material Matériau de la pierre
+     * @param type Type de la pierre
+     * @return Valeur de la pierre
+     */
+    private static int calculateValue(CaptureStoneMaterial material, CaptureStoneType type) {
+        int baseValue = 0;
+        
+        // Valeur de base selon le matériau
+        switch (material) {
+            case QUARTZ:
+                baseValue = 100;
+                break;
+            case AMETHYST:
+                baseValue = 250;
+                break;
+            case SAPPHIRE:
+            case RUBY:
+                baseValue = 500;
+                break;
+            case EMERALD:
+                baseValue = 1000;
+                break;
+            case DIAMOND:
+                baseValue = 2000;
+                break;
+            default:
+                baseValue = 50;
+        }
+        
+        // Multiplicateur selon le type
+        float typeMultiplier = 1.0f;
+        switch (type) {
+            case NEUTRAL:
+                typeMultiplier = 1.0f;
+                break;
+            case FIRE:
+            case WATER:
+            case EARTH:
+            case AIR:
+                typeMultiplier = 1.5f;
+                break;
+            case LIGHT:
+                typeMultiplier = 2.0f;
+                break;
+            case DARK:
+                typeMultiplier = 2.5f;
+                break;
+            default:
+                typeMultiplier = 1.0f;
+        }
+        
+        return (int)(baseValue * typeMultiplier);
     }
 }

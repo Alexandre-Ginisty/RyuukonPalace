@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Dictionnaire des PNJ (Personnages Non-Joueurs) de Ryuukon Palace",
+    "lastUpdated": "2025-04-24"
+  },
+  "npcs": [
+    {
+      "id": 1,
+      "name": "Maître Orion",
+      "role": "Mentor",
+      "location": "Temple of Dawn",
+      "description": "Un sage âgé aux longs cheveux blancs et à la barbe soignée. Ses yeux bleu clair semblent contenir toute la sagesse du monde. Il porte une robe bleue ornée de symboles mystiques dorés et s'appuie sur un bâton en bois d'if incrusté de cristaux.",
+      "background": "Ancien membre du Conseil des Sages de Lumina, Orion a choisi de se retirer au Temple de l'Aube pour former la nouvelle génération de maîtres des Signes de Pouvoir. Il a survécu à de nombreuses attaques de variants et possède une connaissance inégalée des techniques de capture.",
+      "dialogue": {
+        "greeting": [
+          "Ah, te voilà enfin. Les signes m'avaient annoncé ta venue.",
+          "Bienvenue, jeune âme. Que les vents de la connaissance te guident vers moi.",
+          "Je t'attendais. Les variants s'agitent, et nous avons besoin de nouveaux talents."
+        ],
+        "quest_offer": [
+          "Les variants de Whisperwood Forest deviennent plus agressifs. Pourrais-tu enquêter sur la cause de ce changement ?",
+          "Un ancien artefact a été dérobé du Temple. Je sens sa présence quelque part dans les Shadow Caverns.",
+          "Mes vieux os ne me permettent plus de voyager, mais j'ai besoin de plantes rares de Frostpeak Mountains pour mes recherches."
+        ],
+        "training": [
+          "Pour maîtriser les Signes de Pouvoir, tu dois d'abord maîtriser ton esprit. Médite sur ces mouvements.",
+          "Observe attentivement. Le Signe du Calme est la base de toute capture réussie.",
+          "La force brute ne te mènera nulle part avec les variants. C'est la connexion spirituelle qui compte."
+        ],
+        "farewell": [
+          "Que les vents te guident et que les étoiles veillent sur toi.",
+          "Reviens me voir quand tu auras progressé. Je serai là, à t'attendre.",
+          "N'oublie pas ce que je t'ai enseigné. La sagesse est ta plus grande alliée."
+        ]
+      },
+      "quests": [1, 5, 12],
+      "creatures": [3, 15, 27],
+      "items_for_sale": [],
+      "teaches_signs": ["Calme", "Protection", "Connexion"],
+      "texture": "npcs/maitre_orion.png"
+    },
+    {
+      "id": 2,
+      "name": "Lady Elara",
+      "role": "Noble / Commerçante",
+      "location": "Darkhaven",
+      "description": "Une femme élégante d'âge moyen aux cheveux noirs coiffés en un chignon complexe. Elle porte des robes somptueuses aux couleurs riches et des bijoux finement travaillés. Son regard perçant semble évaluer constamment la valeur de tout ce qu'elle voit.",
+      "background": "Issue d'une famille marchande influente, Elara a gravi les échelons de la société de Darkhaven grâce à son intelligence acérée et son sens des affaires. Elle contrôle désormais une grande partie du commerce maritime et possède un réseau d'informateurs dans tout Elderglen.",
+      "dialogue": {
+        "greeting": [
+          "Bienvenue dans ma modeste demeure. J'espère que vous apportez des nouvelles... ou des affaires intéressantes.",
+          "Ah, un nouveau visage à Darkhaven. Que puis-je faire pour vous, moyennant une juste compensation bien sûr ?",
+          "Entrez, entrez. Le thé est servi, et peut-être pourrons-nous discuter de choses... mutuellement bénéfiques."
+        ],
+        "quest_offer": [
+          "J'ai perdu contact avec l'un de mes navires marchands. Une récompense substantielle attend celui qui découvrira ce qui lui est arrivé.",
+          "Certains de mes concurrents utilisent des méthodes... déloyales. Pourriez-vous enquêter discrètement ?",
+          "Je recherche un artefact rare pour un client fortuné. Apportez-le moi, et vous serez généreusement récompensé."
+        ],
+        "business": [
+          "Les affaires sont florissantes, mais on peut toujours faire mieux, n'est-ce pas ?",
+          "Le commerce des Pierres de Capture est particulièrement lucratif ces temps-ci. Les gens paieraient une fortune pour les plus rares.",
+          "Information, marchandises, influence... tout a un prix à Darkhaven. Et je suis prête à payer pour ce qui m'intéresse."
+        ],
+        "farewell": [
+          "Nos chemins se recroiseront, j'en suis certaine. Les affaires nous y conduiront.",
+          "N'oubliez pas notre arrangement. Je n'aime pas être déçue.",
+          "Que les vents vous soient favorables... et n'oubliez pas qui contrôle ces vents à Darkhaven."
+        ]
+      },
+      "quests": [3, 8, 17],
+      "creatures": [9, 21],
+      "items_for_sale": ["Potion de Soin", "Pierre de Capture (Eau)", "Amulette de Protection", "Carte Maritime"],
+      "teaches_signs": [],
+      "texture": "npcs/lady_elara.png"
+    },
+    {
+      "id": 3,
+      "name": "Eamon",
+      "role": "Guerrier / Protecteur",
+      "location": "Stormpeak",
+      "description": "Un jeune homme robuste aux cheveux roux ébouriffés et à la barbe naissante. Il porte une armure de cuir renforcée de plaques métalliques et une grande épée dans son dos. Son visage porte une cicatrice qui traverse son œil droit, mais son regard reste déterminé et chaleureux.",
+      "background": "Né dans une famille de guerriers de Stormpeak, Eamon a perdu ses parents lors d'une attaque de variants quand il était enfant. Élevé par le village entier, il s'est juré de devenir assez fort pour protéger les siens. Il est maintenant l'un des plus valeureux défenseurs de Stormpeak.",
+      "dialogue": {
+        "greeting": [
+          "Salut, voyageur ! Bienvenue à Stormpeak. Gardez votre arme à portée de main, les montagnes sont dangereuses.",
+          "Un nouveau visage ! Vous venez pour la chasse ou pour vous abriter ? Dans les deux cas, vous êtes le bienvenu.",
+          "Par les crocs de Ryuukon ! Encore un aventurier ? J'espère que vous êtes plus résistant que le dernier."
+        ],
+        "quest_offer": [
+          "Les variants des montagnes deviennent plus agressifs. Aidez-moi à repousser leur prochaine attaque.",
+          "Mon ami est parti chasser il y a trois jours et n'est pas revenu. Aidez-moi à le retrouver avant qu'il ne soit trop tard.",
+          "J'ai repéré un variant particulièrement puissant qui menace le village. Ensemble, nous pourrions le capturer."
+        ],
+        "training": [
+          "La force ne suffit pas face aux variants. Vous devez anticiper leurs mouvements, comme ça !",
+          "Tenez votre épée comme ceci. Le poids doit être équilibré pour frapper rapidement.",
+          "À Stormpeak, nous apprenons à survivre dès notre plus jeune âge. Laissez-moi vous montrer quelques techniques."
+        ],
+        "farewell": [
+          "Que votre lame reste affûtée et votre esprit alerte, ami.",
+          "Si vous revenez vivant, la première chope d'hydromel sera pour moi !",
+          "Faites attention là-bas. Les montagnes ne pardonnent pas les erreurs."
+        ]
+      },
+      "quests": [2, 7, 14],
+      "creatures": [6, 18, 24],
+      "items_for_sale": ["Potion de Force", "Épée de Montagne", "Fourrure de Protection"],
+      "teaches_signs": ["Combat", "Résistance"],
+      "texture": "npcs/eamon.png"
+    },
+    {
+      "id": 4,
+      "name": "Kael",
+      "role": "Chasseur de primes",
+      "location": "Itinérant (souvent vu à Darkhaven)",
+      "description": "Un homme de taille moyenne au visage partiellement masqué par une capuche sombre. Ses yeux verts perçants sont la seule partie clairement visible de son visage. Il porte des vêtements de cuir usés mais bien entretenus et une multitude d'armes cachées. Un variant félin noir le suit comme une ombre.",
+      "background": "Les origines de Kael sont mystérieuses. Certains disent qu'il était autrefois un noble déchu, d'autres qu'il est un ancien criminel cherchant la rédemption. Ce qui est certain, c'est qu'il est devenu l'un des chasseurs de primes les plus efficaces d'Elderglen, spécialisé dans la capture des variants dangereux et la traque des criminels.",
+      "dialogue": {
+        "greeting": [
+          "...",
+          "Vous avez une prime pour moi, ou vous êtes juste là pour me faire perdre mon temps ?",
+          "Hmm. Vous n'avez pas l'air d'une cible. Que voulez-vous ?"
+        ],
+        "quest_offer": [
+          "J'ai une cible qui me donne du fil à retordre. Deux chasseurs valent mieux qu'un... et la prime sera partagée.",
+          "Un variant rare a été aperçu près d'ici. Je le traque depuis des semaines. Aidez-moi à le capturer, et vous aurez votre part.",
+          "J'ai besoin de quelqu'un pour créer une diversion pendant que je m'infiltre dans un repaire. Intéressé ?"
+        ],
+        "business": [
+          "Les informations ont un prix. Qu'avez-vous à offrir en échange ?",
+          "Je ne travaille pas gratuitement. Mais pour la bonne somme, je peux traquer n'importe qui... ou n'importe quoi.",
+          "Les variants dangereux rapportent gros ces temps-ci. Les nobles paient bien pour se sentir en sécurité."
+        ],
+        "farewell": [
+          "Si vous entendez parler d'une prime intéressante, vous savez où me trouver.",
+          "Restez en vie. Les morts ne paient pas leurs dettes.",
+          "Nous nous reverrons peut-être. Ou peut-être pas. Ça dépend de qui paie pour vous trouver."
+        ]
+      },
+      "quests": [4, 10, 19],
+      "creatures": [12, 25, 30],
+      "items_for_sale": ["Dague Empoisonnée", "Pièges à Variants", "Informations (prix variable)"],
+      "teaches_signs": ["Traque", "Dissimulation"],
+      "texture": "npcs/kael.png"
+    },
+    {
+      "id": 5,
+      "name": "Lysandra",
+      "role": "Guérisseuse",
+      "location": "Lumina",
+      "description": "Une jeune femme aux longs cheveux châtains tressés avec des fleurs médicinales. Elle porte une robe simple mais élégante aux tons verts et bleus, et un tablier rempli d'herbes et de fioles. Son visage doux exprime une compassion sincère.",
+      "background": "Fille d'un apothicaire renommé de Lumina, Lysandra a développé très tôt un don pour la guérison. Elle a étudié auprès des plus grands guérisseurs du royaume et a même appris certains secrets de guérison des variants eux-mêmes. Elle consacre sa vie à soigner les malades et les blessés, quelle que soit leur origine.",
+      "dialogue": {
+        "greeting": [
+          "Bonjour ! Êtes-vous blessé ? Malade ? Ou simplement curieux ?",
+          "Que la lumière vous bénisse. Comment puis-je vous aider aujourd'hui ?",
+          "Ah, un voyageur ! Venez, venez. Un thé aux herbes vous remettra de votre voyage."
+        ],
+        "quest_offer": [
+          "Mes réserves d'herbes médicinales s'épuisent. Pourriez-vous m'aider à en cueillir dans la forêt ?",
+          "Un village isolé souffre d'une étrange maladie. J'ai besoin d'une escorte pour m'y rendre en sécurité.",
+          "Je recherche une fleur rare qui ne pousse que sous la lumière de la pleine lune. Elle pourrait guérir une maladie incurable."
+        ],
+        "healing": [
+          "Restez tranquille, cela ne fera pas mal. Cette pommade accélérera la guérison.",
+          "Vos variants sont épuisés. Laissez-moi leur préparer un élixir revitalisant.",
+          "La guérison vient autant de l'esprit que du corps. Respirez profondément pendant que j'applique ce baume."
+        ],
+        "farewell": [
+          "Prenez soin de vous, et n'hésitez pas à revenir si vous avez besoin de soins.",
+          "Emportez ces herbes avec vous. On ne sait jamais quand elles pourraient être utiles.",
+          "Que la lumière guide vos pas et que la santé vous accompagne."
+        ]
+      },
+      "quests": [6, 13, 20],
+      "creatures": [4, 16, 28],
+      "items_for_sale": ["Potion de Soin", "Antidote", "Herbes Médicinales", "Baume Régénérant"],
+      "teaches_signs": ["Guérison", "Purification"],
+      "texture": "npcs/lysandra.png"
+    }
+  ]
+}

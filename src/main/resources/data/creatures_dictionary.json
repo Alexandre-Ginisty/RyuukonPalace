@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Dictionnaire des créatures (variants) de Ryuukon Palace",
+    "lastUpdated": "2025-04-24"
+  },
+  "creatures": [
+    {
+      "id": 1,
+      "name": "Emberfox",
+      "type": "FIRE",
+      "category": "Stratège",
+      "description": "Un petit renard au pelage flamboyant qui peut manipuler les flammes avec une intelligence remarquable. Ses yeux brillent d'une lueur rusée.",
+      "baseStats": {
+        "health": 45,
+        "attack": 60,
+        "defense": 40,
+        "speed": 65,
+        "magicalAttack": 70,
+        "magicalDefense": 50
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1
+        },
+        {
+          "id": 2,
+          "name": "Ruse Ardente",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 5
+        },
+        {
+          "id": 3,
+          "name": "Morsure Enflammée",
+          "description": "Morsure brûlante qui peut causer des brûlures",
+          "power": 65,
+          "accuracy": 90,
+          "type": "FIRE",
+          "levelLearned": 10
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 2,
+        "level": 16
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (zones ensoleillées)",
+        "Temple of Dawn (environs)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Journée, temps ensoleillé",
+      "texture": "creatures/emberfox.png"
+    },
+    {
+      "id": 2,
+      "name": "Vulpyro",
+      "type": "FIRE",
+      "category": "Stratège",
+      "description": "Évolution d'Emberfox, ce renard majestueux possède une fourrure qui semble faite de flammes vivantes. Son intelligence tactique s'est considérablement développée.",
+      "baseStats": {
+        "health": 65,
+        "attack": 80,
+        "defense": 60,
+        "speed": 85,
+        "magicalAttack": 90,
+        "magicalDefense": 70
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1
+        },
+        {
+          "id": 2,
+          "name": "Ruse Ardente",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 5
+        },
+        {
+          "id": 3,
+          "name": "Morsure Enflammée",
+          "description": "Morsure brûlante qui peut causer des brûlures",
+          "power": 65,
+          "accuracy": 90,
+          "type": "FIRE",
+          "levelLearned": 10
+        },
+        {
+          "id": 4,
+          "name": "Tactique Infernale",
+          "description": "Crée un piège de flammes complexe qui inflige des dégâts sur plusieurs tours",
+          "power": 30,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 18
+        },
+        {
+          "id": 5,
+          "name": "Esprit Flamboyant",
+          "description": "Augmente considérablement l'attaque spéciale et l'intelligence tactique",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 24
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 3,
+        "level": 32
+      },
+      "spawnLocations": [
+        "Whisperwood Forest (clairières)",
+        "Temple of Dawn (sanctuaire)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Journée, temps ensoleillé",
+      "texture": "creatures/vulpyro.png"
+    },
+    {
+      "id": 3,
+      "name": "Kitsunova",
+      "type": "FIRE",
+      "category": "Stratège",
+      "description": "Forme finale d'Emberfox, ce majestueux renard à neuf queues de feu possède une intelligence légendaire. Ses yeux semblent contenir la sagesse des âges.",
+      "baseStats": {
+        "health": 85,
+        "attack": 100,
+        "defense": 80,
+        "speed": 105,
+        "magicalAttack": 120,
+        "magicalDefense": 90
+      },
+      "abilities": [
+        {
+          "id": 1,
+          "name": "Flamme Stratégique",
+          "description": "Crée un mur de flammes pour piéger l'adversaire",
+          "power": 40,
+          "accuracy": 95,
+          "type": "FIRE",
+          "levelLearned": 1
+        },
+        {
+          "id": 2,
+          "name": "Ruse Ardente",
+          "description": "Feinte qui augmente l'esquive et prépare une contre-attaque",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 5
+        },
+        {
+          "id": 3,
+          "name": "Morsure Enflammée",
+          "description": "Morsure brûlante qui peut causer des brûlures",
+          "power": 65,
+          "accuracy": 90,
+          "type": "FIRE",
+          "levelLearned": 10
+        },
+        {
+          "id": 4,
+          "name": "Tactique Infernale",
+          "description": "Crée un piège de flammes complexe qui inflige des dégâts sur plusieurs tours",
+          "power": 30,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 18
+        },
+        {
+          "id": 5,
+          "name": "Esprit Flamboyant",
+          "description": "Augmente considérablement l'attaque spéciale et l'intelligence tactique",
+          "power": 0,
+          "accuracy": 100,
+          "type": "FIRE",
+          "levelLearned": 24
+        },
+        {
+          "id": 6,
+          "name": "Feu Spirituel",
+          "description": "Invoque des flammes mystiques qui ignorent les résistances",
+          "power": 90,
+          "accuracy": 85,
+          "type": "FIRE",
+          "levelLearned": 36
+        },
+        {
+          "id": 7,
+          "name": "Maître Stratège",
+          "description": "Analyse l'adversaire et révèle ses faiblesses, augmentant les dégâts infligés",
+          "power": 0,
+          "accuracy": 100,
+          "type": "PSYCHIC",
+          "levelLearned": 42
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Ancient Ruins (chambres secrètes)",
+        "Temple of Dawn (autel sacré)"
+      ],
+      "spawnRarity": "Très rare",
+      "spawnConditions": "Pleine lune, nuit claire",
+      "texture": "creatures/kitsunova.png"
+    },
+    {
+      "id": 4,
+      "name": "Aquapup",
+      "type": "WATER",
+      "category": "Serein",
+      "description": "Un petit chiot aquatique au pelage bleu clair qui dégage une aura apaisante. Sa présence calme les esprits troublés.",
+      "baseStats": {
+        "health": 55,
+        "attack": 40,
+        "defense": 50,
+        "speed": 45,
+        "magicalAttack": 60,
+        "magicalDefense": 65
+      },
+      "abilities": [
+        {
+          "id": 8,
+          "name": "Éclaboussure Apaisante",
+          "description": "Projette de l'eau qui calme l'adversaire et réduit son attaque",
+          "power": 30,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 1
+        },
+        {
+          "id": 9,
+          "name": "Bulle Tranquille",
+          "description": "Crée une bulle protectrice qui augmente la défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 6
+        },
+        {
+          "id": 10,
+          "name": "Vague Sereine",
+          "description": "Invoque une vague douce qui peut endormir l'adversaire",
+          "power": 50,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 12
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 5,
+        "level": 18
+      },
+      "spawnLocations": [
+        "Darkhaven (port)",
+        "Whisperwind Valley (ruisseaux)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Près des points d'eau, temps pluvieux",
+      "texture": "creatures/aquapup.png"
+    },
+    {
+      "id": 5,
+      "name": "Serenifin",
+      "type": "WATER",
+      "category": "Serein",
+      "description": "Évolution d'Aquapup, ce canidé aquatique possède une fourrure qui ondule comme les vagues. Son aura apaisante s'est intensifiée.",
+      "baseStats": {
+        "health": 75,
+        "attack": 60,
+        "defense": 70,
+        "speed": 65,
+        "magicalAttack": 80,
+        "magicalDefense": 85
+      },
+      "abilities": [
+        {
+          "id": 8,
+          "name": "Éclaboussure Apaisante",
+          "description": "Projette de l'eau qui calme l'adversaire et réduit son attaque",
+          "power": 30,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 1
+        },
+        {
+          "id": 9,
+          "name": "Bulle Tranquille",
+          "description": "Crée une bulle protectrice qui augmente la défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 6
+        },
+        {
+          "id": 10,
+          "name": "Vague Sereine",
+          "description": "Invoque une vague douce qui peut endormir l'adversaire",
+          "power": 50,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 12
+        },
+        {
+          "id": 11,
+          "name": "Aura Pacifique",
+          "description": "Émet une aura qui calme tous les combattants et restaure des PV",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 20
+        },
+        {
+          "id": 12,
+          "name": "Torrent Tranquille",
+          "description": "Déferlement d'eau puissant mais apaisant qui peut réduire l'agressivité",
+          "power": 75,
+          "accuracy": 90,
+          "type": "WATER",
+          "levelLearned": 26
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 6,
+        "level": 36
+      },
+      "spawnLocations": [
+        "Darkhaven (baie)",
+        "Whisperwind Valley (lacs)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Près des lacs, temps pluvieux ou brumeux",
+      "texture": "creatures/serenifin.png"
+    }
+  ]
+}

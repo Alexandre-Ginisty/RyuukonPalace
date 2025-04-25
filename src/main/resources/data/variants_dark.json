@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "description": "Variants de type TÉNÈBRES pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Variants"
+  },
+  "variants": [
+    {
+      "id": 7,
+      "name": "Shadowpaw",
+      "type": "DARK",
+      "category": "Ombreux",
+      "lore": "Né des ombres projetées par les pendus, le Shadowpaw est une manifestation de la peur primale de l'obscurité. Son corps n'est pas vraiment matériel, mais plutôt une déchirure dans la réalité qui prend la forme d'un félin. On raconte que ceux qui croisent son regard perdent progressivement leur ombre, qui est dévorée par la créature pendant leur sommeil.",
+      "description": "Un félin d'ombre pure dont les contours semblent constamment fluctuer. Ses yeux sont deux fentes lumineuses rougeâtres dans un visage sans traits distincts. Il se déplace sans bruit, comme s'il glissait entre les dimensions.",
+      "baseStats": {
+        "health": 50,
+        "attack": 70,
+        "defense": 45,
+        "speed": 80,
+        "magicalAttack": 65,
+        "magicalDefense": 60
+      },
+      "abilities": [
+        {
+          "id": 16,
+          "name": "Morsure Ténébreuse",
+          "description": "Attaque qui laisse une marque d'ombre sur l'adversaire, drainant lentement sa force vitale",
+          "power": 45,
+          "accuracy": 95,
+          "type": "DARK",
+          "levelLearned": 1,
+          "animation": "shadowpaw_dark_bite.fbx",
+          "visualEffect": "Des crocs d'ombre qui laissent une marque noire pulsante sur l'adversaire"
+        },
+        {
+          "id": 17,
+          "name": "Disparition",
+          "description": "Se fond complètement dans les ombres, augmentant considérablement l'esquive",
+          "power": 0,
+          "accuracy": 100,
+          "type": "DARK",
+          "levelLearned": 6,
+          "animation": "shadowpaw_vanish.fbx",
+          "visualEffect": "Le corps du Shadowpaw se dissout en particules d'ombre qui se dispersent"
+        },
+        {
+          "id": 18,
+          "name": "Vol d'Ombre",
+          "description": "Vole temporairement l'ombre de l'adversaire, réduisant sa défense et augmentant l'attaque du Shadowpaw",
+          "power": 0,
+          "accuracy": 90,
+          "type": "DARK",
+          "levelLearned": 12,
+          "animation": "shadowpaw_shadow_theft.fbx",
+          "visualEffect": "L'ombre de l'adversaire est arrachée et absorbée par le Shadowpaw"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 8,
+        "level": 20,
+        "conditions": "Niveau 20 atteint durant la nuit, dans un lieu où une mort violente s'est produite",
+        "evolutionSequence": "Le Shadowpaw se dissout complètement en une flaque d'ombre qui s'étend avant de s'élever et de prendre une forme plus imposante et menaçante."
+      },
+      "spawnLocations": [
+        "Shadow Caverns (entrée)",
+        "Whisperwood Forest (zones sombres)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Nuit, zones d'ombre dense, particulièrement près des lieux d'exécution ou de mort violente",
+      "texture": "variants/dark/shadowpaw.png",
+      "model": "variants/dark/shadowpaw/shadowpaw_tpose.fbx",
+      "animations": {
+        "idle": "variants/dark/shadowpaw/animations/shadowpaw_idle.fbx",
+        "walk": "variants/dark/shadowpaw/animations/shadowpaw_walk.fbx",
+        "attack": "variants/dark/shadowpaw/animations/shadowpaw_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 26,
+          "name": "Essence d'ombre",
+          "dropRate": 0.15,
+          "description": "Substance noire qui semble absorber la lumière environnante"
+        },
+        {
+          "itemId": 27,
+          "name": "Griffe ombreuse",
+          "dropRate": 0.10,
+          "description": "Griffe qui peut trancher à travers les dimensions"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Umbrafang",
+      "type": "DARK",
+      "category": "Ombreux",
+      "lore": "Évolution du Shadowpaw, l'Umbrafang est une entité qui existe simultanément dans notre monde et dans un plan d'existence parallèle. Né de la fusion entre un félin et les ténèbres primordiales, il se nourrit des peurs et des cauchemars de ses victimes. Les survivants de ses attaques rapportent avoir vécu leurs pires terreurs pendant des semaines, même après que leurs blessures physiques aient guéri.",
+      "description": "Félin massif fait d'ombre condensée, avec des crocs et des griffes qui semblent taillés dans l'obscurité pure. Des volutes d'ombre s'échappent constamment de son corps, et ses yeux rouges semblent voir au-delà de la réalité physique.",
+      "baseStats": {
+        "health": 70,
+        "attack": 90,
+        "defense": 65,
+        "speed": 100,
+        "magicalAttack": 85,
+        "magicalDefense": 80
+      },
+      "abilities": [
+        {
+          "id": 16,
+          "name": "Morsure Ténébreuse",
+          "description": "Attaque qui laisse une marque d'ombre sur l'adversaire, drainant lentement sa force vitale",
+          "power": 45,
+          "accuracy": 95,
+          "type": "DARK",
+          "levelLearned": 1,
+          "animation": "umbrafang_dark_bite.fbx",
+          "visualEffect": "Des crocs d'ombre qui laissent une marque noire pulsante sur l'adversaire"
+        },
+        {
+          "id": 17,
+          "name": "Disparition",
+          "description": "Se fond complètement dans les ombres, augmentant considérablement l'esquive",
+          "power": 0,
+          "accuracy": 100,
+          "type": "DARK",
+          "levelLearned": 6,
+          "animation": "umbrafang_vanish.fbx",
+          "visualEffect": "Le corps de l'Umbrafang se dissout en particules d'ombre qui se dispersent"
+        },
+        {
+          "id": 18,
+          "name": "Vol d'Ombre",
+          "description": "Vole temporairement l'ombre de l'adversaire, réduisant sa défense et augmentant l'attaque de l'Umbrafang",
+          "power": 0,
+          "accuracy": 90,
+          "type": "DARK",
+          "levelLearned": 12,
+          "animation": "umbrafang_shadow_theft.fbx",
+          "visualEffect": "L'ombre de l'adversaire est arrachée et absorbée par l'Umbrafang"
+        },
+        {
+          "id": 19,
+          "name": "Griffes Dimensionnelles",
+          "description": "Attaque avec des griffes qui déchirent la réalité, ignorant partiellement la défense de l'adversaire",
+          "power": 70,
+          "accuracy": 85,
+          "type": "DARK",
+          "levelLearned": 22,
+          "animation": "umbrafang_dimensional_claws.fbx",
+          "visualEffect": "Les griffes laissent des déchirures violacées dans l'air qui persistent quelques secondes"
+        },
+        {
+          "id": 20,
+          "name": "Terreur Nocturne",
+          "description": "Plonge l'adversaire dans ses pires cauchemars, causant confusion et dégâts psychiques",
+          "power": 65,
+          "accuracy": 80,
+          "type": "DARK",
+          "levelLearned": 28,
+          "animation": "umbrafang_night_terror.fbx",
+          "visualEffect": "Des ombres en forme de mains s'échappent des yeux de l'Umbrafang et enveloppent la tête de l'adversaire"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 9,
+        "level": 38,
+        "conditions": "Niveau 38 atteint et avoir vaincu au moins 15 variants de type LUMIÈRE",
+        "evolutionSequence": "L'Umbrafang rugit vers le ciel, créant une déchirure dans la réalité. Son corps est aspiré dans cette faille dimensionnelle avant d'en ressortir sous une forme plus terrifiante."
+      },
+      "spawnLocations": [
+        "Shadow Caverns (profondeurs)",
+        "Ancient Ruins (cryptes)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Nuit sans lune, zones d'obscurité totale, particulièrement dans les lieux hantés par des tragédies",
+      "texture": "variants/dark/umbrafang.png",
+      "model": "variants/dark/umbrafang/umbrafang_tpose.fbx",
+      "animations": {
+        "idle": "variants/dark/umbrafang/animations/umbrafang_idle.fbx",
+        "walk": "variants/dark/umbrafang/animations/umbrafang_walk.fbx",
+        "attack": "variants/dark/umbrafang/animations/umbrafang_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 28,
+          "name": "Cristal d'obscurité",
+          "dropRate": 0.12,
+          "description": "Pierre noire qui absorbe toute lumière dans un rayon de quelques centimètres"
+        },
+        {
+          "itemId": 29,
+          "name": "Fourrure de vide",
+          "dropRate": 0.08,
+          "description": "Fourrure qui semble contenir un fragment de néant"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Voidreaper",
+      "type": "DARK",
+      "category": "Ombreux",
+      "lore": "Forme finale de la lignée Shadowpaw, le Voidreaper est une anomalie cosmique, un fragment du néant primordial qui a pris conscience. Certains théoriciens occultes suggèrent qu'il n'est pas vraiment une créature, mais plutôt une faille dans la réalité par laquelle le néant observe notre monde. Sa présence prolongée dans un lieu peut créer des zones mortes où aucune vie ne peut subsister pendant des décennies. Les rares témoins qui ont survécu à sa rencontre rapportent avoir perdu toute capacité à ressentir la joie ou l'espoir pendant des années.",
+      "description": "Entité féline massive composée d'une obscurité si profonde qu'elle semble dévorer la lumière environnante. Son corps est parsemé d'yeux rougeoyants qui apparaissent et disparaissent aléatoirement. Lorsqu'il se déplace, il laisse derrière lui des traces de néant qui persistent plusieurs minutes.",
+      "baseStats": {
+        "health": 90,
+        "attack": 120,
+        "defense": 85,
+        "speed": 130,
+        "magicalAttack": 115,
+        "magicalDefense": 100
+      },
+      "abilities": [
+        {
+          "id": 19,
+          "name": "Griffes Dimensionnelles",
+          "description": "Attaque avec des griffes qui déchirent la réalité, ignorant partiellement la défense de l'adversaire",
+          "power": 70,
+          "accuracy": 85,
+          "type": "DARK",
+          "levelLearned": 22,
+          "animation": "voidreaper_dimensional_claws.fbx",
+          "visualEffect": "Les griffes laissent des déchirures violacées dans l'air qui persistent quelques secondes"
+        },
+        {
+          "id": 20,
+          "name": "Terreur Nocturne",
+          "description": "Plonge l'adversaire dans ses pires cauchemars, causant confusion et dégâts psychiques",
+          "power": 65,
+          "accuracy": 80,
+          "type": "DARK",
+          "levelLearned": 28,
+          "animation": "voidreaper_night_terror.fbx",
+          "visualEffect": "Des ombres en forme de mains s'échappent des yeux du Voidreaper et enveloppent la tête de l'adversaire"
+        },
+        {
+          "id": 21,
+          "name": "Déchirure du Vide",
+          "description": "Ouvre une faille vers le néant qui aspire une partie de l'énergie vitale de l'adversaire",
+          "power": 90,
+          "accuracy": 80,
+          "type": "DARK",
+          "levelLearned": 40,
+          "animation": "voidreaper_void_tear.fbx",
+          "visualEffect": "Une faille noire s'ouvre devant le Voidreaper, émettant des filaments d'obscurité qui s'accrochent à l'adversaire"
+        },
+        {
+          "id": 22,
+          "name": "Regard du Néant",
+          "description": "Fixe l'adversaire avec tous ses yeux, infligeant terreur et désespoir profonds",
+          "power": 0,
+          "accuracy": 75,
+          "type": "DARK",
+          "levelLearned": 46,
+          "animation": "voidreaper_void_gaze.fbx",
+          "visualEffect": "Tous les yeux du Voidreaper s'illuminent simultanément, projetant un rayon d'obscurité concentrée"
+        },
+        {
+          "id": 23,
+          "name": "Annihilation",
+          "description": "Attaque ultime qui ouvre brièvement une porte vers le néant absolu, tentant d'effacer l'adversaire de l'existence",
+          "power": 140,
+          "accuracy": 70,
+          "type": "DARK",
+          "levelLearned": 54,
+          "animation": "voidreaper_annihilation.fbx",
+          "visualEffect": "Le Voidreaper disparaît momentanément, remplacé par une déchirure dimensionnelle qui engloutit tout"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Ancient Ruins (chambre scellée)",
+        "Shadow Caverns (abîme central)"
+      ],
+      "spawnRarity": "Extrêmement rare",
+      "spawnConditions": "Uniquement durant les éclipses totales, dans des lieux où la barrière entre les dimensions est affaiblie",
+      "texture": "variants/dark/voidreaper.png",
+      "model": "variants/dark/voidreaper/voidreaper_tpose.fbx",
+      "animations": {
+        "idle": "variants/dark/voidreaper/animations/voidreaper_idle.fbx",
+        "walk": "variants/dark/voidreaper/animations/voidreaper_walk.fbx",
+        "attack": "variants/dark/voidreaper/animations/voidreaper_attack.fbx",
+        "special": "variants/dark/voidreaper/animations/voidreaper_annihilation.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 30,
+          "name": "Fragment de néant",
+          "dropRate": 0.05,
+          "description": "Un morceau de vide absolu qui continue d'absorber toute matière et énergie"
+        },
+        {
+          "itemId": 31,
+          "name": "Œil dimensionnel",
+          "dropRate": 0.02,
+          "description": "Un œil qui permet de voir brièvement dans d'autres dimensions"
+        },
+        {
+          "itemId": 32,
+          "name": "Essence d'annihilation",
+          "dropRate": 0.01,
+          "description": "Substance volatile qui peut effacer temporairement la matière"
+        }
+      ]
+    }
+  ]
+}

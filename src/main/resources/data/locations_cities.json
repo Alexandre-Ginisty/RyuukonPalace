@@ -1,0 +1,524 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Villes et villages principaux d'Elderglen",
+    "lastUpdated": "2025-04-24",
+    "category": "Locations",
+    "locationType": "CITIES"
+  },
+  "cities": [
+    {
+      "id": 1,
+      "name": "Lumina",
+      "description": "Capitale d'Elderglen, centre de la connaissance et du pouvoir",
+      "details": "Abrite le Conseil des Sages et la plus grande bibliothèque de signes mystiques",
+      "size": "CAPITAL",
+      "population": 50000,
+      "faction": "TACTICIENS",
+      "importance": "MAJOR",
+      "coordinates": {
+        "x": 500,
+        "y": 500
+      },
+      "features": [
+        {
+          "name": "Palais du Conseil",
+          "type": "GOVERNMENT",
+          "description": "Siège du pouvoir politique où siège le Conseil des Sages",
+          "questRelated": true,
+          "questIds": [1, 8, 15]
+        },
+        {
+          "name": "Grande Bibliothèque",
+          "type": "KNOWLEDGE",
+          "description": "Immense bibliothèque contenant des milliers de livres sur les variants et les Signes de Pouvoir",
+          "questRelated": true,
+          "questIds": [3, 16, 23]
+        },
+        {
+          "name": "Académie des Tacticiens",
+          "type": "TRAINING",
+          "description": "Institution où les jeunes Tacticiens apprennent à maîtriser les Signes de Pouvoir",
+          "questRelated": true,
+          "questIds": [5, 12]
+        },
+        {
+          "name": "Marché Central",
+          "type": "COMMERCE",
+          "description": "Centre commercial animé où l'on trouve toutes sortes de marchandises",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Boutique du Tacticien",
+          "type": "SHOP",
+          "description": "Magasin spécialisé dans les pierres de capture et les objets pour Tacticiens",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Manoir Elara",
+          "type": "RESIDENCE",
+          "description": "Demeure luxueuse de Lady Elara, influente noble Tacticienne",
+          "questRelated": true,
+          "questIds": [8]
+        },
+        {
+          "name": "Infirmerie de Lumina",
+          "type": "HEALING",
+          "description": "Centre de soins dirigé par Lysandra, utilisant des variants de type Serein",
+          "questRelated": true,
+          "questIds": [7, 14, 21]
+        }
+      ],
+      "connections": [
+        {
+          "destination": 2,
+          "type": "ROAD",
+          "difficulty": "EASY",
+          "travelTime": 8
+        },
+        {
+          "destination": 4,
+          "type": "ROAD",
+          "difficulty": "MODERATE",
+          "travelTime": 12
+        }
+      ],
+      "variantTypes": ["STRATEGE", "SEREIN", "VISIONNAIRE", "LUMINEUX"],
+      "weather": ["SUNNY", "CLOUDY", "RAINY"],
+      "description": "Lumina est la capitale majestueuse d'Elderglen, construite sur une colline surplombant une vaste plaine. Ses tours blanches et dorées s'élèvent vers le ciel, visibles à des kilomètres à la ronde. La ville est entourée de hauts murs de pierre blanche, ornés de symboles mystiques qui brillent faiblement la nuit.\n\nAu centre de la ville se dresse le Palais du Conseil, siège du pouvoir politique où les Sages Tacticiens prennent les décisions qui affectent tout le royaume. À proximité se trouve la Grande Bibliothèque, un bâtiment imposant contenant des milliers de volumes sur l'histoire, les variants et les Signes de Pouvoir.\n\nL'Académie des Tacticiens occupe le quartier est de la ville, avec ses nombreux bâtiments d'entraînement et ses jardins où les étudiants pratiquent leurs Signes. Le quartier ouest abrite le Marché Central, toujours animé, où marchands et voyageurs se côtoient dans une ambiance colorée.\n\nLes quartiers résidentiels sont divisés selon la richesse et l'influence : les nobles et hauts Tacticiens vivent dans de luxueuses demeures près du Palais, tandis que les citoyens ordinaires occupent des maisons plus modestes mais confortables dans les quartiers périphériques.\n\nLumina est le bastion principal des Tacticiens, et bien que les Guerriers y soient tolérés, ils font l'objet d'une surveillance constante."
+    },
+    {
+      "id": 2,
+      "name": "Darkhaven",
+      "description": "Ville portuaire dynamique",
+      "details": "Plaque tournante du commerce et des intrigues, marché noir de variants",
+      "size": "LARGE",
+      "population": 30000,
+      "faction": "MIXED",
+      "importance": "MAJOR",
+      "coordinates": {
+        "x": 300,
+        "y": 700
+      },
+      "features": [
+        {
+          "name": "Port de Darkhaven",
+          "type": "COMMERCE",
+          "description": "Port animé où accostent des navires de tout Elderglen et au-delà",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Marché Noir",
+          "type": "COMMERCE",
+          "description": "Réseau souterrain de commerce illégal, notamment de variants rares",
+          "questRelated": true,
+          "questIds": [22, 27, 35]
+        },
+        {
+          "name": "Taverne du Loup Noir",
+          "type": "TAVERN",
+          "description": "Établissement réputé où se rencontrent chasseurs de primes et marchands",
+          "questRelated": true,
+          "questIds": [30]
+        },
+        {
+          "name": "Quartier des Docks",
+          "type": "DISTRICT",
+          "description": "Zone dangereuse mais lucrative près du port",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Échoppe de Vex",
+          "type": "SHOP",
+          "description": "Boutique discrète vendant des objets rares et des informations",
+          "questRelated": true,
+          "questIds": [27, 31]
+        },
+        {
+          "name": "Guilde des Marchands",
+          "type": "GOVERNMENT",
+          "description": "Organisation qui régule officiellement le commerce à Darkhaven",
+          "questRelated": false,
+          "questIds": []
+        }
+      ],
+      "connections": [
+        {
+          "destination": 1,
+          "type": "ROAD",
+          "difficulty": "EASY",
+          "travelTime": 8
+        },
+        {
+          "destination": 3,
+          "type": "ROAD",
+          "difficulty": "HARD",
+          "travelTime": 15
+        },
+        {
+          "destination": 0,
+          "type": "SEA",
+          "difficulty": "MODERATE",
+          "travelTime": 48
+        }
+      ],
+      "variantTypes": ["OMBREUX", "CHAOTIQUE", "INVENTEUR", "FURIEUX"],
+      "weather": ["FOGGY", "RAINY", "STORMY"],
+      "description": "Darkhaven est une ville portuaire animée, construite dans une baie naturelle protégée par de hautes falaises. Contrairement à l'architecture ordonnée de Lumina, Darkhaven est un labyrinthe de ruelles étroites et de bâtiments entassés les uns sur les autres, créant un dédale urbain où il est facile de se perdre – ou de disparaître.\n\nLe port est le cœur économique de la ville, avec ses quais constamment occupés par des navires marchands et des bateaux de pêche. Les entrepôts bordant les docks regorgent de marchandises de toutes sortes, certaines légales, d'autres moins.\n\nLe Marché Noir n'est pas un lieu unique mais un réseau de commerces clandestins opérant dans les arrière-boutiques, les caves et les entrepôts abandonnés. C'est là que l'on peut trouver des variants rares, des pierres de capture modifiées et des artefacts interdits.\n\nLa Taverne du Loup Noir, située à la frontière entre le quartier respectable et les zones plus dangereuses, est un point de rencontre pour ceux qui cherchent des informations ou des contrats discrets. Kael, le chasseur de primes, y est souvent aperçu.\n\nDarkhaven est l'une des rares villes où Tacticiens et Guerriers coexistent en nombre relativement égal, unis par l'appât du gain plutôt que par des convictions idéologiques. Cette neutralité relative en fait un lieu de rencontre et de négociation entre les factions."
+    },
+    {
+      "id": 3,
+      "name": "Stormpeak",
+      "description": "Village montagnard isolé",
+      "details": "Réputé pour ses guerriers et ses traditions ancestrales de combat direct",
+      "size": "MEDIUM",
+      "population": 5000,
+      "faction": "GUERRIERS",
+      "importance": "MODERATE",
+      "coordinates": {
+        "x": 150,
+        "y": 850
+      },
+      "features": [
+        {
+          "name": "Arène de Combat",
+          "type": "TRAINING",
+          "description": "Lieu où les Guerriers s'entraînent et s'affrontent en duels rituels",
+          "questRelated": true,
+          "questIds": [2, 11]
+        },
+        {
+          "name": "Forge de Stormpeak",
+          "type": "CRAFTING",
+          "description": "Forge réputée pour ses armes capables de blesser les variants",
+          "questRelated": true,
+          "questIds": [19]
+        },
+        {
+          "name": "Tour de Garde",
+          "type": "DEFENSE",
+          "description": "Point d'observation surveillant les montagnes environnantes",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Salle du Conseil des Guerriers",
+          "type": "GOVERNMENT",
+          "description": "Lieu de réunion des chefs guerriers locaux",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Terrain d'Entraînement",
+          "type": "TRAINING",
+          "description": "Vaste espace extérieur pour l'entraînement des jeunes guerriers",
+          "questRelated": true,
+          "questIds": [11]
+        }
+      ],
+      "connections": [
+        {
+          "destination": 2,
+          "type": "ROAD",
+          "difficulty": "HARD",
+          "travelTime": 15
+        },
+        {
+          "destination": 5,
+          "type": "MOUNTAIN_PATH",
+          "difficulty": "VERY_HARD",
+          "travelTime": 20
+        }
+      ],
+      "variantTypes": ["FURIEUX", "NATUREL", "CHAOTIQUE"],
+      "weather": ["SNOWY", "WINDY", "CLEAR"],
+      "description": "Stormpeak est un village robuste perché sur un plateau rocheux dans les contreforts des Frostpeak Mountains. Contrairement aux villes élégantes des plaines, Stormpeak est construit pour résister aux conditions difficiles : maisons de pierre aux toits pentus, rues pavées conçues pour évacuer l'eau de pluie et la neige fondue.\n\nL'Arène de Combat occupe le centre du village – un cercle de pierre où les Guerriers s'entraînent quotidiennement et où se déroulent des tournois rituels lors des fêtes saisonnières. À proximité se trouve la Forge de Stormpeak, dont les cheminées crachent constamment de la fumée noire tandis que les forgerons travaillent le métal rare extrait des montagnes.\n\nLa Tour de Garde, construite sur le point le plus élevé du village, offre une vue panoramique sur les vallées environnantes, permettant de repérer l'approche de variants hostiles ou d'étrangers.\n\nLes habitants de Stormpeak sont fiers, robustes et méfiants envers les étrangers, particulièrement les Tacticiens. Ils considèrent l'utilisation de variants comme une faiblesse et préfèrent compter sur leur force et leur habileté au combat. Le village est un bastion important de la faction des Guerriers, et Eamon y est né et a été formé."
+    },
+    {
+      "id": 4,
+      "name": "Temple of Dawn",
+      "description": "Sanctuaire sacré",
+      "details": "Les maîtres y enseignent les Signes de Pouvoir aux Tacticiens",
+      "size": "SMALL",
+      "population": 200,
+      "faction": "TACTICIENS",
+      "importance": "MAJOR",
+      "coordinates": {
+        "x": 650,
+        "y": 450
+      },
+      "features": [
+        {
+          "name": "Autel Principal",
+          "type": "RELIGIOUS",
+          "description": "Centre spirituel du temple où sont pratiqués les rituels les plus importants",
+          "questRelated": true,
+          "questIds": [9, 16]
+        },
+        {
+          "name": "Salle d'Étude",
+          "type": "KNOWLEDGE",
+          "description": "Bibliothèque spécialisée contenant des textes anciens sur les Signes de Pouvoir",
+          "questRelated": true,
+          "questIds": [9, 23]
+        },
+        {
+          "name": "Jardin Sacré",
+          "type": "MEDITATION",
+          "description": "Jardin paisible où les Tacticiens méditent et communient avec leurs variants",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Sanctuaire Intérieur",
+          "type": "RESTRICTED",
+          "description": "Zone réservée aux Tacticiens de haut rang, contenant des artefacts puissants",
+          "questRelated": true,
+          "questIds": [23]
+        },
+        {
+          "name": "Sanctuaire des Signes",
+          "type": "SHOP",
+          "description": "Boutique spécialisée vendant des pierres de capture de haute qualité",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Chambre des Reliques",
+          "type": "RESTRICTED",
+          "description": "Salle sécurisée contenant des artefacts anciens liés aux variants",
+          "questRelated": true,
+          "questIds": [16]
+        }
+      ],
+      "connections": [
+        {
+          "destination": 1,
+          "type": "ROAD",
+          "difficulty": "MODERATE",
+          "travelTime": 12
+        }
+      ],
+      "variantTypes": ["STRATEGE", "VISIONNAIRE", "LUMINEUX", "MYSTIQUE"],
+      "weather": ["SUNNY", "CLEAR", "MISTY"],
+      "description": "Le Temple of Dawn n'est pas une ville à proprement parler, mais un vaste complexe religieux et éducatif situé sur une colline sacrée à l'est de Lumina. Le temple principal est un bâtiment imposant de marbre blanc et d'or, dont les dômes et les flèches captent les premiers rayons du soleil levant – d'où son nom.\n\nL'Autel Principal occupe le centre du temple, une salle circulaire au plafond ouvert permettant à la lumière naturelle d'illuminer les cérémonies. C'est ici que Maître Orion et les autres Sages enseignent les rituels les plus sacrés aux Tacticiens prometteurs.\n\nLa Salle d'Étude est une bibliothèque circulaire sur plusieurs niveaux, contenant des textes anciens sur les Signes de Pouvoir et l'histoire des variants. Certains de ces textes sont si précieux qu'ils sont enchaînés à leurs étagères et ne peuvent être consultés que sous supervision.\n\nLe Jardin Sacré entoure le temple, avec ses chemins sinueux entre des plantes rares et des bassins réfléchissants. Des Tacticiens de tous âges y méditent, souvent accompagnés de leurs variants.\n\nLe Sanctuaire Intérieur et la Chambre des Reliques sont interdits à la plupart des visiteurs, gardés par des Tacticiens d'élite et leurs variants puissants.\n\nLe Temple of Dawn est le cœur spirituel de la faction des Tacticiens, et les Guerriers n'y sont généralement pas les bienvenus, sauf lors de rares cérémonies de trêve."
+    },
+    {
+      "id": 5,
+      "name": "Fort Eisenberg",
+      "description": "Forteresse imprenable",
+      "details": "Gardée par des Guerriers d'élite qui refusent d'utiliser les variants",
+      "size": "MEDIUM",
+      "population": 2000,
+      "faction": "GUERRIERS",
+      "importance": "MAJOR",
+      "coordinates": {
+        "x": 100,
+        "y": 600
+      },
+      "features": [
+        {
+          "name": "Remparts",
+          "type": "DEFENSE",
+          "description": "Imposants murs de pierre conçus pour résister aux attaques de variants",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Cour Principale",
+          "type": "TRAINING",
+          "description": "Vaste espace où s'entraînent les Guerriers d'élite",
+          "questRelated": true,
+          "questIds": [4, 13]
+        },
+        {
+          "name": "Salle Stratégique",
+          "type": "GOVERNMENT",
+          "description": "Lieu où le Général Thorne planifie les opérations militaires",
+          "questRelated": true,
+          "questIds": [13, 20]
+        },
+        {
+          "name": "Armurerie",
+          "type": "CRAFTING",
+          "description": "Arsenal contenant des armes spécialisées contre les variants",
+          "questRelated": true,
+          "questIds": [20]
+        },
+        {
+          "name": "Arène",
+          "type": "TRAINING",
+          "description": "Lieu d'entraînement au combat et de duels rituels",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Quartiers du Général",
+          "type": "RESIDENCE",
+          "description": "Appartements privés du Général Thorne",
+          "questRelated": true,
+          "questIds": [4]
+        }
+      ],
+      "connections": [
+        {
+          "destination": 2,
+          "type": "ROAD",
+          "difficulty": "MODERATE",
+          "travelTime": 10
+        },
+        {
+          "destination": 3,
+          "type": "ROAD",
+          "difficulty": "HARD",
+          "travelTime": 18
+        }
+      ],
+      "variantTypes": [],
+      "weather": ["CLEAR", "WINDY", "FOGGY"],
+      "description": "Fort Eisenberg est une imposante forteresse militaire construite sur un éperon rocheux surplombant une vallée stratégique. Ses murs massifs de pierre grise s'élèvent à plus de vingt mètres de hauteur, couronnés de tours de guet et de plateformes défensives.\n\nContrairement à la plupart des lieux d'Elderglen, Fort Eisenberg est remarquablement dépourvu de variants – les Guerriers qui y servent ont juré de ne jamais utiliser ces créatures et se fient uniquement à leur force et à leurs compétences martiales.\n\nLa Cour Principale est constamment animée par le bruit des entraînements : cliquetis des épées, ordres aboyés par les instructeurs, et le rythme des pas synchronisés des unités en formation. L'Arène adjacente accueille des combats plus formels et des tests de compétence.\n\nLa Salle Stratégique, située dans la tour centrale, contient des cartes détaillées d'Elderglen et des rapports sur les mouvements des Tacticiens et des variants sauvages. C'est ici que le Général Thorne et ses lieutenants planifient leurs opérations.\n\nL'Armurerie abrite une collection impressionnante d'armes spécialement conçues pour combattre les variants, forgées avec des alliages rares et des techniques secrètes.\n\nFort Eisenberg est le bastion militaire principal de la faction des Guerriers, et aucun Tacticien n'y est admis sous peine d'emprisonnement immédiat."
+    },
+    {
+      "id": 6,
+      "name": "Whisperwind Valley",
+      "description": "Vallée verdoyante",
+      "details": "Connue pour ses vents murmurants et ses esprits protecteurs",
+      "size": "SMALL",
+      "population": 1000,
+      "faction": "GUERRIERS",
+      "importance": "MODERATE",
+      "coordinates": {
+        "x": 400,
+        "y": 300
+      },
+      "features": [
+        {
+          "name": "Manoir Wolfheart",
+          "type": "RESIDENCE",
+          "description": "Demeure ancestrale de Sir Rainer Wolfheart",
+          "questRelated": true,
+          "questIds": [6, 18]
+        },
+        {
+          "name": "Colline des Murmures",
+          "type": "SPIRITUAL",
+          "description": "Lieu sacré où les vents semblent parler à ceux qui écoutent",
+          "questRelated": true,
+          "questIds": [18, 25]
+        },
+        {
+          "name": "Cercle de Pierres Anciennes",
+          "type": "SPIRITUAL",
+          "description": "Formation mégalithique aux propriétés mystiques",
+          "questRelated": true,
+          "questIds": [25]
+        },
+        {
+          "name": "Village de la Vallée",
+          "type": "SETTLEMENT",
+          "description": "Petit hameau où vivent les habitants de la vallée",
+          "questRelated": false,
+          "questIds": []
+        },
+        {
+          "name": "Sanctuaire des Loups",
+          "type": "WILDLIFE",
+          "description": "Zone protégée où vivent les loups sacrés de la vallée",
+          "questRelated": true,
+          "questIds": [6]
+        }
+      ],
+      "connections": [
+        {
+          "destination": 1,
+          "type": "ROAD",
+          "difficulty": "MODERATE",
+          "travelTime": 14
+        },
+        {
+          "destination": 7,
+          "type": "FOREST_PATH",
+          "difficulty": "HARD",
+          "travelTime": 10
+        }
+      ],
+      "variantTypes": ["NATUREL", "SEREIN", "VISIONNAIRE"],
+      "weather": ["MISTY", "CLEAR", "RAINY"],
+      "description": "Whisperwind Valley est une vallée isolée nichée entre des collines verdoyantes, connue pour ses vents particuliers qui produisent un son semblable à des murmures ou des chuchotements. Ces vents, selon la tradition locale, sont les voix des esprits protecteurs de la vallée.\n\nLe Manoir Wolfheart domine la vallée depuis une colline boisée – une élégante demeure de pierre et de bois construite par les ancêtres de Sir Rainer. Bien que moins imposant que les forteresses des Guerriers, le manoir dégage une aura de noblesse et d'histoire.\n\nLa Colline des Murmures, point le plus élevé de la vallée, est un lieu de méditation où Sir Rainer et d'autres guerriers viennent chercher sagesse et inspiration. Le Cercle de Pierres Anciennes qui la couronne daterait d'avant l'arrivée des humains dans la région.\n\nLe Village de la Vallée est un ensemble pittoresque de maisons en bois et en pierre, entourées de champs cultivés et de vergers. Les habitants vivent en harmonie avec la nature et respectent les traditions anciennes.\n\nLe Sanctuaire des Loups est une zone sauvage où vivent les loups que Sir Rainer considère comme sacrés. Ces animaux ne sont pas des variants mais semblent posséder une intelligence supérieure à celle des loups ordinaires.\n\nBien que techniquement alignée avec la faction des Guerriers, Whisperwind Valley maintient une approche plus spirituelle et moins militariste que Fort Eisenberg, ce qui la rend plus tolérante envers les visiteurs de toutes factions."
+    },
+    {
+      "id": 7,
+      "name": "Whisperwood Forest",
+      "description": "Forêt enchantée et dangereuse",
+      "details": "Abrite des variants mystérieux et des ruines anciennes",
+      "size": "LARGE",
+      "population": 100,
+      "faction": "NONE",
+      "importance": "MODERATE",
+      "coordinates": {
+        "x": 500,
+        "y": 200
+      },
+      "features": [
+        {
+          "name": "Clairière des Murmures",
+          "type": "SPIRITUAL",
+          "description": "Espace ouvert où les arbres semblent communiquer entre eux",
+          "questRelated": true,
+          "questIds": [28, 36]
+        },
+        {
+          "name": "Ruines du Temple Oublié",
+          "type": "RUINS",
+          "description": "Vestiges d'un ancien lieu de culte envahi par la végétation",
+          "questRelated": true,
+          "questIds": [32]
+        },
+        {
+          "name": "Étang Miroitant",
+          "type": "WATER",
+          "description": "Plan d'eau aux propriétés réfléchissantes étranges",
+          "questRelated": true,
+          "questIds": [28]
+        },
+        {
+          "name": "Cabane de l'Ermite",
+          "type": "RESIDENCE",
+          "description": "Demeure isolée d'un mystérieux habitant de la forêt",
+          "questRelated": true,
+          "questIds": [36]
+        },
+        {
+          "name": "Sentier des Ombres",
+          "type": "PATH",
+          "description": "Chemin dangereux où rôdent des variants Ombreux",
+          "questRelated": false,
+          "questIds": []
+        }
+      ],
+      "connections": [
+        {
+          "destination": 6,
+          "type": "FOREST_PATH",
+          "difficulty": "HARD",
+          "travelTime": 10
+        },
+        {
+          "destination": 1,
+          "type": "FOREST_PATH",
+          "difficulty": "VERY_HARD",
+          "travelTime": 18
+        }
+      ],
+      "variantTypes": ["MYSTIQUE", "OMBREUX", "VISIONNAIRE", "CHAOTIQUE"],
+      "weather": ["MISTY", "RAINY", "FOGGY"],
+      "description": "Whisperwood Forest est une vaste forêt ancienne aux arbres immenses et au sous-bois dense. La canopée est si épaisse que même en plein jour, une pénombre verdâtre règne au niveau du sol. Des brumes persistantes s'accrochent aux troncs et aux branches basses, créant une atmosphère mystérieuse et parfois inquiétante.\n\nLa Clairière des Murmures est un espace circulaire parfait au centre de la forêt, où aucun arbre ne pousse mais où l'herbe est d'un vert éclatant. Les arbres qui l'entourent semblent se pencher vers l'intérieur, comme pour écouter ou parler. De nombreux variants de type Mystique et Visionnaire sont attirés par cet endroit.\n\nLes Ruines du Temple Oublié sont les vestiges d'une structure ancienne dont l'origine et le but restent inconnus. Des piliers de pierre couverts de lierre et de mousse s'élèvent parmi les arbres, gravés de symboles que même les plus érudits des Tacticiens peinent à déchiffrer.\n\nL'Étang Miroitant est un plan d'eau parfaitement circulaire dont la surface est si calme qu'elle reflète parfaitement le ciel et les arbres environnants. Certains affirment que dans certaines conditions, l'étang peut montrer des images du passé ou de l'avenir.\n\nLa Cabane de l'Ermite est rarement trouvée par ceux qui la cherchent, mais apparaît souvent sur le chemin de ceux qui sont perdus ou en danger. Son occupant change selon les récits : parfois un sage vieillard, parfois une jeune femme mystérieuse, parfois un enfant étrange aux yeux trop vieux pour son âge.\n\nWhisperwood Forest est considérée comme neutre dans le conflit entre Tacticiens et Guerriers, mais ses dangers naturels et surnaturels en font un lieu que seuls les plus braves ou les plus désespérés osent traverser."
+    }
+  ],
+  "totalCities": 7,
+  "lastId": 7
+}

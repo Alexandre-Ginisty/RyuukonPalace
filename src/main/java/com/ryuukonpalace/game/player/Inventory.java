@@ -21,6 +21,9 @@ public class Inventory {
     // Liste des pierres de capture dans l'inventaire
     private List<CaptureStone> captureStones;
     
+    // Liste des équipements du joueur
+    private List<Item> equipment;
+    
     // Pierres de capture équipées (collier)
     private Map<Integer, CaptureStone> equippedStones;
     
@@ -33,6 +36,7 @@ public class Inventory {
     public Inventory() {
         this.items = new ArrayList<>();
         this.captureStones = new ArrayList<>();
+        this.equipment = new ArrayList<>();
         this.equippedStones = new HashMap<>();
         this.maxEquippedStones = 6; // Par défaut, le joueur peut équiper 6 pierres
     }
@@ -183,5 +187,59 @@ public class Inventory {
         }
         
         return creatures;
+    }
+    
+    /**
+     * Obtenir la liste des équipements du joueur
+     * 
+     * @return Liste des équipements
+     */
+    public List<Item> getEquipment() {
+        return new ArrayList<>(equipment);
+    }
+    
+    /**
+     * Définir la liste des équipements du joueur
+     * 
+     * @param equipment Nouvelle liste d'équipements
+     */
+    public void setEquipment(List<Item> equipment) {
+        this.equipment = new ArrayList<>(equipment);
+    }
+    
+    /**
+     * Ajouter un équipement à l'inventaire
+     * 
+     * @param item Équipement à ajouter
+     */
+    public void addEquipment(Item item) {
+        equipment.add(item);
+    }
+    
+    /**
+     * Retirer un équipement de l'inventaire
+     * 
+     * @param item Équipement à retirer
+     * @return true si l'équipement a été retiré, false sinon
+     */
+    public boolean removeEquipment(Item item) {
+        return equipment.remove(item);
+    }
+    
+    /**
+     * Définir la liste des objets dans l'inventaire
+     * 
+     * @param items Nouvelle liste d'objets
+     */
+    public void setItems(List<Item> items) {
+        this.items = new ArrayList<>(items);
+        
+        // Mettre à jour la liste des pierres de capture
+        this.captureStones.clear();
+        for (Item item : items) {
+            if (item instanceof CaptureStone) {
+                this.captureStones.add((CaptureStone) item);
+            }
+        }
     }
 }

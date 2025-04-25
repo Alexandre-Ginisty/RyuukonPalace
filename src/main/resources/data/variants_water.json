@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "description": "Variants de type EAU pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Variants"
+  },
+  "variants": [
+    {
+      "id": 4,
+      "name": "Aquapup",
+      "type": "WATER",
+      "category": "Serein",
+      "lore": "Né des larmes d'enfants noyés dans les profondeurs marines, l'Aquapup apparaît comme un compagnon innocent mais cache une nature sinistre. Son aura apaisante est en réalité un mécanisme hypnotique qui attire ses proies vers les eaux profondes. Les pêcheurs racontent que leurs aboiements ressemblent aux pleurs d'enfants perdus.",
+      "description": "Un petit chiot aquatique au pelage bleu pâle qui dégage une aura apaisante. Sous sa fourrure translucide, on peut apercevoir des organes qui pulsent d'une lueur bleutée inquiétante.",
+      "baseStats": {
+        "health": 55,
+        "attack": 40,
+        "defense": 50,
+        "speed": 45,
+        "magicalAttack": 60,
+        "magicalDefense": 65
+      },
+      "abilities": [
+        {
+          "id": 8,
+          "name": "Éclaboussure Apaisante",
+          "description": "Projette une eau qui calme l'adversaire et réduit son attaque en altérant sa volonté",
+          "power": 30,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 1,
+          "animation": "aquapup_soothing_splash.fbx",
+          "visualEffect": "Des gouttelettes bleu pâle qui scintillent avant d'être absorbées par la peau de l'adversaire"
+        },
+        {
+          "id": 9,
+          "name": "Bulle Tranquille",
+          "description": "Crée une bulle protectrice qui augmente la défense en absorbant l'énergie vitale environnante",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 6,
+          "animation": "aquapup_quiet_bubble.fbx",
+          "visualEffect": "Une bulle iridescente qui enveloppe l'Aquapup, absorbant la lumière ambiante"
+        },
+        {
+          "id": 10,
+          "name": "Vague Sereine",
+          "description": "Invoque une vague douce qui peut endormir l'adversaire, le plongeant dans des cauchemars aquatiques",
+          "power": 50,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 12,
+          "animation": "aquapup_serene_wave.fbx",
+          "visualEffect": "Une vague d'eau bleu foncé qui semble contenir des visages éphémères"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 5,
+        "level": 18,
+        "conditions": "Niveau 18 atteint près d'un point d'eau profond",
+        "evolutionSequence": "L'Aquapup se liquéfie complètement, ne laissant qu'une flaque d'eau bleutée qui se reforme lentement en une créature plus grande et plus sinistre."
+      },
+      "spawnLocations": [
+        "Darkhaven (port abandonné)",
+        "Whisperwind Valley (étangs stagnants)"
+      ],
+      "spawnRarity": "Commun",
+      "spawnConditions": "Près des points d'eau, temps pluvieux, particulièrement après des disparitions d'enfants",
+      "texture": "variants/water/aquapup.png",
+      "model": "variants/water/aquapup/aquapup_tpose.fbx",
+      "animations": {
+        "idle": "variants/water/aquapup/animations/aquapup_idle.fbx",
+        "walk": "variants/water/aquapup/animations/aquapup_walk.fbx",
+        "attack": "variants/water/aquapup/animations/aquapup_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 19,
+          "name": "Larme cristallisée",
+          "dropRate": 0.15,
+          "description": "Une larme solidifiée qui contient l'écho d'une âme perdue"
+        },
+        {
+          "itemId": 20,
+          "name": "Fourrure hydrophile",
+          "dropRate": 0.10,
+          "description": "Fourrure qui absorbe et stocke l'eau, utilisée pour des potions"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Serenifin",
+      "type": "WATER",
+      "category": "Serein",
+      "lore": "Évolution de l'Aquapup, le Serenifin est le résultat d'âmes noyées qui ont fusionné avec les courants marins. Sa mélodie hypnotique est capable d'attirer des villages entiers vers les profondeurs. Les marins racontent que les Serenifin gardent leurs victimes conscientes sous l'eau, les laissant se noyer lentement tout en les berçant d'illusions paisibles.",
+      "description": "Ce canidé aquatique possède une fourrure qui ondule comme les vagues et des nageoires translucides. Sous sa peau, on distingue des organes luminescents qui pulsent au rythme des marées.",
+      "baseStats": {
+        "health": 75,
+        "attack": 60,
+        "defense": 70,
+        "speed": 65,
+        "magicalAttack": 80,
+        "magicalDefense": 85
+      },
+      "abilities": [
+        {
+          "id": 8,
+          "name": "Éclaboussure Apaisante",
+          "description": "Projette une eau qui calme l'adversaire et réduit son attaque",
+          "power": 30,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 1,
+          "animation": "serenifin_soothing_splash.fbx",
+          "visualEffect": "Des gouttelettes bleu pâle qui scintillent avant d'être absorbées par la peau de l'adversaire"
+        },
+        {
+          "id": 9,
+          "name": "Bulle Tranquille",
+          "description": "Crée une bulle protectrice qui augmente la défense",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 6,
+          "animation": "serenifin_quiet_bubble.fbx",
+          "visualEffect": "Une bulle iridescente qui enveloppe le Serenifin, absorbant la lumière ambiante"
+        },
+        {
+          "id": 10,
+          "name": "Vague Sereine",
+          "description": "Invoque une vague douce qui peut endormir l'adversaire",
+          "power": 50,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 12,
+          "animation": "serenifin_serene_wave.fbx",
+          "visualEffect": "Une vague d'eau bleu foncé qui semble contenir des visages éphémères"
+        },
+        {
+          "id": 11,
+          "name": "Aura Pacifique",
+          "description": "Émet une aura qui calme tous les combattants et restaure des PV en drainant l'énergie vitale environnante",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 20,
+          "animation": "serenifin_pacific_aura.fbx",
+          "visualEffect": "Une aura bleu clair qui pulse autour du Serenifin, créant des mirages aquatiques"
+        },
+        {
+          "id": 12,
+          "name": "Torrent Tranquille",
+          "description": "Déferlement d'eau puissant mais apaisant qui peut réduire l'agressivité et noyer lentement l'esprit",
+          "power": 75,
+          "accuracy": 90,
+          "type": "WATER",
+          "levelLearned": 26,
+          "animation": "serenifin_quiet_torrent.fbx",
+          "visualEffect": "Un tourbillon d'eau qui enveloppe l'adversaire, créant l'illusion de la noyade"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": 6,
+        "level": 36,
+        "conditions": "Niveau 36 atteint durant une nuit de pleine lune, près de l'océan",
+        "evolutionSequence": "Le corps du Serenifin se dissout dans une brume marine phosphorescente qui tourbillonne avant de se condenser en une forme plus majestueuse et sinistre."
+      },
+      "spawnLocations": [
+        "Darkhaven (baie des naufragés)",
+        "Whisperwind Valley (lac des âmes)"
+      ],
+      "spawnRarity": "Peu commun",
+      "spawnConditions": "Près des lacs profonds, temps brumeux, particulièrement dans les zones connues pour des disparitions inexpliquées",
+      "texture": "variants/water/serenifin.png",
+      "model": "variants/water/serenifin/serenifin_tpose.fbx",
+      "animations": {
+        "idle": "variants/water/serenifin/animations/serenifin_idle.fbx",
+        "walk": "variants/water/serenifin/animations/serenifin_walk.fbx",
+        "attack": "variants/water/serenifin/animations/serenifin_attack.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 21,
+          "name": "Écaille mélodique",
+          "dropRate": 0.12,
+          "description": "Une écaille qui émet un son hypnotique lorsqu'elle est immergée"
+        },
+        {
+          "itemId": 22,
+          "name": "Essence apaisante",
+          "dropRate": 0.08,
+          "description": "Liquide bleuté qui calme l'esprit mais peut provoquer des hallucinations"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Abyssguard",
+      "type": "WATER",
+      "category": "Serein",
+      "lore": "Forme finale de la lignée Aquapup, l'Abyssguard est un être né des profondeurs abyssales où la pression et l'obscurité ont déformé son essence. Gardien des cités englouties, il est dit que chaque Abyssguard est lié à un cimetière marin spécifique dont il protège les âmes. Sa mélodie peut plonger des régions entières dans un sommeil éternel, créant des communautés fantômes où les habitants marchent comme des somnambules vers leur propre destruction.",
+      "description": "Majestueux canidé aquatique à la fourrure ondulante comme les abysses. Son corps semi-transparent révèle un squelette luminescent et des organes qui pulsent d'une lueur hypnotique. Ses yeux, dépourvus de pupilles, semblent contenir l'obscurité des profondeurs marines.",
+      "baseStats": {
+        "health": 95,
+        "attack": 75,
+        "defense": 90,
+        "speed": 85,
+        "magicalAttack": 110,
+        "magicalDefense": 115
+      },
+      "abilities": [
+        {
+          "id": 11,
+          "name": "Aura Pacifique",
+          "description": "Émet une aura qui calme tous les combattants et restaure des PV en drainant l'énergie vitale environnante",
+          "power": 0,
+          "accuracy": 100,
+          "type": "WATER",
+          "levelLearned": 20,
+          "animation": "abyssguard_pacific_aura.fbx",
+          "visualEffect": "Une aura bleu profond qui pulse autour de l'Abyssguard, créant des mirages aquatiques"
+        },
+        {
+          "id": 12,
+          "name": "Torrent Tranquille",
+          "description": "Déferlement d'eau puissant mais apaisant qui peut réduire l'agressivité",
+          "power": 75,
+          "accuracy": 90,
+          "type": "WATER",
+          "levelLearned": 26,
+          "animation": "abyssguard_quiet_torrent.fbx",
+          "visualEffect": "Un tourbillon d'eau qui enveloppe l'adversaire, créant l'illusion de la noyade"
+        },
+        {
+          "id": 13,
+          "name": "Chant des Profondeurs",
+          "description": "Mélodie hypnotique qui résonne avec les abysses, paralysant l'adversaire et drainant progressivement sa force vitale",
+          "power": 0,
+          "accuracy": 85,
+          "type": "WATER",
+          "levelLearned": 38,
+          "animation": "abyssguard_depths_song.fbx",
+          "visualEffect": "Des ondes sonores visibles qui se propagent dans l'eau environnante, créant des motifs hypnotiques"
+        },
+        {
+          "id": 14,
+          "name": "Étreinte Abyssale",
+          "description": "Enveloppe l'adversaire dans une prison d'eau sous haute pression, simulant les conditions écrasantes des abysses",
+          "power": 95,
+          "accuracy": 80,
+          "type": "WATER",
+          "levelLearned": 44,
+          "animation": "abyssguard_abyssal_embrace.fbx",
+          "visualEffect": "Une sphère d'eau noire qui compresse l'adversaire, émettant des craquements sinistres"
+        },
+        {
+          "id": 15,
+          "name": "Requiem des Noyés",
+          "description": "Invoque les âmes des noyés qui s'accrochent à l'adversaire, le tirant vers un sommeil éternel",
+          "power": 120,
+          "accuracy": 75,
+          "type": "WATER",
+          "levelLearned": 52,
+          "animation": "abyssguard_drowned_requiem.fbx",
+          "visualEffect": "Des silhouettes spectrales bleutées émergent de l'eau et s'enroulent autour de l'adversaire"
+        }
+      ],
+      "evolution": {
+        "evolvesTo": null,
+        "level": null
+      },
+      "spawnLocations": [
+        "Shadow Caverns (lac souterrain)",
+        "Frostpeak Mountains (lac gelé)"
+      ],
+      "spawnRarity": "Extrêmement rare",
+      "spawnConditions": "Uniquement dans les eaux profondes, durant les nuits sans lune, près des sites de naufrages majeurs",
+      "texture": "variants/water/abyssguard.png",
+      "model": "variants/water/abyssguard/abyssguard_tpose.fbx",
+      "animations": {
+        "idle": "variants/water/abyssguard/animations/abyssguard_idle.fbx",
+        "walk": "variants/water/abyssguard/animations/abyssguard_walk.fbx",
+        "attack": "variants/water/abyssguard/animations/abyssguard_attack.fbx",
+        "special": "variants/water/abyssguard/animations/abyssguard_drowned_requiem.fbx"
+      },
+      "drops": [
+        {
+          "itemId": 23,
+          "name": "Perle abyssale",
+          "dropRate": 0.05,
+          "description": "Une perle noire qui émet une faible lumière bleue et semble contenir un océan miniature"
+        },
+        {
+          "itemId": 24,
+          "name": "Essence des profondeurs",
+          "dropRate": 0.03,
+          "description": "Liquide noir qui permet de respirer sous l'eau mais altère progressivement l'esprit"
+        },
+        {
+          "itemId": 25,
+          "name": "Cœur des abysses",
+          "dropRate": 0.01,
+          "description": "Organe luminescent qui continue de battre même après avoir été prélevé"
+        }
+      ]
+    }
+  ]
+}

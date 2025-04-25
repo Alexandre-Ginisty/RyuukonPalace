@@ -1,0 +1,323 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Artefacts légendaires pour Ryuukon Palace",
+    "lastUpdated": "2025-04-24",
+    "category": "Items",
+    "itemType": "ARTIFACTS"
+  },
+  "artifacts": [
+    {
+      "id": 101,
+      "name": "Sceau de Ryuukon",
+      "description": "Objet légendaire lié à la création des variants. Permet de communiquer brièvement avec l'essence de Ryuukon.",
+      "value": 50000,
+      "rarity": "UNIQUE",
+      "type": "COMMUNICATION",
+      "requiredLevel": 50,
+      "usageLimit": 3,
+      "cooldown": 604800,
+      "effects": [
+        {
+          "type": "REVEAL_VARIANT_ORIGIN",
+          "description": "Révèle l'origine d'un variant capturé",
+          "power": 100,
+          "duration": 60
+        },
+        {
+          "type": "BOOST_CAPTURE_RATE",
+          "description": "Augmente considérablement le taux de capture",
+          "power": 50,
+          "duration": 300
+        }
+      ],
+      "lore": "Le Sceau de Ryuukon est l'un des artefacts les plus anciens et les plus mystérieux d'Elderglen. Selon la légende, il aurait été créé par Ryuukon lui-même, l'entité primordiale qui donna naissance aux variants. Le sceau contient une infime partie de son essence, permettant à son porteur d'établir une connexion éphémère avec cette conscience ancestrale. Les rares individus ayant réussi à l'utiliser rapportent avoir entrevu des visions troublantes de l'origine des variants et du destin d'Elderglen. Beaucoup ont été rendus fous par ces révélations.",
+      "appearance": "Un médaillon circulaire en métal inconnu, gravé de symboles complexes qui semblent changer subtilement lorsqu'on ne les regarde pas directement. En son centre se trouve une gemme noire qui semble contenir un univers en miniature.",
+      "location": "Caché dans les profondeurs des Ancient Ruins, protégé par des variants légendaires et des pièges mortels.",
+      "questRelated": true,
+      "questId": 50,
+      "factionRequirement": "NONE"
+    },
+    {
+      "id": 102,
+      "name": "Parchemin des Signes",
+      "description": "Texte ancien révélant des Signes de Pouvoir oubliés permettant de capturer des variants rares.",
+      "value": 30000,
+      "rarity": "LEGENDARY",
+      "type": "KNOWLEDGE",
+      "requiredLevel": 40,
+      "usageLimit": -1,
+      "cooldown": 86400,
+      "effects": [
+        {
+          "type": "LEARN_SIGN",
+          "description": "Apprend un nouveau Signe de Pouvoir",
+          "power": 80,
+          "duration": -1
+        },
+        {
+          "type": "BOOST_SIGN_POWER",
+          "description": "Augmente la puissance des Signes de Pouvoir",
+          "power": 30,
+          "duration": 3600
+        }
+      ],
+      "lore": "Le Parchemin des Signes est l'œuvre des premiers Tacticiens qui découvrirent comment capturer et contrôler les variants. Écrit dans une langue ancienne avec une encre infusée d'essences de variants, il contient des connaissances que la plupart des Tacticiens modernes ont oubliées. Chaque page révèle un Signe de Pouvoir unique, accompagné d'instructions précises sur son utilisation et ses dangers. Le parchemin a été divisé en plusieurs fragments par le Conseil des Sages pour éviter qu'un seul individu ne détienne trop de pouvoir.",
+      "appearance": "Un rouleau de parchemin jaunâtre qui semble résister au temps. Les symboles écrits dessus semblent briller faiblement dans l'obscurité et changer de forme selon l'angle de vue.",
+      "location": "Fragments dispersés entre la bibliothèque de Lumina, le Temple of Dawn et des collections privées.",
+      "questRelated": true,
+      "questId": 51,
+      "factionRequirement": "TACTICIENS"
+    },
+    {
+      "id": 103,
+      "name": "Amulette de Protection",
+      "description": "Talisman ancien offrant une défense contre les attaques des variants.",
+      "value": 15000,
+      "rarity": "VERY_RARE",
+      "type": "PROTECTION",
+      "requiredLevel": 30,
+      "usageLimit": -1,
+      "cooldown": 3600,
+      "effects": [
+        {
+          "type": "DAMAGE_REDUCTION",
+          "description": "Réduit les dégâts infligés par les variants",
+          "power": 40,
+          "duration": 600
+        },
+        {
+          "type": "STATUS_IMMUNITY",
+          "description": "Immunité contre certains effets de statut négatifs",
+          "power": 70,
+          "duration": 300
+        }
+      ],
+      "lore": "L'Amulette de Protection fut créée par les Guerriers d'antan, avant même que les Tacticiens ne développent leurs techniques de capture. Elle est imprégnée d'énergies qui repoussent naturellement les variants agressifs. Selon la tradition des Guerriers, ces amulettes étaient forgées dans le sang de variants vaincus en combat loyal, puis bénies lors de rituels sous la pleine lune. Bien que les Tacticiens considèrent ces croyances comme de simples superstitions, l'efficacité de l'amulette est indéniable.",
+      "appearance": "Un pendentif en métal sombre orné de pierres rouges et bleues. Des runes de protection sont gravées sur toute sa surface, et il émet une légère chaleur lorsqu'un variant hostile est proche.",
+      "location": "Transmises de génération en génération parmi les familles de Guerriers, parfois trouvées dans des tombeaux anciens.",
+      "questRelated": true,
+      "questId": 52,
+      "factionRequirement": "GUERRIERS"
+    },
+    {
+      "id": 104,
+      "name": "Cristal d'Harmonie",
+      "description": "Pierre translucide permettant de communiquer avec les variants sans les capturer.",
+      "value": 20000,
+      "rarity": "VERY_RARE",
+      "type": "COMMUNICATION",
+      "requiredLevel": 35,
+      "usageLimit": -1,
+      "cooldown": 7200,
+      "effects": [
+        {
+          "type": "VARIANT_COMMUNICATION",
+          "description": "Permet de communiquer avec un variant sauvage",
+          "power": 90,
+          "duration": 300
+        },
+        {
+          "type": "PACIFY_VARIANT",
+          "description": "Apaise un variant agressif",
+          "power": 60,
+          "duration": 600
+        }
+      ],
+      "lore": "Le Cristal d'Harmonie représente une approche alternative à l'interaction avec les variants, ni basée sur la domination des Tacticiens, ni sur le combat des Guerriers. Créé par un groupe de mystiques qui vivaient en harmonie avec les variants, ce cristal permet d'établir un lien télépathique temporaire avec ces créatures. Certains affirment que ces mystiques étaient les ancêtres des habitants actuels de Whisperwind Valley, où l'on trouve encore des personnes capables de comprendre les variants sans les capturer.",
+      "appearance": "Un cristal parfaitement transparent qui prend la teinte du variant avec lequel il communique. Il émet un léger bourdonnement mélodieux lorsqu'il est activé.",
+      "location": "Caché dans Whisperwind Valley, gardé par des variants pacifiques et leurs protecteurs humains.",
+      "questRelated": true,
+      "questId": 53,
+      "factionRequirement": "NONE"
+    },
+    {
+      "id": 105,
+      "name": "Lame du Guerrier",
+      "description": "Épée légendaire capable de blesser même les variants les plus puissants.",
+      "value": 25000,
+      "rarity": "LEGENDARY",
+      "type": "WEAPON",
+      "requiredLevel": 45,
+      "usageLimit": -1,
+      "cooldown": 60,
+      "effects": [
+        {
+          "type": "VARIANT_DAMAGE",
+          "description": "Inflige des dégâts importants aux variants",
+          "power": 100,
+          "duration": -1
+        },
+        {
+          "type": "VARIANT_WEAKNESS",
+          "description": "Expose les faiblesses des variants",
+          "power": 70,
+          "duration": 180
+        }
+      ],
+      "lore": "La Lame du Guerrier est l'arme emblématique des fondateurs de la faction des Guerriers. Forgée dans un métal rare extrait des profondeurs de Frostpeak Mountains et trempée dans l'essence concentrée de variants vaincus, cette épée est capable de trancher à travers les défenses naturelles des variants les plus puissants. La légende raconte que son créateur, le premier Général des Guerriers, tua cent variants avec ses mains nues pour recueillir suffisamment d'essence pour la lame.",
+      "appearance": "Une épée à deux mains au métal bleuté qui semble absorber la lumière. La garde est ornée de symboles guerriers, et la lame émet un léger sifflement lorsqu'elle fend l'air.",
+      "location": "Conservée à Fort Eisenberg, utilisée uniquement par le chef des Guerriers lors de cérémonies ou de batailles cruciales.",
+      "questRelated": true,
+      "questId": 54,
+      "factionRequirement": "GUERRIERS"
+    },
+    {
+      "id": 106,
+      "name": "Orbe de Vision",
+      "description": "Artefact mystique permettant de voir brièvement l'avenir ou des lieux éloignés.",
+      "value": 18000,
+      "rarity": "VERY_RARE",
+      "type": "DIVINATION",
+      "requiredLevel": 38,
+      "usageLimit": 5,
+      "cooldown": 86400,
+      "effects": [
+        {
+          "type": "FUTURE_GLIMPSE",
+          "description": "Montre un aperçu d'événements futurs possibles",
+          "power": 75,
+          "duration": 30
+        },
+        {
+          "type": "REMOTE_VIEWING",
+          "description": "Permet de voir un lieu éloigné",
+          "power": 85,
+          "duration": 60
+        }
+      ],
+      "lore": "L'Orbe de Vision fut créé par un Tacticien visionnaire qui avait capturé plusieurs variants de type Visionnaire et extrait leur essence. Combinant ces essences avec des cristaux rares et des formules alchimiques complexes, il créa un artefact capable de percer le voile du temps et de l'espace. Cependant, l'utilisation de l'orbe n'est pas sans risque : les visions peuvent être cryptiques, incomplètes ou même trompeuses, et chaque utilisation taxe lourdement l'esprit de l'utilisateur.",
+      "appearance": "Une sphère de cristal contenant ce qui semble être un brouillard tourbillonnant. Lorsqu'elle est activée, le brouillard se dissipe pour révéler des images en mouvement.",
+      "location": "En possession de Dr. Elara Stein, qui l'étudie pour comprendre ses mécanismes.",
+      "questRelated": true,
+      "questId": 55,
+      "factionRequirement": "TACTICIENS"
+    },
+    {
+      "id": 107,
+      "name": "Couronne d'Équilibre",
+      "description": "Diadème ancien permettant de maintenir l'équilibre entre les différents types de variants.",
+      "value": 35000,
+      "rarity": "LEGENDARY",
+      "type": "HARMONY",
+      "requiredLevel": 42,
+      "usageLimit": -1,
+      "cooldown": 43200,
+      "effects": [
+        {
+          "type": "TYPE_HARMONY",
+          "description": "Permet à des variants de types opposés de coexister pacifiquement",
+          "power": 90,
+          "duration": 1800
+        },
+        {
+          "type": "BOOST_ALL_VARIANTS",
+          "description": "Augmente les capacités de tous les variants alliés",
+          "power": 40,
+          "duration": 900
+        }
+      ],
+      "lore": "La Couronne d'Équilibre daterait d'une époque où humains et variants vivaient en harmonie, avant la grande division qui mena à la création des factions. Elle fut créée par un conseil de sages qui maîtrisaient tous les types de variants et cherchaient à maintenir l'équilibre du monde. La couronne contient des fragments d'essence de chaque type de variant, parfaitement équilibrés pour éviter les conflits naturels entre types opposés. Certains croient que retrouver et utiliser cette couronne pourrait être la clé pour réconcilier les factions et restaurer l'harmonie d'antan.",
+      "appearance": "Un diadème en métal argenté orné de dix gemmes différentes, chacune représentant un type de variant. Les gemmes changent subtilement de couleur selon l'environnement et les variants présents.",
+      "location": "Divisée en plusieurs fragments cachés dans des sanctuaires secrets à travers Elderglen.",
+      "questRelated": true,
+      "questId": 56,
+      "factionRequirement": "NONE"
+    },
+    {
+      "id": 108,
+      "name": "Clé des Anciens",
+      "description": "Artefact mystérieux permettant d'ouvrir des portes scellées dans les ruines anciennes.",
+      "value": 22000,
+      "rarity": "VERY_RARE",
+      "type": "KEY",
+      "requiredLevel": 40,
+      "usageLimit": -1,
+      "cooldown": 3600,
+      "effects": [
+        {
+          "type": "OPEN_ANCIENT_DOOR",
+          "description": "Ouvre les portes scellées par magie ancienne",
+          "power": 100,
+          "duration": -1
+        },
+        {
+          "type": "REVEAL_HIDDEN",
+          "description": "Révèle des passages et objets cachés",
+          "power": 60,
+          "duration": 300
+        }
+      ],
+      "lore": "La Clé des Anciens n'est pas une clé ordinaire, mais plutôt un artefact complexe capable de déchiffrer et de désactiver les protections magiques laissées par la civilisation qui créa les Ancient Ruins. Cette civilisation, dont le nom a été perdu, aurait été la première à maîtriser les variants et à développer des technologies avancées basées sur leur énergie. La clé contient des circuits énergétiques qui peuvent s'adapter à différents types de serrures magiques, révélant des chambres secrètes contenant des connaissances et des trésors inestimables.",
+      "appearance": "Un objet métallique de forme étrange, ressemblant vaguement à une clé mais avec des extensions mobiles qui se reconfigurer selon la serrure. Des symboles lumineux apparaissent sur sa surface lorsqu'elle est proche d'une porte ancienne.",
+      "location": "Divisée en trois parties, cachées dans différentes sections des Ancient Ruins.",
+      "questRelated": true,
+      "questId": 57,
+      "factionRequirement": "NONE"
+    },
+    {
+      "id": 109,
+      "name": "Calice d'Essence",
+      "description": "Récipient sacré capable de contenir et de purifier l'essence des variants.",
+      "value": 28000,
+      "rarity": "LEGENDARY",
+      "type": "CONTAINER",
+      "requiredLevel": 45,
+      "usageLimit": -1,
+      "cooldown": 86400,
+      "effects": [
+        {
+          "type": "EXTRACT_ESSENCE",
+          "description": "Extrait l'essence pure d'un variant sans le blesser",
+          "power": 85,
+          "duration": -1
+        },
+        {
+          "type": "PURIFY_ESSENCE",
+          "description": "Purifie l'essence corrompue d'un variant",
+          "power": 90,
+          "duration": -1
+        }
+      ],
+      "lore": "Le Calice d'Essence fut créé par les premiers alchimistes d'Elderglen qui cherchaient à comprendre la nature fondamentale des variants. Contrairement aux méthodes brutales d'extraction d'essence utilisées par certains Tacticiens, le calice permet d'extraire l'essence d'un variant sans lui causer de douleur ou de dommage permanent. Cette essence pure peut ensuite être utilisée pour créer des potions puissantes, des pierres de capture avancées, ou même pour guérir des variants corrompus. Le calice a été gardé secret pendant des siècles pour éviter qu'il ne soit utilisé à des fins malveillantes.",
+      "appearance": "Un calice en cristal aux reflets irisés, orné de motifs représentant les dix types de variants. Le liquide qu'il contient semble changer de couleur et de consistance selon l'essence qui y est stockée.",
+      "location": "Gardé par une communauté secrète de guérisseurs de variants dans une grotte cachée sous Whisperwind Valley.",
+      "questRelated": true,
+      "questId": 58,
+      "factionRequirement": "NONE"
+    },
+    {
+      "id": 110,
+      "name": "Grimoire des Métamorphoses",
+      "description": "Livre ancien contenant des formules pour transformer temporairement les variants ou leur porteur.",
+      "value": 32000,
+      "rarity": "LEGENDARY",
+      "type": "BOOK",
+      "requiredLevel": 48,
+      "usageLimit": -1,
+      "cooldown": 43200,
+      "effects": [
+        {
+          "type": "VARIANT_TRANSFORMATION",
+          "description": "Transforme temporairement un variant en un autre type",
+          "power": 80,
+          "duration": 1800
+        },
+        {
+          "type": "HUMAN_TRANSFORMATION",
+          "description": "Confère temporairement des attributs de variant à un humain",
+          "power": 70,
+          "duration": 900
+        }
+      ],
+      "lore": "Le Grimoire des Métamorphoses est l'œuvre d'un Tacticien renégat qui s'aventura plus loin que quiconque dans l'étude de la nature changeante des variants. Ses recherches le menèrent à découvrir que l'essence des variants pouvait être manipulée pour transformer non seulement d'autres variants, mais aussi des humains. Ses expériences controversées lui valurent d'être banni de Lumina, mais son grimoire survécut, passant de main en main parmi ceux qui cherchent à transcender les limites entre humains et variants. Les transformations décrites dans le livre sont temporaires mais peuvent être dangereuses si mal exécutées.",
+      "appearance": "Un épais livre relié en cuir de variant, dont les pages semblent changer de texture selon qui les touche. Les illustrations à l'intérieur bougent subtilement, montrant des transformations en action.",
+      "location": "Caché dans la collection privée d'un collectionneur anonyme à Darkhaven.",
+      "questRelated": true,
+      "questId": 59,
+      "factionRequirement": "NONE"
+    }
+  ],
+  "totalItems": 10,
+  "lastId": 110
+}
