@@ -5,6 +5,7 @@ import com.ryuukonpalace.game.core.InputManager;
 import com.ryuukonpalace.game.core.Renderer;
 import com.ryuukonpalace.game.dialogue.DialogueOption;
 import com.ryuukonpalace.game.items.Item;
+import com.ryuukonpalace.game.quest.Quest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,6 +29,7 @@ public class UIManager {
     private InventoryInterface inventoryInterface;
     private CreatureStatusScreen creatureStatusScreen;
     private DialogueInterface dialogueInterface;
+    private QuestJournalInterface questJournalInterface;
     
     // Système de notification
     private List<Notification> activeNotifications;
@@ -79,6 +81,9 @@ public class UIManager {
         this.merchantInterface = new MerchantInterface();
         
         this.dialogueInterface = new DialogueInterface();
+        
+        this.questJournalInterface = QuestJournalInterface.getInstance();
+        this.questJournalInterface.init();
     }
     
     /**
@@ -117,6 +122,10 @@ public class UIManager {
                 if (dialogueInterface != null && dialogueInterface.isVisible()) {
                     dialogueInterface.update(deltaTime);
                 }
+                
+                if (questJournalInterface != null && questJournalInterface.isVisible()) {
+                    questJournalInterface.update(deltaTime);
+                }
                 break;
         }
     }
@@ -149,6 +158,10 @@ public class UIManager {
                 if (dialogueInterface != null && dialogueInterface.isVisible()) {
                     dialogueInterface.render();
                 }
+                
+                if (questJournalInterface != null && questJournalInterface.isVisible()) {
+                    questJournalInterface.render();
+                }
                 break;
         }
         
@@ -173,22 +186,18 @@ public class UIManager {
         
         switch (currentState) {
             case COMBAT:
-                if (combatInterface.isInitialized()) {
-                    if (combatInterface.handleInput(mouseX, mouseY, mousePressed)) {
-                        return true;
-                    }
+                if (combatInterface.isInitialized() && combatInterface.isVisible()) {
+                    return combatInterface.handleInput(mouseX, mouseY, mousePressed);
                 }
-                return false;
+                break;
             case SAVE_LOAD:
-                if (saveLoadInterface != null) {
-                    if (saveLoadInterface.handleInput(mouseX, mouseY, mousePressed)) {
-                        return true;
-                    }
+                if (saveLoadInterface.isVisible()) {
+                    return saveLoadInterface.handleInput(mouseX, mouseY, mousePressed);
                 }
-                return false;
+                break;
             case PAUSED:
                 // Gérer les entrées de l'interface de pause
-                return false;
+                break;
             default:
                 // Gérer les entrées des interfaces communes à tous les états
                 if (merchantInterface != null && merchantInterface.isVisible()) {
@@ -198,11 +207,20 @@ public class UIManager {
                 }
                 
                 if (dialogueInterface != null && dialogueInterface.isVisible()) {
-                    return dialogueInterface.handleInput(mouseX, mouseY, mousePressed);
+                    if (dialogueInterface.handleInput(mouseX, mouseY, mousePressed)) {
+                        return true;
+                    }
                 }
                 
-                return false;
+                if (questJournalInterface != null && questJournalInterface.isVisible()) {
+                    if (questJournalInterface.handleInput(mouseX, mouseY, mousePressed)) {
+                        return true;
+                    }
+                }
+                break;
         }
+        
+        return false;
     }
     
     /**
@@ -367,6 +385,90 @@ public class UIManager {
      */
     public void hideMerchant() {
         merchantInterface.setVisible(false);
+    }
+    
+    /**
+     * Obtenir l'interface du journal de quêtes
+     * 
+     * @return Interface du journal de quêtes
+     */
+    public QuestJournalInterface getQuestJournalInterface() {
+        return questJournalInterface;
+    }
+    
+    /**
+     * Afficher le journal de quêtes
+     */
+    public void showQuestJournal() {
+        if (questJournalInterface != null) {
+            questJournalInterface.setVisible(true);
+        }
+    }
+    
+    /**
+     * Masquer le journal de quêtes
+     */
+    public void hideQuestJournal() {
+        if (questJournalInterface != null) {
+            questJournalInterface.setVisible(false);
+        }
+    }
+    
+    /**
+     * Afficher une notification pour une nouvelle quête
+     * 
+     * @param quest Quête à notifier
+     */
+    public void showQuestNotification(Quest quest) {
+        if (quest == null) return;
+        
+        String title = quest.isMainQuest() ? "Nouvelle Quête Principale" : "Nouvelle Quête";
+        String message = quest.getTitle();
+        
+        showNotification(title, message, 5.0f);
+    }
+    
+    /**
+     * Afficher une notification pour une quête mise à jour
+     * 
+     * @param quest Quête mise à jour
+     * @param objectiveDescription Description de l'objectif mis à jour
+     */
+    public void showQuestUpdateNotification(Quest quest, String objectiveDescription) {
+        if (quest == null) return;
+        
+        String title = "Quête Mise à Jour";
+        String message = quest.getTitle() + " : " + objectiveDescription;
+        
+        showNotification(title, message, 5.0f);
+    }
+    
+    /**
+     * Afficher une notification pour une quête complétée
+     * 
+     * @param quest Quête complétée
+     */
+    public void showQuestCompletedNotification(Quest quest) {
+        if (quest == null) return;
+        
+        String title = quest.isMainQuest() ? "Quête Principale Terminée" : "Quête Terminée";
+        String message = quest.getTitle();
+        
+        showNotification(title, message, 5.0f);
+    }
+    
+    /**
+     * Afficher une notification pour une quête échouée
+     * 
+     * @param quest Quête échouée
+     */
+    public void showQuestFailedNotification(Quest quest) {
+        if (quest == null) return;
+        
+        String title = "Quête Échouée";
+        String message = quest.getTitle();
+        
+        showNotification(title, message, 5.0f);
     }
     
     /**

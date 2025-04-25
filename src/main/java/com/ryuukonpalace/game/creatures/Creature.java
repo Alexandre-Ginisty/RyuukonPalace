@@ -522,6 +522,50 @@ public class Creature extends GameObject {
         return Math.max(0, lifeDuration - lifeElapsed);
     }
     
+    /**
+     * Obtenir la santé actuelle de la créature
+     * 
+     * @return Santé actuelle
+     */
+    public int getCurrentHealth() {
+        return health;
+    }
+    
+    /**
+     * Vérifier si une capacité peut être utilisée
+     * 
+     * @param ability Capacité à vérifier
+     * @return true si la capacité peut être utilisée, false sinon
+     */
+    public boolean canUseAbility(Ability ability) {
+        // Vérifier si la créature a cette capacité
+        if (!abilities.contains(ability)) {
+            return false;
+        }
+        
+        // Vérifier si la capacité est disponible (pas en recharge)
+        // Pour l'instant, on suppose que toutes les capacités sont disponibles
+        return true;
+    }
+    
+    /**
+     * Utiliser une capacité
+     * 
+     * @param ability Capacité à utiliser
+     * @return true si la capacité a été utilisée, false sinon
+     */
+    public boolean useAbility(Ability ability) {
+        // Vérifier si la capacité peut être utilisée
+        if (!canUseAbility(ability)) {
+            return false;
+        }
+        
+        // Marquer la capacité comme utilisée (pour la recharge)
+        // Pour l'instant, on ne fait rien de spécial
+        
+        return true;
+    }
+    
     // Getters and setters
     
     public int getId() {

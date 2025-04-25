@@ -245,39 +245,45 @@ Les variants sont des créatures mystérieuses, dotées de pouvoirs extraordinai
 | **Stratège** | Variants qui utilisent des tactiques et des plans complexes | Intelligents, calculateurs, manipulateurs |
 | **Furieux** | Variants impulsifs et agressifs | Puissants, violents, difficiles à contrôler |
 | **Mystique** | Variants liés à l'occulte et au surnaturel | Énigmatiques, utilisent des pouvoirs ésotériques |
-| **Inventeur** | Variants qui utilisent la technologie et l'innovation | Créatifs, adaptables, utilisent des outils |
 | **Serein** | Variants calmes et apaisants | Pacifiques, guérisseurs, empathiques |
 | **Chaotique** | Variants imprévisibles et désordonnés | Instables, dangereux, transformateurs |
-| **Visionnaire** | Variants qui peuvent voir l'avenir ou manipuler le temps | Prophétiques, manipulent la perception |
 | **Ombreux** | Variants liés à l'obscurité et aux secrets | Furtifs, mystérieux, manipulateurs d'ombre |
 | **Lumineux** | Variants liés à la lumière et à la vérité | Révélateurs, purificateurs, éblouissants |
-| **Naturel** | Variants en harmonie avec la nature et les éléments | Adaptables, contrôlent les éléments naturels |
+| **Terrestre** | Variants liés à la terre et aux montagnes | Solides, résistants, ancrés dans la réalité |
+| **Aérien** | Variants liés au vent et au ciel | Rapides, agiles, imprévisibles |
+| **Aquatique** | Variants liés à l'eau et aux océans | Fluides, adaptables, profonds |
+| **Spirituel** | Variants liés au monde des esprits | Transcendants, méditatifs, connectés à l'au-delà |
+| **Ancestral** | Variants liés aux traditions anciennes | Sages, puissants, gardiens du savoir perdu |
 
 ### Interactions entre les Types
 
 #### Résistances
 - **Stratège** : Résiste à Furieux, Chaotique
 - **Furieux** : Résiste à Serein, Lumineux
-- **Mystique** : Résiste à Inventeur, Naturel
-- **Inventeur** : Résiste à Visionnaire, Ombreux
-- **Serein** : Résiste à Furieux, Chaotique
-- **Chaotique** : Résiste à Stratège, Visionnaire
-- **Visionnaire** : Résiste à Serein, Lumineux
-- **Ombreux** : Résiste à Mystique, Naturel
-- **Lumineux** : Résiste à Ombreux, Furieux
-- **Naturel** : Résiste à Inventeur, Chaotique
+- **Mystique** : Résiste à Lumineux, Ancestral
+- **Serein** : Résiste à Chaotique, Ombreux
+- **Chaotique** : Résiste à Stratège, Ancestral
+- **Ombreux** : Résiste à Lumineux, Spirituel
+- **Lumineux** : Résiste à Ombreux, Ancestral
+- **Terrestre** : Résiste à Chaotique, Serein
+- **Aérien** : Résiste à Ombreux, Lumineux
+- **Aquatique** : Résiste à Aérien, Serein
+- **Spirituel** : Résiste à Ombreux, Mystique
+- **Ancestral** : Résiste à Spirituel, Lumineux
 
 #### Faiblesses
-- **Stratège** : Faible contre Mystique, Visionnaire
+- **Stratège** : Faible contre Mystique, Spirituel
 - **Furieux** : Faible contre Stratège, Ombreux
-- **Mystique** : Faible contre Lumineux, Serein
-- **Inventeur** : Faible contre Naturel, Furieux
-- **Serein** : Faible contre Mystique, Inventeur
-- **Chaotique** : Faible contre Lumineux, Stratège
-- **Visionnaire** : Faible contre Ombreux, Chaotique
-- **Ombreux** : Faible contre Lumineux, Serein
-- **Lumineux** : Faible contre Mystique, Visionnaire
-- **Naturel** : Faible contre Furieux, Chaotique
+- **Mystique** : Faible contre Stratège, Spirituel
+- **Serein** : Faible contre Furieux, Aquatique
+- **Chaotique** : Faible contre Serein, Stratège
+- **Ombreux** : Faible contre Mystique, Ancestral
+- **Lumineux** : Faible contre Spirituel, Ombreux
+- **Terrestre** : Faible contre Aquatique, Aérien
+- **Aérien** : Faible contre Terrestre, Ombreux
+- **Aquatique** : Faible contre Aérien, Terrestre
+- **Spirituel** : Faible contre Ancestral, Ombreux
+- **Ancestral** : Faible contre Ombreux, Spirituel
 
 ### Évolution des Variants
 Les variants peuvent évoluer sous certaines conditions, généralement liées à leur expérience au combat, leur âge, ou l'influence de certains artefacts. Chaque lignée de variants peut avoir jusqu'à deux évolutions, transformant progressivement la créature en une forme plus puissante et souvent plus intelligente.

@@ -21,6 +21,7 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [-] **CREA-5**: Concevoir les animations des créatures
 - [x] **CREA-6**: Structurer les données des variants selon les types définis dans le lore
 - [x] **CREA-7**: Implémenter le système de résistances et faiblesses entre types de variants
+- [x] **CREA-8**: Harmoniser les types de variants dans le code et la documentation (Stratège, Furieux, etc.)
 
 ## Système de combat (Priorité Moyenne)
 
@@ -48,6 +49,7 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **UI-4**: Implémenter le système de dialogue
 - [x] **UI-5**: Créer la carte du monde et la mini-carte
 - [x] **UI-6**: Développer l'interface de faction (Tacticiens vs Guerriers)
+- [x] **UI-7**: Implémenter le journal de quêtes et les notifications
 
 ## Monde de jeu (Priorité Moyenne)
 
@@ -90,6 +92,14 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **QUEST-9**: Créer un système de signes mystiques avec différentes catégories
 - [x] **QUEST-10**: Implémenter des quêtes avec des choix moraux et des conséquences importantes
 
+## Documentation (Priorité Moyenne)
+
+- [x] **DOC-1**: Créer une documentation technique complète du projet
+- [x] **DOC-2**: Documenter les types de variants et leurs interactions
+- [x] **DOC-3**: Mettre à jour le README avec la structure du projet
+- [ ] **DOC-4**: Créer un guide de contribution pour les développeurs
+- [ ] **DOC-5**: Documenter l'API du jeu pour les extensions futures
+
 ## Tests et équilibrage (Priorité Moyenne)
 
 - [ ] **TEST-1**: Mettre en place les tests unitaires
@@ -110,8 +120,11 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 
 ## Prochaines tâches prioritaires
 
-1. **UI-7**: Améliorer l'interface utilisateur du système de quêtes (journal de quêtes, notifications)
+1. **DOC-4**: Créer un guide de contribution pour les développeurs
 2. **DESIGN-2**: Concevoir les assets d'environnement pour les nouveaux lieux (Shadow Caverns, Laboratoire Secret)
 3. **DESIGN-3**: Développer l'interface utilisateur pour le système de signes mystiques
 4. **AUDIO-1**: Implémenter le système de gestion audio
 5. **TEST-2**: Effectuer des tests d'équilibrage du gameplay pour les nouvelles quêtes et factions
+6. **TEST-3**: Optimiser les performances du jeu, notamment pour le chargement des ressources
+7. **QUEST-11**: Développer des quêtes dynamiques qui s'adaptent aux actions du joueur
+8. **UI-8**: Améliorer l'interface utilisateur pour les combats entre Tacticiens et variants

@@ -7,7 +7,6 @@ import com.ryuukonpalace.game.core.Renderer;
 import com.ryuukonpalace.game.creatures.Creature;
 import com.ryuukonpalace.game.items.CaptureStone;
 import com.ryuukonpalace.game.items.Item;
-import com.ryuukonpalace.game.player.Inventory;
 import com.ryuukonpalace.game.player.Player;
 import com.ryuukonpalace.game.utils.ResourceManager;
 
@@ -64,9 +63,14 @@ public class InventoryInterface {
     
     // Textures
     private int inventoryBackgroundId;
+    // Ces identifiants de texture seront utilisés dans une future mise à jour pour améliorer l'interface
+    @SuppressWarnings("unused")
     private int tabNormalId;
+    @SuppressWarnings("unused")
     private int tabSelectedId;
+    @SuppressWarnings("unused")
     private int itemSlotId;
+    @SuppressWarnings("unused")
     private int selectedSlotId;
     
     // Couleurs
@@ -77,6 +81,8 @@ public class InventoryInterface {
     private static final int COLOR_BUTTON_DISABLED = 0xFF2A2A2A;
     private static final int COLOR_BUTTON_SELECTED = 0xFF6A6AFF;
     private static final int COLOR_TEXT_NORMAL = 0xFFFFFFFF;
+    // Cette couleur sera utilisée dans une future mise à jour pour les éléments désactivés
+    @SuppressWarnings("unused")
     private static final int COLOR_TEXT_DISABLED = 0xFF888888;
     
     /**
@@ -416,6 +422,8 @@ public class InventoryInterface {
         
         // Créer les nouveaux boutons
         int columns = 4;
+        // Le nombre de lignes sera utilisé dans une future mise à jour pour l'affichage de la pagination
+        @SuppressWarnings("unused")
         int rows = (int) Math.ceil((double) items.size() / columns);
         float slotSize = 60;
         float startX = itemsPanel.getX() + 10;
@@ -427,6 +435,8 @@ public class InventoryInterface {
             float x = startX + col * (slotSize + 10);
             float y = startY + row * (slotSize + 10);
             
+            // L'objet sera utilisé dans une future mise à jour pour afficher des informations spécifiques
+            @SuppressWarnings("unused")
             Item item = items.get(i);
             Button button = new Button(x, y, slotSize, slotSize, "",
                                      COLOR_BUTTON_NORMAL, COLOR_BUTTON_HOVER, COLOR_BUTTON_PRESSED, COLOR_BUTTON_DISABLED, COLOR_TEXT_NORMAL,
@@ -457,6 +467,8 @@ public class InventoryInterface {
         
         // Créer les nouveaux boutons
         int columns = 4;
+        // Le nombre de lignes sera utilisé dans une future mise à jour pour l'affichage de la pagination
+        @SuppressWarnings("unused")
         int rows = (int) Math.ceil((double) captureStones.size() / columns);
         float slotSize = 60;
         float startX = captureStonePanel.getX() + 10;
@@ -468,6 +480,8 @@ public class InventoryInterface {
             float x = startX + col * (slotSize + 10);
             float y = startY + row * (slotSize + 10);
             
+            // La pierre sera utilisée dans une future mise à jour pour afficher des informations spécifiques
+            @SuppressWarnings("unused")
             CaptureStone stone = captureStones.get(i);
             Button button = new Button(x, y, slotSize, slotSize, "",
                                      COLOR_BUTTON_NORMAL, COLOR_BUTTON_HOVER, COLOR_BUTTON_PRESSED, COLOR_BUTTON_DISABLED, COLOR_TEXT_NORMAL,
@@ -498,6 +512,8 @@ public class InventoryInterface {
         
         // Créer les nouveaux boutons
         int columns = 2;
+        // Le nombre de lignes sera utilisé dans une future mise à jour pour l'affichage de la pagination
+        @SuppressWarnings("unused")
         int rows = (int) Math.ceil((double) creatures.size() / columns);
         float slotWidth = (creaturesPanel.getWidth() - 30) / columns;
         float slotHeight = 80;

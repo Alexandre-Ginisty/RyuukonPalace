@@ -99,3 +99,9 @@ Pour un jeu complet, chaque personnage devrait avoir au minimum ces animations :
 ---
 
 **Note** : Les classes Java fournies sont des squelettes à compléter avec la bibliothèque de chargement FBX de votre choix (jMonkeyEngine, LWJGL avec assimp, etc.).
+
+
+
+
+Utiliser makehuman community pour créer des modèles 3D
+faire les animations avec mixamo

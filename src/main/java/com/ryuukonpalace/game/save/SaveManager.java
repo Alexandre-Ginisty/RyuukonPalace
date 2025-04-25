@@ -223,10 +223,8 @@ public class SaveManager {
         for (Creature creature : player.getCapturedCreatures()) {
             JsonObject creatureData = new JsonObject();
             creatureData.addProperty("id", creature.getId());
-            creatureData.addProperty("name", creature.getName());
             creatureData.addProperty("level", creature.getLevel());
             creatureData.addProperty("experience", creature.getExperience());
-            creatureData.addProperty("type", creature.getType().toString());
             capturedCreatures.add(creatureData);
         }
         playerData.add("capturedCreatures", capturedCreatures);
@@ -236,8 +234,6 @@ public class SaveManager {
         for (Item item : player.getInventory().getItems()) {
             JsonObject itemData = new JsonObject();
             itemData.addProperty("id", item.getId());
-            itemData.addProperty("name", item.getName());
-            itemData.addProperty("value", item.getValue());
             inventory.add(itemData);
         }
         playerData.add("inventory", inventory);
@@ -375,13 +371,11 @@ public class SaveManager {
                 for (int i = 0; i < capturedCreaturesArray.size(); i++) {
                     JsonObject creatureObj = capturedCreaturesArray.get(i).getAsJsonObject();
                     int creatureId = creatureObj.get("id").getAsInt();
-                    String creatureName = creatureObj.get("name").getAsString();
                     int creatureLevel = creatureObj.get("level").getAsInt();
                     int creatureExp = creatureObj.get("experience").getAsInt();
-                    String creatureTypeStr = creatureObj.get("type").getAsString();
                     
                     // Créer la créature en utilisant CreatureFactory pour obtenir une instance correcte
-                    Creature creature = CreatureFactory.getInstance().createCreature(
+                    Creature creature = CreatureFactory.createCreature(
                         creatureId, creatureLevel
                     );
                     
@@ -398,7 +392,6 @@ public class SaveManager {
                 for (int i = 0; i < inventoryArray.size(); i++) {
                     JsonObject itemObj = inventoryArray.get(i).getAsJsonObject();
                     int itemId = itemObj.get("id").getAsInt();
-                    int itemValue = itemObj.get("value").getAsInt();
                     
                     // Créer l'objet en utilisant ItemFactory pour obtenir une instance correcte
                     Item item = ItemFactory.getInstance().createItem(itemId);

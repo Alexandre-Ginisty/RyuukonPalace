@@ -90,6 +90,11 @@ public class Player extends GameObject {
     private Map<String, Integer> factionReputations;
     
     /**
+     * Singleton instance
+     */
+    private static Player instance;
+    
+    /**
      * Constructeur pour le joueur
      * 
      * @param x Position X initiale
@@ -159,6 +164,18 @@ public class Player extends GameObject {
         // Charger la texture du joueur
         ResourceManager resourceManager = ResourceManager.getInstance();
         this.textureId = resourceManager.getTextureId("player");
+    }
+    
+    /**
+     * Obtenir l'instance unique du joueur
+     * 
+     * @return L'instance du joueur
+     */
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(0, 0); // Position par défaut
+        }
+        return instance;
     }
     
     @Override
@@ -699,6 +716,48 @@ public class Player extends GameObject {
         int newReputation = Math.max(0, Math.min(100, currentReputation + amount));
         setFactionReputation(factionName, newReputation);
         return newReputation;
+    }
+    
+    /**
+     * Vérifier si le joueur possède un objet de type spécifique
+     * 
+     * @param itemClass Classe de l'objet à vérifier
+     * @return true si le joueur possède au moins un objet de ce type, false sinon
+     */
+    public <T> boolean hasItem(Class<T> itemClass) {
+        return inventory.hasItem(itemClass);
+    }
+    
+    /**
+     * Vérifier si le joueur possède un objet avec un nom spécifique
+     * 
+     * @param itemName Nom de l'objet à vérifier
+     * @return true si le joueur possède au moins un objet avec ce nom, false sinon
+     */
+    public boolean hasItem(String itemName) {
+        return inventory.hasItem(itemName);
+    }
+    
+    /**
+     * Retirer un nombre spécifique d'objets d'un type donné de l'inventaire
+     * 
+     * @param itemClass Classe de l'objet à retirer
+     * @param count Nombre d'objets à retirer
+     * @return true si les objets ont été retirés, false sinon
+     */
+    public <T> boolean removeItem(Class<T> itemClass, int count) {
+        return inventory.removeItems(itemClass, count);
+    }
+    
+    /**
+     * Retirer un nombre spécifique d'objets avec un nom donné de l'inventaire
+     * 
+     * @param itemName Nom de l'objet à retirer
+     * @param count Nombre d'objets à retirer
+     * @return true si les objets ont été retirés, false sinon
+     */
+    public boolean removeItem(String itemName, int count) {
+        return inventory.removeItems(itemName, count);
     }
     
     /**

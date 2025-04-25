@@ -43,11 +43,29 @@ public class CreatureStatusScreen {
     private void loadConfiguration() {
         try {
             this.config = JsonLoader.loadJsonObject(CONFIG_PATH);
+            // Récupérer la configuration de l'écran pour une utilisation future
             JSONObject screenConfig = config.getJSONObject("creatureStatusScreen");
             
-            // Définir la taille et la position par défaut
-            this.position = new Point(0, 0);
-            this.size = new Dimension(600, 600);
+            // Définir la taille et la position par défaut à partir de la configuration
+            if (screenConfig.has("position")) {
+                JSONObject posConfig = screenConfig.getJSONObject("position");
+                this.position = new Point(
+                    posConfig.optInt("x", 0),
+                    posConfig.optInt("y", 0)
+                );
+            } else {
+                this.position = new Point(0, 0);
+            }
+            
+            if (screenConfig.has("size")) {
+                JSONObject sizeConfig = screenConfig.getJSONObject("size");
+                this.size = new Dimension(
+                    sizeConfig.optInt("width", 600),
+                    sizeConfig.optInt("height", 600)
+                );
+            } else {
+                this.size = new Dimension(600, 600);
+            }
             
             System.out.println("Configuration de l'écran de statut des créatures chargée avec succès.");
         } catch (Exception e) {
@@ -110,37 +128,35 @@ public class CreatureStatusScreen {
      */
     private UIElement createUIElement(String type, Rectangle bounds, JSONObject config) {
         switch (type) {
-            case "CREATURE_PORTRAIT":
+            case "creaturePortrait":
                 return new CreaturePortraitElement(bounds, config);
-            case "NAME_DISPLAY":
+            case "basicStats":
+                return new StatsElement(bounds, config);
+            case "textInfo":
                 return new TextElement(bounds, config);
-            case "TYPE_DISPLAY":
+            case "typeDisplay":
                 return new TypeDisplayElement(bounds, config);
-            case "LEVEL_DISPLAY":
-                return new LevelDisplayElement(bounds, config);
-            case "STATS_BASIC":
-                return new StatsDisplayElement(bounds, config);
-            case "STATS_ADVANCED":
+            case "advancedStats":
                 return new AdvancedStatsElement(bounds, config);
-            case "EVOLUTION_INFO":
+            case "evolutionInfo":
                 return new EvolutionInfoElement(bounds, config);
-            case "ABILITIES_LIST":
+            case "abilitiesList":
                 return new AbilitiesListElement(bounds, config);
-            case "ABILITY_DETAILS":
+            case "abilityDetails":
                 return new AbilityDetailsElement(bounds, config);
-            case "TYPE_EFFECTIVENESS":
+            case "typeEffectiveness":
                 return new TypeEffectivenessElement(bounds, config);
-            case "CAPTURE_INFO":
+            case "captureInfo":
                 return new CaptureInfoElement(bounds, config);
-            case "BATTLE_HISTORY":
+            case "battleHistory":
                 return new BattleHistoryElement(bounds, config);
-            case "EVOLUTION_HISTORY":
+            case "evolutionHistory":
                 return new EvolutionHistoryElement(bounds, config);
-            case "FRIENDSHIP_METER":
+            case "friendshipMeter":
                 return new FriendshipMeterElement(bounds, config);
             default:
                 System.err.println("Type d'élément inconnu: " + type);
-                return new UIElement(bounds, config);
+                return new StatsElement(bounds, config); // Élément par défaut
         }
     }
     
@@ -313,6 +329,8 @@ public class CreatureStatusScreen {
             this.elements = new ArrayList<>();
         }
         
+        // Cette méthode est utilisée pour l'identification des onglets lors de la navigation
+        @SuppressWarnings("unused")
         public String getId() {
             return id;
         }
@@ -321,6 +339,8 @@ public class CreatureStatusScreen {
             return name;
         }
         
+        // Cette méthode sera utilisée dans une future implémentation pour afficher des icônes d'onglet
+        @SuppressWarnings("unused")
         public String getIcon() {
             return icon;
         }
@@ -337,8 +357,10 @@ public class CreatureStatusScreen {
     /**
      * Classe de base pour les éléments d'interface.
      */
-    private class UIElement {
+    private abstract class UIElement {
         protected Rectangle bounds;
+        // Le champ config contient des paramètres de configuration qui seront utilisés
+        // dans les implémentations futures pour personnaliser le rendu des éléments
         protected JSONObject config;
         
         public UIElement(Rectangle bounds, JSONObject config) {
@@ -351,78 +373,120 @@ public class CreatureStatusScreen {
         }
         
         public void updateWithCreature(Creature creature) {
-            // À implémenter dans les sous-classes
+            // À surcharger dans les sous-classes
         }
         
-        public void render(Graphics2D g) {
-            // À implémenter dans les sous-classes
-        }
+        public abstract void render(Graphics2D g);
         
         public void handleClick() {
-            // À implémenter dans les sous-classes
+            // À surcharger dans les sous-classes
         }
     }
     
-    // Implémentations spécifiques des éléments d'interface
-    
-    private class CreaturePortraitElement extends UIElement {
-        private boolean animationEnabled;
-        
-        public CreaturePortraitElement(Rectangle bounds, JSONObject config) {
+    /**
+     * Élément affichant les statistiques de base de la créature.
+     */
+    private class StatsElement extends UIElement {
+        public StatsElement(Rectangle bounds, JSONObject config) {
             super(bounds, config);
-            this.animationEnabled = config.optBoolean("animationEnabled", false);
         }
         
         @Override
         public void render(Graphics2D g) {
-            // Dessiner le cadre du portrait
-            g.setColor(new Color(58, 46, 33));
-            g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-            
-            // Si nous avons une créature, dessiner son portrait
             if (currentCreature != null) {
-                // Ici, nous utiliserions l'image de la créature
-                // Pour l'instant, dessiner un placeholder
-                g.setColor(new Color(80, 80, 80));
-                g.fillRect(bounds.x + 2, bounds.y + 2, bounds.width - 4, bounds.height - 4);
-                
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Arial", Font.BOLD, 14));
-                String text = "Portrait de " + currentCreature.getName();
-                FontMetrics fm = g.getFontMetrics();
-                int textWidth = fm.stringWidth(text);
-                int textX = bounds.x + (bounds.width - textWidth) / 2;
-                int textY = bounds.y + bounds.height / 2;
                 
-                g.drawString(text, textX, textY);
+                int y = bounds.y + 20;
+                g.drawString("Niveau: " + currentCreature.getLevel(), bounds.x, y);
+                y += 20;
+                g.drawString("PV: " + currentCreature.getCurrentHealth() + "/" + currentCreature.getMaxHealth(), bounds.x, y);
+                y += 20;
+                g.drawString("Attaque: " + currentCreature.getAttack(), bounds.x, y);
+                y += 20;
+                g.drawString("Défense: " + currentCreature.getDefense(), bounds.x, y);
+                y += 20;
+                g.drawString("Vitesse: " + currentCreature.getSpeed(), bounds.x, y);
+            }
+        }
+    }
+    
+    private class CreaturePortraitElement extends UIElement {
+        // Cette option permettra d'activer les animations du portrait dans une future mise à jour
+        @SuppressWarnings("unused")
+        private boolean animationEnabled;
+        
+        public CreaturePortraitElement(Rectangle bounds, JSONObject config) {
+            super(bounds, config);
+            this.animationEnabled = config.optBoolean("animationEnabled", true);
+        }
+        
+        @Override
+        public void render(Graphics2D g) {
+            if (currentCreature != null) {
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.BOLD, 16));
+                g.drawString("Portrait de " + currentCreature.getName(), bounds.x, bounds.y + 20);
+                
+                // Dans une future mise à jour, nous utiliserons animationEnabled pour
+                // déterminer si le portrait doit être animé ou statique
             }
         }
     }
     
     private class TextElement extends UIElement {
-        private String font;
-        private int fontSize;
+        private String text;
+        // Ce champ sera utilisé dans une future mise à jour pour déterminer le type de données à afficher
+        @SuppressWarnings("unused")
+        private String dataType;
+        // Cette police sera utilisée dans une future mise à jour pour personnaliser l'affichage
+        @SuppressWarnings("unused")
+        private Font font;
         
         public TextElement(Rectangle bounds, JSONObject config) {
             super(bounds, config);
-            this.font = config.optString("font", "main_bold");
-            this.fontSize = config.optInt("fontSize", 24);
+            this.text = config.optString("defaultText", "");
+            this.dataType = config.optString("dataType", "");
+            
+            // Chargement de la police qui sera utilisée dans une future mise à jour
+            String fontName = config.optString("fontName", "Arial");
+            int fontSize = config.optInt("fontSize", 12);
+            int fontStyle = config.optInt("fontStyle", Font.PLAIN);
+            this.font = new Font(fontName, fontStyle, fontSize);
+        }
+        
+        @Override
+        public void updateWithCreature(Creature creature) {
+            if (config.has("textKey")) {
+                String key = config.getString("textKey");
+                switch (key) {
+                    case "name":
+                        text = creature.getName();
+                        break;
+                    case "type":
+                        text = "Type: " + creature.getType();
+                        break;
+                    case "level":
+                        text = "Niveau: " + creature.getLevel();
+                        break;
+                    // Autres cas à ajouter selon les besoins
+                }
+            }
         }
         
         @Override
         public void render(Graphics2D g) {
-            if (currentCreature != null) {
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.BOLD, fontSize));
-                g.drawString(currentCreature.getName(), bounds.x, bounds.y + 30);
-            }
+            g.setColor(Color.WHITE);
+            // Dans une future mise à jour, nous utiliserons la police personnalisée
+            // g.setFont(font);
+            g.setFont(new Font("Arial", Font.PLAIN, 12));
+            g.drawString(text, bounds.x, bounds.y + 15);
         }
     }
     
-    // Implémentations des autres éléments d'interface
-    // Ces classes seraient complétées avec les fonctionnalités spécifiques
-    
     private class TypeDisplayElement extends UIElement {
+        // Cette option permettra d'afficher des icônes pour les types dans une future mise à jour
+        @SuppressWarnings("unused")
         private boolean showIcons;
         
         public TypeDisplayElement(Rectangle bounds, JSONObject config) {
@@ -434,141 +498,18 @@ public class CreatureStatusScreen {
         public void render(Graphics2D g) {
             if (currentCreature != null) {
                 g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.PLAIN, 16));
+                g.setFont(new Font("Arial", Font.BOLD, 14));
                 g.drawString("Type: " + currentCreature.getType(), bounds.x, bounds.y + 20);
+                
+                // Dans une future mise à jour, nous utiliserons showIcons pour
+                // déterminer si nous affichons des icônes ou juste du texte
             }
         }
     }
     
-    private class LevelDisplayElement extends UIElement {
-        private boolean showExperienceBar;
-        
-        public LevelDisplayElement(Rectangle bounds, JSONObject config) {
-            super(bounds, config);
-            this.showExperienceBar = config.optBoolean("showExperienceBar", true);
-        }
-        
-        @Override
-        public void render(Graphics2D g) {
-            if (currentCreature != null) {
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.PLAIN, 16));
-                g.drawString("Niveau: " + currentCreature.getLevel(), bounds.x, bounds.y + 20);
-                
-                if (showExperienceBar) {
-                    // Dessiner la barre d'expérience
-                    int barWidth = bounds.width;
-                    int barHeight = 10;
-                    int barY = bounds.y + 25;
-                    
-                    // Fond de la barre
-                    g.setColor(new Color(40, 40, 40));
-                    g.fillRect(bounds.x, barY, barWidth, barHeight);
-                    
-                    // Expérience actuelle
-                    float expRatio = currentCreature.getExperienceRatio();
-                    int filledWidth = (int)(barWidth * expRatio);
-                    g.setColor(new Color(0, 150, 255));
-                    g.fillRect(bounds.x, barY, filledWidth, barHeight);
-                    
-                    // Bordure de la barre
-                    g.setColor(Color.WHITE);
-                    g.drawRect(bounds.x, barY, barWidth, barHeight);
-                }
-            }
-        }
-    }
-    
-    private class StatsDisplayElement extends UIElement {
-        private String[] stats;
-        private boolean showBars;
-        private boolean showValues;
-        
-        public StatsDisplayElement(Rectangle bounds, JSONObject config) {
-            super(bounds, config);
-            
-            org.json.JSONArray statsArray = config.optJSONArray("stats");
-            if (statsArray != null) {
-                stats = new String[statsArray.length()];
-                for (int i = 0; i < statsArray.length(); i++) {
-                    stats[i] = statsArray.getString(i);
-                }
-            } else {
-                stats = new String[]{"HP", "ATTACK", "DEFENSE", "SPECIAL", "SPEED"};
-            }
-            
-            this.showBars = config.optBoolean("showBars", true);
-            this.showValues = config.optBoolean("showValues", true);
-        }
-        
-        @Override
-        public void render(Graphics2D g) {
-            if (currentCreature == null) return;
-            
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial", Font.BOLD, 16));
-            g.drawString("Statistiques", bounds.x, bounds.y + 20);
-            
-            int y = bounds.y + 40;
-            int barWidth = 200;
-            int barHeight = 15;
-            int spacing = 30;
-            
-            for (String stat : stats) {
-                g.setFont(new Font("Arial", Font.PLAIN, 14));
-                g.drawString(stat, bounds.x, y + 12);
-                
-                if (showBars) {
-                    // Dessiner le fond de la barre
-                    g.setColor(new Color(40, 40, 40));
-                    g.fillRect(bounds.x + 100, y, barWidth, barHeight);
-                    
-                    // Dessiner la valeur de la statistique
-                    int statValue = getStatValue(stat);
-                    int maxStatValue = 100; // Valeur maximale pour l'échelle
-                    int filledWidth = (int)((float)statValue / maxStatValue * barWidth);
-                    
-                    // Couleur basée sur la valeur
-                    Color statColor;
-                    if (statValue < 30) {
-                        statColor = new Color(255, 50, 50); // Rouge pour faible
-                    } else if (statValue < 60) {
-                        statColor = new Color(255, 255, 50); // Jaune pour moyen
-                    } else {
-                        statColor = new Color(50, 255, 50); // Vert pour élevé
-                    }
-                    
-                    g.setColor(statColor);
-                    g.fillRect(bounds.x + 100, y, filledWidth, barHeight);
-                    
-                    // Bordure de la barre
-                    g.setColor(Color.WHITE);
-                    g.drawRect(bounds.x + 100, y, barWidth, barHeight);
-                }
-                
-                if (showValues) {
-                    g.setColor(Color.WHITE);
-                    g.setFont(new Font("Arial", Font.PLAIN, 14));
-                    g.drawString(String.valueOf(getStatValue(stat)), bounds.x + 310, y + 12);
-                }
-                
-                y += spacing;
-            }
-        }
-        
-        private int getStatValue(String stat) {
-            switch (stat) {
-                case "HP": return currentCreature.getHealth();
-                case "ATTACK": return currentCreature.getAttack();
-                case "DEFENSE": return currentCreature.getDefense();
-                case "SPECIAL": return currentCreature.getCombatStats().getMagicalAttack();
-                case "SPEED": return currentCreature.getSpeed();
-                default: return 0;
-            }
-        }
-    }
-    
-    // Implémentations des autres éléments (simplifiées pour l'exemple)
+    // Note: Les classes LevelDisplayElement et StatsDisplayElement ont été supprimées
+    // car elles ne sont plus utilisées. Leurs fonctionnalités ont été intégrées
+    // dans la classe StatsElement qui affiche toutes les statistiques.
     
     private class AdvancedStatsElement extends UIElement {
         public AdvancedStatsElement(Rectangle bounds, JSONObject config) {

@@ -7,10 +7,8 @@ import com.ryuukonpalace.game.faction.ReputationLevel;
 import com.ryuukonpalace.game.utils.JsonLoader;
 import org.json.JSONObject;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +21,10 @@ public class FactionInterface {
     private JSONObject config;
     private Rectangle mainPanel;
     private Rectangle factionListPanel;
+    // Ces panneaux seront utilisés dans une future mise à jour pour afficher plus d'informations
+    @SuppressWarnings("unused")
     private Rectangle factionInfoPanel;
+    @SuppressWarnings("unused")
     private Rectangle reputationPanel;
     private Rectangle rewardsPanel;
     private Map<String, Rectangle> buttons;
@@ -267,17 +268,16 @@ public class FactionInterface {
      */
     private void renderFactionList() {
         List<Faction> factions = factionManager.getAllFactions();
-        int y = factionListPanel.y;
+        // La variable factionHeight sera utilisée pour calculer l'espacement dans une future mise à jour
+        // où nous afficherons réellement les factions dans l'interface
+        @SuppressWarnings("unused")
         int factionHeight = 50; // Hauteur estimée pour chaque faction dans la liste
         
         for (Faction faction : factions) {
             boolean isSelected = faction.getId().equals(selectedFactionId);
-            Color bgColor = isSelected ? new Color(60, 60, 100) : new Color(40, 40, 80);
             
             System.out.println("Rendu de la faction " + faction.getName() + 
                               (isSelected ? " (sélectionnée)" : ""));
-            
-            y += factionHeight;
         }
     }
     
@@ -341,7 +341,9 @@ public class FactionInterface {
         }
         
         List<FactionReward> rewards = factionManager.getAvailableRewardsForFaction(selectedFactionId);
-        int y = rewardsPanel.y;
+        // La variable rewardHeight sera utilisée pour calculer l'espacement dans une future mise à jour
+        // où nous afficherons réellement les récompenses dans l'interface
+        @SuppressWarnings("unused")
         int rewardHeight = 80; // Hauteur estimée pour chaque récompense
         
         System.out.println("Rendu des récompenses (" + rewards.size() + " disponibles)");
@@ -354,8 +356,6 @@ public class FactionInterface {
             System.out.println("Description: " + reward.getDescription());
             System.out.println("Type: " + reward.getType());
             System.out.println("Coût: " + reward.getCost());
-            
-            y += rewardHeight;
         }
     }
     

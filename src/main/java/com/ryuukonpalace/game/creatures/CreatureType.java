@@ -5,18 +5,19 @@ package com.ryuukonpalace.game.creatures;
  * Each type has strengths and weaknesses against other types.
  */
 public enum CreatureType {
-    FIRE("Feu"),
-    WATER("Eau"),
-    EARTH("Terre"),
-    AIR("Air"),
-    LIGHT("Lumière"),
-    SHADOW("Ombre"),
-    METAL("Métal"),
-    NATURE("Nature"),
-    ELECTRIC("Électrique"),
-    ICE("Glace"),
-    PSYCHIC("Psychique"),
-    MYTHICAL("Mythique");
+    // Utilisation des anciens noms pour la compatibilité, mais avec les descriptions correspondant à l'univers Ryuukon Palace
+    FIRE("Stratège"),
+    WATER("Furieux"),
+    EARTH("Mystique"),
+    AIR("Serein"),
+    LIGHT("Chaotique"),
+    SHADOW("Ombreux"),
+    METAL("Lumineux"),
+    NATURE("Terrestre"),
+    ELECTRIC("Aérien"),
+    ICE("Aquatique"),
+    PSYCHIC("Spirituel"),
+    MYTHICAL("Ancestral");
     
     private final String name;
     
@@ -41,55 +42,55 @@ public enum CreatureType {
      * @return The effectiveness multiplier (0.5 for not very effective, 1.0 for normal, 2.0 for super effective)
      */
     public static double getEffectiveness(CreatureType attackType, CreatureType defenderType) {
-        // Type effectiveness chart
+        // Type effectiveness chart based on Ryuukon Palace lore
         switch (attackType) {
-            case FIRE:
-                if (defenderType == NATURE || defenderType == ICE) return 2.0;
-                if (defenderType == WATER || defenderType == EARTH) return 0.5;
+            case FIRE: // Stratège
+                if (defenderType == WATER || defenderType == LIGHT) return 2.0;
+                if (defenderType == EARTH || defenderType == PSYCHIC) return 0.5;
                 break;
-            case WATER:
-                if (defenderType == FIRE || defenderType == EARTH) return 2.0;
-                if (defenderType == NATURE || defenderType == ELECTRIC) return 0.5;
+            case WATER: // Furieux
+                if (defenderType == AIR || defenderType == NATURE) return 2.0;
+                if (defenderType == FIRE || defenderType == SHADOW) return 0.5;
                 break;
-            case EARTH:
-                if (defenderType == FIRE || defenderType == ELECTRIC || defenderType == METAL) return 2.0;
-                if (defenderType == AIR || defenderType == ICE) return 0.5;
+            case EARTH: // Mystique
+                if (defenderType == FIRE || defenderType == PSYCHIC) return 2.0;
+                if (defenderType == LIGHT || defenderType == MYTHICAL) return 0.5;
                 break;
-            case AIR:
-                if (defenderType == NATURE || defenderType == ELECTRIC) return 2.0;
-                if (defenderType == EARTH || defenderType == METAL) return 0.5;
+            case AIR: // Serein
+                if (defenderType == LIGHT || defenderType == SHADOW) return 2.0;
+                if (defenderType == WATER || defenderType == ICE) return 0.5;
                 break;
-            case LIGHT:
-                if (defenderType == SHADOW || defenderType == PSYCHIC) return 2.0;
-                if (defenderType == METAL) return 0.5;
+            case LIGHT: // Chaotique
+                if (defenderType == FIRE || defenderType == AIR) return 2.0;
+                if (defenderType == WATER || defenderType == MYTHICAL) return 0.5;
                 break;
-            case SHADOW:
+            case SHADOW: // Ombreux
                 if (defenderType == LIGHT || defenderType == PSYCHIC) return 2.0;
                 if (defenderType == MYTHICAL) return 0.5;
                 break;
-            case METAL:
-                if (defenderType == ICE || defenderType == NATURE) return 2.0;
-                if (defenderType == FIRE || defenderType == EARTH || defenderType == ELECTRIC) return 0.5;
+            case METAL: // Lumineux
+                if (defenderType == SHADOW || defenderType == MYTHICAL) return 2.0;
+                if (defenderType == PSYCHIC) return 0.5;
                 break;
-            case NATURE:
-                if (defenderType == WATER || defenderType == EARTH) return 2.0;
-                if (defenderType == FIRE || defenderType == AIR || defenderType == METAL) return 0.5;
+            case NATURE: // Terrestre
+                if (defenderType == ICE || defenderType == ELECTRIC) return 2.0;
+                if (defenderType == LIGHT || defenderType == AIR) return 0.5;
                 break;
-            case ELECTRIC:
-                if (defenderType == WATER || defenderType == AIR) return 2.0;
-                if (defenderType == EARTH || defenderType == NATURE) return 0.5;
-                break;
-            case ICE:
-                if (defenderType == NATURE || defenderType == AIR || defenderType == EARTH) return 2.0;
-                if (defenderType == FIRE || defenderType == WATER || defenderType == METAL) return 0.5;
-                break;
-            case PSYCHIC:
-                if (defenderType == MYTHICAL) return 2.0;
+            case ELECTRIC: // Aérien
+                if (defenderType == NATURE || defenderType == ICE) return 2.0;
                 if (defenderType == SHADOW || defenderType == LIGHT) return 0.5;
                 break;
-            case MYTHICAL:
+            case ICE: // Aquatique
+                if (defenderType == NATURE || defenderType == WATER) return 2.0;
+                if (defenderType == ELECTRIC || defenderType == AIR) return 0.5;
+                break;
+            case PSYCHIC: // Spirituel
+                if (defenderType == MYTHICAL) return 2.0;
+                if (defenderType == SHADOW || defenderType == EARTH) return 0.5;
+                break;
+            case MYTHICAL: // Ancestral
                 if (defenderType == SHADOW) return 2.0;
-                if (defenderType == PSYCHIC || defenderType == LIGHT) return 0.5;
+                if (defenderType == PSYCHIC || defenderType == METAL) return 0.5;
                 break;
         }
         

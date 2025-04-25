@@ -207,6 +207,9 @@ public class GameManager {
                 break;
             case SAVE_LOAD:
                 // Logique de sauvegarde/chargement
+                if (saveManager.isAutoSaveEnabled()) {
+                    saveManager.updateAutoSave();
+                }
                 break;
             case CUTSCENE:
                 // Logique de cinématique

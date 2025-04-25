@@ -887,6 +887,7 @@ public class QuestManager implements QuestCallback {
         return getQuest(questId, availableQuests, activeQuests, completedQuests, failedQuests, abandonedQuests);
     }
     
+    @SuppressWarnings({"unchecked", "varargs"})
     private Quest getQuest(String questId, Map<String, Quest>... maps) {
         for (Map<String, Quest> map : maps) {
             if (map.containsKey(questId)) {
@@ -1169,6 +1170,24 @@ public class QuestManager implements QuestCallback {
      */
     public List<Quest> getCompletedQuests() {
         return new ArrayList<>(completedQuests.values());
+    }
+    
+    /**
+     * Obtenir toutes les quêtes échouées
+     * 
+     * @return Liste des quêtes échouées
+     */
+    public List<Quest> getFailedQuests() {
+        return new ArrayList<>(failedQuests.values());
+    }
+    
+    /**
+     * Obtenir toutes les quêtes abandonnées
+     * 
+     * @return Liste des quêtes abandonnées
+     */
+    public List<Quest> getAbandonedQuests() {
+        return new ArrayList<>(abandonedQuests.values());
     }
     
     /**

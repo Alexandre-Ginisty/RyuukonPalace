@@ -59,10 +59,17 @@ public class CombatInterface {
     
     // Textures
     private int combatBackgroundId;
+    // Les textures suivantes sont déclarées mais pas utilisées actuellement
+    // Elles seront utilisées dans une future implémentation pour des styles visuels personnalisés
+    @SuppressWarnings("unused")
     private int panelBackgroundId;
+    @SuppressWarnings("unused")
     private int buttonNormalId;
+    @SuppressWarnings("unused")
     private int buttonHoverId;
+    @SuppressWarnings("unused")
     private int buttonPressedId;
+    @SuppressWarnings("unused")
     private int buttonDisabledId;
     
     // Couleurs
@@ -72,6 +79,8 @@ public class CombatInterface {
     private static final int COLOR_BUTTON_PRESSED = 0xFF3A3A3A;
     private static final int COLOR_BUTTON_DISABLED = 0xFF2A2A2A;
     private static final int COLOR_TEXT_NORMAL = 0xFFFFFFFF;
+    // Couleur pour le texte désactivé, sera utilisée dans l'implémentation future des boutons désactivés
+    @SuppressWarnings("unused")
     private static final int COLOR_TEXT_DISABLED = 0xFF888888;
     private static final int COLOR_HEALTH_BAR_BG = 0xFF333333;
     private static final int COLOR_HEALTH_BAR_FILL = 0xFF00AA00;

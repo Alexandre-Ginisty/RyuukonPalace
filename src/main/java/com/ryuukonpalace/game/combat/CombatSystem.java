@@ -558,4 +558,93 @@ public class CombatSystem implements CaptureCallback {
                state == CombatState.ENEMY_WIN || state == CombatState.FLEE || 
                state == CombatState.CAPTURE;
     }
+    
+    /**
+     * Obtenir la créature du joueur actuellement en combat
+     * 
+     * @return Créature du joueur
+     */
+    public Creature getPlayerCreature() {
+        return playerCreature;
+    }
+    
+    /**
+     * Obtenir la créature ennemie
+     * 
+     * @return Créature ennemie
+     */
+    public Creature getEnemyCreature() {
+        return enemyCreature;
+    }
+    
+    /**
+     * Changer la créature du joueur actuellement en combat
+     * 
+     * @param newCreature Nouvelle créature du joueur
+     */
+    public void setPlayerCreature(Creature newCreature) {
+        if (newCreature != null && state != CombatState.INACTIVE) {
+            this.playerCreature = newCreature;
+            
+            // Mettre à jour l'interface
+            combatInterface.updateCombatInfo(player, playerCreature, enemyCreature, "Changement de variant !");
+            
+            // Passer au tour de l'ennemi après le changement
+            state = CombatState.ENEMY_TURN;
+        }
+    }
+    
+    /**
+     * Calculer les dégâts d'une attaque de base
+     * 
+     * @param attacker Créature attaquante
+     * @param defender Créature défenseure
+     * @return Dégâts infligés
+     */
+    public int calculateBasicAttackDamage(Creature attacker, Creature defender) {
+        // Formule de base pour les dégâts
+        int baseDamage = attacker.getAttack() - defender.getDefense() / 2;
+        baseDamage = Math.max(1, baseDamage); // Au moins 1 point de dégât
+        
+        // Ajouter un peu d'aléatoire (±20%)
+        float randomFactor = 0.8f + random.nextFloat() * 0.4f;
+        int finalDamage = Math.round(baseDamage * randomFactor);
+        
+        return Math.max(1, finalDamage); // Au moins 1 point de dégât
+    }
+    
+    /**
+     * Calculer les dégâts d'une capacité
+     * 
+     * @param attacker Créature attaquante
+     * @param defender Créature défenseure
+     * @param ability Capacité utilisée
+     * @return Dégâts infligés
+     */
+    public int calculateAbilityDamage(Creature attacker, Creature defender, Ability ability) {
+        // Utiliser la méthode existante pour le calcul des dégâts
+        return calculateDamage(attacker, defender, ability);
+    }
+    
+    /**
+     * Calculer la probabilité de capture d'une créature
+     * 
+     * @param creature Créature à capturer
+     * @return Probabilité de capture (entre 0 et 1)
+     */
+    public float calculateCaptureChance(Creature creature) {
+        // Formule de base pour la probabilité de capture
+        // Plus la créature est faible (en % de PV), plus la probabilité est élevée
+        float healthPercentage = (float) creature.getCurrentHealth() / creature.getMaxHealth();
+        float baseChance = 0.5f * (1.0f - healthPercentage);
+        
+        // Ajuster en fonction du niveau de la créature
+        float levelFactor = 1.0f - Math.min(0.7f, creature.getLevel() * 0.05f);
+        
+        // Probabilité finale
+        float finalChance = baseChance * levelFactor;
+        
+        // Limiter entre 0.1 et 0.9
+        return Math.max(0.1f, Math.min(0.9f, finalChance));
+    }
 }

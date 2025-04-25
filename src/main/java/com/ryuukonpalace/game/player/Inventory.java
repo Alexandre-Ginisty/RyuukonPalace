@@ -296,4 +296,106 @@ public class Inventory {
             }
         }
     }
+    
+    /**
+     * Vérifier si l'inventaire contient un objet de type spécifique
+     * 
+     * @param itemClass Classe de l'objet à vérifier
+     * @return true si l'inventaire contient au moins un objet de ce type, false sinon
+     */
+    public <T> boolean hasItem(Class<T> itemClass) {
+        for (Item item : items) {
+            if (itemClass.isInstance(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Vérifier si l'inventaire contient un objet avec un nom spécifique
+     * 
+     * @param itemName Nom de l'objet à vérifier
+     * @return true si l'inventaire contient au moins un objet avec ce nom, false sinon
+     */
+    public boolean hasItem(String itemName) {
+        for (Item item : items) {
+            if (item.getName().equals(itemName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Retirer un nombre spécifique d'objets d'un type donné de l'inventaire
+     * 
+     * @param itemClass Classe de l'objet à retirer
+     * @param count Nombre d'objets à retirer
+     * @return true si les objets ont été retirés, false sinon
+     */
+    public <T> boolean removeItems(Class<T> itemClass, int count) {
+        int found = 0;
+        List<Item> itemsToRemove = new ArrayList<>();
+        
+        // Trouver tous les objets correspondant à la classe
+        for (Item item : items) {
+            if (itemClass.isInstance(item)) {
+                itemsToRemove.add(item);
+                found++;
+                
+                if (found >= count) {
+                    break;
+                }
+            }
+        }
+        
+        // Si on n'a pas trouvé assez d'objets, retourner false
+        if (found < count) {
+            return false;
+        }
+        
+        // Retirer les objets
+        for (Item item : itemsToRemove) {
+            removeItem(item);
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Retirer un nombre spécifique d'objets avec un nom donné de l'inventaire
+     * 
+     * @param itemName Nom de l'objet à retirer
+     * @param count Nombre d'objets à retirer
+     * @return true si les objets ont été retirés, false sinon
+     */
+    public boolean removeItems(String itemName, int count) {
+        int found = 0;
+        List<Item> itemsToRemove = new ArrayList<>();
+        
+        // Trouver tous les objets correspondant au nom
+        for (Item item : items) {
+            if (item.getName().equals(itemName)) {
+                itemsToRemove.add(item);
+                found++;
+                
+                if (found >= count) {
+                    break;
+                }
+            }
+        }
+        
+        // Si on n'a pas trouvé assez d'objets, retourner false
+        if (found < count) {
+            return false;
+        }
+        
+        // Retirer les objets
+        for (Item item : itemsToRemove) {
+            removeItem(item);
+        }
+        
+        return true;
+    }
 }

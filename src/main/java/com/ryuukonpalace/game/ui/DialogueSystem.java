@@ -66,7 +66,7 @@ public class DialogueSystem {
             int x = parsePosition(positionConfig.getString("x"), screenWidth);
             int y = parsePosition(positionConfig.getString("y"), screenHeight);
             int width = parsePosition(positionConfig.getString("width"), screenWidth);
-            int height = parsePosition(positionConfig.getString("height"), screenHeight);
+            int height = parsePosition(positionConfig.getString("height"), screenWidth);
             
             this.dialogueBoxBounds = new Rectangle(x, y, width, height);
             
@@ -77,7 +77,7 @@ public class DialogueSystem {
             x = parsePosition(speakerPosConfig.getString("x"), screenWidth);
             y = parsePosition(speakerPosConfig.getString("y"), screenHeight);
             width = parsePosition(speakerPosConfig.getString("width"), screenWidth);
-            height = parsePosition(speakerPosConfig.getString("height"), screenHeight);
+            height = parsePosition(speakerPosConfig.getString("height"), screenWidth);
             
             this.speakerDisplayBounds = new Rectangle(x, y, width, height);
             
@@ -89,7 +89,7 @@ public class DialogueSystem {
                 x = parsePosition(portraitPosConfig.getString("x"), screenWidth);
                 y = parsePosition(portraitPosConfig.getString("y"), screenHeight);
                 width = parsePosition(portraitPosConfig.getString("width"), screenWidth);
-                height = parsePosition(portraitPosConfig.getString("height"), screenHeight);
+                height = parsePosition(portraitPosConfig.getString("height"), screenWidth);
                 
                 this.portraitDisplayBounds = new Rectangle(x, y, width, height);
             }
@@ -390,12 +390,12 @@ public class DialogueSystem {
      * Dessine les choix de dialogue.
      */
     private void drawChoices(Graphics2D g) {
-        if (currentChoices.isEmpty()) return;
+        if (currentChoices == null || currentChoices.isEmpty()) {
+            return;
+        }
         
-        JSONObject systemConfig = config.getJSONObject("dialogueSystem");
-        JSONObject choiceSystemConfig = systemConfig.getJSONObject("choiceSystem");
-        JSONObject positionConfig = choiceSystemConfig.getJSONObject("position");
-        JSONObject choiceBoxConfig = choiceSystemConfig.getJSONObject("choiceBox");
+        JSONObject positionConfig = config.getJSONObject("choicesPosition");
+        JSONObject choiceBoxConfig = config.getJSONObject("choiceBox");
         
         int screenWidth = 1280; // Largeur d'écran supposée
         int screenHeight = 720; // Hauteur d'écran supposée
@@ -403,11 +403,10 @@ public class DialogueSystem {
         int baseX = parsePosition(positionConfig.getString("x"), screenWidth);
         int baseY = parsePosition(positionConfig.getString("y"), screenHeight);
         int choiceWidth = parsePosition(choiceBoxConfig.getString("width"), screenWidth);
-        int choiceHeight = parsePosition(choiceBoxConfig.getString("height"), screenHeight);
+        int choiceHeight = parsePosition(choiceBoxConfig.getString("height"), screenWidth);
         int spacing = choiceBoxConfig.getInt("spacing");
         
         for (int i = 0; i < currentChoices.size(); i++) {
-            DialogueChoice choice = currentChoices.get(i);
             int choiceY = baseY + i * (choiceHeight + spacing);
             
             // Fond du choix
@@ -415,17 +414,16 @@ public class DialogueSystem {
             g.fillRoundRect(baseX, choiceY, choiceWidth, choiceHeight, 5, 5);
             
             // Bordure du choix
-            g.setColor(new Color(58, 46, 33));
+            g.setColor(Color.WHITE);
             g.drawRoundRect(baseX, choiceY, choiceWidth, choiceHeight, 5, 5);
             
             // Texte du choix
-            g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", Font.PLAIN, 16));
             FontMetrics fm = g.getFontMetrics();
             int textY = choiceY + (choiceHeight - fm.getHeight()) / 2 + fm.getAscent();
             
             // Ajouter un indicateur de choix
-            String displayText = (i + 1) + ". " + choice.getText();
+            String displayText = (i + 1) + ". " + currentChoices.get(i).getText();
             g.drawString(displayText, baseX + 10, textY);
         }
     }
@@ -445,10 +443,8 @@ public class DialogueSystem {
         
         // Vérifier les clics sur les choix
         if (!currentChoices.isEmpty()) {
-            JSONObject systemConfig = config.getJSONObject("dialogueSystem");
-            JSONObject choiceSystemConfig = systemConfig.getJSONObject("choiceSystem");
-            JSONObject positionConfig = choiceSystemConfig.getJSONObject("position");
-            JSONObject choiceBoxConfig = choiceSystemConfig.getJSONObject("choiceBox");
+            JSONObject positionConfig = config.getJSONObject("choicesPosition");
+            JSONObject choiceBoxConfig = config.getJSONObject("choiceBox");
             
             int screenWidth = 1280; // Largeur d'écran supposée
             int screenHeight = 720; // Hauteur d'écran supposée
@@ -456,11 +452,10 @@ public class DialogueSystem {
             int baseX = parsePosition(positionConfig.getString("x"), screenWidth);
             int baseY = parsePosition(positionConfig.getString("y"), screenHeight);
             int choiceWidth = parsePosition(choiceBoxConfig.getString("width"), screenWidth);
-            int choiceHeight = parsePosition(choiceBoxConfig.getString("height"), screenHeight);
+            int choiceHeight = parsePosition(choiceBoxConfig.getString("height"), screenWidth);
             int spacing = choiceBoxConfig.getInt("spacing");
             
             for (int i = 0; i < currentChoices.size(); i++) {
-                DialogueChoice choice = currentChoices.get(i);
                 int choiceY = baseY + i * (choiceHeight + spacing);
                 
                 Rectangle choiceBounds = new Rectangle(baseX, choiceY, choiceWidth, choiceHeight);
