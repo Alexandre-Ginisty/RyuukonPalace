@@ -25,9 +25,7 @@ public class TileSystem {
     private int tileWidth = 32;
     private int tileHeight = 32;
     
-    // Décalage pour la perspective isométrique
-    // Note: isoOffsetX est conservé pour une utilisation future dans les tuiles en zigzag
-    private float isoOffsetX = 0.0f;  // Utilisé pour le décalage horizontal dans certains types de tuiles
+    // Décalage isométrique
     private float isoOffsetY = 16.0f;  // Décalage vertical pour créer l'effet de perspective
     
     // Cache des textures de tuiles
@@ -89,11 +87,9 @@ public class TileSystem {
     
     /**
      * Définir les décalages pour la perspective isométrique
-     * @param offsetX Décalage horizontal
      * @param offsetY Décalage vertical
      */
-    public void setIsometricOffset(float offsetX, float offsetY) {
-        this.isoOffsetX = offsetX;
+    public void setIsometricOffset(float offsetY) {
         this.isoOffsetY = offsetY;
     }
     
@@ -153,18 +149,6 @@ public class TileSystem {
                 targetLayer[y][x] = row.get(x).getAsInt();
             }
         }
-    }
-    
-    /**
-     * Charger un tileset
-     * @param tilesetName Nom du tileset
-     * @param tilesetPath Chemin du fichier
-     * @deprecated Cette méthode sera implémentée ultérieurement lorsque les tilesets seront ajoutés
-     */
-    @Deprecated
-    private void loadTileset(String tilesetName, String tilesetPath) {
-        // Cette méthode sera implémentée ultérieurement
-        // Elle permettra de charger des tilesets à partir de fichiers image
     }
     
     /**
@@ -470,5 +454,13 @@ public class TileSystem {
         float hitRate = total > 0 ? (float)cacheHits / total * 100 : 0;
         return String.format("Cache: %d hits, %d misses, %.2f%% hit rate, %d entries", 
                              cacheHits, cacheMisses, hitRate, renderedTileCache.size());
+    }
+    
+    /**
+     * Obtenir le décalage vertical isométrique
+     * @return Décalage vertical isométrique
+     */
+    public float getIsometricOffsetY() {
+        return isoOffsetY;
     }
 }

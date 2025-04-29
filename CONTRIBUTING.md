@@ -1,24 +1,18 @@
-# Guide de contribution pour Ryuukon Palace
+# 🤝 Guide de contribution - Ryuukon Palace
 
 Bienvenue dans le guide de contribution pour le projet Ryuukon Palace ! Ce document vous aidera à comprendre comment contribuer efficacement au développement du jeu.
 
-## Table des matières
+## 📑 Table des matières
 
-1. [Introduction](#introduction)
-2. [Structure du projet](#structure-du-projet)
-3. [Configuration de l'environnement](#configuration-de-lenvironnement)
-4. [Workflow de développement](#workflow-de-développement)
-5. [Standards de code](#standards-de-code)
-6. [Système de variants](#système-de-variants)
-7. [Système de combat](#système-de-combat)
-8. [Ressources et assets](#ressources-et-assets)
-9. [Soumission de Pull Requests](#soumission-de-pull-requests)
+1. [Structure du projet](#structure-du-projet)
+2. [Configuration de l'environnement](#configuration-de-lenvironnement)
+3. [Workflow de développement](#workflow-de-développement)
+4. [Standards de code](#standards-de-code)
+5. [Systèmes principaux](#systèmes-principaux)
+6. [Ressources et assets](#ressources-et-assets)
+7. [Soumission de Pull Requests](#soumission-de-pull-requests)
 
-## Introduction
-
-Ryuukon Palace est un jeu RPG inspiré de Pokémon avec une ambiance sombre inspirée de Fear & Hunger. Le jeu met en scène deux factions principales : les Tacticiens qui utilisent des variants (créatures) pour combattre, et les Guerriers qui combattent directement.
-
-## Structure du projet
+## 📂 Structure du projet
 
 Le projet est organisé selon la structure suivante :
 
@@ -26,39 +20,30 @@ Le projet est organisé selon la structure suivante :
 RyuukonPalace/
 ├── src/
 │   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── ryuukonpalace/
-│   │   │           ├── game/
-│   │   │           │   ├── combat/       # Système de combat
-│   │   │           │   ├── core/         # Fonctionnalités de base
-│   │   │           │   ├── creatures/    # Gestion des variants
-│   │   │           │   ├── faction/      # Système de factions
-│   │   │           │   ├── items/        # Objets et équipements
-│   │   │           │   ├── player/       # Gestion du joueur
-│   │   │           │   ├── quest/        # Système de quêtes
-│   │   │           │   ├── save/         # Sauvegarde/chargement
-│   │   │           │   └── ui/           # Interfaces utilisateur
-│   │   │           └── Main.java         # Point d'entrée
+│   │   ├── java/com/ryuukonpalace/game/
+│   │   │   ├── core/         # Moteur du jeu et composants principaux
+│   │   │   ├── world/        # Système de monde et génération
+│   │   │   ├── creatures/    # Système de variants (créatures)
+│   │   │   ├── battle/       # Système de combat
+│   │   │   ├── player/       # Gestion du joueur
+│   │   │   ├── quest/        # Système de quêtes
+│   │   │   ├── ui/           # Interface utilisateur
+│   │   │   ├── utils/        # Utilitaires
+│   │   │   └── demo/         # Démonstrateurs
 │   │   └── resources/
-│   │       ├── data/                     # Fichiers JSON de données
-│   │       ├── images/                   # Assets graphiques
-│   │       ├── models/                   # Modèles 3D (FBX)
-│   │       └── sounds/                   # Ressources audio
-│   └── test/                             # Tests unitaires
-├── docs/                                 # Documentation
-├── ANIMATION_GUIDE.md                    # Guide d'animation
-├── LORE_COMPLET.md                       # Lore du jeu
-├── README.md                             # Présentation du projet
-└── TASKS.md                              # Liste des tâches
+│   │       ├── assets/       # Ressources graphiques et audio
+│   │       └── data/         # Données du jeu (JSON)
+│   └── test/                 # Tests unitaires
+├── docs/                     # Documentation
+└── [Fichiers de documentation]
 ```
 
-## Configuration de l'environnement
+## ⚙️ Configuration de l'environnement
 
 ### Prérequis
 
 - Java JDK 11 ou supérieur
-- Maven 3.6 ou supérieur
+- Maven 3.6 ou supérieur (recommandé)
 - IDE recommandé : IntelliJ IDEA ou Eclipse
 
 ### Installation
@@ -75,7 +60,12 @@ RyuukonPalace/
    mvn install
    ```
 
-## Workflow de développement
+4. Pour tester le démonstrateur simplifié :
+   ```
+   run_simple_demo.bat
+   ```
+
+## 🔄 Workflow de développement
 
 1. **Branches** : Créez une branche pour chaque fonctionnalité ou correction.
    ```
@@ -84,22 +74,25 @@ RyuukonPalace/
 
 2. **Commits** : Utilisez des messages de commit clairs et descriptifs.
    ```
-   git commit -m "COMB-8: Implémentation du système de combat avancé pour Tacticiens"
+   git commit -m "FEAT: Implémentation du système de combat avancé"
    ```
 
 3. **Tests** : Assurez-vous que vos modifications passent tous les tests existants.
+   ```
+   mvn test
+   ```
 
 4. **Pull Requests** : Soumettez une PR pour intégrer vos modifications dans la branche principale.
 
-## Standards de code
+## 📝 Standards de code
 
 ### Style de code
 
 - Utilisez des noms de variables et méthodes explicites en camelCase
 - Les noms de classes doivent être en PascalCase
 - Les constantes doivent être en UPPER_SNAKE_CASE
-- Commentez votre code, en particulier pour les algorithmes complexes
-- Utilisez des annotations `@SuppressWarnings` uniquement lorsque nécessaire et avec un commentaire explicatif
+- Indentation : 4 espaces (pas de tabulations)
+- Limite de 100 caractères par ligne
 
 ### Documentation
 
@@ -107,33 +100,49 @@ RyuukonPalace/
 - Utilisez `@param`, `@return` et `@throws` dans les Javadoc
 - Mettez à jour la documentation lorsque vous modifiez le comportement d'une méthode
 
-## Système de variants
+### Exemple de documentation
 
-Le système de variants est au cœur du gameplay. Voici les points essentiels à comprendre :
+```java
+/**
+ * Calcule les dégâts infligés par une attaque en fonction du type et des statistiques.
+ *
+ * @param attacker La créature qui attaque
+ * @param defender La créature qui défend
+ * @param move L'attaque utilisée
+ * @return Le montant de dégâts calculé
+ * @throws IllegalArgumentException Si l'attaque n'est pas compatible avec l'attaquant
+ */
+public int calculateDamage(Creature attacker, Creature defender, Move move) {
+    // Implémentation
+}
+```
 
-### Types de variants
+## 🧩 Systèmes principaux
 
-Les variants sont classés selon différents types (Feu, Eau, Terre, Air, etc.) et catégories (Stratège, Furieux, Mystique, Serein, Chaotique, etc.).
+### Système de variants (créatures)
 
-### Évolution
+Les variants sont classés selon différents types et catégories :
 
-Les variants peuvent évoluer jusqu'à 2 fois. L'évolution peut être déclenchée par niveau, par objet, ou par condition spéciale.
+- **Types** : Feu, Eau, Terre, Air, etc.
+- **Catégories** : Stratège, Furieux, Mystique, Serein, Chaotique, etc.
 
-### Combat
+Chaque variant peut évoluer jusqu'à 2 fois, débloqué par niveau, objet, ou condition spéciale.
 
-Les variants ont des statistiques (HP, Attaque, Défense, Vitesse) et des capacités spéciales. Le système de combat est tour par tour, similaire à Pokémon.
+### Système de combat
 
-## Système de combat
+- **Combat de Tacticiens** : Utilisation de variants pour combattre d'autres variants
+- **Combat de Guerriers** : Combat direct avec armes et armures (PNJ uniquement)
 
-### Combat de Tacticiens
+### Système de factions
 
-Les Tacticiens utilisent leurs variants pour combattre. Implémentez les fonctionnalités dans `TacticianCombatInterface.java`.
+Le jeu comporte 5 factions principales avec des systèmes de réputation à plusieurs niveaux :
+- Ordre des Tacticiens
+- Fraternité des Guerriers
+- Guilde des Marchands
+- Gardiens de la Nature
+- Cercle des Mystiques
 
-### Combat de Guerriers
-
-Les Guerriers (PNJ uniquement) combattent directement avec des armes et armures. Ce système est géré dans le package `combat`.
-
-## Ressources et assets
+## 🎨 Ressources et assets
 
 ### Fichiers JSON
 
@@ -141,14 +150,16 @@ Les données du jeu sont stockées dans des fichiers JSON dans le dossier `resou
 
 ### Assets graphiques
 
-Les assets graphiques sont stockés dans `resources/images/`. Utilisez le format PNG pour les textures 2D et FBX pour les modèles 3D.
+- Utilisez le format PNG pour les textures 2D
+- Résolution recommandée : 32x32 pixels pour les tuiles de base
+- Style visuel : 2.5D inspiré de Pokémon Noir/Blanc
 
-## Soumission de Pull Requests
+## 📤 Soumission de Pull Requests
 
 1. Assurez-vous que votre code respecte les standards du projet
 2. Testez vos modifications
 3. Créez une Pull Request avec une description claire
-4. Référencez les issues ou tâches associées (ex: "Fixes #123" ou "Implements COMB-8")
+4. Référencez les issues ou tâches associées (ex: "Fixes #123")
 5. Attendez la revue de code et répondez aux commentaires
 
 ---
