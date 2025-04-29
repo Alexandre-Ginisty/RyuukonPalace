@@ -9,8 +9,8 @@ Ryuukon Palace est un jeu RPG pour un public adolescent/mature inspiré par les 
 - Capture de créatures via des séquences de QTE (Quick Time Events)
 - Système d'évolution des créatures basé sur les niveaux
 - Combats tactiques entre créatures
-- Exploration d'un monde ouvert
-- Histoire immersive
+- Exploration d'un monde ouvert avec un style visuel 2.5D inspiré de Pokémon Noir/Blanc
+- Histoire immersive et mature
 - Système de factions avec réputation et récompenses
 
 ## Lore
@@ -271,8 +271,12 @@ Cette section détaille l'architecture technique du jeu Ryuukon Palace, organis�
 - Java
 - LWJGL (Lightweight Java Game Library)
 - OpenGL pour le rendu graphique
+- Système de rendu 2.5D par couches pour un effet de profondeur
+- Système de cache optimisé pour les tuiles et ressources graphiques
+- Chargement asynchrone des ressources pour de meilleures performances
 - Maven pour la gestion des dépendances
 - JSON pour le stockage des données
+- JUnit pour les tests unitaires
 - Git pour le contrôle de version
 
 ## Installation
@@ -282,23 +286,51 @@ Cette section détaille l'architecture technique du jeu Ryuukon Palace, organis�
 3. Exécuter `mvn clean install` pour compiler le projet
 4. Exécuter `mvn exec:java -Dexec.mainClass="com.ryuukonpalace.game.core.RyuukonPalace"` pour lancer le jeu
 
+## Style Graphique 2.5D
+
+Ryuukon Palace utilise un style graphique 2.5D inspiré de Pokémon Noir/Blanc, caractérisé par :
+
+- **Rendu par couches** : Plusieurs couches de profondeur pour créer l'illusion de 3D
+- **Bâtiments avec perspective** : Structures dessinées avec un effet de profondeur
+- **Variations de hauteur** : Tuiles avec différentes hauteurs pour simuler le relief
+- **Décalage vertical** : Objets positionnés avec un décalage pour simuler la perspective
+- **Éclairage dynamique** : Effets d'ombre et de lumière adaptés au style 2.5D
+- **Animations 2D** : Spritesheets pour les personnages et créatures
+- **Effets météorologiques** : Pluie, neige et autres effets adaptés au style visuel
+- **Cache optimisé** : Système de mise en cache des tuiles fréquemment utilisées
+- **Chargement asynchrone** : Chargement des ressources en arrière-plan pour une meilleure fluidité
+
+Cette approche permet de créer un monde visuellement riche sans nécessiter de modélisation 3D complexe, tout en conservant l'esthétique distinctive de Pokémon Noir/Blanc.
+
+## Performances et Optimisations
+
+Le projet intègre plusieurs optimisations pour garantir des performances optimales :
+
+- **Système de cache intelligent** : Les tuiles fréquemment utilisées sont mises en cache avec une politique LRU (Least Recently Used)
+- **Chargement asynchrone** : Les ressources sont chargées en arrière-plan via un pool de threads dédié
+- **Rendu sélectif** : Seules les tuiles visibles dans la vue actuelle sont rendues
+- **Gestion efficace de la mémoire** : Libération automatique des ressources non utilisées
+- **Statistiques de performance** : Suivi des taux de succès du cache pour l'optimisation continue
+
 ## Roadmap
 
 - [x] Structure de base du projet
 - [x] Système de rendu 2D
+- [x] Conversion vers un style 2.5D (Pokémon Noir/Blanc)
 - [x] Système de créatures et de combat
 - [x] Mécanisme de QTE pour la capture
 - [x] Système d'évolution
 - [x] Génération de monde
 - [x] Interface utilisateur de base
-- [ ] Interface utilisateur complète
+- [x] Interface utilisateur complète
 - [x] Système de sauvegarde/chargement
-- [ ] Audio et effets sonores
-- [x] Histoire et quêtes principales
-- [ ] Système de factions complet
-- [ ] Équilibrage du gameplay
-- [ ] Tests et débogage
-- [ ] Version alpha jouable
+- [x] Optimisation des performances de rendu
+- [x] Système de cache pour les ressources graphiques
+- [x] Tests unitaires pour les composants principaux
+- [ ] Création des assets graphiques finaux
+- [ ] Composition des musiques et effets sonores
+- [ ] Équilibrage final du gameplay
+- [ ] Version bêta jouable
 
 ## Contribution
 

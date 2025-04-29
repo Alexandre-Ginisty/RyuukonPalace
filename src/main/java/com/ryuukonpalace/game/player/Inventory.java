@@ -398,4 +398,22 @@ public class Inventory {
         
         return true;
     }
+    
+    /**
+     * Vérifier si l'inventaire est vide
+     * 
+     * @return true si l'inventaire ne contient aucun objet, false sinon
+     */
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+    
+    /**
+     * Obtenir le nombre d'objets dans l'inventaire
+     * 
+     * @return Nombre d'objets dans l'inventaire
+     */
+    public int size() {
+        return items.size();
+    }
 }

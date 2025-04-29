@@ -31,6 +31,18 @@ public class Renderer {
     private float screenWidth;
     private float screenHeight;
     
+    // Position de la caméra
+    private float cameraX = 0.0f;
+    private float cameraY = 0.0f;
+    private float cameraZoom = 1.0f;
+    
+    // Mode de rendu
+    private com.ryuukonpalace.game.core.RenderingMode renderingMode = com.ryuukonpalace.game.core.RenderingMode.NORMAL;
+    
+    // État d'initialisation
+    private boolean initialized = false;
+    private boolean shadersLoaded = false;
+    
     // Effets visuels globaux
     private float globalBrightness = 1.0f;
     private Color globalTint = Color.WHITE;
@@ -82,6 +94,95 @@ public class Renderer {
         // Initialiser les shaders, VAO, VBO, etc.
         initShaders();
         initBuffers();
+        
+        // Marquer comme initialisé
+        this.initialized = true;
+        this.shadersLoaded = true;
+    }
+    
+    /**
+     * Vérifier si le renderer est initialisé
+     * @return true si le renderer est initialisé, false sinon
+     */
+    public boolean isInitialized() {
+        return initialized;
+    }
+    
+    /**
+     * Vérifier si les shaders sont chargés
+     * @return true si les shaders sont chargés, false sinon
+     */
+    public boolean areShadersLoaded() {
+        return shadersLoaded;
+    }
+    
+    /**
+     * Obtenir la position X de la caméra
+     * @return Position X de la caméra
+     */
+    public float getCameraX() {
+        return cameraX;
+    }
+    
+    /**
+     * Obtenir la position Y de la caméra
+     * @return Position Y de la caméra
+     */
+    public float getCameraY() {
+        return cameraY;
+    }
+    
+    /**
+     * Définir la position de la caméra
+     * @param x Nouvelle position X
+     * @param y Nouvelle position Y
+     */
+    public void setCameraPosition(float x, float y) {
+        this.cameraX = x;
+        this.cameraY = y;
+        camera.setPosition(x, y);
+    }
+    
+    /**
+     * Définir la position de la caméra avec des coordonnées entières
+     * @param x Nouvelle position X
+     * @param y Nouvelle position Y
+     */
+    public void setCameraPosition(int x, int y) {
+        setCameraPosition((float)x, (float)y);
+    }
+    
+    /**
+     * Obtenir le zoom de la caméra
+     * @return Zoom de la caméra
+     */
+    public float getCameraZoom() {
+        return cameraZoom;
+    }
+    
+    /**
+     * Définir le zoom de la caméra
+     * @param zoom Nouveau zoom
+     */
+    public void setCameraZoom(float zoom) {
+        this.cameraZoom = zoom;
+        camera.setZoom(zoom);
+    }
+    
+    /**
+     * Obtenir le mode de rendu actuel
+     * @return Mode de rendu actuel
+     */
+    public com.ryuukonpalace.game.core.RenderingMode getRenderingMode() {
+        return renderingMode;
+    }
+    
+    /**
+     * Définir le mode de rendu
+     * @param mode Nouveau mode de rendu
+     */
+    public void setRenderingMode(com.ryuukonpalace.game.core.RenderingMode mode) {
+        this.renderingMode = mode;
     }
     
     /**

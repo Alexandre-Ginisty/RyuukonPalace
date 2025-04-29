@@ -1,0 +1,383 @@
+{
+  "name": "Lumina",
+  "description": "Capitale d'Elderglen, centre de la connaissance et du pouvoir",
+  "width": 50,
+  "height": 40,
+  "tileWidth": 32,
+  "tileHeight": 32,
+  "perspective": {
+    "isoOffsetX": 0.0,
+    "isoOffsetY": 16.0
+  },
+  "tilesets": {
+    "terrain": "src/main/resources/images/tilesets/lumina_terrain.png",
+    "details": "src/main/resources/images/tilesets/lumina_details.png",
+    "objects": "src/main/resources/images/tilesets/lumina_objects.png"
+  },
+  "terrainLayer": [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1],
+    [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1]
+  ],
+  "detailLayer": [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 2, 2, 2, 1, 1, 0, 0],
+    [0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 2, 2, 2, 1, 1, 0, 0]
+  ],
+  "heightLayer": [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 0, 0, 0, 0]
+  ],
+  "collisionLayer": [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+  ],
+  "buildings": [
+    {
+      "id": "palace",
+      "name": "Palais du Conseil",
+      "type": "GOVERNMENT",
+      "description": "Siège du pouvoir politique où siège le Conseil des Sages",
+      "x": 25,
+      "y": 10,
+      "width": 8,
+      "height": 10,
+      "texture": "src/main/resources/images/buildings/lumina_palace.png",
+      "entranceX": 25,
+      "entranceY": 20,
+      "entranceWidth": 2,
+      "questRelated": true,
+      "questIds": [1, 8, 15]
+    },
+    {
+      "id": "library",
+      "name": "Grande Bibliothèque",
+      "type": "KNOWLEDGE",
+      "description": "Immense bibliothèque contenant des milliers de livres sur les variants et les Signes de Pouvoir",
+      "x": 15,
+      "y": 15,
+      "width": 6,
+      "height": 8,
+      "texture": "src/main/resources/images/buildings/lumina_library.png",
+      "entranceX": 15,
+      "entranceY": 23,
+      "entranceWidth": 2,
+      "questRelated": true,
+      "questIds": [3, 16, 23]
+    },
+    {
+      "id": "academy",
+      "name": "Académie des Tacticiens",
+      "type": "TRAINING",
+      "description": "Institution où les jeunes Tacticiens apprennent à maîtriser les Signes de Pouvoir",
+      "x": 35,
+      "y": 15,
+      "width": 6,
+      "height": 8,
+      "texture": "src/main/resources/images/buildings/lumina_academy.png",
+      "entranceX": 35,
+      "entranceY": 23,
+      "entranceWidth": 2,
+      "questRelated": true,
+      "questIds": [5, 12]
+    },
+    {
+      "id": "market",
+      "name": "Marché Central",
+      "type": "COMMERCE",
+      "description": "Centre commercial animé où l'on trouve toutes sortes de marchandises",
+      "x": 25,
+      "y": 25,
+      "width": 10,
+      "height": 6,
+      "texture": "src/main/resources/images/buildings/lumina_market.png",
+      "entranceX": 25,
+      "entranceY": 31,
+      "entranceWidth": 4,
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "shop",
+      "name": "Boutique du Tacticien",
+      "type": "SHOP",
+      "description": "Magasin spécialisé dans les pierres de capture et les objets pour Tacticiens",
+      "x": 15,
+      "y": 30,
+      "width": 4,
+      "height": 4,
+      "texture": "src/main/resources/images/buildings/lumina_shop.png",
+      "entranceX": 15,
+      "entranceY": 34,
+      "entranceWidth": 2,
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "manor",
+      "name": "Manoir Elara",
+      "type": "RESIDENCE",
+      "description": "Demeure luxueuse de Lady Elara, influente noble Tacticienne",
+      "x": 35,
+      "y": 30,
+      "width": 6,
+      "height": 6,
+      "texture": "src/main/resources/images/buildings/lumina_manor.png",
+      "entranceX": 35,
+      "entranceY": 36,
+      "entranceWidth": 2,
+      "questRelated": true,
+      "questIds": [8]
+    },
+    {
+      "id": "infirmary",
+      "name": "Infirmerie de Lumina",
+      "type": "HEALING",
+      "description": "Centre de soins dirigé par Lysandra, utilisant des variants de type Serein",
+      "x": 10,
+      "y": 25,
+      "width": 5,
+      "height": 5,
+      "texture": "src/main/resources/images/buildings/lumina_infirmary.png",
+      "entranceX": 10,
+      "entranceY": 30,
+      "entranceWidth": 2,
+      "questRelated": true,
+      "questIds": [7, 14, 21]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "orion",
+      "name": "Maître Orion",
+      "type": "MENTOR",
+      "description": "Sage respecté, mentor des héros, maîtrisant tous les Signes de Pouvoir",
+      "x": 25,
+      "y": 15,
+      "spritesheet": "src/main/resources/images/characters/master_orion_sheet.png",
+      "direction": "south",
+      "movementType": "standing",
+      "dialogueId": "orion_greeting",
+      "questRelated": true,
+      "questIds": [1, 5, 12]
+    },
+    {
+      "id": "elara",
+      "name": "Lady Elara",
+      "type": "NOBLE",
+      "description": "Noble influente, experte en politique et en commerce, collectionneuse de variants rares",
+      "x": 36,
+      "y": 32,
+      "spritesheet": "src/main/resources/images/characters/lady_elara_sheet.png",
+      "direction": "west",
+      "movementType": "pacing",
+      "dialogueId": "elara_greeting",
+      "questRelated": true,
+      "questIds": [8]
+    },
+    {
+      "id": "lysandra",
+      "name": "Lysandra",
+      "type": "HEALER",
+      "description": "Guérisseuse dévouée à aider les autres, utilise des variants de type Serein",
+      "x": 12,
+      "y": 27,
+      "spritesheet": "src/main/resources/images/characters/lysandra_sheet.png",
+      "direction": "east",
+      "movementType": "standing",
+      "dialogueId": "lysandra_greeting",
+      "questRelated": true,
+      "questIds": [7, 14, 21]
+    },
+    {
+      "id": "mira",
+      "name": "Elder Mira",
+      "type": "PRIEST",
+      "description": "Gardienne des traditions sacrées et des rituels de capture",
+      "x": 27,
+      "y": 12,
+      "spritesheet": "src/main/resources/images/characters/elder_mira_sheet.png",
+      "direction": "south",
+      "movementType": "standing",
+      "dialogueId": "mira_greeting",
+      "questRelated": true,
+      "questIds": [3, 16]
+    },
+    {
+      "id": "elara_stein",
+      "name": "Dr. Elara Stein",
+      "type": "ALCHEMIST",
+      "description": "Spécialisée dans les potions et les artefacts magiques",
+      "x": 16,
+      "y": 32,
+      "spritesheet": "src/main/resources/images/characters/dr_stein_sheet.png",
+      "direction": "north",
+      "movementType": "pacing",
+      "dialogueId": "stein_greeting",
+      "questRelated": true,
+      "questIds": [23]
+    },
+    {
+      "id": "zephyr",
+      "name": "Maître Zephyr",
+      "type": "ARTISAN",
+      "description": "Créateur légendaire de Pierres de Capture améliorées",
+      "x": 26,
+      "y": 27,
+      "spritesheet": "src/main/resources/images/characters/master_zephyr_sheet.png",
+      "direction": "east",
+      "movementType": "standing",
+      "dialogueId": "zephyr_greeting",
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "guard1",
+      "name": "Garde du Palais",
+      "type": "GUARD",
+      "description": "Garde d'élite protégeant le Palais du Conseil",
+      "x": 24,
+      "y": 20,
+      "spritesheet": "src/main/resources/images/characters/palace_guard_sheet.png",
+      "direction": "south",
+      "movementType": "standing",
+      "dialogueId": "guard_warning",
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "guard2",
+      "name": "Garde du Palais",
+      "type": "GUARD",
+      "description": "Garde d'élite protégeant le Palais du Conseil",
+      "x": 28,
+      "y": 20,
+      "spritesheet": "src/main/resources/images/characters/palace_guard_sheet.png",
+      "direction": "south",
+      "movementType": "standing",
+      "dialogueId": "guard_warning",
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "merchant1",
+      "name": "Marchand",
+      "type": "MERCHANT",
+      "description": "Vendeur d'objets divers au marché central",
+      "x": 23,
+      "y": 28,
+      "spritesheet": "src/main/resources/images/characters/merchant_sheet.png",
+      "direction": "north",
+      "movementType": "standing",
+      "dialogueId": "merchant_greeting",
+      "questRelated": false,
+      "questIds": []
+    },
+    {
+      "id": "merchant2",
+      "name": "Marchande",
+      "type": "MERCHANT",
+      "description": "Vendeuse de potions au marché central",
+      "x": 27,
+      "y": 28,
+      "spritesheet": "src/main/resources/images/characters/merchant_female_sheet.png",
+      "direction": "north",
+      "movementType": "standing",
+      "dialogueId": "merchant_greeting",
+      "questRelated": false,
+      "questIds": []
+    }
+  ],
+  "spawnPoints": {
+    "default": {
+      "x": 25,
+      "y": 35
+    },
+    "from_darkhaven": {
+      "x": 5,
+      "y": 25
+    },
+    "from_whisperwood": {
+      "x": 25,
+      "y": 5
+    },
+    "from_palace": {
+      "x": 25,
+      "y": 21
+    },
+    "from_library": {
+      "x": 15,
+      "y": 24
+    },
+    "from_academy": {
+      "x": 35,
+      "y": 24
+    }
+  },
+  "connections": [
+    {
+      "x": 5,
+      "y": 25,
+      "width": 2,
+      "height": 1,
+      "targetMap": "darkhaven_city_2.5d",
+      "targetSpawn": "from_lumina"
+    },
+    {
+      "x": 25,
+      "y": 5,
+      "width": 2,
+      "height": 1,
+      "targetMap": "whisperwood_forest_2.5d",
+      "targetSpawn": "from_lumina"
+    }
+  ],
+  "weatherEffects": [
+    {
+      "type": "sunny",
+      "probability": 0.7
+    },
+    {
+      "type": "cloudy",
+      "probability": 0.2
+    },
+    {
+      "type": "rainy",
+      "probability": 0.1
+    }
+  ]
+}

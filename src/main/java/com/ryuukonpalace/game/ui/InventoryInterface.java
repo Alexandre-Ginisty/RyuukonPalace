@@ -411,6 +411,37 @@ public class InventoryInterface {
     }
     
     /**
+     * Définir le joueur dont l'inventaire est affiché
+     * 
+     * @param player Le joueur
+     */
+    public void setPlayer(Player player) {
+        if (player != null) {
+            updateInventoryDisplay(player);
+        }
+    }
+    
+    /**
+     * Définir la visibilité de l'interface
+     * 
+     * @param visible true pour afficher l'interface, false pour la masquer
+     */
+    public void setVisible(boolean visible) {
+        if (this.visible != visible) {
+            if (visible) {
+                // Si on affiche l'interface, on s'assure que les panneaux sont correctement configurés
+                updateTabSelection();
+            } else {
+                // Si on masque l'interface, on réinitialise les sélections
+                selectedItemIndex = -1;
+                selectedCaptureStoneIndex = -1;
+                selectedCreatureIndex = -1;
+            }
+            this.visible = visible;
+        }
+    }
+    
+    /**
      * Mettre à jour l'affichage des objets
      * 
      * @param items Liste des objets

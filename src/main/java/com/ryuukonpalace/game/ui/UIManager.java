@@ -6,6 +6,7 @@ import com.ryuukonpalace.game.core.Renderer;
 import com.ryuukonpalace.game.dialogue.DialogueOption;
 import com.ryuukonpalace.game.items.Item;
 import com.ryuukonpalace.game.quest.Quest;
+import com.ryuukonpalace.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,6 +22,8 @@ public class UIManager {
     
     // Références
     private Renderer renderer;
+    // Utilisé pour les contrôles avancés qui seront implémentés dans une future mise à jour
+    @SuppressWarnings("unused")
     private InputManager inputManager; // Utilisé pour les contrôles avancés
     
     // Interfaces
@@ -30,9 +33,12 @@ public class UIManager {
     private CreatureStatusScreen creatureStatusScreen;
     private DialogueInterface dialogueInterface;
     private QuestJournalInterface questJournalInterface;
+    private MysticalSignsInterface mysticalSignsInterface;
     
     // Système de notification
     private List<Notification> activeNotifications;
+    // Cette valeur sera utilisée dans une future mise à jour pour personnaliser la durée d'affichage
+    @SuppressWarnings("unused")
     private float notificationDisplayTime = 5.0f; // Temps d'affichage par défaut en secondes
     
     // Effets visuels spéciaux
@@ -40,6 +46,15 @@ public class UIManager {
     
     // Interface du marchand
     private MerchantInterface merchantInterface;
+    
+    // État d'initialisation
+    private boolean initialized = false;
+    
+    // État de visibilité des interfaces
+    private boolean inventoryVisible = false;
+    private boolean mysticalSignsInterfaceVisible = false;
+    private boolean dialogVisible = false;
+    private boolean menuVisible = false;
     
     /**
      * Constructeur privé (singleton)
@@ -84,6 +99,153 @@ public class UIManager {
         
         this.questJournalInterface = QuestJournalInterface.getInstance();
         this.questJournalInterface.init();
+        
+        this.mysticalSignsInterface = MysticalSignsInterface.getInstance();
+        this.mysticalSignsInterface.init();
+        
+        this.initialized = true;
+    }
+    
+    /**
+     * Vérifie si le gestionnaire d'interface utilisateur est initialisé
+     * 
+     * @return true si le gestionnaire est initialisé, false sinon
+     */
+    public boolean isInitialized() {
+        return initialized;
+    }
+    
+    /**
+     * Affiche l'interface d'inventaire pour le joueur spécifié
+     * 
+     * @param player Le joueur dont l'inventaire doit être affiché
+     */
+    public void showInventory(Player player) {
+        if (player != null && inventoryInterface != null) {
+            inventoryInterface.setPlayer(player);
+            inventoryInterface.setVisible(true);
+            inventoryVisible = true;
+        }
+    }
+    
+    /**
+     * Masque l'interface d'inventaire
+     */
+    public void hideInventory() {
+        if (inventoryInterface != null) {
+            inventoryInterface.setVisible(false);
+            inventoryVisible = false;
+        }
+    }
+    
+    /**
+     * Vérifie si l'interface d'inventaire est visible
+     * 
+     * @return true si l'interface d'inventaire est visible, false sinon
+     */
+    public boolean isInventoryVisible() {
+        return inventoryVisible;
+    }
+    
+    /**
+     * Affiche l'interface des signes mystiques pour le joueur spécifié
+     * 
+     * @param player Le joueur dont les signes mystiques doivent être affichés
+     */
+    public void showMysticalSignsInterface(Player player) {
+        if (player != null && mysticalSignsInterface != null) {
+            mysticalSignsInterface.setPlayer(player);
+            mysticalSignsInterface.setVisible(true);
+            mysticalSignsInterfaceVisible = true;
+        }
+    }
+    
+    /**
+     * Masque l'interface des signes mystiques
+     */
+    public void hideMysticalSignsInterface() {
+        if (mysticalSignsInterface != null) {
+            mysticalSignsInterface.setVisible(false);
+            mysticalSignsInterfaceVisible = false;
+        }
+    }
+    
+    /**
+     * Vérifie si l'interface des signes mystiques est visible
+     * 
+     * @return true si l'interface des signes mystiques est visible, false sinon
+     */
+    public boolean isMysticalSignsInterfaceVisible() {
+        return mysticalSignsInterfaceVisible;
+    }
+    
+    /**
+     * Affiche un dialogue avec le texte spécifié
+     * 
+     * @param text Le texte du dialogue à afficher
+     */
+    public void showDialog(String text) {
+        if (dialogueInterface != null) {
+            dialogueInterface.setText(text);
+            dialogueInterface.setVisible(true);
+            dialogVisible = true;
+        }
+    }
+    
+    /**
+     * Masque l'interface de dialogue
+     */
+    public void hideDialog() {
+        if (dialogueInterface != null) {
+            dialogueInterface.setVisible(false);
+            dialogVisible = false;
+        }
+    }
+    
+    /**
+     * Vérifie si l'interface de dialogue est visible
+     * 
+     * @return true si l'interface de dialogue est visible, false sinon
+     */
+    public boolean isDialogVisible() {
+        return dialogVisible;
+    }
+    
+    /**
+     * Récupère le texte du dialogue actuel
+     * 
+     * @return Le texte du dialogue actuel
+     */
+    public String getDialogText() {
+        if (dialogueInterface != null) {
+            return dialogueInterface.getText();
+        }
+        return "";
+    }
+    
+    /**
+     * Affiche le menu principal
+     */
+    public void showMenu() {
+        // Implémentation à compléter
+        menuVisible = true;
+    }
+    
+    /**
+     * Masque le menu principal
+     */
+    public void hideMenu() {
+        // Implémentation à compléter
+        menuVisible = false;
+    }
+    
+    /**
+     * Vérifie si le menu principal est visible
+     * 
+     * @return true si le menu principal est visible, false sinon
+     */
+    public boolean isMenuVisible() {
+        return menuVisible;
     }
     
     /**
@@ -115,16 +277,24 @@ public class UIManager {
                 break;
             default:
                 // Mettre à jour les interfaces communes à tous les états
-                if (merchantInterface != null && merchantInterface.isVisible()) {
-                    merchantInterface.update(deltaTime);
+                if (inventoryInterface.isVisible()) {
+                    inventoryInterface.update(deltaTime);
                 }
                 
-                if (dialogueInterface != null && dialogueInterface.isVisible()) {
+                if (questJournalInterface.isVisible()) {
+                    questJournalInterface.update(deltaTime);
+                }
+                
+                if (mysticalSignsInterface.isVisible()) {
+                    mysticalSignsInterface.update(deltaTime);
+                }
+                
+                if (dialogueInterface.isVisible()) {
                     dialogueInterface.update(deltaTime);
                 }
                 
-                if (questJournalInterface != null && questJournalInterface.isVisible()) {
-                    questJournalInterface.update(deltaTime);
+                if (merchantInterface.isVisible()) {
+                    merchantInterface.update(deltaTime);
                 }
                 break;
         }
@@ -151,16 +321,24 @@ public class UIManager {
                 break;
             default:
                 // Dessiner les interfaces communes à tous les états
-                if (merchantInterface != null && merchantInterface.isVisible()) {
-                    merchantInterface.render();
+                if (inventoryInterface.isVisible()) {
+                    inventoryInterface.render();
                 }
                 
-                if (dialogueInterface != null && dialogueInterface.isVisible()) {
+                if (questJournalInterface.isVisible()) {
+                    questJournalInterface.render();
+                }
+                
+                if (mysticalSignsInterface.isVisible()) {
+                    mysticalSignsInterface.render();
+                }
+                
+                if (dialogueInterface.isVisible()) {
                     dialogueInterface.render();
                 }
                 
-                if (questJournalInterface != null && questJournalInterface.isVisible()) {
-                    questJournalInterface.render();
+                if (merchantInterface.isVisible()) {
+                    merchantInterface.render();
                 }
                 break;
         }
@@ -186,36 +364,38 @@ public class UIManager {
         
         switch (currentState) {
             case COMBAT:
-                if (combatInterface.isInitialized() && combatInterface.isVisible()) {
+                if (combatInterface.isInitialized()) {
                     return combatInterface.handleInput(mouseX, mouseY, mousePressed);
                 }
                 break;
             case SAVE_LOAD:
-                if (saveLoadInterface.isVisible()) {
-                    return saveLoadInterface.handleInput(mouseX, mouseY, mousePressed);
-                }
-                break;
+                return saveLoadInterface.handleInput(mouseX, mouseY, mousePressed);
             case PAUSED:
                 // Gérer les entrées de l'interface de pause
                 break;
             default:
                 // Gérer les entrées des interfaces communes à tous les états
-                if (merchantInterface != null && merchantInterface.isVisible()) {
-                    if (merchantInterface.handleInput(mouseX, mouseY, mousePressed)) {
-                        return true;
-                    }
+                if (inventoryInterface.isVisible()) {
+                    inventoryInterface.handleInput(mouseX, mouseY, mousePressed);
+                    return true;
                 }
                 
-                if (dialogueInterface != null && dialogueInterface.isVisible()) {
-                    if (dialogueInterface.handleInput(mouseX, mouseY, mousePressed)) {
-                        return true;
-                    }
+                if (questJournalInterface.isVisible()) {
+                    questJournalInterface.handleInput(mouseX, mouseY, mousePressed);
+                    return true;
                 }
                 
-                if (questJournalInterface != null && questJournalInterface.isVisible()) {
-                    if (questJournalInterface.handleInput(mouseX, mouseY, mousePressed)) {
-                        return true;
-                    }
+                if (mysticalSignsInterface.isVisible()) {
+                    mysticalSignsInterface.handleInput(mouseX, mouseY, mousePressed);
+                    return true;
+                }
+                
+                if (dialogueInterface.isVisible()) {
+                    return dialogueInterface.handleInput(mouseX, mouseY, mousePressed);
+                }
+                
+                if (merchantInterface.isVisible()) {
+                    return merchantInterface.handleInput(mouseX, mouseY, mousePressed);
                 }
                 break;
         }
@@ -472,11 +652,42 @@ public class UIManager {
     }
     
     /**
+     * Obtenir l'interface des signes mystiques
+     * 
+     * @return Interface des signes mystiques
+     */
+    public MysticalSignsInterface getMysticalSignsInterface() {
+        return mysticalSignsInterface;
+    }
+    
+    /**
+     * Afficher l'interface des signes mystiques
+     * 
+     * @param player Joueur
+     */
+    public void showMysticalSigns(Player player) {
+        if (mysticalSignsInterface.isInitialized()) {
+            mysticalSignsInterface.show(player);
+        }
+    }
+    
+    /**
+     * Masquer l'interface des signes mystiques
+     */
+    public void hideMysticalSigns() {
+        if (mysticalSignsInterface.isInitialized()) {
+            mysticalSignsInterface.hide();
+        }
+    }
+    
+    /**
      * Classe interne représentant une notification
      */
     private class Notification {
         private String title;
         private String message;
+        // Cette valeur sera utilisée dans une future mise à jour pour personnaliser la durée d'affichage
+        @SuppressWarnings("unused")
         private float duration;
         private float remainingTime;
         private float alpha;
@@ -654,7 +865,7 @@ public class UIManager {
     }
     
     /**
-     * Classe interne représentant l'interface du marchand
+     * Classe interne pour représenter l'interface du marchand
      */
     private class MerchantInterface {
         private List<Item> items;
@@ -740,7 +951,7 @@ public class UIManager {
     }
     
     /**
-     * Classe interne représentant l'interface de dialogue
+     * Classe interne pour représenter l'interface de dialogue
      */
     private class DialogueInterface {
         private String text;
@@ -798,6 +1009,10 @@ public class UIManager {
         
         public void setText(String text) {
             this.text = text;
+        }
+        
+        public String getText() {
+            return this.text;
         }
         
         public void setOptions(List<DialogueOption> options) {

@@ -55,9 +55,14 @@ public class SaveLoadInterface extends UIComponent {
     // IDs des textures
     private int backgroundTextureId;
     private int panelBackgroundId;
+    // Ces identifiants de texture seront utilisés dans une future mise à jour pour améliorer l'interface
+    @SuppressWarnings("unused")
     private int buttonNormalId;
+    @SuppressWarnings("unused")
     private int buttonHoverId;
+    @SuppressWarnings("unused")
     private int buttonPressedId;
+    @SuppressWarnings("unused")
     private int buttonDisabledId;
     private int slotBackgroundId;
     private int slotSelectedId;
@@ -65,6 +70,8 @@ public class SaveLoadInterface extends UIComponent {
     // Couleurs
     private static final int COLOR_TEXT = 0xFFFFFFFF;
     private static final int COLOR_TEXT_HIGHLIGHT = 0xFFFFCC00;
+    // Cette couleur sera utilisée dans une future mise à jour pour les éléments désactivés
+    @SuppressWarnings("unused")
     private static final int COLOR_TEXT_DISABLED = 0xFF888888;
     private static final int COLOR_PANEL_BACKGROUND = 0xCC000000;
     
@@ -155,7 +162,8 @@ public class SaveLoadInterface extends UIComponent {
      * Créer les boutons de l'interface
      */
     private void createButtons() {
-        // Couleur du texte par défaut
+        // Cette variable sera utilisée dans une future mise à jour pour personnaliser les couleurs des boutons
+        @SuppressWarnings("unused")
         int textColor = 0xFFFFFFFF; // Blanc
         
         // Bouton de sauvegarde

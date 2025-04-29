@@ -10,7 +10,9 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **CORE-4**: Créer le système de collision
 - [x] **CORE-5**: Implémenter le système de caméra et de suivi du joueur
 - [x] **CORE-6**: Développer le système de gestion des données (chargement/sauvegarde JSON)
-- [x] **CORE-7**: Créer le système de chargement et rendu des modèles 3D (FBX)
+- [-] **CORE-7**: ~~Créer le système de chargement et rendu des modèles 3D (FBX)~~
+- [x] **CORE-7.1**: Créer le système de chargement et rendu des sprites 2D et spritesheets
+- [x] **CORE-7.2**: Implémenter le système de rendu par couches pour effet 2.5D style Pokémon Blanc
 
 ## Créatures (Priorité Haute)
 
@@ -18,7 +20,8 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **CREA-2**: Implémenter le système d'évolution des créatures
 - [x] **CREA-3**: Créer le système de stockage/inventaire des créatures
 - [x] **CREA-4**: Développer l'IA des créatures sauvages
-- [-] **CREA-5**: Concevoir les animations des créatures
+- [-] **CREA-5**: ~~Concevoir les animations des créatures~~
+- [x] **CREA-5.1**: Concevoir les spritesheets d'animation des créatures (style 2D)
 - [x] **CREA-6**: Structurer les données des variants selon les types définis dans le lore
 - [x] **CREA-7**: Implémenter le système de résistances et faiblesses entre types de variants
 - [x] **CREA-8**: Harmoniser les types de variants dans le code et la documentation (Stratège, Furieux, etc.)
@@ -32,6 +35,7 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **COMB-5**: Implémenter les récompenses de combat
 - [x] **COMB-6**: Intégrer le système de capture dans le combat
 - [x] **COMB-7**: Développer le système de combat style Pokémon avec écran dédié
+- [x] **COMB-8**: Implémenter un système de combat avancé pour les Tacticiens avec des mécaniques stratégiques
 
 ## Système de capture (Priorité Haute)
 
@@ -50,6 +54,8 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **UI-5**: Créer la carte du monde et la mini-carte
 - [x] **UI-6**: Développer l'interface de faction (Tacticiens vs Guerriers)
 - [x] **UI-7**: Implémenter le journal de quêtes et les notifications
+- [x] **UI-8**: Améliorer l'interface utilisateur pour les combats entre Tacticiens et variants
+- [x] **UI-9**: Améliorer le système d'animation pour les combats et les interactions
 
 ## Monde de jeu (Priorité Moyenne)
 
@@ -68,8 +74,8 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 
 ## Audio (Priorité Basse)
 
-- [ ] **AUDIO-1**: Implémenter le système de gestion audio
-- [ ] **AUDIO-2**: Créer/acquérir les effets sonores de base
+- [x] **AUDIO-1**: Implémenter le système de gestion audio
+- [x] **AUDIO-2**: Créer/acquérir les effets sonores de base
 - [ ] **AUDIO-3**: Composer/acquérir les musiques de fond
 - [ ] **AUDIO-4**: Développer le système de mixage audio dynamique
 
@@ -91,40 +97,61 @@ Ce document liste les tâches à accomplir pour le développement du jeu, organi
 - [x] **QUEST-8**: Développer des quêtes matures avec des thèmes adultes
 - [x] **QUEST-9**: Créer un système de signes mystiques avec différentes catégories
 - [x] **QUEST-10**: Implémenter des quêtes avec des choix moraux et des conséquences importantes
+- [x] **QUEST-11**: Développer des quêtes dynamiques qui s'adaptent aux actions du joueur
 
 ## Documentation (Priorité Moyenne)
 
 - [x] **DOC-1**: Créer une documentation technique complète du projet
 - [x] **DOC-2**: Documenter les types de variants et leurs interactions
 - [x] **DOC-3**: Mettre à jour le README avec la structure du projet
-- [ ] **DOC-4**: Créer un guide de contribution pour les développeurs
+- [x] **DOC-4**: Créer un guide de contribution pour les développeurs
 - [ ] **DOC-5**: Documenter l'API du jeu pour les extensions futures
 
 ## Tests et équilibrage (Priorité Moyenne)
 
-- [ ] **TEST-1**: Mettre en place les tests unitaires
-- [ ] **TEST-2**: Effectuer des tests d'équilibrage du gameplay
-- [ ] **TEST-3**: Optimiser les performances
+- [x] **TEST-1**: Mettre en place les tests unitaires
+- [ ] **TEST-2**: Effectuer des tests d'équilibrage du gameplay pour les nouvelles quêtes et factions
+- [x] **TEST-3**: Optimiser les performances du jeu, notamment pour le chargement des ressources
 - [x] **TEST-4**: Corriger les bugs identifiés
 - [x] **TEST-5**: Corriger les erreurs de typage et les avertissements dans le code
 - [ ] **TEST-6**: Réaliser des tests utilisateurs
+- [x] **TEST-7**: Tester les performances du rendu 2.5D sur différentes configurations
+- [ ] **TEST-8**: Vérifier la cohérence visuelle entre les différentes zones du jeu
+- [ ] **TEST-9**: Tester l'accessibilité de l'interface utilisateur
+- [x] **TEST-10**: Corriger les erreurs de compilation dans les tests
 
 ## Design et assets graphiques (Priorité Moyenne)
 
-- [-] **DESIGN-1**: Créer les modèles 3D des variants (format .fbx)
+- [-] **DESIGN-1**: ~~Créer les modèles 3D des variants (format .fbx)~~
+- [x] **DESIGN-1.1**: Créer les sprites 2D des variants (vue de face et de dos)
 - [ ] **DESIGN-2**: Concevoir les assets d'environnement
-- [ ] **DESIGN-3**: Développer l'interface utilisateur avec style 2.5D
+- [x] **DESIGN-3**: Développer l'interface utilisateur avec style 2.5D
 - [ ] **DESIGN-4**: Créer les effets visuels (particules, transitions)
 - [x] **DESIGN-5**: Implémenter le style visuel sombre inspiré de Fear & Hunger
-- [-] **DESIGN-6**: Créer les animations des variants et personnages (format .fbx)
+- [-] **DESIGN-6**: ~~Créer les animations des variants et personnages (format .fbx)~~
+- [x] **DESIGN-6.1**: Créer les spritesheets d'animation des personnages (style 2D)
+- [x] **DESIGN-7**: Concevoir les tilesets pour les différentes zones du monde
+- [x] **DESIGN-8**: Créer les bâtiments avec effet de perspective (style Pokémon Blanc)
+- [x] **DESIGN-9**: Développer le système de tiles avec variations de hauteur pour effet 3D
+- [ ] **DESIGN-10**: Créer des spritesheets pour les PNJ (différentes directions et animations)
+- [ ] **DESIGN-11**: Développer des effets de transition jour/nuit pour le style 2.5D
+- [ ] **DESIGN-12**: Concevoir des effets météorologiques adaptés au style 2.5D (pluie, neige, brouillard)
+- [ ] **DESIGN-13**: Créer des animations d'attaque pour les combats en style 2D
+- [ ] **DESIGN-14**: Développer des effets de parallaxe pour les arrière-plans
+- [ ] **DESIGN-15**: Concevoir des icônes et éléments d'interface cohérents avec le style visuel
+- [ ] **DESIGN-16**: Créer des portraits expressifs pour les dialogues importants
+- [ ] **DESIGN-17**: Développer des animations de transition entre les zones de jeu
+- [ ] **DESIGN-18**: Concevoir des variations saisonnières pour les environnements (été, automne, hiver, printemps)
 
-## Prochaines tâches prioritaires
+## Système de rendu 2.5D (Priorité Haute)
 
-1. **DOC-4**: Créer un guide de contribution pour les développeurs
-2. **DESIGN-2**: Concevoir les assets d'environnement pour les nouveaux lieux (Shadow Caverns, Laboratoire Secret)
-3. **DESIGN-3**: Développer l'interface utilisateur pour le système de signes mystiques
-4. **AUDIO-1**: Implémenter le système de gestion audio
-5. **TEST-2**: Effectuer des tests d'équilibrage du gameplay pour les nouvelles quêtes et factions
-6. **TEST-3**: Optimiser les performances du jeu, notamment pour le chargement des ressources
-7. **QUEST-11**: Développer des quêtes dynamiques qui s'adaptent aux actions du joueur
-8. **UI-8**: Améliorer l'interface utilisateur pour les combats entre Tacticiens et variants
+- [x] **RENDER-1**: Implémenter le système de rendu par couches (LayeredRenderer)
+- [x] **RENDER-2**: Développer le chargement et la gestion des spritesheets
+- [x] **RENDER-3**: Créer le système de perspective pour les bâtiments et objets
+- [x] **RENDER-4**: Optimiser le rendu pour les grandes zones de jeu
+- [ ] **RENDER-5**: Implémenter les effets d'ombre et d'éclairage adaptés au style 2.5D
+- [ ] **RENDER-6**: Développer un système de particules compatible avec le rendu par couches
+- [x] **RENDER-7**: Créer un système de cache pour les tiles fréquemment utilisées
+- [x] **RENDER-8**: Implémenter le système de décalage vertical pour simuler la profondeur
+- [ ] **RENDER-9**: Développer des transitions fluides entre les différentes couches de rendu
+- [x] **RENDER-10**: Optimiser le chargement des ressources graphiques

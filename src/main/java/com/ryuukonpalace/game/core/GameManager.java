@@ -7,6 +7,8 @@ import com.ryuukonpalace.game.items.Item;
 import com.ryuukonpalace.game.player.Player;
 import com.ryuukonpalace.game.save.SaveManager;
 import com.ryuukonpalace.game.ui.UIManager;
+import com.ryuukonpalace.game.audio.AudioManager;
+import com.ryuukonpalace.game.audio.AudioUtils;
 import com.ryuukonpalace.game.world.RandomEvent;
 import com.ryuukonpalace.game.world.RandomEventSystem;
 import com.ryuukonpalace.game.world.TimeSystem;
@@ -27,6 +29,7 @@ public class GameManager {
     private CombatSystem combatSystem;
     private SaveManager saveManager;
     private UIManager uiManager;
+    private AudioManager audioManager;
     private RandomEventSystem randomEventSystem;
     private TimeSystem timeSystem;
     private WeatherSystem weatherSystem;
@@ -38,6 +41,11 @@ public class GameManager {
     
     // Joueur
     private Player player;
+    
+    // Indicateurs d'état
+    private boolean initialized = false;
+    private boolean resourcesLoaded = false;
+    private boolean gameLoopRunning = false;
     
     /**
      * Constructeur privé (singleton)
@@ -63,9 +71,16 @@ public class GameManager {
      */
     public void init() {
         // Initialiser les systèmes
+        System.out.println("Initialisation du jeu...");
+        
+        // Vérifier et générer les fichiers audio si nécessaire
+        AudioUtils.checkAndGenerateAudioFiles();
+        
+        // Initialiser les systèmes
         this.combatSystem = CombatSystem.getInstance();
         this.saveManager = SaveManager.getInstance();
         this.uiManager = UIManager.getInstance();
+        this.audioManager = AudioManager.getInstance();
         this.randomEventSystem = RandomEventSystem.getInstance();
         this.timeSystem = TimeSystem.getInstance();
         this.weatherSystem = WeatherSystem.getInstance();
@@ -75,10 +90,14 @@ public class GameManager {
         this.gameState = GameState.getInstance();
         
         // Créer un joueur par défaut
-        this.player = new Player();
+        this.player = new Player(100, 100);
         
         // Configurer le callback pour les événements aléatoires
         setupRandomEventCallback();
+        
+        // Marquer comme initialisé
+        this.initialized = true;
+        this.resourcesLoaded = true;
     }
     
     /**
@@ -311,5 +330,69 @@ public class GameManager {
      */
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+    }
+    
+    /**
+     * Vérifier si le gestionnaire de jeu est initialisé
+     * 
+     * @return true si le gestionnaire est initialisé, false sinon
+     */
+    public boolean isInitialized() {
+        return initialized;
+    }
+    
+    /**
+     * Vérifier si les ressources du jeu sont chargées
+     * 
+     * @return true si les ressources sont chargées, false sinon
+     */
+    public boolean areResourcesLoaded() {
+        return resourcesLoaded;
+    }
+    
+    /**
+     * Démarrer la boucle de jeu
+     */
+    public void startGameLoop() {
+        if (!gameLoopRunning) {
+            gameLoopRunning = true;
+            System.out.println("Boucle de jeu démarrée");
+        }
+    }
+    
+    /**
+     * Arrêter la boucle de jeu
+     */
+    public void stopGameLoop() {
+        if (gameLoopRunning) {
+            gameLoopRunning = false;
+            System.out.println("Boucle de jeu arrêtée");
+        }
+    }
+    
+    /**
+     * Vérifier si la boucle de jeu est en cours d'exécution
+     * 
+     * @return true si la boucle de jeu est en cours d'exécution, false sinon
+     */
+    public boolean isGameLoopRunning() {
+        return gameLoopRunning;
+    }
+    
+    /**
+     * Obtenir le gestionnaire audio
+     * 
+     * @return Gestionnaire audio
+     */
+    public AudioManager getAudioManager() {
+        return audioManager;
+    }
+    
+    /**
+     * Libérer les ressources du jeu.
+     */
+    public void dispose() {
+        // Libérer les ressources
+        audioManager.dispose();
     }
 }

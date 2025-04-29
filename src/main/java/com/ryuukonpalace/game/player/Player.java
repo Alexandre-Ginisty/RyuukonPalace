@@ -8,6 +8,7 @@ import com.ryuukonpalace.game.core.physics.RectangleCollider;
 import com.ryuukonpalace.game.creatures.Creature;
 import com.ryuukonpalace.game.utils.ResourceManager;
 import com.ryuukonpalace.game.world.SpawnZone;
+import com.ryuukonpalace.game.items.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +90,21 @@ public class Player extends GameObject {
     // Réputations auprès des factions
     private Map<String, Integer> factionReputations;
     
+    // ID unique du joueur
+    private String id;
+    
+    // Énergie du joueur (utilisée pour les signes mystiques)
+    private int energy;
+    
+    // Énergie maximale du joueur
+    private int maxEnergy;
+    
+    // Effets de statut actifs sur le joueur
+    private Map<String, Integer> statusEffects;
+    
+    // État actuel du joueur
+    private PlayerState state = PlayerState.IDLE;
+    
     /**
      * Singleton instance
      */
@@ -118,6 +134,10 @@ public class Player extends GameObject {
         this.journal = new LinkedList<>(); // Initialisation du journal
         this.discoveredAreas = new ArrayList<>(); // Initialisation des zones découvertes
         this.factionReputations = new HashMap<>(); // Initialisation des réputations
+        this.id = "player_" + System.currentTimeMillis(); // ID unique basé sur le timestamp
+        this.energy = 100; // Énergie initiale
+        this.maxEnergy = 100; // Énergie maximale initiale
+        this.statusEffects = new HashMap<>(); // Initialisation des effets de statut
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(x, y, 32, 48);
@@ -153,6 +173,10 @@ public class Player extends GameObject {
         this.journal = new LinkedList<>();
         this.discoveredAreas = new ArrayList<>();
         this.factionReputations = new HashMap<>();
+        this.id = "player_" + System.currentTimeMillis(); // ID unique basé sur le timestamp
+        this.energy = 100; // Énergie initiale
+        this.maxEnergy = 100; // Énergie maximale initiale
+        this.statusEffects = new HashMap<>(); // Initialisation des effets de statut
         
         // Créer un collider pour le joueur
         this.collider = new RectangleCollider(0, 0, 32, 48);
@@ -211,6 +235,9 @@ public class Player extends GameObject {
         
         // Faire suivre la caméra
         Camera.getInstance().follow(this);
+        
+        // Mettre à jour les effets de statut
+        updateStatusEffects();
     }
     
     @Override
@@ -729,16 +756,6 @@ public class Player extends GameObject {
     }
     
     /**
-     * Vérifier si le joueur possède un objet avec un nom spécifique
-     * 
-     * @param itemName Nom de l'objet à vérifier
-     * @return true si le joueur possède au moins un objet avec ce nom, false sinon
-     */
-    public boolean hasItem(String itemName) {
-        return inventory.hasItem(itemName);
-    }
-    
-    /**
      * Retirer un nombre spécifique d'objets d'un type donné de l'inventaire
      * 
      * @param itemClass Classe de l'objet à retirer
@@ -750,6 +767,25 @@ public class Player extends GameObject {
     }
     
     /**
+     * Ajouter un objet à l'inventaire du joueur
+     * 
+     * @param item Objet à ajouter
+     */
+    public void addToInventory(Item item) {
+        inventory.addItem(item);
+    }
+    
+    /**
+     * Vérifier si le joueur possède un objet avec un nom spécifique
+     * 
+     * @param itemName Nom de l'objet à vérifier
+     * @return true si le joueur possède l'objet, false sinon
+     */
+    public boolean hasItem(String itemName) {
+        return inventory.hasItem(itemName);
+    }
+    
+    /**
      * Retirer un nombre spécifique d'objets avec un nom donné de l'inventaire
      * 
      * @param itemName Nom de l'objet à retirer
@@ -758,6 +794,212 @@ public class Player extends GameObject {
      */
     public boolean removeItem(String itemName, int count) {
         return inventory.removeItems(itemName, count);
+    }
+    
+    /**
+     * Obtenir l'ID unique du joueur
+     * 
+     * @return ID unique du joueur
+     */
+    public String getId() {
+        return id;
+    }
+    
+    /**
+     * Définir l'ID unique du joueur
+     * 
+     * @param id Nouvel ID unique
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    /**
+     * Obtenir l'énergie actuelle du joueur
+     * 
+     * @return Énergie actuelle
+     */
+    public int getEnergy() {
+        return energy;
+    }
+    
+    /**
+     * Définir l'énergie du joueur
+     * 
+     * @param energy Nouvelle valeur d'énergie
+     */
+    public void setEnergy(int energy) {
+        this.energy = Math.max(0, Math.min(maxEnergy, energy));
+    }
+    
+    /**
+     * Obtenir l'énergie maximale du joueur
+     * 
+     * @return Énergie maximale
+     */
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+    
+    /**
+     * Définir l'énergie maximale du joueur
+     * 
+     * @param maxEnergy Nouvelle valeur d'énergie maximale
+     */
+    public void setMaxEnergy(int maxEnergy) {
+        this.maxEnergy = maxEnergy;
+        // Ajuster l'énergie actuelle si elle dépasse le nouveau maximum
+        if (this.energy > maxEnergy) {
+            this.energy = maxEnergy;
+        }
+    }
+    
+    /**
+     * Utiliser de l'énergie
+     * 
+     * @param amount Quantité d'énergie à utiliser
+     * @return true si le joueur avait assez d'énergie, false sinon
+     */
+    public boolean useEnergy(int amount) {
+        if (energy >= amount) {
+            energy -= amount;
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Récupérer de l'énergie
+     * 
+     * @param amount Quantité d'énergie à récupérer
+     */
+    public void recoverEnergy(int amount) {
+        energy = Math.min(maxEnergy, energy + amount);
+    }
+    
+    /**
+     * Ajouter un effet de statut au joueur
+     * 
+     * @param effectName Nom de l'effet
+     * @param duration Durée en tours ou en secondes
+     */
+    public void addStatusEffect(String effectName, int duration) {
+        statusEffects.put(effectName, duration);
+    }
+    
+    /**
+     * Vérifier si le joueur a un effet de statut spécifique
+     * 
+     * @param effectName Nom de l'effet à vérifier
+     * @return true si l'effet est actif, false sinon
+     */
+    public boolean hasStatusEffect(String effectName) {
+        return statusEffects.containsKey(effectName) && statusEffects.get(effectName) > 0;
+    }
+    
+    /**
+     * Obtenir la durée restante d'un effet de statut
+     * 
+     * @param effectName Nom de l'effet
+     * @return Durée restante, ou 0 si l'effet n'est pas actif
+     */
+    public int getStatusEffectDuration(String effectName) {
+        return statusEffects.getOrDefault(effectName, 0);
+    }
+    
+    /**
+     * Mettre à jour les effets de statut (réduire leur durée)
+     */
+    public void updateStatusEffects() {
+        List<String> effectsToRemove = new ArrayList<>();
+        
+        for (Map.Entry<String, Integer> entry : statusEffects.entrySet()) {
+            int newDuration = entry.getValue() - 1;
+            if (newDuration <= 0) {
+                effectsToRemove.add(entry.getKey());
+            } else {
+                statusEffects.put(entry.getKey(), newDuration);
+            }
+        }
+        
+        // Supprimer les effets expirés
+        for (String effect : effectsToRemove) {
+            statusEffects.remove(effect);
+        }
+    }
+    
+    /**
+     * Déplacer le joueur d'une certaine distance
+     * 
+     * @param deltaX Distance horizontale à parcourir
+     * @param deltaY Distance verticale à parcourir
+     */
+    public void move(float deltaX, float deltaY) {
+        // Mettre à jour la position
+        setPosition(getX() + deltaX, getY() + deltaY);
+        
+        // Mettre à jour la direction en fonction du mouvement
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > 0) {
+                direction = Direction.RIGHT;
+            } else if (deltaX < 0) {
+                direction = Direction.LEFT;
+            }
+        } else {
+            if (deltaY > 0) {
+                direction = Direction.DOWN;
+            } else if (deltaY < 0) {
+                direction = Direction.UP;
+            }
+        }
+        
+        // Indiquer que le joueur est en mouvement
+        isMoving = true;
+    }
+    
+    /**
+     * Vérifier si le joueur est en collision avec un rectangle
+     * 
+     * @param x Position X du rectangle
+     * @param y Position Y du rectangle
+     * @param width Largeur du rectangle
+     * @param height Hauteur du rectangle
+     * @return true si le joueur est en collision avec le rectangle, false sinon
+     */
+    public boolean isCollidingWith(float x, float y, float width, float height) {
+        // Vérifier si les rectangles se chevauchent
+        return getX() < x + width &&
+               getX() + getWidth() > x &&
+               getY() < y + height &&
+               getY() + getHeight() > y;
+    }
+    
+    /**
+     * Obtenir l'état actuel du joueur
+     * 
+     * @return État actuel du joueur
+     */
+    public PlayerState getState() {
+        return state;
+    }
+    
+    /**
+     * Définir l'état du joueur
+     * 
+     * @param state Nouvel état du joueur
+     */
+    public void setState(PlayerState state) {
+        this.state = state;
+    }
+    
+    /**
+     * Retirer un objet de l'inventaire du joueur par son nom
+     * 
+     * @param itemName Nom de l'objet à retirer
+     * @return true si l'objet a été retiré, false sinon
+     */
+    public boolean removeFromInventory(String itemName) {
+        return inventory.removeItems(itemName, 1);
     }
     
     /**

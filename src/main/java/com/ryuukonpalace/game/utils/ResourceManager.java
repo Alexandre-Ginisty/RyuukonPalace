@@ -18,10 +18,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 
 /**
  * Gestionnaire de ressources pour le jeu.
  * Permet de charger, stocker et accéder aux ressources comme les images, sons et polices.
+ * Optimisé avec chargement asynchrone et mise en cache.
  */
 public class ResourceManager {
     
@@ -33,13 +39,39 @@ public class ResourceManager {
     private final Map<String, Sound> sounds;
     private final Map<String, Font> fonts;
     
+    // Cache pour les ressources
+    private final Map<String, ByteBuffer> resourceCache;
+    
+    // Pool de threads pour le chargement asynchrone
+    private final ExecutorService loadingThreadPool;
+    
+    // Map pour suivre les chargements en cours
+    private final Map<String, CompletableFuture<Integer>> pendingTextures;
+    private final Map<String, CompletableFuture<Sound>> pendingSounds;
+    private final Map<String, CompletableFuture<Font>> pendingFonts;
+    
+    // Statistiques de performance
+    private long totalLoadingTime = 0;
+    private int resourcesLoaded = 0;
+    private int cacheHits = 0;
+    
     /**
      * Constructeur privé pour le singleton
      */
     private ResourceManager() {
-        textures = new HashMap<>();
-        sounds = new HashMap<>();
-        fonts = new HashMap<>();
+        textures = new ConcurrentHashMap<>();
+        sounds = new ConcurrentHashMap<>();
+        fonts = new ConcurrentHashMap<>();
+        resourceCache = new ConcurrentHashMap<>();
+        
+        pendingTextures = new ConcurrentHashMap<>();
+        pendingSounds = new ConcurrentHashMap<>();
+        pendingFonts = new ConcurrentHashMap<>();
+        
+        // Créer un pool de threads pour le chargement asynchrone
+        loadingThreadPool = Executors.newFixedThreadPool(2);
+        
+        System.out.println("ResourceManager initialized with async loading capability");
     }
     
     /**
@@ -57,26 +89,38 @@ public class ResourceManager {
      * Initialiser le gestionnaire de ressources
      */
     public void init() {
-        // Charger les textures de base
-        loadTexture("assets/textures/ground.png", "ground");
-        loadTexture("assets/textures/tall_grass.png", "tall_grass");
-        loadTexture("assets/textures/player.png", "player");
+        System.out.println("Starting resource initialization...");
+        long startTime = System.currentTimeMillis();
+        
+        // Précharger les textures de base en parallèle
+        CompletableFuture<?>[] futures = new CompletableFuture<?>[16];
+        
+        futures[0] = loadTextureAsync("assets/textures/ground.png", "ground", null);
+        futures[1] = loadTextureAsync("assets/textures/tall_grass.png", "tall_grass", null);
+        futures[2] = loadTextureAsync("assets/textures/player.png", "player", null);
         
         // Charger les textures pour le QTE
-        loadTexture("assets/textures/ui/qte_frame.png", "qte_frame");
-        loadTexture("assets/textures/ui/qte_time_bar.png", "qte_time_bar");
-        loadTexture("assets/textures/ui/key_up.png", "key_up");
-        loadTexture("assets/textures/ui/key_down.png", "key_down");
-        loadTexture("assets/textures/ui/key_left.png", "key_left");
-        loadTexture("assets/textures/ui/key_right.png", "key_right");
-        loadTexture("assets/textures/ui/key_w.png", "key_w");
-        loadTexture("assets/textures/ui/key_a.png", "key_a");
-        loadTexture("assets/textures/ui/key_s.png", "key_s");
-        loadTexture("assets/textures/ui/key_d.png", "key_d");
+        futures[3] = loadTextureAsync("assets/textures/ui/qte_frame.png", "qte_frame", null);
+        futures[4] = loadTextureAsync("assets/textures/ui/qte_time_bar.png", "qte_time_bar", null);
+        futures[5] = loadTextureAsync("assets/textures/ui/key_up.png", "key_up", null);
+        futures[6] = loadTextureAsync("assets/textures/ui/key_down.png", "key_down", null);
+        futures[7] = loadTextureAsync("assets/textures/ui/key_left.png", "key_left", null);
+        futures[8] = loadTextureAsync("assets/textures/ui/key_right.png", "key_right", null);
+        futures[9] = loadTextureAsync("assets/textures/ui/key_w.png", "key_w", null);
+        futures[10] = loadTextureAsync("assets/textures/ui/key_a.png", "key_a", null);
+        futures[11] = loadTextureAsync("assets/textures/ui/key_s.png", "key_s", null);
+        futures[12] = loadTextureAsync("assets/textures/ui/key_d.png", "key_d", null);
         
         // Charger les textures pour le combat
-        loadTexture("assets/textures/ui/combat_bg.png", "combat_bg");
-        loadTexture("assets/textures/ui/combat_frame.png", "combat_frame");
+        futures[13] = loadTextureAsync("assets/textures/ui/combat_bg.png", "combat_bg", null);
+        futures[14] = loadTextureAsync("assets/textures/ui/combat_frame.png", "combat_frame", null);
+        
+        // Attendre que toutes les ressources soient chargées
+        CompletableFuture.allOf(futures).join();
+        
+        long endTime = System.currentTimeMillis();
+        System.out.println("Resource initialization completed in " + (endTime - startTime) + "ms");
+        System.out.println("Loaded " + textures.size() + " textures, " + sounds.size() + " sounds, " + fonts.size() + " fonts");
     }
     
     /**
@@ -91,6 +135,18 @@ public class ResourceManager {
             return textures.get(name);
         }
         
+        // Check if texture is being loaded
+        if (pendingTextures.containsKey(name)) {
+            try {
+                return pendingTextures.get(name).get();
+            } catch (Exception e) {
+                System.err.println("Error waiting for texture: " + name);
+                e.printStackTrace();
+                return 0;
+            }
+        }
+        
+        long startTime = System.currentTimeMillis();
         int textureId = 0;
         
         try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -125,19 +181,123 @@ public class ResourceManager {
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
             
             // Upload texture data
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width.get(), height.get(), 
-                    0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, decodedImage);
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width.get(), height.get(), 0,
+                    GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, decodedImage);
             
             // Free the decoded image
             STBImage.stbi_image_free(decodedImage);
             
-            // Store the texture ID
+            // Store the texture
             textures.put(name, textureId);
             
-            System.out.println("Loaded texture: " + name + " (" + width.get() + "x" + height.get() + ")");
+            long endTime = System.currentTimeMillis();
+            totalLoadingTime += (endTime - startTime);
+            resourcesLoaded++;
+            
+            if (resourcesLoaded % 10 == 0) {
+                System.out.println("Average texture loading time: " + (totalLoadingTime / resourcesLoaded) + "ms");
+            }
+            
+            return textureId;
+        }
+    }
+    
+    /**
+     * Charger une texture de manière asynchrone
+     * @param path Chemin du fichier image
+     * @param name Nom de référence pour la texture
+     * @param callback Callback à appeler une fois la texture chargée
+     * @return CompletableFuture pour suivre le chargement
+     */
+    public CompletableFuture<Integer> loadTextureAsync(String path, String name, Consumer<Integer> callback) {
+        // Check if texture is already loaded
+        if (textures.containsKey(name)) {
+            int textureId = textures.get(name);
+            CompletableFuture<Integer> future = CompletableFuture.completedFuture(textureId);
+            if (callback != null) {
+                callback.accept(textureId);
+            }
+            return future;
         }
         
-        return textureId;
+        // Check if texture is being loaded
+        if (pendingTextures.containsKey(name)) {
+            CompletableFuture<Integer> future = pendingTextures.get(name);
+            if (callback != null) {
+                future.thenAccept(callback);
+            }
+            return future;
+        }
+        
+        // Create a new future for this texture
+        CompletableFuture<Integer> future = new CompletableFuture<>();
+        pendingTextures.put(name, future);
+        
+        // Load the texture asynchronously
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                // Load the resource data
+                ByteBuffer imageBuffer = loadResource(path);
+                if (imageBuffer == null) {
+                    throw new RuntimeException("Failed to load texture: " + path);
+                }
+                return imageBuffer;
+            } catch (Exception e) {
+                throw new RuntimeException("Error loading texture data: " + path, e);
+            }
+        }, loadingThreadPool).thenAcceptAsync(imageBuffer -> {
+            try (MemoryStack stack = MemoryStack.stackPush()) {
+                IntBuffer width = stack.mallocInt(1);
+                IntBuffer height = stack.mallocInt(1);
+                IntBuffer channels = stack.mallocInt(1);
+                
+                // Decode the image
+                ByteBuffer decodedImage = STBImage.stbi_load_from_memory(
+                        imageBuffer, width, height, channels, 4);
+                
+                if (decodedImage == null) {
+                    throw new RuntimeException("Failed to decode texture: " + path);
+                }
+                
+                // Create OpenGL texture
+                int textureId = GL11.glGenTextures();
+                GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureId);
+                
+                // Set texture parameters
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+                
+                // Upload texture data
+                GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width.get(), height.get(), 0,
+                        GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, decodedImage);
+                
+                // Free the decoded image
+                STBImage.stbi_image_free(decodedImage);
+                
+                // Store the texture
+                textures.put(name, textureId);
+                
+                // Complete the future
+                future.complete(textureId);
+                
+                // Call the callback if provided
+                if (callback != null) {
+                    callback.accept(textureId);
+                }
+                
+                // Remove from pending
+                pendingTextures.remove(name);
+            } catch (Exception e) {
+                future.completeExceptionally(e);
+                pendingTextures.remove(name);
+                System.err.println("Error processing texture: " + path);
+                e.printStackTrace();
+            }
+        });
+        
+        return future;
     }
     
     /**
@@ -150,12 +310,21 @@ public class ResourceManager {
     }
     
     /**
+     * Vérifier si une texture est chargée
+     * @param name Nom de la texture
+     * @return true si la texture est chargée, false sinon
+     */
+    public boolean hasTexture(String name) {
+        return textures.containsKey(name);
+    }
+    
+    /**
      * Obtenir l'ID d'une texture par son nom
      * @param name Nom de la texture
-     * @return ID de la texture, ou 0 si non trouvée
+     * @return ID de la texture, ou -1 si non trouvée
      */
     public int getTextureId(String name) {
-        return textures.getOrDefault(name, 0);
+        return textures.getOrDefault(name, -1);
     }
     
     /**
@@ -165,10 +334,78 @@ public class ResourceManager {
      * @return L'objet Sound créé
      */
     public Sound loadSound(String path, String name) {
-        // Cette méthode sera implémentée plus tard avec OpenAL
+        // Check if sound is already loaded
+        if (sounds.containsKey(name)) {
+            return sounds.get(name);
+        }
+        
+        // Create a new sound
         Sound sound = new Sound(name);
         sounds.put(name, sound);
+        
         return sound;
+    }
+    
+    /**
+     * Charger un son de manière asynchrone
+     * @param path Chemin du fichier son
+     * @param name Nom de référence pour le son
+     * @param callback Callback à appeler une fois le son chargé
+     * @return CompletableFuture pour suivre le chargement
+     */
+    public CompletableFuture<Sound> loadSoundAsync(String path, String name, Consumer<Sound> callback) {
+        // Check if sound is already loaded
+        if (sounds.containsKey(name)) {
+            Sound sound = sounds.get(name);
+            CompletableFuture<Sound> future = CompletableFuture.completedFuture(sound);
+            if (callback != null) {
+                callback.accept(sound);
+            }
+            return future;
+        }
+        
+        // Check if sound is being loaded
+        if (pendingSounds.containsKey(name)) {
+            CompletableFuture<Sound> future = pendingSounds.get(name);
+            if (callback != null) {
+                future.thenAccept(callback);
+            }
+            return future;
+        }
+        
+        // Create a new future for this sound
+        CompletableFuture<Sound> future = new CompletableFuture<>();
+        pendingSounds.put(name, future);
+        
+        // Load the sound asynchronously
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                // Create a new sound
+                Sound sound = new Sound(name);
+                sounds.put(name, sound);
+                
+                // Complete the future
+                future.complete(sound);
+                
+                // Call the callback if provided
+                if (callback != null) {
+                    callback.accept(sound);
+                }
+                
+                // Remove from pending
+                pendingSounds.remove(name);
+                
+                return sound;
+            } catch (Exception e) {
+                future.completeExceptionally(e);
+                pendingSounds.remove(name);
+                System.err.println("Error loading sound: " + path);
+                e.printStackTrace();
+                return null;
+            }
+        }, loadingThreadPool);
+        
+        return future;
     }
     
     /**
@@ -188,10 +425,91 @@ public class ResourceManager {
      * @return L'objet Font créé
      */
     public Font loadFont(String path, String name, int size) {
-        // Cette méthode sera implémentée plus tard avec STB TrueType
+        // Check if font is already loaded
+        String fontKey = name + "_" + size;
+        if (fonts.containsKey(fontKey)) {
+            return fonts.get(fontKey);
+        }
+        
+        // Create a new font
         Font font = new Font(name, size);
-        fonts.put(name, font);
+        fonts.put(fontKey, font);
+        
         return font;
+    }
+    
+    /**
+     * Charger une police de manière asynchrone
+     * @param path Chemin du fichier de police
+     * @param name Nom de référence pour la police
+     * @param size Taille de la police
+     * @param callback Callback à appeler une fois la police chargée
+     * @return CompletableFuture pour suivre le chargement
+     */
+    public CompletableFuture<Font> loadFontAsync(String path, String name, int size, Consumer<Font> callback) {
+        // Check if font is already loaded
+        String fontKey = name + "_" + size;
+        if (fonts.containsKey(fontKey)) {
+            Font font = fonts.get(fontKey);
+            CompletableFuture<Font> future = CompletableFuture.completedFuture(font);
+            if (callback != null) {
+                callback.accept(font);
+            }
+            return future;
+        }
+        
+        // Check if font is being loaded
+        if (pendingFonts.containsKey(fontKey)) {
+            CompletableFuture<Font> future = pendingFonts.get(fontKey);
+            if (callback != null) {
+                future.thenAccept(callback);
+            }
+            return future;
+        }
+        
+        // Create a new future for this font
+        CompletableFuture<Font> future = new CompletableFuture<>();
+        pendingFonts.put(fontKey, future);
+        
+        // Load the font asynchronously
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                // Create a new font
+                Font font = new Font(name, size);
+                fonts.put(fontKey, font);
+                
+                // Complete the future
+                future.complete(font);
+                
+                // Call the callback if provided
+                if (callback != null) {
+                    callback.accept(font);
+                }
+                
+                // Remove from pending
+                pendingFonts.remove(fontKey);
+                
+                return font;
+            } catch (Exception e) {
+                future.completeExceptionally(e);
+                pendingFonts.remove(fontKey);
+                System.err.println("Error loading font: " + path);
+                e.printStackTrace();
+                return null;
+            }
+        }, loadingThreadPool);
+        
+        return future;
+    }
+    
+    /**
+     * Obtenir une police déjà chargée
+     * @param name Nom de la police
+     * @param size Taille de la police
+     * @return L'objet Font, ou null si non trouvé
+     */
+    public Font getFont(String name, int size) {
+        return fonts.get(name + "_" + size);
     }
     
     /**
@@ -200,13 +518,22 @@ public class ResourceManager {
      * @return L'objet Font, ou null si non trouvé
      */
     public Font getFont(String name) {
-        return fonts.get(name);
+        // Rechercher une police avec ce nom (peu importe la taille)
+        for (Map.Entry<String, Font> entry : fonts.entrySet()) {
+            if (entry.getKey().startsWith(name + "_")) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
     
     /**
      * Libérer toutes les ressources
      */
     public void dispose() {
+        // Shutdown the loading thread pool
+        loadingThreadPool.shutdown();
+        
         // Dispose textures
         for (int textureId : textures.values()) {
             GL11.glDeleteTextures(textureId);
@@ -224,6 +551,37 @@ public class ResourceManager {
             font.dispose();
         }
         fonts.clear();
+        
+        // Clear cache
+        resourceCache.clear();
+        
+        System.out.println("ResourceManager disposed. Performance stats:");
+        System.out.println("Total resources loaded: " + resourcesLoaded);
+        System.out.println("Cache hits: " + cacheHits);
+        System.out.println("Average loading time: " + (resourcesLoaded > 0 ? totalLoadingTime / resourcesLoaded : 0) + "ms");
+    }
+    
+    /**
+     * Précharger un ensemble de ressources en arrière-plan
+     * @param paths Liste des chemins de ressources à précharger
+     */
+    public void preloadResources(String[] paths) {
+        System.out.println("Preloading " + paths.length + " resources...");
+        
+        for (String path : paths) {
+            CompletableFuture.runAsync(() -> {
+                try {
+                    ByteBuffer buffer = loadResource(path);
+                    if (buffer != null) {
+                        resourceCache.put(path, buffer);
+                        System.out.println("Preloaded: " + path);
+                    }
+                } catch (Exception e) {
+                    System.err.println("Failed to preload: " + path);
+                    e.printStackTrace();
+                }
+            }, loadingThreadPool);
+        }
     }
     
     /**
@@ -232,13 +590,28 @@ public class ResourceManager {
      * @return ByteBuffer contenant les données de la ressource
      */
     private ByteBuffer loadResource(String resourcePath) {
+        // Check cache first
+        if (resourceCache.containsKey(resourcePath)) {
+            cacheHits++;
+            return resourceCache.get(resourcePath).duplicate();
+        }
+        
         try {
             Path path = Paths.get(resourcePath);
+            ByteBuffer buffer;
+            
             if (Files.exists(path)) {
-                return loadFromFile(path);
+                buffer = loadFromFile(path);
             } else {
-                return loadFromClasspath(resourcePath);
+                buffer = loadFromClasspath(resourcePath);
             }
+            
+            // Cache the resource
+            if (buffer != null) {
+                resourceCache.put(resourcePath, buffer.duplicate());
+            }
+            
+            return buffer;
         } catch (IOException e) {
             System.err.println("Failed to load resource: " + resourcePath);
             e.printStackTrace();

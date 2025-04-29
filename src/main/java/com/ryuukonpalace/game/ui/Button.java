@@ -31,6 +31,9 @@ public class Button extends UIComponent {
     // Taille du texte
     private int textSize;
     
+    // Tag pour stocker des données supplémentaires
+    private Object tag;
+    
     /**
      * Constructeur avec textures
      * 
@@ -97,6 +100,20 @@ public class Button extends UIComponent {
         this.disabledTextureId = -1;
     }
     
+    /**
+     * Constructeur avec couleurs (paramètres int)
+     * 
+     * @param x Position X
+     * @param y Position Y
+     * @param width Largeur
+     * @param height Hauteur
+     * @param text Texte du bouton
+     */
+    public Button(int x, int y, int width, int height, String text) {
+        this((float)x, (float)y, (float)width, (float)height, text, 
+             0xFF4A4A4A, 0xFF5A5A5A, 0xFF3A3A3A, 0xFF2A2A2A, 0xFFFFFFFF, null);
+    }
+    
     @Override
     public void update(float deltaTime) {
         // Rien à faire pour l'instant
@@ -154,6 +171,30 @@ public class Button extends UIComponent {
         }
     }
     
+    /**
+     * Gérer les entrées utilisateur
+     * 
+     * @param mouseX Position X de la souris
+     * @param mouseY Position Y de la souris
+     * @param mousePressed true si le bouton de la souris est appuyé, false sinon
+     * @return true si l'entrée a été traitée, false sinon
+     */
+    public boolean handleInput(float mouseX, float mouseY, boolean mousePressed) {
+        // Mettre à jour l'état de survol
+        onHover(mouseX, mouseY);
+        
+        // Gérer l'appui
+        boolean handled = onPress(mouseX, mouseY, mousePressed);
+        
+        // Si le bouton est relâché et qu'il était survolé, déclencher le clic
+        if (!mousePressed && hovered && pressed) {
+            onClick(mouseX, mouseY);
+            handled = true;
+        }
+        
+        return handled;
+    }
+    
     // Getters et setters supplémentaires
     
     public String getText() {
@@ -205,6 +246,24 @@ public class Button extends UIComponent {
     }
     
     /**
+     * Définir le tag du bouton (données supplémentaires)
+     * 
+     * @param tag Objet à associer au bouton
+     */
+    public void setTag(Object tag) {
+        this.tag = tag;
+    }
+    
+    /**
+     * Obtenir le tag du bouton
+     * 
+     * @return Tag associé au bouton
+     */
+    public Object getTag() {
+        return tag;
+    }
+    
+    /**
      * Vérifier si un point est à l'intérieur du bouton
      * 
      * @param x Position X du point
@@ -214,5 +273,14 @@ public class Button extends UIComponent {
     public boolean contains(float x, float y) {
         return this.x <= x && x <= this.x + this.width &&
                this.y <= y && y <= this.y + this.height;
+    }
+    
+    /**
+     * Vérifier si le bouton est cliqué
+     * 
+     * @return true si le bouton est cliqué, false sinon
+     */
+    public boolean isClicked() {
+        return pressed;
     }
 }

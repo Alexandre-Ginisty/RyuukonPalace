@@ -46,6 +46,18 @@ public class Panel extends UIComponent {
     }
     
     /**
+     * Constructeur avec couleur de fond (paramètres int)
+     * 
+     * @param x Position X
+     * @param y Position Y
+     * @param width Largeur
+     * @param height Hauteur
+     */
+    public Panel(int x, int y, int width, int height) {
+        this((float)x, (float)y, (float)width, (float)height, 0xCC333333);
+    }
+    
+    /**
      * Constructeur avec texture de fond
      * 
      * @param x Position X
@@ -201,6 +213,60 @@ public class Panel extends UIComponent {
     }
     
     /**
+     * Gérer les entrées utilisateur
+     * 
+     * @param mouseX Position X de la souris
+     * @param mouseY Position Y de la souris
+     * @param mousePressed true si le bouton de la souris est appuyé, false sinon
+     * @return true si l'entrée a été traitée, false sinon
+     */
+    public boolean handleInput(float mouseX, float mouseY, boolean mousePressed) {
+        if (!visible || !enabled) {
+            return false;
+        }
+        
+        // Vérifier si la souris est à l'intérieur du panneau
+        if (!contains(mouseX, mouseY)) {
+            return false;
+        }
+        
+        boolean handled = false;
+        
+        // Mettre à jour l'état de survol
+        onHover(mouseX, mouseY);
+        
+        // Gérer l'appui
+        if (mousePressed) {
+            // Propager l'appui aux enfants (de l'avant vers l'arrière)
+            for (int i = children.size() - 1; i >= 0; i--) {
+                UIComponent child = children.get(i);
+                if (child instanceof Button) {
+                    Button button = (Button) child;
+                    if (button.handleInput(mouseX - x, mouseY - y, mousePressed)) {
+                        handled = true;
+                        break;
+                    }
+                } else if (child.onPress(mouseX - x, mouseY - y, mousePressed)) {
+                    handled = true;
+                    break;
+                }
+            }
+        } else {
+            // Propager le relâchement aux enfants
+            for (UIComponent child : children) {
+                if (child instanceof Button) {
+                    Button button = (Button) child;
+                    button.handleInput(mouseX - x, mouseY - y, mousePressed);
+                } else {
+                    child.onPress(mouseX - x, mouseY - y, mousePressed);
+                }
+            }
+        }
+        
+        return handled;
+    }
+    
+    /**
      * Ajouter un composant enfant
      * 
      * @param child Composant à ajouter
@@ -233,6 +299,15 @@ public class Panel extends UIComponent {
      */
     public List<UIComponent> getChildren() {
         return children;
+    }
+    
+    /**
+     * Obtenir le nombre de composants enfants
+     * 
+     * @return Nombre de composants enfants
+     */
+    public int getChildCount() {
+        return children.size();
     }
     
     // Getters et setters supplémentaires

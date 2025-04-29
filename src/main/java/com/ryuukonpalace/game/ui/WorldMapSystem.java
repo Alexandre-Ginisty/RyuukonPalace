@@ -7,7 +7,6 @@ import com.ryuukonpalace.game.utils.JsonLoader;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +33,8 @@ public class WorldMapSystem {
     private Rectangle fullMapBounds;
     private Rectangle miniMapBounds;
     private boolean fogOfWarEnabled;
+    // Ce rayon sera utilisé dans une future mise à jour pour le système de brouillard de guerre
+    @SuppressWarnings("unused")
     private int fogRevealRadius;
     private List<Point> discoveredAreas;
     
@@ -272,7 +273,9 @@ public class WorldMapSystem {
     
     /**
      * Vérifie si une position est dans la portée de la mini-carte.
+     * Cette méthode sera utilisée dans une future mise à jour pour limiter l'affichage des éléments sur la mini-carte.
      */
+    @SuppressWarnings("unused")
     private boolean isInMiniMapRange(Point position) {
         int visibilityRadius = 300; // Rayon de visibilité de la mini-carte
         
