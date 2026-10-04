@@ -20,8 +20,8 @@ Ryuukon Palace est un jeu RPG qui propose :
 
 Pour essayer la démo du jeu :
 
-1. **Version complète** : Exécutez `run_demo.bat` (nécessite les dépendances LWJGL)
-2. **Version simplifiée** : Exécutez `run_simple_demo.bat` (aucune dépendance requise)
+1. **Version complète** : `run_demo.bat` (Windows) ou `./run_demo.sh` (Mac/Linux, nécessite Java 17+ et Maven ; les natives LWJGL sont choisies automatiquement selon l'OS)
+2. **Version simplifiée** : `run_simple_demo.bat` (Windows) ou `./run_simple_demo.sh` (Mac/Linux), aucune dépendance requise
 
 Consultez [Guide de la démo](docs/DEMO_GUIDE.md) pour plus d'informations.
 

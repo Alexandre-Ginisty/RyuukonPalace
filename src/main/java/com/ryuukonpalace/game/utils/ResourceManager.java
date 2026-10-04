@@ -93,7 +93,7 @@ public class ResourceManager {
         long startTime = System.currentTimeMillis();
         
         // Précharger les textures de base en parallèle
-        CompletableFuture<?>[] futures = new CompletableFuture<?>[16];
+        CompletableFuture<?>[] futures = new CompletableFuture<?>[15];
         
         futures[0] = loadTextureAsync("assets/textures/ground.png", "ground", null);
         futures[1] = loadTextureAsync("assets/textures/tall_grass.png", "tall_grass", null);
@@ -116,7 +116,12 @@ public class ResourceManager {
         futures[14] = loadTextureAsync("assets/textures/ui/combat_frame.png", "combat_frame", null);
         
         // Attendre que toutes les ressources soient chargées
-        CompletableFuture.allOf(futures).join();
+        // (une texture manquante ne doit pas empêcher le jeu de démarrer)
+        try {
+            CompletableFuture.allOf(futures).join();
+        } catch (java.util.concurrent.CompletionException e) {
+            System.err.println("Certaines textures n'ont pas pu être chargées : " + e.getCause());
+        }
         
         long endTime = System.currentTimeMillis();
         System.out.println("Resource initialization completed in " + (endTime - startTime) + "ms");
@@ -295,6 +300,11 @@ public class ResourceManager {
                 System.err.println("Error processing texture: " + path);
                 e.printStackTrace();
             }
+        }).exceptionally(ex -> {
+            // Échec avant le décodage (ex. fichier introuvable) : terminer le future pour ne pas bloquer le démarrage
+            future.completeExceptionally(ex);
+            pendingTextures.remove(name);
+            return null;
         });
         
         return future;

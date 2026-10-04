@@ -90,7 +90,7 @@ public class CombatInterface {
      * Constructeur privé (singleton)
      */
     private CombatInterface() {
-        this.combatSystem = CombatSystem.getInstance();
+        // combatSystem est résolu à la demande : CombatSystem crée déjà CombatInterface (évite la boucle de singletons)
         this.renderer = Renderer.getInstance();
         this.resourceManager = ResourceManager.getInstance();
         this.initialized = false;
@@ -100,6 +100,13 @@ public class CombatInterface {
         this.captureButtons = new ArrayList<>();
     }
     
+    private CombatSystem combatSystem() {
+        if (combatSystem == null) {
+            combatSystem = CombatSystem.getInstance();
+        }
+        return combatSystem;
+    }
+
     /**
      * Obtenir l'instance unique de l'interface de combat
      * 
@@ -553,7 +560,7 @@ public class CombatInterface {
                 // TODO: Implémenter le menu d'objets
                 break;
             case 3: // Fuir
-                combatSystem.tryToFlee();
+                combatSystem().tryToFlee();
                 break;
         }
     }
@@ -570,7 +577,7 @@ public class CombatInterface {
         }
         
         // Utiliser la capacité
-        combatSystem.useAbility(index);
+        combatSystem().useAbility(index);
         
         // Revenir au menu principal
         showMainMenu();
